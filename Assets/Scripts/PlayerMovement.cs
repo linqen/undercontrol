@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 		horizontalAxis = Input.GetAxisRaw (horizontalAxisName);
 		verticalAxis = Input.GetAxisRaw(verticalAxisName);
 
-		Debug.Log ("horizontal "+horizontalAxis+" Vertical "+verticalAxis);
+		Debug.Log ("Horizontal "+horizontalAxis+" Vertical "+verticalAxis);
 		currentCooldownGranade += Time.deltaTime;
 		if (Input.GetButton (fire1Name)||Input.GetButtonUp (fire1Name)) {
 			if (Input.GetButtonUp(fire1Name)&&currentCooldownGranade>=granadeCooldown) {

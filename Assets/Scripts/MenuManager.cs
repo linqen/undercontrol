@@ -2,28 +2,31 @@
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-public class CharacterSelectEvent:UnityEvent<bool>{}
-public class StartGameEvent:UnityEvent<bool>{}
+//public class CharacterSelectEvent:UnityEvent<bool>{}
+//public class StartGameEvent:UnityEvent<bool>{}
 public class MenuManager : GenericSingletonClass<MenuManager> {
 
-	GameObject mapSelect;
-	GameObject characterSelect;
+	GameManager gameManager;
+	GameObject pressStart;
 	GameObject mainMenu;
-	public CharacterSelectEvent charSelectEvent;
-	public StartGameEvent startGameEvent;
+	GameObject characterSelect;
+	GameObject mapSelect;
+	//public CharacterSelectEvent charSelectEvent;
+	//public StartGameEvent startGameEvent;
 	new void Awake(){
-		charSelectEvent = new CharacterSelectEvent ();
-		startGameEvent = new StartGameEvent ();
+		//charSelectEvent = new CharacterSelectEvent ();
+		//startGameEvent = new StartGameEvent ();
 	}
 
 	// Use this for initialization
 	void Start () {
+		pressStart = transform.Find ("PressStart").gameObject;
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
+		gameManager = GameManager.Instance;
 
-
-
+		gameManager.PressStartButton ();
 	}
 	
 	// Update is called once per frame
@@ -31,18 +34,25 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		
 	}
 
+	public void StartPressed(){
+		pressStart.SetActive (false);
+		mainMenu.SetActive (true);
+	}
+
 	public void PlayButton(){
 		mainMenu.SetActive (false);
 		//characterSelect.SetActive (true);
-		//charSelectEvent.Invoke (true);
+		//gameManager.CharSelection ();
 		//mapSelect.SetActive (true);
 		//EventSystem.current.currentSelectedGameObject.name;
-		startGameEvent.Invoke(true);
+		gameManager.GameStart();
 	}
 
 	public void BackToMain(){
 		mainMenu.SetActive (true);
 
 	}
+
+
 
 }

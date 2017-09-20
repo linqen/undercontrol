@@ -1,35 +1,29 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+
 public class GameManager : GenericSingletonClass<GameManager> {
-
 	public GameObject playerPrefab;
+	[Range(1,8)]
+	public int possiblePlayers;
 
-	bool isCharSelection = false;
-	bool isGameStart = false;
+	List<GameObject> players = new List<GameObject>();
+	int inputNumber=1;
+	bool charSelection = false;
+	bool pressStart = false;
 	MenuManager menuManager;
-
-
-
 
 	new void Awake(){
 		menuManager = MenuManager.Instance;
 	}
 
-	void Start () {
-		menuManager.charSelectEvent.AddListener (setIsCharSelection);
-		menuManager.startGameEvent.AddListener (setIsGameStart);
-	}
+	void Start () {}
 	
 	void Update () {
-		if (isCharSelection) {
-			Debug.Log ("IsCharSelection");
+		if (pressStart) {
+			PressStart ();
 		}
-		if (isGameStart) {
-			Debug.Log ("IsGameStart");
-			SceneManager.LoadScene ("Map1",LoadSceneMode.Additive);
-			Instantiate (playerPrefab);
-			isGameStart = false;
-		}
+
 	}
 
 	public void ReportDeath(GameObject playerObject){
@@ -38,11 +32,31 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		menuManager.BackToMain ();
 	}
 
+	public void CharSelection(){
+		Debug.Log ("charSelection");
+		charSelection = true;
+	}
 
-	//isCharSelection Get&Set
-	void setIsCharSelection(bool charSelectState){isCharSelection = charSelectState;}
-	bool getIsCharSelection(){return isCharSelection;}
-	//isGameStart Get&Set
-	void setIsGameStart(bool isGameStartState){isGameStart= isGameStartState;}
-	bool getIsGameStart(){return isGameStart;}
+	public void GameStart(){
+		SceneManager.LoadScene ("Map1",LoadSceneMode.Additive);
+		Instantiate (playerPrefab);
+	}
+	public void PressStartButton(){
+		pressStart = true;
+	}
+
+	private void PressStart(){
+		for (int i = 1; i <= possiblePlayers; i++) {
+			if (Input.GetButtonDown (Inputs.Start+i)) {
+				Debug.Log ("Enter pressed");
+				GameObject newPlayer = new GameObject ("Player" + inputNumber);
+				inputNumber++;
+				PlayerInput pi = newPlayer.AddComponent <PlayerInput>();
+				pi.SetInput(i);
+				players.Add (newPlayer);
+				menuManager.StartPressed ();
+				pressStart = false;
+			}
+		}
+	}
 }
