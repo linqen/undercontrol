@@ -1,24 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-//public class CharacterSelectEvent:UnityEvent<bool>{}
-//public class StartGameEvent:UnityEvent<bool>{}
 public class MenuManager : GenericSingletonClass<MenuManager> {
+	public List<GameObject> menuPlayerPreview = new List<GameObject>();
 
 	GameManager gameManager;
 	GameObject pressStart;
 	GameObject mainMenu;
 	GameObject characterSelect;
 	GameObject mapSelect;
-	//public CharacterSelectEvent charSelectEvent;
-	//public StartGameEvent startGameEvent;
-	new void Awake(){
-		//charSelectEvent = new CharacterSelectEvent ();
-		//startGameEvent = new StartGameEvent ();
-	}
 
-	// Use this for initialization
 	void Start () {
 		pressStart = transform.Find ("PressStart").gameObject;
 		mapSelect = transform.Find ("MapSelect").gameObject;
@@ -26,12 +19,10 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
 		gameManager = GameManager.Instance;
 
+		for (int i = 0; i < menuPlayerPreview.Count; i++) {
+			menuPlayerPreview[i] = characterSelect.transform.Find ("Character" + (i + 1)).gameObject;
+		}
 		gameManager.PressStartButton ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	public void StartPressed(){
@@ -39,20 +30,25 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mainMenu.SetActive (true);
 	}
 
+	public void CharacterSelectionFinished(){
+		characterSelect.SetActive (false);
+		gameManager.GameStart ();
+	}
+
 	public void PlayButton(){
 		mainMenu.SetActive (false);
-		//characterSelect.SetActive (true);
-		//gameManager.CharSelection ();
-		//mapSelect.SetActive (true);
-		//EventSystem.current.currentSelectedGameObject.name;
-		gameManager.GameStart();
+		characterSelect.SetActive (true);
+		gameManager.CharSelection ();
 	}
 
 	public void BackToMain(){
 		mainMenu.SetActive (true);
 
 	}
-
-
-
+	public void SetImagePreview(PlayerPreview playerPreview){
+		menuPlayerPreview [playerPreview.playerNumber-1].GetComponent<Image> ().sprite = playerPreview.charPreview;
+	}
+	public string GetCharacterFromPreview(int playerNumber){
+		return menuPlayerPreview [playerNumber].GetComponent<Image> ().sprite.name;
+	}
 }

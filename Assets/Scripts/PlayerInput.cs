@@ -1,20 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerInput : MonoBehaviour {
 
-	public string start;
-	public string horizontal;
-	public string vertical;
-	public string jump;
-	public string fire;
+	string start;
+	string horizontal;
+	string vertical;
+	string jump;
+	string fire;
+	public int inputNumber;
 
-	public void SetInput(int inputNumber){
+	public PlayerInput (int rinputNumber){
+		inputNumber = rinputNumber;
 		start = Inputs.Start + inputNumber;
 		horizontal = Inputs.Horizontal + inputNumber;
 		vertical = Inputs.Vertical + inputNumber;
 		jump = Inputs.Jump + inputNumber;
 		fire = Inputs.Fire + inputNumber;
+	}
+	public int GetInputNumber(){
+		return inputNumber;
 	}
 }
