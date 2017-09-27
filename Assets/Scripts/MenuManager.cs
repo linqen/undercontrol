@@ -11,14 +11,15 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	GameObject mainMenu;
 	GameObject characterSelect;
 	GameObject mapSelect;
-
+	//This need to be called so DontDestroyOnLoad on GenericSingletonClass been called
+	new void Awake(){
+	}
 	void Start () {
 		pressStart = transform.Find ("PressStart").gameObject;
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
 		gameManager = GameManager.Instance;
-
 		for (int i = 0; i < menuPlayerPreview.Count; i++) {
 			menuPlayerPreview[i] = characterSelect.transform.Find ("Character" + (i + 1)).gameObject;
 		}
