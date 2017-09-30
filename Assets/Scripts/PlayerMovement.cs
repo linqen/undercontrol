@@ -1,47 +1,32 @@
 ﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-	[Range(1,4)]
-	public int playerNumber;
-	public GameObject granadePrefab;
 	public float moveVelocity;
 	public float jumpForce;
-	public Vector3 lastDirection;
-	public float granadeCooldown;
 
-	Rigidbody2D rigid;
-	float verticalAxis;
-	float horizontalAxis;
-	float currentCooldownGranade;
-	bool grounded;
-	bool canDoubleJump;
+	private Rigidbody2D rigid;
+	private Vector3 lastDirection;
+	private float verticalAxis;
+	private float horizontalAxis;
+	private bool jump=false;
+	private bool grounded=true;
+	private bool canDoubleJump=true;
 
 	PlayerInput input;
 
 	void Start () {
 		input = GetComponent<PlayerInput> ();
 		rigid = GetComponent<Rigidbody2D> ();
-		grounded = true;
-		canDoubleJump = true;
+	}
+
+	void Update(){
+		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
+		verticalAxis = Input.GetAxisRaw(input.Vertical);
+		if (Input.GetButtonDown (input.Jump)) {jump = true;} 
+		else {jump = false;}
 	}
 
 	void FixedUpdate(){
-		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
-		verticalAxis = Input.GetAxisRaw(input.Vertical);
-
-		Debug.Log ("Horizontal "+horizontalAxis+" Vertical "+verticalAxis);
-		currentCooldownGranade += Time.deltaTime;
-		if (Input.GetButton (input.Fire)||Input.GetButtonUp (input.Fire)) {
-			if (Input.GetButtonUp(input.Fire)&&currentCooldownGranade>=granadeCooldown) {
-				Vector3 pos = new Vector3 ( transform.position.x+horizontalAxis,
-					transform.position.y+1,
-					transform.position.z);
-				GameObject shoot = Instantiate (granadePrefab, pos, transform.rotation);
-				shoot.GetComponent<Rigidbody2D>().AddForce (new Vector2(lastDirection.x*3,verticalAxis+2), ForceMode2D.Impulse);	
-				currentCooldownGranade = 0;
-			}
-			return;
-		}
 		if ( horizontalAxis>0.3f) {
 			rigid.AddForce (Vector2.right * moveVelocity, ForceMode2D.Force);
 			lastDirection = Vector3.right;
@@ -50,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
 			rigid.AddForce (Vector2.left * moveVelocity, ForceMode2D.Force);
 			lastDirection = Vector3.left;
 		}
-		if (Input.GetButtonDown(input.Jump)) {
+		if (jump) {
 			if (grounded) {
 				rigid.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
 				grounded = false;
@@ -66,6 +51,24 @@ public class PlayerMovement : MonoBehaviour {
 		   col.gameObject.tag.Equals ("Player")) {
 			grounded = true;
 			canDoubleJump = true;
+		}
+	}
+
+	//Getters
+	public Vector3 LastDirection {
+		get {
+			return this.lastDirection;
+		}
+	}
+	public float VerticalAxis {
+		get {
+			return this.verticalAxis;
+		}
+	}
+	
+	public float HorizontalAxis {
+		get {
+			return this.horizontalAxis;
 		}
 	}
 }

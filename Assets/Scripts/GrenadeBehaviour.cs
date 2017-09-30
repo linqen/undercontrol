@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GranadeBehaviour : MonoBehaviour {
+public class GrenadeBehaviour : MonoBehaviour {
 	public float explodeTime;
 	public float explosionForce;
 	public float dieTime;

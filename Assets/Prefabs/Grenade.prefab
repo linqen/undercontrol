@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 227907168313651852}
   - component: {fileID: 58276839792945044}
   m_Layer: 0
-  m_Name: Granade
+  m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c48987cde349e4bb15760c7397c22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explodeTime: 3
+  explodeTime: 1.5
   explosionForce: 1
   dieTime: 1
 --- !u!114 &114671023860977938

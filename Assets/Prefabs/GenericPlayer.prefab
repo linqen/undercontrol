@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61670023363901548}
   - component: {fileID: 50527300714711074}
   - component: {fileID: 114063658975228412}
+  - component: {fileID: 114237634910380500}
   - component: {fileID: 114378457164177316}
   - component: {fileID: 114027095849270812}
   m_Layer: 0
@@ -152,13 +153,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b5f4b4abb1d8a4a8a6a8be7daa0198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 3
-  granadePrefab: {fileID: 1353945325221178, guid: f44c5f83c16687e4489b4bca08aad3a1,
-    type: 2}
   moveVelocity: 5
   jumpForce: 2
-  lastDirection: {x: 0, y: 0, z: 0}
-  granadeCooldown: 1
+--- !u!114 &114237634910380500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649050943946022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e8ba7d9093b174cae495b3651e172e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  granadePrefab: {fileID: 1353945325221178, guid: f44c5f83c16687e4489b4bca08aad3a1,
+    type: 2}
+  granadeCooldown: 1.5
 --- !u!114 &114378457164177316
 MonoBehaviour:
   m_ObjectHideFlags: 1
