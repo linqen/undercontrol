@@ -41,7 +41,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	public void GameStart(){
 		SceneManager.LoadScene ("Map1",LoadSceneMode.Additive);
-		Instantiate (playerPrefab);
+		for (int i = 0; i < players.Count; i++) {
+			players [i].SetActive (true);
+		}
 	}
 	public void PressStartButton(){
 		pressStart = true;
@@ -66,21 +68,17 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				bool inputUsed = false;
 				for (int j = 0; j < players.Count; j++) {
 					if (players [j].GetComponent<PlayerManager> ().PlayerInput.GetInputNumber () == i) {
-						//players [j].GetComponent<PlayerManager> ().SetCharacter ();
 						Debug.Log ("Used Enter pressed "+menuManager.GetCharacterFromPreview(j));
-						//players [j].GetComponent<PlayerManager> ().preview.onUse = true;
 						SelectActualPlayer(players [j].GetComponent<PlayerManager> ().Preview);
 						if (players.Count>=2&&
 							onUsePlayersPreviews.Count==players.Count) {
 							charSelection = false;
 							menuManager.CharacterSelectionFinished ();
-							Debug.Log ("ARRANCA EL JUEGO");
 						}
 						inputUsed = true;
 					}
 				}
 				if (!inputUsed) {
-					Debug.Log ("New Enter pressed");
 					GameObject newPlayer = CreatePlayer (i);
 					menuManager.SetImagePreview(newPlayer.GetComponent<PlayerManager> ().Preview);
 					players.Add (newPlayer);
@@ -94,7 +92,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
 				Input.GetAxisRaw (Inputs.Horizontal + actualInput) > 0.5f &&
 				!pm.Preview.selected) {
-				//Mover derecha
+				//Move Right
 				PlayerPreview newPreview=new PlayerPreview(pp.playerNumber,GetNextUnusedPlayer(pp.charPreview));
 				menuManager.SetImagePreview(newPreview);
 				players[i].GetComponent<PlayerManager>().Preview=newPreview;
@@ -102,7 +100,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		else if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
 				Input.GetAxisRaw (Inputs.Horizontal + actualInput) < -0.5f &&
 				!pm.Preview.selected) {
-				//Mover Izquierda
+				//Move Left
 				PlayerPreview newPreview=new PlayerPreview(pp.playerNumber,GetPreviousUnusedPlayer(pp.charPreview));
 				menuManager.SetImagePreview(newPreview);
 				players[i].GetComponent<PlayerManager>().Preview=newPreview;
@@ -116,10 +114,26 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		int playerNumber = (players.Count + 1);
 		newPlayer.name = ("Player" + (playerNumber));
 		pm.Preview=new PlayerPreview(playerNumber,GetNextUnusedPlayer());
-		pm.PlayerInput=new PlayerInput(inputNumber);
+		//pm.PlayerInput=new PlayerInput(inputNumber);
+		pm.PlayerInput=newPlayer.AddComponent<PlayerInput>();
+		pm.PlayerInput.SetInputNumber (inputNumber);
 		return newPlayer;
 	}
-	
+
+	private bool SelectActualPlayer(PlayerPreview playerPreview){
+		Sprite preview = playerPreview.charPreview;
+		for (int i = 0; i < availablePlayersPreviews.Count; i++) {
+			if (preview.name.Equals (availablePlayersPreviews [i].name)) {
+				onUsePlayersPreviews.Add (availablePlayersPreviews [i]);
+				availablePlayersPreviews.RemoveAt (i);
+				playerPreview.selected = true;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//Previews Managment
 	private Sprite GetNextUnusedPlayer(){
 		return availablePlayersPreviews [0];
 	}
@@ -139,17 +153,5 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 		return availablePlayersPreviews [previewPosition];
 	}
-
-	private bool SelectActualPlayer(PlayerPreview playerPreview){
-		Sprite preview = playerPreview.charPreview;
-		for (int i = 0; i < availablePlayersPreviews.Count; i++) {
-			if (preview.name.Equals (availablePlayersPreviews [i].name)) {
-				onUsePlayersPreviews.Add (availablePlayersPreviews [i]);
-				availablePlayersPreviews.RemoveAt (i);
-				playerPreview.selected = true;
-				return true;
-			}
-		}
-		return false;
-	}
+	//Previews Managment
 }

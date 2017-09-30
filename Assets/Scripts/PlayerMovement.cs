@@ -7,53 +7,32 @@ public class PlayerMovement : MonoBehaviour {
 	public float moveVelocity;
 	public float jumpForce;
 	public Vector3 lastDirection;
+	public float granadeCooldown;
+
 	Rigidbody2D rigid;
 	float verticalAxis;
 	float horizontalAxis;
-	string horizontalAxisName;
-	string verticalAxisName;
-	string fire1Name;
-	string jumpName;
-	public float granadeCooldown;
 	float currentCooldownGranade;
 	bool grounded;
 	bool canDoubleJump;
-	// Use this for initialization
+
+	PlayerInput input;
+
 	void Start () {
+		input = GetComponent<PlayerInput> ();
 		rigid = GetComponent<Rigidbody2D> ();
-		if (playerNumber == 1) {
-			horizontalAxisName="Horizontal";
-			verticalAxisName="Vertical";
-			fire1Name="Fire1";
-			jumpName = "Jump";
-		} else if (playerNumber == 2) {
-			horizontalAxisName="Horizontal2";
-			verticalAxisName="Vertical2";
-			fire1Name="Fire3";
-			jumpName = "Jump2";
-		}else if (playerNumber == 3) {
-			horizontalAxisName="Horizontal3";
-			verticalAxisName="Vertical3";
-			fire1Name="Fire5";
-			jumpName = "Jump3";
-		}else if (playerNumber == 4) {
-			horizontalAxisName="Horizontal4";
-			verticalAxisName="Vertical4";
-			fire1Name="Fire7";
-			jumpName = "Jump4";
-		}
 		grounded = true;
 		canDoubleJump = true;
 	}
 
 	void FixedUpdate(){
-		horizontalAxis = Input.GetAxisRaw (horizontalAxisName);
-		verticalAxis = Input.GetAxisRaw(verticalAxisName);
+		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
+		verticalAxis = Input.GetAxisRaw(input.Vertical);
 
 		Debug.Log ("Horizontal "+horizontalAxis+" Vertical "+verticalAxis);
 		currentCooldownGranade += Time.deltaTime;
-		if (Input.GetButton (fire1Name)||Input.GetButtonUp (fire1Name)) {
-			if (Input.GetButtonUp(fire1Name)&&currentCooldownGranade>=granadeCooldown) {
+		if (Input.GetButton (input.Fire)||Input.GetButtonUp (input.Fire)) {
+			if (Input.GetButtonUp(input.Fire)&&currentCooldownGranade>=granadeCooldown) {
 				Vector3 pos = new Vector3 ( transform.position.x+horizontalAxis,
 					transform.position.y+1,
 					transform.position.z);
@@ -71,7 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 			rigid.AddForce (Vector2.left * moveVelocity, ForceMode2D.Force);
 			lastDirection = Vector3.left;
 		}
-		if (Input.GetButtonDown(jumpName)) {
+		if (Input.GetButtonDown(input.Jump)) {
 			if (grounded) {
 				rigid.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
 				grounded = false;

@@ -9,7 +9,7 @@ public class PlayerInput : MonoBehaviour {
 	string fire;
 	public int inputNumber;
 
-	public PlayerInput (int rinputNumber){
+	public void SetInputNumber(int rinputNumber){
 		inputNumber = rinputNumber;
 		start = Inputs.Start + inputNumber;
 		horizontal = Inputs.Horizontal + inputNumber;
@@ -19,5 +19,35 @@ public class PlayerInput : MonoBehaviour {
 	}
 	public int GetInputNumber(){
 		return inputNumber;
+	}
+
+	public string Start {
+		get {
+			return this.start;
+		}
+	}
+
+	public string Horizontal {
+		get {
+			return this.horizontal;
+		}
+	}
+
+	public string Vertical {
+		get {
+			return this.vertical;
+		}
+	}
+
+	public string Jump {
+		get {
+			return this.jump;
+		}
+	}
+
+	public string Fire {
+		get {
+			return this.fire;
+		}
 	}
 }
