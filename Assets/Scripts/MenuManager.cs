@@ -33,7 +33,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	public void CharacterSelectionFinished(){
 		characterSelect.SetActive (false);
-		gameManager.GameStart ();
+		gameManager.GameStart("Map1");
 	}
 
 	public void PlayButton(){

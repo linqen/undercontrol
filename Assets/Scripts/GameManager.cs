@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -6,10 +7,11 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	public GameObject playerPrefab;
 	[Range(1,8)]
 	public int possiblePlayers;
-
 	public List<Sprite> availablePlayersPreviews = new List<Sprite>();
+
 	List<Sprite> onUsePlayersPreviews = new List<Sprite>();
 	List<GameObject> players = new List<GameObject>();
+	List<Transform> spawnPoints = new List<Transform>();
 	bool charSelection = false;
 	bool pressStart = false;
 	MenuManager menuManager;
@@ -34,15 +36,31 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	public void CharSelection(){
-		Debug.Log ("charSelection");
 		charSelection = true;
 		menuManager.SetImagePreview (players[0].GetComponent<PlayerManager>().Preview);
 	}
 
-	public void GameStart(){
-		SceneManager.LoadScene ("Map1",LoadSceneMode.Additive);
+	public void GameStart(string rmapName){
+		StartCoroutine (OnGameStart (rmapName));
+	}
+	private IEnumerator OnGameStart(string rmapName){
+		bool loadStarted=false;
+		if (!loadStarted) {
+			SceneManager.LoadScene (rmapName,LoadSceneMode.Additive);
+			loadStarted = true;
+			yield return null;
+		}
+		Transform spawnPointsParent;
+		spawnPointsParent = GameObject.Find ("SpawnPoints").transform;
+		spawnPoints.Clear ();
+		foreach (Transform spawnPoint in spawnPointsParent) {
+			spawnPoints.Add (spawnPoint);
+		}
 		for (int i = 0; i < players.Count; i++) {
+			int randomSpawn = Random.Range (0, (spawnPoints.Count - 1));
+			players [i].transform.position = spawnPoints [randomSpawn].position;
 			players [i].SetActive (true);
+			spawnPoints.RemoveAt (randomSpawn);
 		}
 	}
 	public void PressStartButton(){
