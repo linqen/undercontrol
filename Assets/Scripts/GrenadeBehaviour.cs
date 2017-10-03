@@ -7,7 +7,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 	float timeLived;
 	CircleCollider2D circleCollider;
 	bool explode=false;
-	// Use this for initialization
+
 	void Start () {
 		timeLived = 0.0f;
 		circleCollider = GetComponent<CircleCollider2D> ();

@@ -15,7 +15,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	bool charSelection = false;
 	bool pressStart = false;
 	MenuManager menuManager;
-
+	int deadPlayers=0;
 	new void Awake(){
 		menuManager = MenuManager.Instance;
 	}
@@ -30,14 +30,28 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	public void ReportDeath(GameObject playerObject){
-		Destroy (playerObject);
-		SceneManager.UnloadSceneAsync ("Map1");
-		menuManager.BackToMain ();
+		deadPlayers++;
+		playerObject.SetActive (false);
+		if (players.Count -1 == deadPlayers) {
+			//Prepare the envoirement to re-play
+			for (int i = 0; i < players.Count; i++) {
+				players [i].SetActive (false);
+				players [i].GetComponent<PlayerPreview> ().selected = false;
+				players [i].GetComponent<PlayerLife> ().ResetLife();
+			}
+			for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
+				availablePlayersPreviews.Add (onUsePlayersPreviews[i]);
+			}
+			onUsePlayersPreviews.Clear ();
+			deadPlayers = 0;
+			SceneManager.UnloadSceneAsync ("Map1");
+			menuManager.BackToMain ();
+		}
 	}
 
 	public void CharSelection(){
 		charSelection = true;
-		menuManager.SetImagePreview (players[0].GetComponent<PlayerManager>().Preview);
+		menuManager.SetImagePreview (players[0].GetComponent<PlayerPreview>());
 	}
 
 	public void GameStart(string rmapName){
@@ -87,7 +101,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				for (int j = 0; j < players.Count; j++) {
 					if (players [j].GetComponent<PlayerManager> ().PlayerInput.GetInputNumber () == i) {
 						Debug.Log ("Used Enter pressed "+menuManager.GetCharacterFromPreview(j));
-						SelectActualPlayer(players [j].GetComponent<PlayerManager> ().Preview);
+						SelectActualPlayer(players [j].GetComponent<PlayerPreview> ());
 						if (players.Count>=2&&
 							onUsePlayersPreviews.Count==players.Count) {
 							charSelection = false;
@@ -98,7 +112,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				}
 				if (!inputUsed) {
 					GameObject newPlayer = CreatePlayer (i);
-					menuManager.SetImagePreview(newPlayer.GetComponent<PlayerManager> ().Preview);
+					menuManager.SetImagePreview(newPlayer.GetComponent<PlayerPreview> ());
 					players.Add (newPlayer);
 				}
 			}
@@ -106,22 +120,20 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		for (int i = 0; i < players.Count; i++) {
 			PlayerManager pm = players [i].GetComponent<PlayerManager> ();
 			int actualInput = pm.PlayerInput.GetInputNumber ();
-			PlayerPreview pp = pm.Preview;
+			PlayerPreview pp = players [i].GetComponent<PlayerPreview>();
 			if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
 				Input.GetAxisRaw (Inputs.Horizontal + actualInput) > 0.5f &&
-				!pm.Preview.selected) {
+				!pp.selected) {
 				//Move Right
-				PlayerPreview newPreview=new PlayerPreview(pp.playerNumber,GetNextUnusedPlayer(pp.charPreview));
-				menuManager.SetImagePreview(newPreview);
-				players[i].GetComponent<PlayerManager>().Preview=newPreview;
+				pp.SetCharPreview(GetNextUnusedPlayer(pp.charPreview));
+				menuManager.SetImagePreview(pp);
 			} 
 		else if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
 				Input.GetAxisRaw (Inputs.Horizontal + actualInput) < -0.5f &&
-				!pm.Preview.selected) {
+				!pp.selected) {
 				//Move Left
-				PlayerPreview newPreview=new PlayerPreview(pp.playerNumber,GetPreviousUnusedPlayer(pp.charPreview));
-				menuManager.SetImagePreview(newPreview);
-				players[i].GetComponent<PlayerManager>().Preview=newPreview;
+				pp.SetCharPreview(GetPreviousUnusedPlayer(pp.charPreview));
+				menuManager.SetImagePreview(pp);
 			}
 		}
 	}
@@ -131,8 +143,8 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		PlayerManager pm = newPlayer.GetComponent<PlayerManager> ();
 		int playerNumber = (players.Count + 1);
 		newPlayer.name = ("Player" + (playerNumber));
-		pm.Preview=new PlayerPreview(playerNumber,GetNextUnusedPlayer());
-		//pm.PlayerInput=new PlayerInput(inputNumber);
+		PlayerPreview pp = newPlayer.AddComponent<PlayerPreview> ();
+		pp.SetPreview(playerNumber,GetNextUnusedPlayer());
 		pm.PlayerInput=newPlayer.AddComponent<PlayerInput>();
 		pm.PlayerInput.SetInputNumber (inputNumber);
 		return newPlayer;

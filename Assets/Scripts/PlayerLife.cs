@@ -2,8 +2,7 @@
 
 public class PlayerLife : MonoBehaviour {
 	public int totalLife;
-	[Range(1,4)]
-	public int playerNumber;
+	int playerNumber;
 	int actualLife;
 	public GameManager gameManager;
 	Color color;
@@ -11,7 +10,7 @@ public class PlayerLife : MonoBehaviour {
 	bool canDead;
 	// Use this for initialization
 	void Start () {
-
+		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
 		gameManager = GameManager.Instance;
 
 		canDead = true;
@@ -49,7 +48,6 @@ public class PlayerLife : MonoBehaviour {
 		}
 
 		if (actualLife <= 0&&canDead) {
-			canDead = false;
 			gameManager.ReportDeath (gameObject);
 			//Death ();
 		}
