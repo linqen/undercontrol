@@ -13,40 +13,37 @@ public class GrenadeBehaviour : MonoBehaviour {
 		circleCollider = GetComponent<CircleCollider2D> ();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		timeLived += Time.deltaTime;
 		if (timeLived >= explodeTime) {
 			explode = true;
 			transform.GetComponentInChildren<ExplosionEffect> ().StartSwap ();
 			circleCollider.enabled = false;
-			//GetComponent<MeshRenderer> ().enabled = false;
 		}
 		if (timeLived >= explodeTime + dieTime) {
 			explode = false;
 			Destroy (gameObject);
 		}
 	}
-
+		
 	void OnTriggerExit2D(Collider2D col){
 		if (explode) {
 			Rigidbody2D rigid = col.GetComponent<Rigidbody2D> ();
 			if (rigid != null) {
-				float xForce=explosionForce/(col.transform.position.x - transform.position.x );
-				float yForce=explosionForce/(col.transform.position.y - transform.position.y);
+				Vector3 explodeDirection = rigid.transform.position - transform.position;
+				circleCollider.enabled = true;
+				float hitPowerForce = circleCollider.bounds.extents.magnitude-explodeDirection.magnitude;
 				if (col.tag.Equals ("Player")) {
-					float hitPowerForce = Mathf.Abs(xForce) + Mathf.Abs(yForce);
-					if (10.0f<hitPowerForce ) {
+					if ((circleCollider.bounds.extents.magnitude/1.3)<hitPowerForce ) {
 						col.GetComponent<PlayerLife> ().NotifyHit (3);
-					}else if (5.0f<hitPowerForce &&hitPowerForce  <10.0f ) {
+					}else if ((circleCollider.bounds.extents.magnitude/1.8)< hitPowerForce && hitPowerForce <(circleCollider.bounds.extents.magnitude/1.3) ) {
 						col.GetComponent<PlayerLife> ().NotifyHit (2);
-					}else if (0f<hitPowerForce &&hitPowerForce  <5.0f ) {
+					}else if (hitPowerForce <(circleCollider.bounds.extents.magnitude/1.8) ) {
 						col.GetComponent<PlayerLife> ().NotifyHit (1);
 					}
-
-
 				}
-				rigid.AddForce (new Vector2 (xForce,yForce), ForceMode2D.Impulse);
+				rigid.AddForce (explodeDirection.normalized*hitPowerForce*explosionForce, ForceMode2D.Impulse);
+				circleCollider.enabled = false;
 			}
 		}
 	}

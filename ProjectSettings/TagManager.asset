@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - LevelLimit
+  - EventSystem
   layers:
   - Default
   - TransparentFX

@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4416946859738428}
   - component: {fileID: 33490529239881394}
   - component: {fileID: 23399588764591752}
+  - component: {fileID: 114617966072389120}
   - component: {fileID: 58403540080437490}
   - component: {fileID: 61946452381305470}
   - component: {fileID: 50586193439535476}
-  - component: {fileID: 114617966072389120}
   - component: {fileID: 227907168313651852}
   - component: {fileID: 58276839792945044}
   m_Layer: 0
@@ -213,7 +213,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1353945325221178}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeTime: 1.5
-  explosionForce: 1
+  explosionForce: 0.5
   dieTime: 1
 --- !u!114 &114671023860977938
 MonoBehaviour:

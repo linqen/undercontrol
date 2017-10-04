@@ -11,11 +11,11 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	GameObject mainMenu;
 	GameObject characterSelect;
 	GameObject mapSelect;
-	//This need to be called so DontDestroyOnLoad on GenericSingletonClass been called
 	new void Awake(){
-		gameManager = GameManager.Instance;
+		base.Awake ();
 	}
 	void Start () {
+		gameManager = GameManager.Instance;
 		pressStart = transform.Find ("PressStart").gameObject;
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;

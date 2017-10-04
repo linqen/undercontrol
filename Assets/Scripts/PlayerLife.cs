@@ -10,8 +10,8 @@ public class PlayerLife : MonoBehaviour {
 	bool canDead;
 	// Use this for initialization
 	void Start () {
-		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
 		gameManager = GameManager.Instance;
+		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
 
 		canDead = true;
 		actualLife = totalLife;
