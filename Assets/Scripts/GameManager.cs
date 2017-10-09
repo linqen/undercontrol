@@ -16,7 +16,14 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	bool pressStart = false;
 	MenuManager menuManager;
 	int deadPlayers=0;
+	int numberOfRounds;
+	//int roundNumber=0;
+	string actualMapName;
 	new void Awake(){
+		base.Awake ();
+	}
+
+	void Start(){
 		menuManager = MenuManager.Instance;
 	}
 
@@ -33,20 +40,39 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		deadPlayers++;
 		playerObject.SetActive (false);
 		if (players.Count -1 == deadPlayers) {
+			numberOfRounds--;
 			//Prepare the envoirement to re-play
 			for (int i = 0; i < players.Count; i++) {
 				players [i].SetActive (false);
-				players [i].GetComponent<PlayerPreview> ().selected = false;
 				players [i].GetComponent<PlayerLife> ().ResetLife();
+				players [i].transform.rotation = Quaternion.identity;
+				//playerObject.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
+				//playerObject.GetComponent<Rigidbody2D>().angularVelocity=0.0f;
 			}
-			for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
-				availablePlayersPreviews.Add (onUsePlayersPreviews[i]);
-			}
-			onUsePlayersPreviews.Clear ();
 			deadPlayers = 0;
-			SceneManager.UnloadSceneAsync ("Map1");
-			menuManager.BackToMain ();
+			if (numberOfRounds==0) {
+				//End of rounds, back to selection
+				for (int i = 0; i < players.Count; i++) {
+					players [i].GetComponent<PlayerPreview> ().selected = false;
+				}
+				for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
+					availablePlayersPreviews.Add (onUsePlayersPreviews [i]);
+				}
+				onUsePlayersPreviews.Clear ();
+				SceneManager.UnloadSceneAsync (actualMapName);
+				menuManager.BackToMain ();
+			} else {
+				//GetNextMap
+				StartCoroutine(NextRound());
+			}
 		}
+	}
+
+	private IEnumerator NextRound(){
+		yield return new WaitForSecondsRealtime (3.0f);
+		SceneManager.UnloadSceneAsync (actualMapName);
+		GameStart ("Map1", numberOfRounds);
+
 	}
 
 	public void CharSelection(){
@@ -54,10 +80,12 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		menuManager.SetImagePreview (players[0].GetComponent<PlayerPreview>());
 	}
 
-	public void GameStart(string rmapName){
+	public void GameStart(string rmapName, int numberOfRounds){
+		this.numberOfRounds = numberOfRounds;
 		StartCoroutine (OnGameStart (rmapName));
 	}
 	private IEnumerator OnGameStart(string rmapName){
+		actualMapName = rmapName;
 		bool loadStarted=false;
 		if (!loadStarted) {
 			SceneManager.LoadScene (rmapName,LoadSceneMode.Additive);
