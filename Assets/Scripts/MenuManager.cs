@@ -55,6 +55,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	}
 	public void SetImagePreview(PlayerPreview playerPreview,PlayerInput playerInput){
 		Image character = menuPlayerPreview [playerPreview.playerNumber - 1].GetComponent<Image> ();
+		character.gameObject.SetActive (true);
 		character.sprite = playerPreview.charPreview;
 		Image temporalKeyImage;
 
