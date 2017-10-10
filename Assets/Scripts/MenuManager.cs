@@ -53,9 +53,41 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mainMenu.SetActive (true);
 
 	}
-	public void SetImagePreview(PlayerPreview playerPreview){
-		menuPlayerPreview [playerPreview.playerNumber-1].GetComponent<Image> ().sprite = playerPreview.charPreview;
+	public void SetImagePreview(PlayerPreview playerPreview,PlayerInput playerInput){
+		Image character = menuPlayerPreview [playerPreview.playerNumber - 1].GetComponent<Image> ();
+		character.sprite = playerPreview.charPreview;
+		Image temporalKeyImage;
+
+		temporalKeyImage = character.transform.Find ("Left").GetComponent<Image> ();
+		temporalKeyImage.gameObject.SetActive (true);
+		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Horizontal+"Left");
+
+		temporalKeyImage = character.transform.Find ("Right").GetComponent<Image> ();
+		temporalKeyImage.gameObject.SetActive (true);
+		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Horizontal+"Right");
+
+		temporalKeyImage = character.transform.Find ("Up").GetComponent<Image> ();
+		temporalKeyImage.gameObject.SetActive (true);
+		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Vertical+"Up");
+
+		temporalKeyImage = character.transform.Find ("Down").GetComponent<Image> ();
+		temporalKeyImage.gameObject.SetActive (true);
+		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Vertical+"Down");
+
+		temporalKeyImage = character.transform.Find ("Start").GetComponent<Image> ();
+		temporalKeyImage.gameObject.SetActive (true);
+		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Start);
+
+		temporalKeyImage = character.transform.Find ("Fire").GetComponent<Image> ();
+		temporalKeyImage.gameObject.SetActive (true);
+		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Fire);
 	}
+
+	public void SetImagePreview(PlayerPreview playerPreview){
+		Image character = menuPlayerPreview [playerPreview.playerNumber - 1].GetComponent<Image> ();
+		character.sprite = playerPreview.charPreview;
+	}
+
 	public string GetCharacterFromPreview(int playerNumber){
 		return menuPlayerPreview [playerNumber].GetComponent<Image> ().sprite.name;
 	}

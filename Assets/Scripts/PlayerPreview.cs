@@ -12,4 +12,5 @@ public class PlayerPreview : MonoBehaviour {
 	public void SetCharPreview(Sprite charPreview){
 		this.charPreview = charPreview;
 	}
+
 }

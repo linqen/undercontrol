@@ -17,7 +17,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	MenuManager menuManager;
 	int deadPlayers=0;
 	int numberOfRounds;
-	//int roundNumber=0;
 	string actualMapName;
 	new void Awake(){
 		base.Awake ();
@@ -77,7 +76,8 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	public void CharSelection(){
 		charSelection = true;
-		menuManager.SetImagePreview (players[0].GetComponent<PlayerPreview>());
+		menuManager.SetImagePreview (players[0].GetComponent<PlayerPreview>(),
+			players[0].GetComponent<PlayerInput>());
 	}
 
 	public void GameStart(string rmapName, int numberOfRounds){
@@ -127,7 +127,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			if (Input.GetButtonDown (Inputs.Start+i)) {
 				bool inputUsed = false;
 				for (int j = 0; j < players.Count; j++) {
-					if (players [j].GetComponent<PlayerManager> ().PlayerInput.GetInputNumber () == i) {
+					if (players [j].GetComponent<PlayerInput> ().GetInputNumber () == i) {
 						Debug.Log ("Used Enter pressed "+menuManager.GetCharacterFromPreview(j));
 						SelectActualPlayer(players [j].GetComponent<PlayerPreview> ());
 						if (players.Count>=2&&
@@ -140,15 +140,15 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				}
 				if (!inputUsed) {
 					GameObject newPlayer = CreatePlayer (i);
-					menuManager.SetImagePreview(newPlayer.GetComponent<PlayerPreview> ());
+					menuManager.SetImagePreview(newPlayer.GetComponent<PlayerPreview> (),
+						newPlayer.GetComponent<PlayerInput>());
 					players.Add (newPlayer);
 				}
 			}
 		}
 		for (int i = 0; i < players.Count; i++) {
-			PlayerManager pm = players [i].GetComponent<PlayerManager> ();
-			int actualInput = pm.PlayerInput.GetInputNumber ();
 			PlayerPreview pp = players [i].GetComponent<PlayerPreview>();
+			int actualInput = players[i].GetComponent<PlayerInput>().GetInputNumber ();
 			if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
 				Input.GetAxisRaw (Inputs.Horizontal + actualInput) > 0.5f &&
 				!pp.selected) {
@@ -168,13 +168,12 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	private GameObject CreatePlayer(int inputNumber){
 		GameObject newPlayer =Instantiate(playerPrefab);
-		PlayerManager pm = newPlayer.GetComponent<PlayerManager> ();
+		PlayerPreview pp = newPlayer.AddComponent<PlayerPreview> ();
 		int playerNumber = (players.Count + 1);
 		newPlayer.name = ("Player" + (playerNumber));
-		PlayerPreview pp = newPlayer.AddComponent<PlayerPreview> ();
+		PlayerInput pi = newPlayer.AddComponent<PlayerInput>();
+		pi.SetInputNumber (inputNumber);
 		pp.SetPreview(playerNumber,GetNextUnusedPlayer());
-		pm.PlayerInput=newPlayer.AddComponent<PlayerInput>();
-		pm.PlayerInput.SetInputNumber (inputNumber);
 		return newPlayer;
 	}
 
