@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	PlayerInput input;
 
-	void Start () {
+	void Awake () {
 		input = GetComponent<PlayerInput> ();
 		rigid = GetComponent<Rigidbody2D> ();
 	}

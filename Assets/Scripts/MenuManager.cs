@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 public class MenuManager : GenericSingletonClass<MenuManager> {
 	public List<GameObject> menuPlayerPreview = new List<GameObject>();
 
+	List<Sprite> availableStartKeys = new List<Sprite> ();
 	GameManager gameManager;
 	GameObject pressStart;
 	GameObject mainMenu;
 	GameObject characterSelect;
 	GameObject mapSelect;
 	GameObject roundsSelect;
+	int possiblePlayers;
 	new void Awake(){
 		base.Awake ();
 	}
@@ -47,6 +49,13 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mainMenu.SetActive (false);
 		characterSelect.SetActive (true);
 		gameManager.CharSelection ();
+		for (int i = possiblePlayers-availableStartKeys.Count; i < menuPlayerPreview.Count; i++) {
+			KeyAlternation keyAlternation;
+			keyAlternation = menuPlayerPreview [i].transform.Find ("Start").GetComponent<KeyAlternation>();
+			keyAlternation.SetKeys (availableStartKeys);
+			keyAlternation.gameObject.SetActive (true);
+			keyAlternation.enabled = true;
+		}
 	}
 
 	public void BackToMain(){
@@ -54,11 +63,19 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	}
 	public void SetImagePreview(PlayerPreview playerPreview,PlayerInput playerInput){
-		Image character = menuPlayerPreview [playerPreview.playerNumber - 1].GetComponent<Image> ();
-		character.gameObject.SetActive (true);
-		character.sprite = playerPreview.charPreview;
-		Image temporalKeyImage;
+		//This is to show the available Start Buttons to enter the game
+		for (int i = 0; i < availableStartKeys.Count; i++) {
+			if (availableStartKeys [i].name == playerInput.Start) {
+				availableStartKeys.RemoveAt (i);
+				break;
+			}
+		}
 
+		Image character = menuPlayerPreview [playerPreview.playerNumber - 1].GetComponent<Image> ();
+		character.sprite = playerPreview.charPreview;
+		character.color = new Color (255, 255, 255);
+		Image temporalKeyImage;
+		
 		temporalKeyImage = character.transform.Find ("Left").GetComponent<Image> ();
 		temporalKeyImage.gameObject.SetActive (true);
 		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Horizontal+"Left");
@@ -76,6 +93,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Vertical+"Down");
 
 		temporalKeyImage = character.transform.Find ("Start").GetComponent<Image> ();
+		temporalKeyImage.GetComponent<KeyAlternation> ().enabled = false;
 		temporalKeyImage.gameObject.SetActive (true);
 		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Start);
 
@@ -91,5 +109,13 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	public string GetCharacterFromPreview(int playerNumber){
 		return menuPlayerPreview [playerNumber].GetComponent<Image> ().sprite.name;
+	}
+
+	public void SetPossiblePlayers(int possiblePlayers){
+		this.possiblePlayers = possiblePlayers;
+		for (int i = 1; i < possiblePlayers+1; i++) {
+			availableStartKeys.Add ((Sprite)Resources.Load<Sprite> ("Keys/" + Inputs.Start+i));
+		}
+		Debug.Log (availableStartKeys.Count);
 	}
 }

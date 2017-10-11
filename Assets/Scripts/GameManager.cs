@@ -24,6 +24,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	void Start(){
 		menuManager = MenuManager.Instance;
+		menuManager.SetPossiblePlayers (possiblePlayers);
 	}
 
 	void Update () {
@@ -37,6 +38,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	public void ReportDeath(GameObject playerObject){
 		deadPlayers++;
+		playerObject.transform.rotation = Quaternion.identity;
+		//playerObject.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
+		//playerObject.GetComponent<Rigidbody2D>().angularVelocity=0.0f;
 		playerObject.SetActive (false);
 		if (players.Count -1 == deadPlayers) {
 			numberOfRounds--;
@@ -44,9 +48,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			for (int i = 0; i < players.Count; i++) {
 				players [i].SetActive (false);
 				players [i].GetComponent<PlayerLife> ().ResetLife();
-				players [i].transform.rotation = Quaternion.identity;
-				//playerObject.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
-				//playerObject.GetComponent<Rigidbody2D>().angularVelocity=0.0f;
 			}
 			deadPlayers = 0;
 			if (numberOfRounds==0) {
