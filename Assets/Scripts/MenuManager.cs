@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 public class MenuManager : GenericSingletonClass<MenuManager> {
 	public List<GameObject> menuPlayerPreview = new List<GameObject>();
@@ -33,6 +32,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void StartPressed(){
 		pressStart.SetActive (false);
 		mainMenu.SetActive (true);
+		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
 	}
 
 	public void CharacterSelectionFinished(){
@@ -48,7 +48,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void PlayButton(){
 		mainMenu.SetActive (false);
 		characterSelect.SetActive (true);
-		gameManager.CharSelection ();
+		StartCoroutine(gameManager.CharSelection ());
 		for (int i = possiblePlayers-availableStartKeys.Count; i < menuPlayerPreview.Count; i++) {
 			KeyAlternation keyAlternation;
 			keyAlternation = menuPlayerPreview [i].transform.Find ("Start").GetComponent<KeyAlternation>();

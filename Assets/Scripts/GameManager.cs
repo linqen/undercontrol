@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : GenericSingletonClass<GameManager> {
@@ -75,7 +76,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	}
 
-	public void CharSelection(){
+	public IEnumerator CharSelection(){
+		//This is maded to wait one frame and doesn't capture the actual GetKeyDown
+		yield return null;
 		charSelection = true;
 		menuManager.SetImagePreview (players[0].GetComponent<PlayerPreview>(),
 			players[0].GetComponent<PlayerInput>());
@@ -115,6 +118,12 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			if (Input.GetButtonDown (Inputs.Start+i)) {
 				Debug.Log ("Enter pressed");
 				GameObject newPlayer = CreatePlayer (i);
+				PlayerInput pi = newPlayer.GetComponent<PlayerInput> ();
+				StandaloneInputModule im = EventSystem.current.currentInputModule.GetComponent<StandaloneInputModule> ();
+				im.verticalAxis = pi.Vertical;
+				im.horizontalAxis = pi.Horizontal;
+				im.submitButton = pi.Start;
+				im.cancelButton = pi.Fire;
 				players.Add (newPlayer);
 				menuManager.StartPressed ();
 				pressStart = false;
