@@ -27,6 +27,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			menuPlayerPreview[i] = characterSelect.transform.Find ("Character" + (i + 1)).gameObject;
 		}
 		gameManager.PressStartButton ();
+		Cursor.visible = false;
 	}
 
 	public void StartPressed(){
@@ -38,6 +39,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void CharacterSelectionFinished(){
 		characterSelect.SetActive (false);
 		roundsSelect.SetActive (true);
+		EventSystem.current.SetSelectedGameObject(roundsSelect.transform.Find ("PossibleRounds").Find("5").gameObject);
 	}
 	public void RoundsSelect(){
 		int rounds = int.Parse(EventSystem.current.currentSelectedGameObject.name);
@@ -60,7 +62,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	public void BackToMain(){
 		mainMenu.SetActive (true);
-
+		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
 	}
 	public void SetImagePreview(PlayerPreview playerPreview,PlayerInput playerInput){
 		//This is to show the available Start Buttons to enter the game
