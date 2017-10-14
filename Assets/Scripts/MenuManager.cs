@@ -120,4 +120,8 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		}
 		Debug.Log (availableStartKeys.Count);
 	}
+
+	public void ExitGame(){
+		Application.Quit ();
+	}
 }

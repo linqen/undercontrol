@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeTime: 1.5
-  explosionForce: 0.5
+  explosionForce: 2
   dieTime: 1
 --- !u!114 &114671023860977938
 MonoBehaviour:

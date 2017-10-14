@@ -159,15 +159,15 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		for (int i = 0; i < players.Count; i++) {
 			PlayerPreview pp = players [i].GetComponent<PlayerPreview>();
 			int actualInput = players[i].GetComponent<PlayerInput>().GetInputNumber ();
-			if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
-				Input.GetAxisRaw (Inputs.Horizontal + actualInput) > 0.5f &&
+			if (Input.GetButtonDown(Inputs.Horizontal+actualInput)/* &&
+				Input.GetAxisRaw (Inputs.Horizontal + actualInput) > 0.5f */&&
 				!pp.selected) {
 				//Move Right
 				pp.SetCharPreview(GetNextUnusedPlayer(pp.charPreview));
 				menuManager.SetImagePreview(pp);
 			} 
-		else if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
-				Input.GetAxisRaw (Inputs.Horizontal + actualInput) < -0.5f &&
+		else if (Input.GetButtonDown(Inputs.Horizontal+actualInput) /*&&
+				Input.GetAxisRaw (Inputs.Horizontal + actualInput) < -0.5f */&&
 				!pp.selected) {
 				//Move Left
 				pp.SetCharPreview(GetPreviousUnusedPlayer(pp.charPreview));
