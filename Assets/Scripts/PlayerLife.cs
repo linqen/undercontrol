@@ -8,6 +8,7 @@ public class PlayerLife : MonoBehaviour {
 	Color color;
 	Renderer rend;
 	bool canDead;
+	int lastHitByPlayerNumber;
 	// Use this for initialization
 	void Start () {
 		gameManager = GameManager.Instance;
@@ -36,7 +37,10 @@ public class PlayerLife : MonoBehaviour {
 
 		rend.material.color = color;
 	}
-	public void NotifyHit(int damage){
+	public void NotifyHit(int damage,int hittedByPlayerNumber){
+		if (hittedByPlayerNumber != 0) {
+			lastHitByPlayerNumber = hittedByPlayerNumber;
+		}
 		actualLife -= damage;
 		Debug.Log (actualLife);
 		if (actualLife == 2) {
@@ -48,7 +52,7 @@ public class PlayerLife : MonoBehaviour {
 		}
 
 		if (actualLife <= 0&&canDead) {
-			gameManager.ReportDeath (gameObject);
+			gameManager.ReportDeath (gameObject,lastHitByPlayerNumber);
 			//Death ();
 		}
 
@@ -92,7 +96,7 @@ public class PlayerLife : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag.Equals ("LevelLimit")) {
-			gameManager.ReportDeath (gameObject);
+			gameManager.ReportDeath (gameObject,lastHitByPlayerNumber);
 		}
 	}
 }

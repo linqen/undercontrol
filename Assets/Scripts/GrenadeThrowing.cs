@@ -10,10 +10,12 @@ public class GrenadeThrowing : MonoBehaviour {
 	private PlayerMovement pMovement;
 	private PlayerInput input;
 	private float currentCooldownGrenade;
+	private int playerNumber;
 
 	void Start () {
 		pMovement = GetComponent<PlayerMovement> ();
 		input = GetComponent<PlayerInput> ();
+		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
 	}
 	
 	void Update () {
@@ -25,6 +27,7 @@ public class GrenadeThrowing : MonoBehaviour {
 					transform.position.y+1,
 					transform.position.z);
 				GameObject grenade = Instantiate (grenadePrefab, pos, transform.rotation);
+				grenade.GetComponent<GrenadeBehaviour> ().ThrowedByPlayerNumber = playerNumber;
 				grenade.GetComponent<Rigidbody2D>().AddForce (new Vector2(pMovement.LastDirection.x*3,pMovement.VerticalAxis+2), ForceMode2D.Impulse);	
 				currentCooldownGrenade = 0;
 			}

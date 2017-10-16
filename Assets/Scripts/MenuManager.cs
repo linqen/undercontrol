@@ -6,6 +6,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public List<GameObject> menuPlayerPreview = new List<GameObject>();
 
 	List<Sprite> availableStartKeys = new List<Sprite> ();
+	UIManager uiManager;
 	GameManager gameManager;
 	GameObject pressStart;
 	GameObject mainMenu;
@@ -17,6 +18,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		base.Awake ();
 	}
 	void Start () {
+		uiManager = UIManager.Instance;
 		gameManager = GameManager.Instance;
 		pressStart = transform.Find ("PressStart").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;

@@ -15,7 +15,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	List<Transform> spawnPoints = new List<Transform>();
 	bool charSelection = false;
 	bool pressStart = false;
+	List<int> scores = new List<int> ();
 	MenuManager menuManager;
+	UIManager uiManager;
 	int deadPlayers=0;
 	int numberOfRounds;
 	string actualMapName;
@@ -24,6 +26,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	void Start(){
+		uiManager = UIManager.Instance;
 		menuManager = MenuManager.Instance;
 		menuManager.SetPossiblePlayers (possiblePlayers);
 	}
@@ -37,9 +40,15 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 	}
 
-	public void ReportDeath(GameObject playerObject){
+	public void ReportDeath(GameObject playerObject, int killedByPlayerNumber){
 		deadPlayers++;
 		playerObject.transform.rotation = Quaternion.identity;
+		if (killedByPlayerNumber != 0 ) {
+			if (killedByPlayerNumber == playerObject.GetComponent<PlayerPreview> ().playerNumber &&
+				scores [killedByPlayerNumber - 1] != 0) {
+				scores [killedByPlayerNumber - 1]--;
+			}else if (killedByPlayerNumber != playerObject.GetComponent<PlayerPreview> ().playerNumber) {scores [killedByPlayerNumber - 1]++;}
+		}
 		//playerObject.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
 		//playerObject.GetComponent<Rigidbody2D>().angularVelocity=0.0f;
 		playerObject.SetActive (false);
@@ -49,12 +58,14 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			for (int i = 0; i < players.Count; i++) {
 				players [i].SetActive (false);
 				players [i].GetComponent<PlayerLife> ().ResetLife();
+				StartCoroutine(uiManager.ShowActualScores(scores,3));
 			}
 			deadPlayers = 0;
 			if (numberOfRounds==0) {
 				//End of rounds, back to selection
 				for (int i = 0; i < players.Count; i++) {
 					players [i].GetComponent<PlayerPreview> ().selected = false;
+					scores [i] = 0;
 				}
 				for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
 					availablePlayersPreviews.Add (onUsePlayersPreviews [i]);
@@ -184,6 +195,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		PlayerInput pi = newPlayer.AddComponent<PlayerInput>();
 		pi.SetInputNumber (inputNumber);
 		pp.SetPreview(playerNumber,GetNextUnusedPlayer());
+		scores.Add (0);
 		return newPlayer;
 	}
 
