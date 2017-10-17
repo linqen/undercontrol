@@ -3,6 +3,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 	public float moveVelocity;
 	public float jumpForce;
+	public float timeBeforeStopJumping;
 
 	private Rigidbody2D rigid;
 	private Vector3 lastDirection;
@@ -11,7 +12,6 @@ public class PlayerMovement : MonoBehaviour {
 	private float horizontalAxis;
 	private bool jump=false;
 	private bool grounded=true;
-	private bool canDoubleJump=true;
 
 	PlayerInput input;
 
@@ -29,46 +29,38 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		//lastVelocity = rigid.velocity;
+		rigid.AddForce (horizontalAxis * moveVelocity * Vector2.right, ForceMode2D.Force);
 		if (horizontalAxis > 0.3f) {
-			//rigid.AddForce (Vector2.right * moveVelocity, ForceMode2D.Force);
-			rigid.velocity = new Vector2 (1 * moveVelocity, rigid.velocity.y);
 			lastDirection = Vector3.right;
-			//StartCoroutine(Move(Vector2.right));
 		} else if (horizontalAxis < -0.3f) {
-			//rigid.AddForce (Vector2.left * moveVelocity, ForceMode2D.Force);
-			rigid.velocity = new Vector2 (-1 * moveVelocity, rigid.velocity.y);
 			lastDirection = Vector3.left;
-			//StartCoroutine(Move(Vector2.left));
-		} else {
-			
-			//rigid.velocity = lastVelocity;
 		}
 		if (jump) {
 			if (grounded) {
 				rigid.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
 				grounded = false;
-			} else if (canDoubleJump) {
-				//rigid.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
-				//canDoubleJump = false;
 			}
 		}
 	}
 
-//	IEnumerator Move(Vector2 direction){
-//		lastVelocity = rigid.velocity;
-//		rigid.velocity = new Vector2 (direction.x * moveVelocity, rigid.velocity.y*rigid.gravityScale);
-//		yield return new WaitForEndOfFrame();
-//		rigid.velocity = new Vector2(lastVelocity.x,lastVelocity.y);
-//	}
-
-	void OnCollisionEnter2D(Collision2D col){
+	void OnCollisionStay2D(Collision2D col){
 		if (col.gameObject.tag.Equals ("Ground") ||
 		   col.gameObject.tag.Equals ("Player")) {
 			grounded = true;
-			canDoubleJump = true;
 		}
 	}
+
+	void OnCollisionExit2D(Collision2D col){
+		if (col.gameObject.tag.Equals ("Ground") && gameObject.activeSelf) {
+			StartCoroutine (ExitGroundJumpChance(timeBeforeStopJumping));
+		}
+	}
+	IEnumerator ExitGroundJumpChance(float time){
+		yield return new WaitForSeconds (time);
+		grounded = false;
+	}
+
+
 
 	//Getters
 	public Vector3 LastDirection {
