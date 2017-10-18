@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 public class PlayerMovement : MonoBehaviour {
 	public float moveVelocity;
 	public float jumpForce;
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	private float horizontalAxis;
 	private bool jump=false;
 	private bool grounded=true;
+	List<GameObject> lastCollisionGameObject = new List<GameObject>();
 
 	PlayerInput input;
 
@@ -20,10 +22,13 @@ public class PlayerMovement : MonoBehaviour {
 		rigid = GetComponent<Rigidbody2D> ();
 	}
 
+	void Start(){
+		rigid.freezeRotation=true;
+	}
+
 	void Update(){
 		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
 		verticalAxis = Input.GetAxisRaw(input.Vertical);
-		rigid.freezeRotation=true;
 		if (Input.GetButtonDown (input.Jump)) {jump = true;} 
 		else {jump = false;}
 	}
@@ -43,16 +48,26 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionStay2D(Collision2D col){
+	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag.Equals ("Ground") ||
-		   col.gameObject.tag.Equals ("Player")) {
+			col.gameObject.tag.Equals ("Player")) {
+			lastCollisionGameObject.Add(col.gameObject);
 			grounded = true;
+			if (gameObject.activeSelf) {
+				StopCoroutine ("ExitGroundJumpChance");
+			}
 		}
 	}
 
 	void OnCollisionExit2D(Collision2D col){
-		if (col.gameObject.tag.Equals ("Ground") && gameObject.activeSelf) {
-			StartCoroutine (ExitGroundJumpChance(timeBeforeStopJumping));
+		if (col.gameObject.tag.Equals ("Ground")||col.gameObject.tag.Equals ("Player")) {
+			lastCollisionGameObject.Remove (col.gameObject);
+			if(lastCollisionGameObject.Count!=0){
+				return;
+			}
+			if (gameObject.activeSelf) {
+				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
+			}
 		}
 	}
 	IEnumerator ExitGroundJumpChance(float time){
