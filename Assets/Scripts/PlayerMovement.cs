@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float moveVelocity;
 	public float jumpForce;
 	public float timeBeforeStopJumping;
+	public float jumpingTime;
 
 	private Rigidbody2D rigid;
 	private Vector3 lastDirection;
@@ -12,7 +13,8 @@ public class PlayerMovement : MonoBehaviour {
 	private float verticalAxis;
 	private float horizontalAxis;
 	private bool jump=false;
-	private bool grounded=true;
+	//private bool grounded=true;
+	private float jumpingSince=0;
 	List<GameObject> lastCollisionGameObject = new List<GameObject>();
 
 	PlayerInput input;
@@ -29,21 +31,23 @@ public class PlayerMovement : MonoBehaviour {
 	void Update(){
 		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
 		verticalAxis = Input.GetAxisRaw(input.Vertical);
-		if (Input.GetButtonDown (input.Jump)) {jump = true;} 
-		else {jump = false;}
+		if (Input.GetButton (input.Jump)) {jump = true;}else {jump = false;}
+		if (Input.GetButtonUp (input.Jump) && jumpingSince!=0.0f) {jumpingSince = jumpingTime;}
 	}
 
 	void FixedUpdate(){
-		rigid.AddForce (horizontalAxis * moveVelocity * Vector2.right, ForceMode2D.Force);
-		if (horizontalAxis > 0.3f) {
+		//rigid.AddForce (Vector2.right, ForceMode2D.Force);
+		rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
+		if (horizontalAxis > 0.1f) {
 			lastDirection = Vector3.right;
-		} else if (horizontalAxis < -0.3f) {
+		} else if (horizontalAxis < -0.1f) {
 			lastDirection = Vector3.left;
 		}
 		if (jump) {
-			if (grounded) {
-				rigid.AddForce (Vector2.up * jumpForce, ForceMode2D.Impulse);
-				grounded = false;
+			if (jumpingTime>jumpingSince) {
+				jumpingSince += Time.deltaTime;
+				//rigid.AddForce (Vector2.up * jumpForce, ForceMode2D.Force);
+				rigid.velocity+= new Vector2(0,jumpForce*(jumpingTime-jumpingSince));
 			}
 		}
 	}
@@ -52,9 +56,9 @@ public class PlayerMovement : MonoBehaviour {
 		if (col.gameObject.tag.Equals ("Ground") ||
 			col.gameObject.tag.Equals ("Player")) {
 			lastCollisionGameObject.Add(col.gameObject);
-			grounded = true;
 			if (gameObject.activeSelf) {
 				StopCoroutine ("ExitGroundJumpChance");
+				jumpingSince=0;
 			}
 		}
 	}
@@ -65,14 +69,16 @@ public class PlayerMovement : MonoBehaviour {
 			if(lastCollisionGameObject.Count!=0){
 				return;
 			}
-			if (gameObject.activeSelf) {
+			if (gameObject.activeSelf && jumpingSince!=0.0f) {
 				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
 			}
 		}
 	}
 	IEnumerator ExitGroundJumpChance(float time){
 		yield return new WaitForSeconds (time);
-		grounded = false;
+		if (gameObject.activeSelf && jumpingSince != 0.0f) {
+			jumpingSince = jumpingTime;
+		}
 	}
 
 
