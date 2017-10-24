@@ -72,8 +72,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
-		if (col.gameObject.tag.Equals ("Ground") ||
-			col.gameObject.tag.Equals ("Player")) {
+		if (col.gameObject.tag.Equals ("Ground")) {
 			grounded = true;
 			lastCollisionGameObject.Add(col.gameObject);
 			if (gameObject.activeSelf) {
@@ -84,7 +83,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D(Collision2D col){
-		if (col.gameObject.tag.Equals ("Ground")||col.gameObject.tag.Equals ("Player")) {
+		if (col.gameObject.tag.Equals ("Ground")) {
 			lastCollisionGameObject.Remove (col.gameObject);
 			if(lastCollisionGameObject.Count!=0){
 				return;

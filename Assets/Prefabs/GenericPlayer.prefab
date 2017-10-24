@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114063658975228412}
   - component: {fileID: 114237634910380500}
   - component: {fileID: 114378457164177316}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GenericPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -173,5 +173,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3222ef6b6cc4bd946be4ddf3b9320942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalLife: 3
   gameManager: {fileID: 0}
