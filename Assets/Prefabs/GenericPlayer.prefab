@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveVelocity: 6
-  jumpForce: 20
+  jumpForce: 30
   timeBeforeStopJumping: 0.1
-  jumpingTime: 0.7
+  jumpingTime: 0.5
   movementSlowAffectedByExplocion: 2
 --- !u!114 &114237634910380500
 MonoBehaviour:

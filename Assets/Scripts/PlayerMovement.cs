@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
 		explosionForce = Vector2.zero;
 	}
 
-	void OnCollisionEnter2D(Collision2D col){
+	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			grounded = true;
 			lastCollisionGameObject.Add(col.gameObject);
@@ -82,21 +82,21 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionExit2D(Collision2D col){
+	void OnTriggerExit2D(Collider2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			lastCollisionGameObject.Remove (col.gameObject);
 			if(lastCollisionGameObject.Count!=0){
 				return;
 			}
 			grounded = false;
-			if (gameObject.activeSelf && jumpingSince!=0.0f) {
+			if (gameObject.activeSelf && jumpingSince==0.0f) {
 				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
 			}
 		}
 	}
 	IEnumerator ExitGroundJumpChance(float time){
 		yield return new WaitForSeconds (time);
-		if (gameObject.activeSelf && jumpingSince != 0.0f) {
+		if (gameObject.activeSelf && jumpingSince == 0.0f) {
 			jumpingSince = jumpingTime;
 		}
 	}
