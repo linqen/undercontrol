@@ -13,10 +13,11 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector3 lastVelocity;
 	private float verticalAxis;
 	private float horizontalAxis;
-	private bool jump=false;
 	private Vector2 explosionForce=Vector2.zero;
+	private bool jump=false;
 	private bool grounded=true;
 	private float jumpingSince=0;
+	private GameManager gameManager;
 	List<GameObject> lastCollisionGameObject = new List<GameObject>();
 
 	PlayerInput input;
@@ -101,7 +102,40 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
+	public IEnumerator CharSelection(){
+		PlayerPreview pp = GetComponent<PlayerPreview>();
+		int actualInput = GetComponent<PlayerInput>().GetInputNumber ();
+		gameManager = GameManager.Instance;
+		while (true) {
+			if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
+				!pp.selected) {
+				//Move Right
+				gameManager.GetNextUnusedPlayer(pp);
+			} 
+			else if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
+				!pp.selected) {
+				//Move Left
+				gameManager.GetPreviousUnusedPlayer(pp);
+			}
+			//Joystick case
+			if (Input.GetAxisRaw (Inputs.Horizontal + actualInput) > 0.5f &&
+				!Input.GetButton(Inputs.Horizontal+actualInput)&&
+				!pp.selected) {
+				//Move Right
+				gameManager.GetNextUnusedPlayer(pp);
+				yield return new WaitForSecondsRealtime (0.5f);
+			} 
+			else if (Input.GetAxisRaw (Inputs.Horizontal + actualInput) < -0.5f &&
+				!Input.GetButton(Inputs.Horizontal+actualInput)&&
+				!pp.selected) {
+				//Move Left
+				gameManager.GetPreviousUnusedPlayer(pp);
+				yield return new WaitForSecondsRealtime (0.5f);
+			}
 
+			yield return null;
+		}
+	}
 
 	//Getters
 	public Vector3 LastDirection {

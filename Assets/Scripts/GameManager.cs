@@ -49,8 +49,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				scores [killedByPlayerNumber - 1]--;
 			}else if (killedByPlayerNumber != playerObject.GetComponent<PlayerPreview> ().playerNumber) {scores [killedByPlayerNumber - 1]++;}
 		}
-		//playerObject.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
-		//playerObject.GetComponent<Rigidbody2D>().angularVelocity=0.0f;
 		playerObject.SetActive (false);
 		if (players.Count -1 == deadPlayers) {
 			numberOfRounds--;
@@ -93,6 +91,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		charSelection = true;
 		menuManager.SetImagePreview (players[0].GetComponent<PlayerPreview>(),
 			players[0].GetComponent<PlayerInput>());
+		StartCoroutine(players [0].GetComponent<PlayerMovement> ().CharSelection ());
 	}
 
 	public void GameStart(string rmapName, int numberOfRounds){
@@ -154,6 +153,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 						if (players.Count>=2&&
 							onUsePlayersPreviews.Count==players.Count) {
 							charSelection = false;
+							StopPlayersSelection ();
 							menuManager.CharacterSelectionFinished ();
 						}
 						inputUsed = true;
@@ -163,26 +163,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 					GameObject newPlayer = CreatePlayer (i);
 					menuManager.SetImagePreview(newPlayer.GetComponent<PlayerPreview> (),
 						newPlayer.GetComponent<PlayerInput>());
+					StartCoroutine (newPlayer.GetComponent<PlayerMovement> ().CharSelection ());
 					players.Add (newPlayer);
 				}
-			}
-		}
-		for (int i = 0; i < players.Count; i++) {
-			PlayerPreview pp = players [i].GetComponent<PlayerPreview>();
-			int actualInput = players[i].GetComponent<PlayerInput>().GetInputNumber ();
-			if (Input.GetButtonDown(Inputs.Horizontal+actualInput)/* &&
-				Input.GetAxisRaw (Inputs.Horizontal + actualInput) > 0.5f */&&
-				!pp.selected) {
-				//Move Right
-				pp.SetCharPreview(GetNextUnusedPlayer(pp.charPreview));
-				menuManager.SetImagePreview(pp);
-			} 
-		else if (Input.GetButtonDown(Inputs.Horizontal+actualInput) /*&&
-				Input.GetAxisRaw (Inputs.Horizontal + actualInput) < -0.5f */&&
-				!pp.selected) {
-				//Move Left
-				pp.SetCharPreview(GetPreviousUnusedPlayer(pp.charPreview));
-				menuManager.SetImagePreview(pp);
 			}
 		}
 	}
@@ -212,25 +195,34 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		return false;
 	}
 
+	private void StopPlayersSelection(){
+		for (int i = 0; i < players.Count; i++) {
+			StopCoroutine (players [i].GetComponent<PlayerMovement> ().CharSelection ());
+		}
+	}
 	//Previews Managment
 	private Sprite GetNextUnusedPlayer(){
 		return availablePlayersPreviews [0];
 	}
-	private Sprite GetNextUnusedPlayer(Sprite actualPreview){
-		int previewPosition = availablePlayersPreviews.IndexOf (actualPreview);
+	public void GetNextUnusedPlayer(PlayerPreview actualPreview){
+		int previewPosition = availablePlayersPreviews.IndexOf (actualPreview.charPreview);
 		previewPosition++;
 		if (previewPosition == availablePlayersPreviews.Count) {
 			previewPosition = 0;
 		}
-		return availablePlayersPreviews [previewPosition];
+		actualPreview.SetCharPreview (availablePlayersPreviews [previewPosition]);
+		menuManager.SetImagePreview (actualPreview);
+		//return availablePlayersPreviews [previewPosition];
 	}
-	private Sprite GetPreviousUnusedPlayer(Sprite actualPreview){
-		int previewPosition = availablePlayersPreviews.IndexOf (actualPreview);
+	public void GetPreviousUnusedPlayer(PlayerPreview actualPreview){
+		int previewPosition = availablePlayersPreviews.IndexOf (actualPreview.charPreview);
 		previewPosition--;
 		if (previewPosition < 0) {
 			previewPosition = availablePlayersPreviews.Count-1;
 		}
-		return availablePlayersPreviews [previewPosition];
+		actualPreview.SetCharPreview (availablePlayersPreviews [previewPosition]);
+		menuManager.SetImagePreview (actualPreview);
+		//return availablePlayersPreviews [previewPosition];
 	}
 	//Previews Managment
 }
