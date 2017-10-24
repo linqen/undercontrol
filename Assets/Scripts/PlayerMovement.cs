@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float jumpForce;
 	public float timeBeforeStopJumping;
 	public float jumpingTime;
+	public float movementSlowAffectedByExplocion;
 
 	private Rigidbody2D rigid;
 	private Vector3 lastDirection;
@@ -13,7 +14,8 @@ public class PlayerMovement : MonoBehaviour {
 	private float verticalAxis;
 	private float horizontalAxis;
 	private bool jump=false;
-	//private bool grounded=true;
+	private Vector2 explosionForce=Vector2.zero;
+	private bool grounded=true;
 	private float jumpingSince=0;
 	List<GameObject> lastCollisionGameObject = new List<GameObject>();
 
@@ -25,7 +27,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Start(){
-		rigid.freezeRotation=true;
 	}
 
 	void Update(){
@@ -47,14 +48,33 @@ public class PlayerMovement : MonoBehaviour {
 			if (jumpingTime>jumpingSince) {
 				jumpingSince += Time.deltaTime;
 				//rigid.AddForce (Vector2.up * jumpForce, ForceMode2D.Force);
-				rigid.velocity+= new Vector2(0,jumpForce*(jumpingTime-jumpingSince));
+				rigid.velocity = new Vector2(rigid.velocity.x,jumpForce*(jumpingTime-jumpingSince));
 			}
 		}
+
+		if (!grounded) {
+			rigid.velocity = new Vector2 (rigid.velocity.x, rigid.velocity.y + (-rigid.gravityScale*rigid.mass));
+		}
+		if (explosionForce != Vector2.zero) {
+			rigid.velocity = rigid.velocity / movementSlowAffectedByExplocion + explosionForce;
+		}
+	}
+
+	public IEnumerator AddExplosionForce(Vector2 direction, float timeExploding){
+		float currentTime = 0;
+		while (currentTime <= timeExploding) {
+
+			explosionForce = direction;
+			currentTime += Time.fixedDeltaTime;
+			yield return null;
+		}
+		explosionForce = Vector2.zero;
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag.Equals ("Ground") ||
 			col.gameObject.tag.Equals ("Player")) {
+			grounded = true;
 			lastCollisionGameObject.Add(col.gameObject);
 			if (gameObject.activeSelf) {
 				StopCoroutine ("ExitGroundJumpChance");
@@ -69,6 +89,7 @@ public class PlayerMovement : MonoBehaviour {
 			if(lastCollisionGameObject.Count!=0){
 				return;
 			}
+			grounded = false;
 			if (gameObject.activeSelf && jumpingSince!=0.0f) {
 				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
 			}

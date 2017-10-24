@@ -35,15 +35,17 @@ public class GrenadeBehaviour : MonoBehaviour {
 				circleCollider.enabled = true;
 				float hitPowerForce = circleCollider.bounds.extents.magnitude-explodeDirection.magnitude;
 				if (col.tag.Equals ("Player")) {
-					if ((circleCollider.bounds.extents.magnitude/1.3)<hitPowerForce ) {
-						col.GetComponent<PlayerLife> ().NotifyHit (3,throwedByPlayerNumber);
-					}else if ((circleCollider.bounds.extents.magnitude/1.8)< hitPowerForce && hitPowerForce <(circleCollider.bounds.extents.magnitude/1.3) ) {
-						col.GetComponent<PlayerLife> ().NotifyHit (2,throwedByPlayerNumber);
-					}else if (hitPowerForce <(circleCollider.bounds.extents.magnitude/1.8) ) {
-						col.GetComponent<PlayerLife> ().NotifyHit (1,throwedByPlayerNumber);
+					if ((circleCollider.bounds.extents.magnitude / 1.3) < hitPowerForce) {
+						col.GetComponent<PlayerLife> ().NotifyHit (3, throwedByPlayerNumber);
+					} else if ((circleCollider.bounds.extents.magnitude / 1.8) < hitPowerForce && hitPowerForce < (circleCollider.bounds.extents.magnitude / 1.3)) {
+						col.GetComponent<PlayerLife> ().NotifyHit (2, throwedByPlayerNumber);
+					} else if (hitPowerForce < (circleCollider.bounds.extents.magnitude / 1.8)) {
+						col.GetComponent<PlayerLife> ().NotifyHit (1, throwedByPlayerNumber);
 					}
+					StartCoroutine (col.GetComponent<PlayerMovement> ().AddExplosionForce (explodeDirection.normalized * hitPowerForce * explosionForce, 0.2f));
+				} else {
+					rigid.AddForce (explodeDirection.normalized * hitPowerForce * explosionForce, ForceMode2D.Impulse);
 				}
-				rigid.AddForce (explodeDirection.normalized*hitPowerForce*explosionForce, ForceMode2D.Impulse);
 				circleCollider.enabled = false;
 			}
 		}
