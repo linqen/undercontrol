@@ -1,21 +1,18 @@
 ﻿using UnityEngine;
 
 public class PlayerLife : MonoBehaviour {
-	public int totalLife;
-	int playerNumber;
-	int actualLife;
 	public GameManager gameManager;
+
+	int playerNumber;
 	Color color;
 	Renderer rend;
-	bool canDead;
+	bool hasShield = true;
 	int lastHitByPlayerNumber;
 	// Use this for initialization
 	void Start () {
 		gameManager = GameManager.Instance;
 		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
 
-		canDead = true;
-		actualLife = totalLife;
 		rend = GetComponent<Renderer> ();
 		if (playerNumber == 1) {
 			color.b = 1.0f;
@@ -37,61 +34,20 @@ public class PlayerLife : MonoBehaviour {
 
 		rend.material.color = color;
 	}
-	public void NotifyHit(int damage,int hittedByPlayerNumber){
+	public void NotifyHit(int hittedByPlayerNumber){
 		if (hittedByPlayerNumber != 0) {
 			lastHitByPlayerNumber = hittedByPlayerNumber;
 		}
-		actualLife -= damage;
-		Debug.Log (actualLife);
-		if (actualLife == 2) {
-			color.r = 0.5f;
-			rend.material.color = color;
-		} else if (actualLife == 1) {
-			color.r = 1.0f;
-			rend.material.color = color;
-		}
-
-		if (actualLife <= 0&&canDead) {
+		if (hasShield) {
+			hasShield = false;
+		}else if (!hasShield) {
 			gameManager.ReportDeath (gameObject,lastHitByPlayerNumber);
-			//Death ();
 		}
-
 	}
 
-	private void Death(){
-		color.r = 1.0f;
-		if (playerNumber == 1) {
-			color.b = 0;
-		} else if (playerNumber == 2) {
-			color.g = 0;
-		}else if (playerNumber == 3) {
-			color.g = 0;
-			color.b = 0;
-		}else if (playerNumber == 4) {
-			color.g = 0;
-			color.b = 0;
-		}
-		rend.material.color = color;
-		//gameManager.PlayerDeath (gameObject);
-		gameObject.SetActive (false);
-	}
 
 	public void ResetLife(){
-		canDead = true;
-		actualLife = totalLife;
-		if (playerNumber == 1) {
-			color.b = 1.0f;
-		} else if (playerNumber == 2) {
-			color.g = 1.0f;
-		}else if (playerNumber == 3) {
-			color.g = 0.4f;
-			color.b = 0.6f;
-		}else if (playerNumber == 4) {
-			color.g = 0.9f;
-			color.b = 0.5f;
-		}
-		color.r = 0;
-		rend.material.color = color;
+		hasShield = true;
 	}
 
 	void OnCollisionEnter2D(Collision2D col){

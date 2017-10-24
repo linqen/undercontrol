@@ -36,11 +36,11 @@ public class GrenadeBehaviour : MonoBehaviour {
 				float hitPowerForce = circleCollider.bounds.extents.magnitude-explodeDirection.magnitude;
 				if (col.tag.Equals ("Player")) {
 					if ((circleCollider.bounds.extents.magnitude / 1.3) < hitPowerForce) {
-						col.GetComponent<PlayerLife> ().NotifyHit (3, throwedByPlayerNumber);
+						col.GetComponent<PlayerLife> ().NotifyHit (throwedByPlayerNumber);
 					} else if ((circleCollider.bounds.extents.magnitude / 1.8) < hitPowerForce && hitPowerForce < (circleCollider.bounds.extents.magnitude / 1.3)) {
-						col.GetComponent<PlayerLife> ().NotifyHit (2, throwedByPlayerNumber);
+						col.GetComponent<PlayerLife> ().NotifyHit (throwedByPlayerNumber);
 					} else if (hitPowerForce < (circleCollider.bounds.extents.magnitude / 1.8)) {
-						col.GetComponent<PlayerLife> ().NotifyHit (1, throwedByPlayerNumber);
+						col.GetComponent<PlayerLife> ().NotifyHit (throwedByPlayerNumber);
 					}
 					StartCoroutine (col.GetComponent<PlayerMovement> ().AddExplosionForce (explodeDirection.normalized * hitPowerForce * explosionForce, 0.2f));
 				} else {
