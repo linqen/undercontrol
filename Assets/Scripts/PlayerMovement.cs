@@ -72,6 +72,12 @@ public class PlayerMovement : MonoBehaviour {
 		explosionForce = Vector2.zero;
 	}
 
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.tag.Equals ("Ground")&& jump && !grounded) {
+			jumpingSince = jumpingTime;
+		}
+	}
+
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			grounded = true;
