@@ -7,7 +7,7 @@ public class PlayerLife : MonoBehaviour {
 	Color color;
 	Renderer rend;
 	bool hasShield = true;
-	int lastHitByPlayerNumber;
+	int lastHitByPlayerNumber=0;
 	// Use this for initialization
 	void Start () {
 		gameManager = GameManager.Instance;
@@ -35,7 +35,7 @@ public class PlayerLife : MonoBehaviour {
 		rend.material.color = color;
 	}
 	public void NotifyHit(int hittedByPlayerNumber){
-		if (hittedByPlayerNumber != 0) {
+		if (hittedByPlayerNumber != 0 && hittedByPlayerNumber != playerNumber) {
 			lastHitByPlayerNumber = hittedByPlayerNumber;
 		}
 		if (hasShield) {
@@ -48,6 +48,7 @@ public class PlayerLife : MonoBehaviour {
 
 	public void ResetLife(){
 		hasShield = true;
+		lastHitByPlayerNumber = 0;
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
