@@ -30,7 +30,7 @@ public class PlayerLife : MonoBehaviour {
 		hasShield = true;
 		lastHitByPlayerNumber = 0;
 		//Reset animations positions to default
-		playerMovement.ResetAnimationStates();
+		playerMovement.ResetMovement();
 	}
 
 	void OnCollisionEnter2D(Collision2D col){

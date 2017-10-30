@@ -18,11 +18,12 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector2 explosionForce=Vector2.zero;
 	private bool jump=false;
 	private bool grounded=true;
+	private bool canJump = true;
 	private float jumpingSince=0;
 	private GameManager gameManager;
-	List<GameObject> lastCollisionGameObject = new List<GameObject>();
+	private PlayerInput input;
+	private List<GameObject> lastCollisionGameObject = new List<GameObject>();
 
-	PlayerInput input;
 
 	void Awake () {
 		input = GetComponent<PlayerInput> ();
@@ -38,7 +39,8 @@ public class PlayerMovement : MonoBehaviour {
 		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
 		verticalAxis = Input.GetAxisRaw(input.Vertical);
 		if (Input.GetButton (input.Jump)) {jump = true;}else {jump = false;}
-		if (Input.GetButtonUp (input.Jump) && jumpingSince!=0.0f) {jumpingSince = jumpingTime;}
+		if (Input.GetButtonUp (input.Jump) && jumpingSince != 0.0f) {jumpingSince = jumpingTime;} 
+		else if (Input.GetButtonUp (input.Jump)) {canJump = true;}
 	}
 
 
@@ -56,10 +58,12 @@ public class PlayerMovement : MonoBehaviour {
 			animator.SetBool ("IsRunning", false);
 		}
 		if (jump) {
-			if (jumpingTime>jumpingSince) {
+			if (jumpingTime > jumpingSince&&canJump==true) {
 				jumpingSince += Time.deltaTime;
-				rigid.velocity = new Vector2(rigid.velocity.x,jumpForce*(jumpingTime-jumpingSince));
+				rigid.velocity = new Vector2 (rigid.velocity.x, jumpForce * (jumpingTime - jumpingSince));
 				animator.SetBool ("IsJumping", true);
+			} else if (jumpingTime <= jumpingSince) {
+				canJump = false;
 			}
 		}
 
@@ -91,6 +95,9 @@ public class PlayerMovement : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			grounded = true;
+			if (!jump) {
+				canJump = true;
+			}
 			animator.SetBool ("IsJumping", false);
 			lastCollisionGameObject.Add(col.gameObject);
 			if (gameObject.activeSelf) {
@@ -156,7 +163,12 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	public void ResetAnimationStates(){
+	public void ResetMovement(){
+		ResetAnimationStates ();
+		canJump = true;
+		grounded=true;
+	}
+	void ResetAnimationStates(){
 		animator.SetBool ("IsRunning", false);
 		animator.SetBool ("IsJumping", false);
 		spriteRenderer.flipX = false;
