@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector3 lastVelocity;
 	private float verticalAxis;
 	private float horizontalAxis;
-	private Vector2 explosionForce=Vector2.zero;
+	private Vector2 explosion = Vector2.zero;
 	private bool jump=false;
 	private bool grounded=true;
 	private bool canJump = true;
@@ -70,20 +70,19 @@ public class PlayerMovement : MonoBehaviour {
 		if (!grounded) {
 			rigid.velocity = new Vector2 (rigid.velocity.x, rigid.velocity.y + (-rigid.gravityScale*rigid.mass));
 		}
-		if (explosionForce != Vector2.zero) {
-			rigid.velocity = rigid.velocity / movementSlowAffectedByExplocion + explosionForce;
+		if (explosion != Vector2.zero) {
+			rigid.velocity = rigid.velocity / movementSlowAffectedByExplocion + explosion;
 		}
 	}
 
-	public IEnumerator AddExplosionForce(Vector2 direction, float timeExploding){
+	public IEnumerator AddExplosionForce(Vector2 direction, float timeExploding, float explosionForce){
 		float currentTime = 0;
 		while (currentTime <= timeExploding) {
-
-			explosionForce = direction;
 			currentTime += Time.fixedDeltaTime;
+			explosion = direction * (timeExploding/currentTime) * explosionForce;
 			yield return null;
 		}
-		explosionForce = Vector2.zero;
+		explosion = Vector2.zero;
 	}
 
 	void OnCollisionEnter2D(Collision2D col){

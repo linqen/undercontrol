@@ -252,8 +252,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeTime: 1.5
-  explosionForce: 5
+  explosionForce: 1
   dieTime: 1
+  timeExploding: 0.6
 --- !u!114 &114671023860977938
 MonoBehaviour:
   m_ObjectHideFlags: 1
