@@ -46,11 +46,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	void FixedUpdate(){
 		rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
-		if (horizontalAxis > 0.1f) {
+		if (horizontalAxis > 0.0f) {
 			animator.SetBool ("IsRunning", true);
 			spriteRenderer.flipX = false;
 			lastDirection = Vector3.right;
-		} else if (horizontalAxis < -0.1f) {
+		} else if (horizontalAxis < 0.0f) {
 			animator.SetBool ("IsRunning", true);
 			spriteRenderer.flipX = true;
 			lastDirection = Vector3.left;
