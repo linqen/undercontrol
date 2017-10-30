@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour {
 	public float jumpingTime;
 	public float movementSlowAffectedByExplocion;
 
+	private Animator animator;
+	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rigid;
 	private Vector3 lastDirection;
 	private Vector3 lastVelocity;
@@ -25,6 +27,8 @@ public class PlayerMovement : MonoBehaviour {
 	void Awake () {
 		input = GetComponent<PlayerInput> ();
 		rigid = GetComponent<Rigidbody2D> ();
+		animator = GetComponent<Animator> ();
+		spriteRenderer = GetComponent<SpriteRenderer> ();
 	}
 
 	void Start(){
@@ -37,19 +41,25 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetButtonUp (input.Jump) && jumpingSince!=0.0f) {jumpingSince = jumpingTime;}
 	}
 
+
 	void FixedUpdate(){
-		//rigid.AddForce (Vector2.right, ForceMode2D.Force);
 		rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
 		if (horizontalAxis > 0.1f) {
+			animator.SetBool ("IsRunning", true);
+			spriteRenderer.flipX = false;
 			lastDirection = Vector3.right;
 		} else if (horizontalAxis < -0.1f) {
+			animator.SetBool ("IsRunning", true);
+			spriteRenderer.flipX = true;
 			lastDirection = Vector3.left;
+		} else {
+			animator.SetBool ("IsRunning", false);
 		}
 		if (jump) {
 			if (jumpingTime>jumpingSince) {
 				jumpingSince += Time.deltaTime;
-				//rigid.AddForce (Vector2.up * jumpForce, ForceMode2D.Force);
 				rigid.velocity = new Vector2(rigid.velocity.x,jumpForce*(jumpingTime-jumpingSince));
+				animator.SetBool ("IsJumping", true);
 			}
 		}
 
@@ -81,6 +91,7 @@ public class PlayerMovement : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			grounded = true;
+			animator.SetBool ("IsJumping", false);
 			lastCollisionGameObject.Add(col.gameObject);
 			if (gameObject.activeSelf) {
 				StopCoroutine ("ExitGroundJumpChance");
@@ -104,6 +115,8 @@ public class PlayerMovement : MonoBehaviour {
 	IEnumerator ExitGroundJumpChance(float time){
 		yield return new WaitForSeconds (time);
 		if (gameObject.activeSelf && jumpingSince == 0.0f) {
+			//Animation isFalling true on a future
+			animator.SetBool ("IsJumping", true);
 			jumpingSince = jumpingTime;
 		}
 	}
@@ -141,6 +154,12 @@ public class PlayerMovement : MonoBehaviour {
 
 			yield return null;
 		}
+	}
+
+	public void ResetAnimationStates(){
+		animator.SetBool ("IsRunning", false);
+		animator.SetBool ("IsJumping", false);
+		spriteRenderer.flipX = false;
 	}
 
 	//Getters

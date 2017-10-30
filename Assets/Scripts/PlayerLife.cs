@@ -3,36 +3,16 @@
 public class PlayerLife : MonoBehaviour {
 	public GameManager gameManager;
 
-	int playerNumber;
-	Color color;
-	Renderer rend;
-	bool hasShield = true;
-	int lastHitByPlayerNumber=0;
+	private PlayerMovement playerMovement;
+	private int playerNumber;
+	private Color color;
+	private bool hasShield = true;
+	private int lastHitByPlayerNumber=0;
 	// Use this for initialization
 	void Start () {
 		gameManager = GameManager.Instance;
 		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
-
-		rend = GetComponent<Renderer> ();
-		if (playerNumber == 1) {
-			color.b = 1.0f;
-			color.g = 0;
-			color.r = 0;
-		} else if (playerNumber == 2) {
-			color.g = 1.0f;
-			color.b = 0;
-			color.r = 0;
-		}else if (playerNumber == 3) {
-			color.g = 0.4f;
-			color.b = 0.6f;
-			color.r = 0;
-		}else if (playerNumber == 4) {
-			color.g = 0.9f;
-			color.b = 0.5f;
-			color.r = 0;
-		}
-
-		rend.material.color = color;
+		playerMovement = GetComponent<PlayerMovement> ();
 	}
 	public void NotifyHit(int hittedByPlayerNumber){
 		if (hittedByPlayerNumber != 0 && hittedByPlayerNumber != playerNumber) {
@@ -46,9 +26,11 @@ public class PlayerLife : MonoBehaviour {
 	}
 
 
-	public void ResetLife(){
+	public void ResetPlayer(){
 		hasShield = true;
 		lastHitByPlayerNumber = 0;
+		//Reset animations positions to default
+		playerMovement.ResetAnimationStates();
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
