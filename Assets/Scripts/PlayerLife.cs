@@ -15,7 +15,7 @@ public class PlayerLife : MonoBehaviour {
 		playerMovement = GetComponent<PlayerMovement> ();
 	}
 	public void NotifyHit(int hittedByPlayerNumber){
-		if (hittedByPlayerNumber != 0 && hittedByPlayerNumber != playerNumber) {
+		if (hittedByPlayerNumber != 0) {
 			lastHitByPlayerNumber = hittedByPlayerNumber;
 		}
 		if (hasShield) {
