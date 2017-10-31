@@ -104,6 +104,10 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		temporalKeyImage = character.transform.Find ("Fire").GetComponent<Image> ();
 		temporalKeyImage.gameObject.SetActive (true);
 		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Fire);
+
+		temporalKeyImage = character.transform.Find ("Jump").GetComponent<Image> ();
+		temporalKeyImage.gameObject.SetActive (true);
+		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Jump);
 	}
 
 	public void SetImagePreview(PlayerPreview playerPreview){
