@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour {
 	private PlayerInput input;
 	private List<GameObject> lastCollisionGameObject = new List<GameObject>();
 
+	void OnEnable(){
+		explosion = Vector2.zero;
+	}
 
 	void Awake () {
 		input = GetComponent<PlayerInput> ();
@@ -75,14 +78,22 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator AddExplosionForce(Vector2 direction, float timeExploding, float explosionForce){
+
+	public void AddExplosionForce(Vector2 direction, float timeExploding, float explosionForce){
+		if (gameObject.activeSelf) {
+			StartCoroutine (LocalAddExplosionForce (direction, timeExploding, explosionForce));
+		}
+	}
+
+	private IEnumerator LocalAddExplosionForce(Vector2 direction, float timeExploding, float explosionForce){
 		float currentTime = 0;
 		while (currentTime < timeExploding) {
-			currentTime += Time.deltaTime;
-			explosion = direction * (timeExploding/currentTime) * explosionForce;
-			yield return null;
+			currentTime += Time.fixedDeltaTime;
+			explosion = direction * (timeExploding/currentTime) * explosionForce*Time.fixedDeltaTime;
+			yield return new WaitForFixedUpdate();
 		}
 		explosion = Vector2.zero;
+		Debug.Log (explosion);
 	}
 
 	void OnCollisionEnter2D(Collision2D col){

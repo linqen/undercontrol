@@ -37,7 +37,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 				float hitPowerForce = circleCollider.bounds.extents.magnitude-explodeDirection.magnitude;
 				if (col.tag.Equals ("Player")) {
 					col.GetComponent<PlayerLife> ().NotifyHit (throwedByPlayerNumber);
-					StartCoroutine (col.GetComponent<PlayerMovement> ().AddExplosionForce (explodeDirection.normalized * hitPowerForce, timeExploding, explosionForce));
+					col.GetComponent<PlayerMovement> ().AddExplosionForce (explodeDirection.normalized * hitPowerForce, timeExploding, explosionForce);
 				} else {
 					rigid.AddForce (explodeDirection.normalized * hitPowerForce * explosionForce, ForceMode2D.Impulse);
 				}
