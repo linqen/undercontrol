@@ -77,8 +77,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public IEnumerator AddExplosionForce(Vector2 direction, float timeExploding, float explosionForce){
 		float currentTime = 0;
-		while (currentTime <= timeExploding) {
-			currentTime += Time.fixedDeltaTime;
+		while (currentTime < timeExploding) {
+			currentTime += Time.deltaTime;
 			explosion = direction * (timeExploding/currentTime) * explosionForce;
 			yield return null;
 		}
