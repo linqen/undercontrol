@@ -8,11 +8,13 @@ public class PlayerLife : MonoBehaviour {
 	private Color color;
 	private bool hasShield = true;
 	private int lastHitByPlayerNumber=0;
+	private Animator shieldAnimator;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		gameManager = GameManager.Instance;
 		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
 		playerMovement = GetComponent<PlayerMovement> ();
+		shieldAnimator = transform.Find ("Shield").GetComponent<Animator> ();
 	}
 	public void NotifyHit(int hittedByPlayerNumber){
 		if (hittedByPlayerNumber != 0) {
@@ -20,6 +22,7 @@ public class PlayerLife : MonoBehaviour {
 		}
 		if (hasShield) {
 			hasShield = false;
+			shieldAnimator.SetBool ("hasShield", hasShield);
 		}else if (!hasShield) {
 			gameManager.ReportDeath (gameObject,lastHitByPlayerNumber);
 		}
@@ -28,6 +31,7 @@ public class PlayerLife : MonoBehaviour {
 
 	public void ResetPlayer(){
 		hasShield = true;
+		shieldAnimator.SetBool ("hasShield", hasShield);
 		lastHitByPlayerNumber = 0;
 		//Reset animations positions to default
 		playerMovement.ResetMovement();
