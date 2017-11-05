@@ -54,8 +54,14 @@ MonoBehaviour:
   playerPrefab: {fileID: 1649050943946022, guid: b44987e6eb8c8174c8798dc8a98e69b5,
     type: 2}
   possiblePlayers: 4
+  secondsToWaitAfterDeath: 2
   availablePlayersPreviews:
   - {fileID: 21300000, guid: e7316abe1e5865f4f9cbebeb76a9e517, type: 3}
   - {fileID: 21300000, guid: 22d7b1883bac56247a7514e20a73a6ac, type: 3}
   - {fileID: 21300000, guid: 8cab66a265dfd264fa5be5c8ef69c62d, type: 3}
   - {fileID: 21300000, guid: d9bac560af7ad0b45b80c51ce3482c82, type: 3}
+  animators:
+  - {fileID: 9100000, guid: 91a4e2fa44fc7bd4fa98bca332432eb7, type: 2}
+  - {fileID: 9100000, guid: bb693876dea346442b17b7410c25b8fa, type: 2}
+  - {fileID: 9100000, guid: 6eae16fc1a1fd384baefa931b7cb2f2d, type: 2}
+  - {fileID: 9100000, guid: 3548bc933d3a68e42bc33ff8750d0f10, type: 2}

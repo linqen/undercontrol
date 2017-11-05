@@ -46,6 +46,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	public void ReportDeath(GameObject playerObject, int killedByPlayerNumber){
+		playerObject.SetActive (false);
 		deathReportPlayers.Add (playerObject);
 		deathReportKilledBy.Add (killedByPlayerNumber);
 		if (startedDeathsReport != null) {
@@ -55,7 +56,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	private IEnumerator ReportDeath(){
-		yield return new WaitForEndOfFrame ();
+		yield return new WaitForSeconds (secondsToWaitAfterDeath);
 		ProcessDeaths();
 		startedDeathsReport = null;
 	}
@@ -71,7 +72,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 					scores [deathReportKilledBy[k] - 1]--;
 				}else if (deathReportKilledBy[k] != deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber) {scores [deathReportKilledBy[k] - 1]++;}
 			}
-			deathReportPlayers[k].SetActive (false);
+			//deathReportPlayers[k].SetActive (false);
 			if (players.Count -1 <= deadPlayers && 
 				deathReportPlayers.Count-1 == k) {
 				numberOfRounds--;
