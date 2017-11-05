@@ -23,6 +23,7 @@ public class PlayerLife : MonoBehaviour {
 		if (hasShield) {
 			hasShield = false;
 			shieldAnimator.SetBool ("hasShield", hasShield);
+			shieldAnimator.GetComponent<Renderer> ().enabled = hasShield;
 		}else if (!hasShield) {
 			gameManager.ReportDeath (gameObject,lastHitByPlayerNumber);
 		}
@@ -32,6 +33,7 @@ public class PlayerLife : MonoBehaviour {
 	public void ResetPlayer(){
 		hasShield = true;
 		shieldAnimator.SetBool ("hasShield", hasShield);
+		shieldAnimator.GetComponent<Renderer> ().enabled = hasShield;
 		lastHitByPlayerNumber = 0;
 		//Reset animations positions to default
 		playerMovement.ResetMovement();

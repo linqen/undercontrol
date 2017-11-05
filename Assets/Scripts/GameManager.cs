@@ -8,12 +8,15 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	public GameObject playerPrefab;
 	[Range(1,8)]
 	public int possiblePlayers;
+	public float secondsToWaitAfterDeath;
 	public List<Sprite> availablePlayersPreviews = new List<Sprite>();
 	public List<RuntimeAnimatorController> animators = new List<RuntimeAnimatorController> ();
-	
+
 	List<Sprite> onUsePlayersPreviews = new List<Sprite>();
 	List<GameObject> players = new List<GameObject>();
 	List<Transform> spawnPoints = new List<Transform>();
+	List<GameObject> deathReportPlayers = new List<GameObject>();
+	List<int> deathReportKilledBy = new List<int>();
 	bool charSelection = false;
 	bool pressStart = false;
 	List<int> scores = new List<int> ();
@@ -22,6 +25,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	int deadPlayers=0;
 	int numberOfRounds;
 	string actualMapName;
+	Coroutine startedDeathsReport = null;
 	new void Awake(){
 		base.Awake ();
 	}
@@ -42,41 +46,62 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	public void ReportDeath(GameObject playerObject, int killedByPlayerNumber){
-		deadPlayers++;
-		playerObject.transform.rotation = Quaternion.identity;
-		if (killedByPlayerNumber != 0 ) {
-			if (killedByPlayerNumber == playerObject.GetComponent<PlayerPreview> ().playerNumber &&
-				scores [killedByPlayerNumber - 1] != 0) {
-				scores [killedByPlayerNumber - 1]--;
-			}else if (killedByPlayerNumber != playerObject.GetComponent<PlayerPreview> ().playerNumber) {scores [killedByPlayerNumber - 1]++;}
+		deathReportPlayers.Add (playerObject);
+		deathReportKilledBy.Add (killedByPlayerNumber);
+		if (startedDeathsReport != null) {
+			StopCoroutine (startedDeathsReport);
 		}
-		playerObject.SetActive (false);
-		if (players.Count -1 == deadPlayers) {
-			numberOfRounds--;
-			//Prepare the envoirement to re-play
-			for (int i = 0; i < players.Count; i++) {
-				players [i].SetActive (false);
-				players [i].GetComponent<PlayerLife> ().ResetPlayer();
-				StartCoroutine(uiManager.ShowActualScores(scores,3));
+		startedDeathsReport = StartCoroutine (ReportDeath());
+	}
+
+	private IEnumerator ReportDeath(){
+		yield return new WaitForEndOfFrame ();
+		ProcessDeaths();
+		startedDeathsReport = null;
+	}
+
+	private void ProcessDeaths(){
+		Debug.Log ("deathReportPlayers.Count"+deathReportPlayers.Count);
+		for (int k = 0; k < deathReportPlayers.Count; k++) {
+			deadPlayers++;
+			deathReportPlayers[k].transform.rotation = Quaternion.identity;
+			if (deathReportKilledBy[k] != 0 ) {
+				if (deathReportKilledBy[k] == deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber &&
+					scores [deathReportKilledBy[k] - 1] != 0) {
+					scores [deathReportKilledBy[k] - 1]--;
+				}else if (deathReportKilledBy[k] != deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber) {scores [deathReportKilledBy[k] - 1]++;}
 			}
-			deadPlayers = 0;
-			if (numberOfRounds==0) {
-				//End of rounds, back to selection
+			deathReportPlayers[k].SetActive (false);
+			if (players.Count -1 <= deadPlayers && 
+				deathReportPlayers.Count-1 == k) {
+				numberOfRounds--;
+				//Prepare the envoirement to re-play
 				for (int i = 0; i < players.Count; i++) {
-					players [i].GetComponent<PlayerPreview> ().selected = false;
-					scores [i] = 0;
+					players [i].SetActive (false);
+					players [i].GetComponent<PlayerLife> ().ResetPlayer();
+					StartCoroutine(uiManager.ShowActualScores(scores,3));
 				}
-				for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
-					availablePlayersPreviews.Add (onUsePlayersPreviews [i]);
+				deadPlayers = 0;
+				if (numberOfRounds==0) {
+					//End of rounds, back to selection
+					for (int i = 0; i < players.Count; i++) {
+						players [i].GetComponent<PlayerPreview> ().selected = false;
+						scores [i] = 0;
+					}
+					for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
+						availablePlayersPreviews.Add (onUsePlayersPreviews [i]);
+					}
+					onUsePlayersPreviews.Clear ();
+					SceneManager.UnloadSceneAsync (actualMapName);
+					menuManager.BackToMain ();
+				} else {
+					//GetNextMap
+					StartCoroutine(NextRound());
 				}
-				onUsePlayersPreviews.Clear ();
-				SceneManager.UnloadSceneAsync (actualMapName);
-				menuManager.BackToMain ();
-			} else {
-				//GetNextMap
-				StartCoroutine(NextRound());
 			}
 		}
+		deathReportPlayers.Clear ();
+		deathReportKilledBy.Clear ();
 	}
 
 	private IEnumerator NextRound(){
