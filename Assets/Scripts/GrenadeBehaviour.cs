@@ -5,12 +5,15 @@ public class GrenadeBehaviour : MonoBehaviour {
 	public float explosionForce;
 	public float dieTime;
 	public float timeExploding;
+
+	AudioManager audioManager;
 	float timeLived;
 	int throwedByPlayerNumber;
 	CircleCollider2D circleCollider;
 	bool explode=false;
 
 	void Start () {
+		audioManager = AudioManager.Instance;
 		timeLived = 0.0f;
 		circleCollider = GetComponent<CircleCollider2D> ();
 	}
@@ -18,6 +21,9 @@ public class GrenadeBehaviour : MonoBehaviour {
 	void Update () {
 		timeLived += Time.deltaTime;
 		if (timeLived >= explodeTime) {
+			if (explode == false) {
+				audioManager.GrenadeExplode ();
+			}
 			explode = true;
 			transform.GetComponentInChildren<ExplosionEffect> ().StartSwap ();
 			circleCollider.enabled = false;

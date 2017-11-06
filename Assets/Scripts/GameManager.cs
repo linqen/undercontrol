@@ -22,6 +22,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	List<int> scores = new List<int> ();
 	MenuManager menuManager;
 	UIManager uiManager;
+	AudioManager audioManager;
 	int deadPlayers=0;
 	int numberOfRounds;
 	string actualMapName;
@@ -32,6 +33,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	void Start(){
 		uiManager = UIManager.Instance;
+		audioManager = AudioManager.Instance;
 		menuManager = MenuManager.Instance;
 		menuManager.SetPossiblePlayers (possiblePlayers);
 	}
@@ -62,7 +64,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	private void ProcessDeaths(){
-		Debug.Log ("deathReportPlayers.Count"+deathReportPlayers.Count);
 		for (int k = 0; k < deathReportPlayers.Count; k++) {
 			deadPlayers++;
 			deathReportPlayers[k].transform.rotation = Quaternion.identity;
@@ -72,7 +73,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 					scores [deathReportKilledBy[k] - 1]--;
 				}else if (deathReportKilledBy[k] != deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber) {scores [deathReportKilledBy[k] - 1]++;}
 			}
-			//deathReportPlayers[k].SetActive (false);
 			if (players.Count -1 <= deadPlayers && 
 				deathReportPlayers.Count-1 == k) {
 				numberOfRounds--;
@@ -221,6 +221,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				onUsePlayersPreviews.Add (availablePlayersPreviews [i]);
 				availablePlayersPreviews.RemoveAt (i);
 				playerPreview.selected = true;
+				audioManager.SelectedSound();
 			}
 		}
 	}
@@ -242,6 +243,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 		actualPreview.SetCharPreview (availablePlayersPreviews [previewPosition]);
 		menuManager.SetImagePreview (actualPreview);
+		audioManager.ChoosingSound ();
 	}
 	public void GetPreviousUnusedPlayer(PlayerPreview actualPreview){
 		int previewPosition = availablePlayersPreviews.IndexOf (actualPreview.charPreview);
@@ -251,6 +253,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 		actualPreview.SetCharPreview (availablePlayersPreviews [previewPosition]);
 		menuManager.SetImagePreview (actualPreview);
+		audioManager.ChoosingSound ();
 	}
 	//Previews Managment
 }

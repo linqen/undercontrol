@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool canJump = true;
 	private float jumpingSince=0;
 	private GameManager gameManager;
+	private AudioManager audioManager;
 	private PlayerInput input;
 	private List<GameObject> lastCollisionGameObject = new List<GameObject>();
 
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Start(){
+		audioManager = AudioManager.Instance;
 	}
 
 	void Update(){
@@ -51,10 +53,12 @@ public class PlayerMovement : MonoBehaviour {
 		rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
 		if (horizontalAxis > 0.0f) {
 			animator.SetBool ("IsRunning", true);
+			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = false;
 			lastDirection = Vector3.right;
 		} else if (horizontalAxis < 0.0f) {
 			animator.SetBool ("IsRunning", true);
+			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = true;
 			lastDirection = Vector3.left;
 		} else {
@@ -62,6 +66,9 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		if (jump) {
 			if (jumpingTime > jumpingSince&&canJump==true) {
+				if (jumpingSince == 0) {
+					audioManager.PlayerJumping ();
+				}
 				jumpingSince += Time.deltaTime;
 				rigid.velocity = new Vector2 (rigid.velocity.x, jumpForce * (jumpingTime - jumpingSince));
 				animator.SetBool ("IsJumping", true);
@@ -99,12 +106,14 @@ public class PlayerMovement : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag.Equals ("Ground")&& jump && !grounded) {
 			jumpingSince = jumpingTime;
+			audioManager.PlayerHitRoof ();
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			grounded = true;
+			audioManager.PlayerTouchFloor ();
 			if (!jump) {
 				canJump = true;
 			}
