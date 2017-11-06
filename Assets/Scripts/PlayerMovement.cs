@@ -24,7 +24,9 @@ public class PlayerMovement : MonoBehaviour {
 	private AudioManager audioManager;
 	private PlayerInput input;
 	private List<GameObject> lastCollisionGameObject = new List<GameObject>();
-
+	private float hangingFromEdgeStartValue;
+	private float hangingFromEdgePreviousValue;
+	private bool isHanging=false;
 	void OnEnable(){
 		explosion = Vector2.zero;
 	}
@@ -51,12 +53,12 @@ public class PlayerMovement : MonoBehaviour {
 
 	void FixedUpdate(){
 		rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
-		if (horizontalAxis > 0.0f) {
+		if (horizontalAxis > 0.0f&&!isHanging) {
 			animator.SetBool ("IsRunning", true);
 			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = false;
 			lastDirection = Vector3.right;
-		} else if (horizontalAxis < 0.0f) {
+		} else if (horizontalAxis < 0.0f&&!isHanging) {
 			animator.SetBool ("IsRunning", true);
 			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = true;
@@ -77,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 
-		if (!grounded) {
+		if (!grounded||!isHanging) {
 			rigid.velocity = new Vector2 (rigid.velocity.x, rigid.velocity.y + (-rigid.gravityScale*rigid.mass));
 		}
 		if (explosion != Vector2.zero) {
@@ -100,44 +102,88 @@ public class PlayerMovement : MonoBehaviour {
 			yield return new WaitForFixedUpdate();
 		}
 		explosion = Vector2.zero;
-		Debug.Log (explosion);
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
-		if (col.gameObject.tag.Equals ("Ground")&& jump && !grounded) {
-			jumpingSince = jumpingTime;
-			audioManager.PlayerHitRoof ();
-		}
-	}
-
-	void OnTriggerEnter2D(Collider2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
-			grounded = true;
-			audioManager.PlayerTouchFloor ();
-			if (!jump) {
-				canJump = true;
-			}
-			animator.SetBool ("IsJumping", false);
-			lastCollisionGameObject.Add(col.gameObject);
-			if (gameObject.activeSelf) {
-				StopCoroutine ("ExitGroundJumpChance");
-				jumpingSince=0;
+			ContactPoint2D contact = col.contacts[0];
+
+			if (contact.normal == Vector2.up) {
+				grounded = true;
+				audioManager.PlayerTouchFloor ();
+				if (!jump) {
+					canJump = true;
+				}
+				animator.SetBool ("IsJumping", false);
+				lastCollisionGameObject.Add(col.gameObject);
+				if (gameObject.activeSelf) {
+					StopCoroutine ("ExitGroundJumpChance");
+					jumpingSince=0;
+				}
+			} 
+			else if (contact.normal == Vector2.down) {
+				jumpingSince = jumpingTime;
+				audioManager.PlayerHitRoof ();
+			} 
+			else{
+				float axisRawValue = Input.GetAxisRaw (input.Horizontal);
+				if (contact.normal == Vector2.left && axisRawValue!=0) {
+					hangingFromEdgeStartValue=axisRawValue;
+				} 
+				else if (contact.normal == Vector2.right&& axisRawValue!=0) {
+					hangingFromEdgeStartValue=axisRawValue;
+				}
 			}
 		}
 	}
 
-	void OnTriggerExit2D(Collider2D col){
+	void OnCollisionStay2D(Collision2D col){
+		if (col.gameObject.tag.Equals ("Ground") && hangingFromEdgeStartValue != 0) {
+			ContactPoint2D contact = col.contacts [0];
+
+			float axisRawValue = Input.GetAxisRaw (input.Horizontal);
+			if (axisRawValue == hangingFromEdgeStartValue) {
+				if (contact.normal == Vector2.left
+					&& axisRawValue==1.0f) {
+					isHanging = true;
+					//Animation isHanging true on a future
+					transform.position = new Vector3 (col.collider.bounds.min.x - (transform.lossyScale.x / 2),
+						col.collider.bounds.min.y+(col.transform.lossyScale.y/2), col.collider.bounds.min.z);
+				} else if (contact.normal == Vector2.right
+					&& axisRawValue==-1.0f) {
+					isHanging = true;
+					//Animation isHanging true on a future
+					transform.position = new Vector3 (col.collider.bounds.max.x + (transform.lossyScale.x / 2),
+						col.collider.bounds.max.y-(col.transform.lossyScale.y/2), col.collider.bounds.max.z);
+				}
+			} else {
+				isHanging = false;
+				hangingFromEdgePreviousValue = hangingFromEdgeStartValue;
+				hangingFromEdgeStartValue = 0;
+			}
+		} else {
+			float axisRawValue = Input.GetAxisRaw (input.Horizontal);
+			if (col.gameObject.tag.Equals ("Ground") &&
+				axisRawValue != 0 && axisRawValue==hangingFromEdgePreviousValue) {
+				hangingFromEdgeStartValue = Input.GetAxisRaw (input.Horizontal);
+			}
+		}
+	}
+
+	void OnCollisionExit2D(Collision2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			lastCollisionGameObject.Remove (col.gameObject);
 			if(lastCollisionGameObject.Count!=0){
 				return;
 			}
+			hangingFromEdgePreviousValue = 0;
 			grounded = false;
 			if (gameObject.activeSelf && jumpingSince==0.0f) {
 				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
 			}
 		}
 	}
+
 	IEnumerator ExitGroundJumpChance(float time){
 		yield return new WaitForSeconds (time);
 		if (gameObject.activeSelf && jumpingSince == 0.0f) {

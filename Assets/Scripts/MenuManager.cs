@@ -124,7 +124,6 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		for (int i = 1; i < possiblePlayers+1; i++) {
 			availableStartKeys.Add ((Sprite)Resources.Load<Sprite> ("Keys/" + Inputs.Start+i));
 		}
-		Debug.Log (availableStartKeys.Count);
 	}
 
 	public void ExitGame(){
