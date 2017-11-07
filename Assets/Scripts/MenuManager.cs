@@ -9,6 +9,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	UIManager uiManager;
 	GameManager gameManager;
 	GameObject pressStart;
+	GameObject menuBackground;
 	GameObject mainMenu;
 	GameObject characterSelect;
 	GameObject mapSelect;
@@ -21,6 +22,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		uiManager = UIManager.Instance;
 		gameManager = GameManager.Instance;
 		pressStart = transform.Find ("PressStart").gameObject;
+		menuBackground = transform.Find ("GeneralBackground").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
@@ -34,6 +36,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	public void StartPressed(){
 		pressStart.SetActive (false);
+		menuBackground.SetActive (true);
 		mainMenu.SetActive (true);
 		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
 	}
@@ -45,6 +48,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	}
 	public void RoundsSelect(){
 		int rounds = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+		menuBackground.SetActive (false);
 		roundsSelect.SetActive (false);
 		gameManager.GameStart("Map1",rounds);
 	}
@@ -64,6 +68,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	public void BackToMain(){
 		mainMenu.SetActive (true);
+		menuBackground.SetActive (true);
 		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
 	}
 	public void SetImagePreview(PlayerPreview playerPreview,PlayerInput playerInput){

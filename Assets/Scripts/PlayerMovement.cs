@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour {
 					isHanging = true;
 					touchingWallAtRight = true;
 					//Animation isHanging true on a future
-					transform.position = new Vector3 (col.collider.bounds.min.x - (transform.lossyScale.x / 2),
+					rigid.position = new Vector3 (col.collider.bounds.min.x - (transform.lossyScale.x / 2),
 						col.collider.bounds.min.y+(col.transform.lossyScale.y/2), col.collider.bounds.min.z);
 					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
 				} else if (contact.normal == Vector2.right
@@ -175,7 +175,7 @@ public class PlayerMovement : MonoBehaviour {
 					isHanging = true;
 					touchingWallAtLeft = true;
 					//Animation isHanging true on a future
-					transform.position = new Vector3 (col.collider.bounds.max.x + (transform.lossyScale.x / 2),
+					rigid.position = new Vector3 (col.collider.bounds.max.x + (transform.lossyScale.x / 2),
 						col.collider.bounds.max.y-(col.transform.lossyScale.y/2), col.collider.bounds.max.z);
 					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
 				}
