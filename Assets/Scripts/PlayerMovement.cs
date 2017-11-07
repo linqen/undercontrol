@@ -13,20 +13,22 @@ public class PlayerMovement : MonoBehaviour {
 	private Rigidbody2D rigid;
 	private Vector3 lastDirection;
 	private Vector3 lastVelocity;
+	private Vector2 explosion = Vector2.zero;
+	private List<GameObject> lastCollisionGameObject = new List<GameObject>();
 	private float verticalAxis;
 	private float horizontalAxis;
-	private Vector2 explosion = Vector2.zero;
+	private float hangingFromEdgeStartValue;
+	private float hangingFromEdgePreviousValue;
+	private float jumpingSince=0;
 	private bool jump=false;
 	private bool grounded=true;
 	private bool canJump = true;
-	private float jumpingSince=0;
+	private bool isHanging=false;
+	private bool touchingWallAtLeft=false;
+	private bool touchingWallAtRight=false;
 	private GameManager gameManager;
 	private AudioManager audioManager;
 	private PlayerInput input;
-	private List<GameObject> lastCollisionGameObject = new List<GameObject>();
-	private float hangingFromEdgeStartValue;
-	private float hangingFromEdgePreviousValue;
-	private bool isHanging=false;
 	void OnEnable(){
 		explosion = Vector2.zero;
 	}
@@ -52,18 +54,22 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	void FixedUpdate(){
-		rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
-		if (horizontalAxis > 0.0f&&!isHanging) {
+		if (horizontalAxis > 0.0f&&!isHanging&&!touchingWallAtRight) {
 			animator.SetBool ("IsRunning", true);
 			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = false;
 			lastDirection = Vector3.right;
-		} else if (horizontalAxis < 0.0f&&!isHanging) {
+			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
+		} else if (horizontalAxis < 0.0f&&!isHanging&&!touchingWallAtLeft) {
 			animator.SetBool ("IsRunning", true);
 			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = true;
 			lastDirection = Vector3.left;
-		} else {
+			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
+		}else if(!isHanging&&!touchingWallAtLeft&&!touchingWallAtRight){
+			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
+		}
+		if(horizontalAxis == 0.0f || isHanging || touchingWallAtLeft || touchingWallAtRight) {
 			animator.SetBool ("IsRunning", false);
 		}
 		if (jump) {
@@ -79,14 +85,14 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 
-		if (!grounded||!isHanging) {
+		if (!grounded && !isHanging) {
 			rigid.velocity = new Vector2 (rigid.velocity.x, rigid.velocity.y + (-rigid.gravityScale*rigid.mass));
 		}
+
 		if (explosion != Vector2.zero) {
 			rigid.velocity = rigid.velocity / movementSlowAffectedByExplocion + explosion;
 		}
 	}
-
 
 	public void AddExplosionForce(Vector2 direction, float timeExploding, float explosionForce){
 		if (gameObject.activeSelf) {
@@ -96,6 +102,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private IEnumerator LocalAddExplosionForce(Vector2 direction, float timeExploding, float explosionForce){
 		float currentTime = 0;
+		CancelHangingByExplosion ();
 		while (currentTime < timeExploding) {
 			currentTime += Time.fixedDeltaTime;
 			explosion = direction * (timeExploding/currentTime) * explosionForce*Time.fixedDeltaTime;
@@ -104,34 +111,46 @@ public class PlayerMovement : MonoBehaviour {
 		explosion = Vector2.zero;
 	}
 
+	private void CancelHangingByExplosion(){
+		hangingFromEdgeStartValue = 0;
+		hangingFromEdgePreviousValue = 0;
+		isHanging = false;
+		touchingWallAtLeft = false;
+		touchingWallAtRight = false;
+		//Animation explosion force
+	}
+
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			ContactPoint2D contact = col.contacts[0];
-
+			lastCollisionGameObject.Add(col.gameObject);
 			if (contact.normal == Vector2.up) {
+				ResetHangingValues ();
 				grounded = true;
 				audioManager.PlayerTouchFloor ();
 				if (!jump) {
 					canJump = true;
 				}
 				animator.SetBool ("IsJumping", false);
-				lastCollisionGameObject.Add(col.gameObject);
 				if (gameObject.activeSelf) {
 					StopCoroutine ("ExitGroundJumpChance");
 					jumpingSince=0;
 				}
 			} 
 			else if (contact.normal == Vector2.down) {
+				ResetHangingValues ();
 				jumpingSince = jumpingTime;
 				audioManager.PlayerHitRoof ();
 			} 
 			else{
 				float axisRawValue = Input.GetAxisRaw (input.Horizontal);
-				if (contact.normal == Vector2.left && axisRawValue!=0) {
+				if (contact.normal == Vector2.left ) {
 					hangingFromEdgeStartValue=axisRawValue;
+					touchingWallAtRight = true;
 				} 
-				else if (contact.normal == Vector2.right&& axisRawValue!=0) {
+				else if (contact.normal == Vector2.right) {
 					hangingFromEdgeStartValue=axisRawValue;
+					touchingWallAtLeft = true;
 				}
 			}
 		}
@@ -146,39 +165,63 @@ public class PlayerMovement : MonoBehaviour {
 				if (contact.normal == Vector2.left
 					&& axisRawValue==1.0f) {
 					isHanging = true;
+					touchingWallAtRight = true;
 					//Animation isHanging true on a future
 					transform.position = new Vector3 (col.collider.bounds.min.x - (transform.lossyScale.x / 2),
 						col.collider.bounds.min.y+(col.transform.lossyScale.y/2), col.collider.bounds.min.z);
+					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
 				} else if (contact.normal == Vector2.right
 					&& axisRawValue==-1.0f) {
 					isHanging = true;
+					touchingWallAtLeft = true;
 					//Animation isHanging true on a future
 					transform.position = new Vector3 (col.collider.bounds.max.x + (transform.lossyScale.x / 2),
 						col.collider.bounds.max.y-(col.transform.lossyScale.y/2), col.collider.bounds.max.z);
+					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
+				}
+				if (jump&&jumpingSince==jumpingTime&&!canJump) {
+					if (gameObject.activeSelf) {
+						StopCoroutine ("ExitGroundJumpChance");
+					}
+					canJump = true;
+					jumpingSince = 0;
+					isHanging = false;
+					touchingWallAtLeft = false;
+					touchingWallAtRight = false;
+					hangingFromEdgeStartValue = 0;
+					hangingFromEdgePreviousValue = 0;
 				}
 			} else {
 				isHanging = false;
 				hangingFromEdgePreviousValue = hangingFromEdgeStartValue;
 				hangingFromEdgeStartValue = 0;
 			}
-		} else {
+		} else if (col.gameObject.tag.Equals ("Ground")) {
 			float axisRawValue = Input.GetAxisRaw (input.Horizontal);
-			if (col.gameObject.tag.Equals ("Ground") &&
-				axisRawValue != 0 && axisRawValue==hangingFromEdgePreviousValue) {
-				hangingFromEdgeStartValue = Input.GetAxisRaw (input.Horizontal);
+			if (axisRawValue != 0 && axisRawValue==hangingFromEdgePreviousValue) {
+				hangingFromEdgeStartValue = axisRawValue;
 			}
 		}
 	}
-
+	private void ResetHangingValues(){
+		touchingWallAtLeft = false;
+		touchingWallAtRight = false;
+		hangingFromEdgePreviousValue = 0;
+	}
 	void OnCollisionExit2D(Collision2D col){
 		if (col.gameObject.tag.Equals ("Ground")) {
 			lastCollisionGameObject.Remove (col.gameObject);
 			if(lastCollisionGameObject.Count!=0){
 				return;
 			}
-			hangingFromEdgePreviousValue = 0;
 			grounded = false;
-			if (gameObject.activeSelf && jumpingSince==0.0f) {
+			if (touchingWallAtLeft || touchingWallAtRight) {
+				Debug.Log ("Reseting");
+				ResetHangingValues ();
+				hangingFromEdgeStartValue = 0;
+				isHanging = false;
+			}
+			else if (gameObject.activeSelf && jumpingSince==0.0f) {
 				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
 			}
 		}
