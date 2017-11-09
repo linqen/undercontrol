@@ -2,55 +2,67 @@
 
 public class GrenadeBehaviour : MonoBehaviour {
 	public float explodeTime;
-	public float explosionForce;
+	public float explosionForcePlayers;
+	public float explosionForceGrenades;
 	public float dieTime;
 	public float timeExploding;
+	public float radius;
 
 	AudioManager audioManager;
 	float timeLived;
 	int throwedByPlayerNumber;
-	CircleCollider2D circleCollider;
 	bool explode=false;
+	Vector2 oldPos;
+	Rigidbody2D myRigid;
 
 	void Start () {
 		audioManager = AudioManager.Instance;
 		timeLived = 0.0f;
-		circleCollider = GetComponent<CircleCollider2D> ();
+		oldPos = transform.position;
+		myRigid = GetComponent<Rigidbody2D> ();
 	}
 	
 	void Update () {
+		//To avoid teleport between colliders
+		RaycastHit2D hit = Physics2D.Linecast(oldPos, transform.position);
+		if(hit!=null&&(hit.collider.tag.Equals("Ground"))){
+			transform.position = hit.point;
+			myRigid.velocity=Vector2.Reflect(myRigid.velocity,hit.normal);
+		}
+		oldPos = transform.position;
+		//
+
 		timeLived += Time.deltaTime;
 		if (timeLived >= explodeTime) {
 			if (explode == false) {
+				transform.GetComponentInChildren<ExplosionEffect> ().StartSwap ();
+				Explode ();
 				audioManager.GrenadeExplode ();
 			}
 			explode = true;
-			transform.GetComponentInChildren<ExplosionEffect> ().StartSwap ();
-			circleCollider.enabled = false;
 		}
 		if (timeLived >= explodeTime + dieTime) {
-			explode = false;
 			Destroy (gameObject);
 		}
 	}
-		
-	void OnTriggerExit2D(Collider2D col){
-		if (explode) {
-			Rigidbody2D rigid = col.GetComponent<Rigidbody2D> ();
+
+	void Explode(){
+		Collider2D[] cols = Physics2D.OverlapCircleAll (transform.position, radius);
+		for (int i = 0; i < cols.Length; i++) {
+			Rigidbody2D rigid = cols[i].GetComponent<Rigidbody2D> ();
 			if (rigid != null) {
 				Vector3 explodeDirection = rigid.transform.position - transform.position;
-				circleCollider.enabled = true;
-				float hitPowerForce = circleCollider.bounds.extents.magnitude-explodeDirection.magnitude;
-				if (col.tag.Equals ("Player")) {
-					col.GetComponent<PlayerLife> ().NotifyHit (throwedByPlayerNumber);
-					col.GetComponent<PlayerMovement> ().AddExplosionForce (explodeDirection.normalized * hitPowerForce, timeExploding, explosionForce);
-				} else {
-					rigid.AddForce (explodeDirection.normalized * hitPowerForce * explosionForce, ForceMode2D.Impulse);
+				float hitPowerForce = radius-explodeDirection.magnitude;
+				if (cols[i].tag.Equals ("Player")) {
+					cols[i].GetComponent<PlayerLife> ().NotifyHit (throwedByPlayerNumber);
+					cols[i].GetComponent<PlayerMovement> ().AddExplosionForce (explodeDirection.normalized * hitPowerForce, timeExploding, explosionForcePlayers);
+				} else if(cols[i].tag.Equals("Grenade")) {
+					rigid.AddForce (explodeDirection.normalized * hitPowerForce * explosionForceGrenades, ForceMode2D.Impulse);
 				}
-				circleCollider.enabled = false;
 			}
 		}
 	}
+		
 	public int ThrowedByPlayerNumber {
 		get {
 			return this.throwedByPlayerNumber;
