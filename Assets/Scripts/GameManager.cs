@@ -228,7 +228,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	private void FinishPlayersSelection(){
 		for (int i = 0; i < players.Count; i++) {
-			StopCoroutine (players [i].GetComponent<PlayerMovement> ().CharSelection ());
+			players [i].GetComponent<PlayerMovement> ().StopCharSelection();
 		}
 	}
 	//Previews Managment

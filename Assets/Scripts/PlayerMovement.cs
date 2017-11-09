@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool isHanging=false;
 	private bool touchingWallAtLeft=false;
 	private bool touchingWallAtRight=false;
+	private bool isCharSelection=false;
 	private GameManager gameManager;
 	private AudioManager audioManager;
 	private PlayerInput input;
@@ -216,7 +217,6 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			grounded = false;
 			if (touchingWallAtLeft || touchingWallAtRight) {
-				Debug.Log ("Reseting");
 				ResetHangingValues ();
 				hangingFromEdgeStartValue = 0;
 				isHanging = false;
@@ -235,38 +235,43 @@ public class PlayerMovement : MonoBehaviour {
 			jumpingSince = jumpingTime;
 		}
 	}
+	public void StopCharSelection(){
+		isCharSelection = false;
+	}
 
 	public IEnumerator CharSelection(){
 		PlayerPreview pp = GetComponent<PlayerPreview>();
 		int actualInput = GetComponent<PlayerInput>().GetInputNumber ();
+		isCharSelection = true;
 		gameManager = GameManager.Instance;
-		while (true) {
-			if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
-				!pp.selected) {
+		bool canMoveJoySelection = true;
+		while (isCharSelection) {
+			if (Input.GetButtonDown (Inputs.Horizontal + actualInput) &&
+			    !pp.selected) {
 				//Move Right
-				gameManager.GetNextUnusedPlayer(pp);
-			} 
-			else if (Input.GetButtonDown(Inputs.Horizontal+actualInput) &&
-				!pp.selected) {
+				gameManager.GetNextUnusedPlayer (pp);
+			} else if (Input.GetButtonDown (Inputs.Horizontal + actualInput) &&
+			         !pp.selected) {
 				//Move Left
-				gameManager.GetPreviousUnusedPlayer(pp);
+				gameManager.GetPreviousUnusedPlayer (pp);
+			} else {
+				//Joystick case
+				float axisRawValue = Input.GetAxisRaw (Inputs.Horizontal + actualInput);
+				if (axisRawValue > 0.5f && !Input.GetButton (Inputs.Horizontal + actualInput) &&
+				   !pp.selected && canMoveJoySelection == true) {
+					//Move Right
+					gameManager.GetNextUnusedPlayer (pp);
+					canMoveJoySelection = false;
+				} else if (axisRawValue < -0.5f &&
+				          !Input.GetButton (Inputs.Horizontal + actualInput) &&
+				          !pp.selected && canMoveJoySelection == true) {
+					//Move Left
+					gameManager.GetPreviousUnusedPlayer (pp);
+					canMoveJoySelection = false;
+				} else if (axisRawValue == 0.0f) {
+					canMoveJoySelection = true;
+				}
 			}
-			//Joystick case
-			if (Input.GetAxisRaw (Inputs.Horizontal + actualInput) > 0.5f &&
-				!Input.GetButton(Inputs.Horizontal+actualInput)&&
-				!pp.selected) {
-				//Move Right
-				gameManager.GetNextUnusedPlayer(pp);
-				yield return new WaitForSecondsRealtime (0.5f);
-			} 
-			else if (Input.GetAxisRaw (Inputs.Horizontal + actualInput) < -0.5f &&
-				!Input.GetButton(Inputs.Horizontal+actualInput)&&
-				!pp.selected) {
-				//Move Left
-				gameManager.GetPreviousUnusedPlayer(pp);
-				yield return new WaitForSecondsRealtime (0.5f);
-			}
-
 			yield return null;
 		}
 	}
