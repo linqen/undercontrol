@@ -92,14 +92,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				deadPlayers = 0;
 				if (numberOfRounds==0) {
 					//End of rounds, back to selection
-					for (int i = 0; i < players.Count; i++) {
-						players [i].GetComponent<PlayerPreview> ().selected = false;
-						scores [i] = 0;
-					}
-					for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
-						availablePlayersPreviews.Add (onUsePlayersPreviews [i]);
-					}
-					onUsePlayersPreviews.Clear ();
 					SceneManager.UnloadSceneAsync (actualMapName);
 					menuManager.BackToMain ();
 				} else {
@@ -125,7 +117,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		charSelection = true;
 		menuManager.SetImagePreview (players[0].GetComponent<PlayerPreview>(),
 			players[0].GetComponent<PlayerInput>());
-		StartCoroutine(players [0].GetComponent<PlayerMovement> ().CharSelection ());
+		for (int i = 0; i < players.Count; i++) {
+			StartCoroutine(players [i].GetComponent<PlayerMovement> ().CharSelection ());
+		}
 	}
 
 	public void GameStart(string rmapName, int numberOfRounds){
@@ -189,7 +183,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 						SelectActualPlayer(players [j].GetComponent<PlayerPreview> ());
 						if (players.Count>=2&&
 							onUsePlayersPreviews.Count==players.Count) {
-							charSelection = false;
 							FinishPlayersSelection ();
 							menuManager.CharacterSelectionFinished ();
 						}
@@ -204,7 +197,42 @@ public class GameManager : GenericSingletonClass<GameManager> {
 					players.Add (newPlayer);
 				}
 			}
+			//Cancel button is pressed
+			if (Input.GetButtonDown (Inputs.Fire + i)) {
+				menuManager.GoBack ();
+			}
 		}
+	}
+
+	public IEnumerator RoundSelection(){
+		bool waiting = true;
+		int mainPlayerInput = players [0].GetComponent<PlayerInput> ().GetInputNumber ();
+		while (waiting) {
+			Debug.Log ("Waiting");
+			if(Input.GetButtonDown(Inputs.Fire+mainPlayerInput)){
+				menuManager.GoBack();
+				waiting = false;
+				Debug.Log ("PRESSED");
+			}
+			yield return null;
+		}
+	}
+
+	public void StopCharSelection(){
+		ClearPlayerSelectionValues ();
+		FinishPlayersSelection ();
+	}
+
+	void ClearPlayerSelectionValues(){
+		for (int i = 0; i < players.Count; i++) {
+			players [i].GetComponent<PlayerPreview> ().selected = false;
+			scores [i] = 0;
+		}
+		for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
+			availablePlayersPreviews.Add (onUsePlayersPreviews [i]);
+		}
+		onUsePlayersPreviews.Clear ();
+		charSelection = false;
 	}
 
 	private GameObject CreatePlayer(int inputNumber){
@@ -239,6 +267,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	private void FinishPlayersSelection(){
+		ClearPlayerSelectionValues ();
 		for (int i = 0; i < players.Count; i++) {
 			players [i].GetComponent<PlayerMovement> ().StopCharSelection();
 		}

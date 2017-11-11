@@ -44,12 +44,18 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void CharacterSelectionFinished(){
 		characterSelect.SetActive (false);
 		roundsSelect.SetActive (true);
-		EventSystem.current.SetSelectedGameObject(roundsSelect.transform.Find ("PossibleRounds").Find("5").gameObject);
+		GameObject roundSelected = roundsSelect.transform.Find ("PossibleRounds").Find ("5").gameObject;
+		if (EventSystem.current.currentSelectedGameObject == roundSelected) {
+			EventSystem.current.SetSelectedGameObject (null);
+		}
+		EventSystem.current.SetSelectedGameObject (roundSelected);
+		StartCoroutine (gameManager.RoundSelection ());
 	}
 	public void RoundsSelect(){
 		int rounds = int.Parse(EventSystem.current.currentSelectedGameObject.name);
 		menuBackground.SetActive (false);
 		roundsSelect.SetActive (false);
+		StopCoroutine (gameManager.RoundSelection ());
 		gameManager.GameStart("Map1",rounds);
 	}
 
@@ -63,6 +69,19 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			keyAlternation.SetKeys (availableStartKeys);
 			keyAlternation.gameObject.SetActive (true);
 			keyAlternation.enabled = true;
+		}
+	}
+
+	public void GoBack(){
+		if (characterSelect.activeSelf) {
+			mainMenu.SetActive (true);
+			characterSelect.SetActive (false);
+			gameManager.StopCharSelection ();
+		} else if (roundsSelect.activeSelf) {
+			Debug.Log ("Roundsselect Active");
+			characterSelect.SetActive (true);
+			roundsSelect.SetActive (false);
+			StartCoroutine (gameManager.CharSelection ());
 		}
 	}
 
