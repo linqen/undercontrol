@@ -8,6 +8,7 @@ TagManager:
   - LevelLimit
   - EventSystem
   - Grenade
+  - Laser
   layers:
   - Default
   - TransparentFX

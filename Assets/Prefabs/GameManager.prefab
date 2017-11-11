@@ -55,6 +55,8 @@ MonoBehaviour:
     type: 2}
   possiblePlayers: 4
   secondsToWaitAfterDeath: 2
+  suddenDeathTime: 5
+  onlyTwoPlayersGameSuddenDeathTime: 10
   availablePlayersPreviews:
   - {fileID: 21300000, guid: e7316abe1e5865f4f9cbebeb76a9e517, type: 3}
   - {fileID: 21300000, guid: 22d7b1883bac56247a7514e20a73a6ac, type: 3}

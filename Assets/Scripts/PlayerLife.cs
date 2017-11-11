@@ -44,4 +44,9 @@ public class PlayerLife : MonoBehaviour {
 			gameManager.ReportDeath (gameObject,lastHitByPlayerNumber);
 		}
 	}
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.gameObject.tag.Equals ("Laser")) {
+			gameManager.ReportDeath (gameObject,lastHitByPlayerNumber);
+		}
+	}
 }

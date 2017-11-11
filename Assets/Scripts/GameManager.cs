@@ -9,6 +9,8 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	[Range(1,8)]
 	public int possiblePlayers;
 	public float secondsToWaitAfterDeath;
+	public float suddenDeathTime;
+	public float onlyTwoPlayersGameSuddenDeathTime;
 	public List<Sprite> availablePlayersPreviews = new List<Sprite>();
 	public List<RuntimeAnimatorController> animators = new List<RuntimeAnimatorController> ();
 
@@ -17,6 +19,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	List<Transform> spawnPoints = new List<Transform>();
 	List<GameObject> deathReportPlayers = new List<GameObject>();
 	List<int> deathReportKilledBy = new List<int>();
+	LasersManager lasersManager;
 	bool charSelection = false;
 	bool pressStart = false;
 	List<int> scores = new List<int> ();
@@ -66,6 +69,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	private void ProcessDeaths(){
 		for (int k = 0; k < deathReportPlayers.Count; k++) {
 			deadPlayers++;
+			if (players.Count - deadPlayers == 2) {
+				lasersManager.StartLasers (suddenDeathTime);
+			}
 			deathReportPlayers[k].transform.rotation = Quaternion.identity;
 			if (deathReportKilledBy[k] != 0 ) {
 				if (deathReportKilledBy[k] == deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber &&
@@ -75,6 +81,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			}
 			if (players.Count -1 <= deadPlayers && 
 				deathReportPlayers.Count-1 == k) {
+				lasersManager.DisableLasers ();
 				numberOfRounds--;
 				//Prepare the envoirement to re-play
 				for (int i = 0; i < players.Count; i++) {
@@ -144,6 +151,11 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			players [i].transform.position = spawnPoints [randomSpawn].position;
 			players [i].SetActive (true);
 			spawnPoints.RemoveAt (randomSpawn);
+		}
+		//Lasers
+		lasersManager = GameObject.Find("Lasers").GetComponent<LasersManager>();
+		if (players.Count == 2) {
+			lasersManager.StartLasers (onlyTwoPlayersGameSuddenDeathTime);
 		}
 	}
 	public void PressStartButton(){
