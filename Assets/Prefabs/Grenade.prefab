@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4679120034698480}
   - component: {fileID: 212002885661678800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: granada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114617966072389120}
   - component: {fileID: 50586193439535476}
   - component: {fileID: 58276839792945044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grenade
   m_TagString: Grenade
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33546036412892762}
   - component: {fileID: 23225837043114246}
   - component: {fileID: 114671023860977938}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ExplosionEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,6 +6,8 @@ public class GrenadeThrowing : MonoBehaviour {
 
 	public GameObject grenadePrefab;
 	public float grenadeCooldown;
+	public float horizontalForce;
+	public float verticalForce;
 
 	private PlayerMovement pMovement;
 	private PlayerInput input;
@@ -24,12 +26,12 @@ public class GrenadeThrowing : MonoBehaviour {
 		currentCooldownGrenade += Time.deltaTime;
 		if (Input.GetButton (input.Fire)||Input.GetButtonUp (input.Fire)) {
 			if (Input.GetButtonUp(input.Fire)&&currentCooldownGrenade>=grenadeCooldown) {
-				Vector3 pos = new Vector3 ( transform.position.x+pMovement.HorizontalAxis,
-					transform.position.y+1,
+				Vector3 pos = new Vector3 ( transform.position.x+pMovement.LastDirection.x/3,
+					transform.position.y,
 					transform.position.z);
 				GameObject grenade = Instantiate (grenadePrefab, pos, transform.rotation);
 				grenade.GetComponent<GrenadeBehaviour> ().ThrowedByPlayerNumber = playerNumber;
-				grenade.GetComponent<Rigidbody2D>().AddForce (new Vector2(pMovement.LastDirection.x*3,pMovement.VerticalAxis+2), ForceMode2D.Impulse);	
+				grenade.GetComponent<Rigidbody2D>().AddForce (new Vector2(pMovement.LastDirection.x*horizontalForce,pMovement.VerticalAxis*verticalForce), ForceMode2D.Impulse);	
 				currentCooldownGrenade = 0;
 				animator.SetTrigger ("Throw");
 			}

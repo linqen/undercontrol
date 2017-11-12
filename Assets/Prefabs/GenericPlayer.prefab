@@ -186,6 +186,8 @@ MonoBehaviour:
   grenadePrefab: {fileID: 1353945325221178, guid: f44c5f83c16687e4489b4bca08aad3a1,
     type: 2}
   grenadeCooldown: 1
+  horizontalForce: 5
+  verticalForce: 4
 --- !u!114 &114378457164177316
 MonoBehaviour:
   m_ObjectHideFlags: 1
