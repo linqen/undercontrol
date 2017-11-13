@@ -91,9 +91,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				}
 				deadPlayers = 0;
 				if (numberOfRounds==0) {
-					//End of rounds, back to selection
-					SceneManager.UnloadSceneAsync (actualMapName);
-					menuManager.BackToMain ();
+					StartCoroutine (FinishGame ());
 				} else {
 					//GetNextMap
 					StartCoroutine(NextRound());
@@ -102,6 +100,12 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 		deathReportPlayers.Clear ();
 		deathReportKilledBy.Clear ();
+	}
+	private IEnumerator FinishGame(){
+		yield return new WaitForSeconds (3.0f);
+		//End of rounds, back to selection
+		SceneManager.UnloadSceneAsync (actualMapName);
+		menuManager.BackToMain ();
 	}
 
 	private IEnumerator NextRound(){
