@@ -124,6 +124,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	public void GameStart(string rmapName, int numberOfRounds){
 		this.numberOfRounds = numberOfRounds;
+		audioManager.InGameMusic ();
 		StartCoroutine (OnGameStart (rmapName));
 	}
 	private IEnumerator OnGameStart(string rmapName){
@@ -208,11 +209,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		bool waiting = true;
 		int mainPlayerInput = players [0].GetComponent<PlayerInput> ().GetInputNumber ();
 		while (waiting) {
-			Debug.Log ("Waiting");
 			if(Input.GetButtonDown(Inputs.Fire+mainPlayerInput)){
 				menuManager.GoBack();
 				waiting = false;
-				Debug.Log ("PRESSED");
 			}
 			yield return null;
 		}

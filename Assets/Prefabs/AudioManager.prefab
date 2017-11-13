@@ -50,11 +50,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 1cb0d19ba16c52b4aa6c2a4f8e00647b, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -135,6 +135,13 @@ MonoBehaviour:
   effectsSourcesPoolLength: 5
   minPitchValue: 0.95
   maxPitchValue: 1.05
+  mainMenuMusic: {fileID: 8300000, guid: 1cb0d19ba16c52b4aa6c2a4f8e00647b, type: 3}
+  inGameMusic: {fileID: 8300000, guid: a072783da87da8348853839eb640f3e3, type: 3}
+  inGameLaserMusic:
+  - {fileID: 8300000, guid: b39c0e2a4b571214dbdbc36b9f99291b, type: 3}
+  - {fileID: 8300000, guid: d2cad614759b72a46a77c303ba21ddc7, type: 3}
+  - {fileID: 8300000, guid: 862c6141bef0a124d8832a43836d3e54, type: 3}
+  - {fileID: 8300000, guid: 3c6c8a8ecd305444b82f0153066746fb, type: 3}
   selectedPlayerSounds:
   - {fileID: 8300000, guid: c18dc3f29e71ecc48936689694d0b19a, type: 3}
   choosingPlayerSounds:

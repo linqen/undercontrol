@@ -8,6 +8,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	List<Sprite> availableStartKeys = new List<Sprite> ();
 	UIManager uiManager;
 	GameManager gameManager;
+	AudioManager audioManager;
 	GameObject pressStart;
 	GameObject menuBackground;
 	GameObject mainMenu;
@@ -21,6 +22,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	void Start () {
 		uiManager = UIManager.Instance;
 		gameManager = GameManager.Instance;
+		audioManager = AudioManager.Instance;
 		pressStart = transform.Find ("PressStart").gameObject;
 		menuBackground = transform.Find ("GeneralBackground").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;
@@ -88,6 +90,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void BackToMain(){
 		mainMenu.SetActive (true);
 		menuBackground.SetActive (true);
+		audioManager.MainMenuMusic ();
 		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
 	}
 	public void SetImagePreview(PlayerPreview playerPreview,PlayerInput playerInput){

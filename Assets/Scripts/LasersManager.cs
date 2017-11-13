@@ -7,6 +7,7 @@ public class LasersManager : MonoBehaviour {
 	public GameObject laserAtRight;
 	public float lasersMoveVelocity;
 
+	private AudioManager audioManager;
 	private Rigidbody2D laserAtLeftRigid;
 	private Rigidbody2D laserAtRightRigid;
 	private Vector3 leftLaserStartPosition;
@@ -15,6 +16,7 @@ public class LasersManager : MonoBehaviour {
 	private bool suddenDeath=false;
 
 	void Start () {
+		audioManager = AudioManager.Instance;
 		laserAtLeftRigid = laserAtLeft.GetComponent<Rigidbody2D> ();
 		laserAtRightRigid = laserAtRight.GetComponent<Rigidbody2D> ();
 		leftLaserStartPosition = laserAtLeft.transform.position;
@@ -39,6 +41,7 @@ public class LasersManager : MonoBehaviour {
 
 	void EnableLasers(){
 		suddenDeath=true;
+		audioManager.InGameLaserMusic ();
 	}
 
 	public void RestartLasersPositions(){

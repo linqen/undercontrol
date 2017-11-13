@@ -6,6 +6,9 @@ public class AudioManager : GenericSingletonClass<AudioManager> {
 	public int effectsSourcesPoolLength;
 	public float minPitchValue;
 	public float maxPitchValue;
+	public AudioClip mainMenuMusic;
+	public AudioClip inGameMusic;
+	public AudioClip[] inGameLaserMusic;
 	public AudioClip[] selectedPlayerSounds;
 	public AudioClip[] choosingPlayerSounds;
 	public AudioClip[] jumpingSounds;
@@ -24,6 +27,7 @@ public class AudioManager : GenericSingletonClass<AudioManager> {
 	}
 
 	void Start () {
+		musicSource.loop = true;
 		for (int i = 0; i < effectsSourcesPoolLength; i++) {
 			efxSources.Add (gameObject.AddComponent (typeof(AudioSource)) as AudioSource);
 			efxSources [i].playOnAwake = false;
@@ -37,6 +41,25 @@ public class AudioManager : GenericSingletonClass<AudioManager> {
 		efxSources [actualEfxSourcePos].pitch = randomPitch;
 		efxSources[actualEfxSourcePos].PlayOneShot(sounds[randomSoundPos]);
 		actualEfxSourcePos++;
+	}
+
+	public void MainMenuMusic(){
+		musicSource.Stop ();
+		musicSource.clip = mainMenuMusic;
+		musicSource.Play ();
+	}
+
+	public void InGameMusic(){
+		musicSource.Stop ();
+		musicSource.clip = inGameMusic;
+		musicSource.Play ();
+	}
+	public void InGameLaserMusic(){
+		float currentTime = musicSource.time;
+		musicSource.Stop ();
+		musicSource.clip = inGameLaserMusic [Random.Range (0, inGameLaserMusic.Length)];
+		musicSource.time = currentTime;
+		musicSource.Play ();
 	}
 
 	public void PlayerJumping(){
