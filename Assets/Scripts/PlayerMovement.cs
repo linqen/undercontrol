@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour {
 	private void CancelHangingByExplosion(){
 		hangingFromEdgeStartValue = 0;
 		hangingFromEdgePreviousValue = 0;
+		animator.SetBool ("IsHanging", isHanging);
 		isHanging = false;
 		touchingWallAtLeft = false;
 		touchingWallAtRight = false;
@@ -180,7 +181,7 @@ public class PlayerMovement : MonoBehaviour {
 					&& axisRawValue==1.0f) {
 					isHanging = true;
 					touchingWallAtRight = true;
-					//Animation isHanging true on a future
+					animator.SetBool ("IsHanging", isHanging);
 					rigid.position = new Vector3 (col.collider.bounds.min.x - (transform.lossyScale.x / 2),
 						col.collider.bounds.min.y+(col.transform.lossyScale.y/2), col.collider.bounds.min.z);
 					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
@@ -188,7 +189,7 @@ public class PlayerMovement : MonoBehaviour {
 					&& axisRawValue==-1.0f) {
 					isHanging = true;
 					touchingWallAtLeft = true;
-					//Animation isHanging true on a future
+					animator.SetBool ("IsHanging", isHanging);
 					rigid.position = new Vector3 (col.collider.bounds.max.x + (transform.lossyScale.x / 2),
 						col.collider.bounds.max.y-(col.transform.lossyScale.y/2), col.collider.bounds.max.z);
 					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
@@ -200,6 +201,7 @@ public class PlayerMovement : MonoBehaviour {
 					canJump = true;
 					jumpingSince = 0;
 					isHanging = false;
+					animator.SetBool ("IsHanging", isHanging);
 					touchingWallAtLeft = false;
 					touchingWallAtRight = false;
 					hangingFromEdgeStartValue = 0;
@@ -207,6 +209,7 @@ public class PlayerMovement : MonoBehaviour {
 				}
 			} else {
 				isHanging = false;
+				animator.SetBool ("IsHanging", isHanging);
 				hangingFromEdgePreviousValue = hangingFromEdgeStartValue;
 				hangingFromEdgeStartValue = 0;
 			}
@@ -233,6 +236,7 @@ public class PlayerMovement : MonoBehaviour {
 				ResetHangingValues ();
 				hangingFromEdgeStartValue = 0;
 				isHanging = false;
+				animator.SetBool ("IsHanging", isHanging);
 			}
 			else if (gameObject.activeSelf && jumpingSince==0.0f) {
 				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
