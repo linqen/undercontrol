@@ -11,10 +11,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	public float secondsToWaitAfterDeath;
 	public float suddenDeathTime;
 	public float onlyTwoPlayersGameSuddenDeathTime;
-	public List<Sprite> availablePlayersPreviews = new List<Sprite>();
 	public List<RuntimeAnimatorController> animators = new List<RuntimeAnimatorController> ();
 
-	List<Sprite> onUsePlayersPreviews = new List<Sprite>();
+	int playersReady=0;
 	List<GameObject> players = new List<GameObject>();
 	List<Transform> spawnPoints = new List<Transform>();
 	List<GameObject> deathReportPlayers = new List<GameObject>();
@@ -115,8 +114,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		//This is maded to wait one frame and doesn't capture the actual GetKeyDown
 		yield return null;
 		charSelection = true;
-		menuManager.SetImagePreview (players[0].GetComponent<PlayerPreview>(),
-			players[0].GetComponent<PlayerInput>());
+		if (players [0].GetComponent<PlayerPreview> ().charPreviewPos == 0) {
+			menuManager.GoNextPreview (players [0].GetComponent<PlayerPreview> ());
+		}
 		for (int i = 0; i < players.Count; i++) {
 			StartCoroutine(players [i].GetComponent<PlayerMovement> ().CharSelection ());
 		}
@@ -180,10 +180,17 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			if (Input.GetButtonDown (Inputs.Start+i)) {
 				bool inputUsed = false;
 				for (int j = 0; j < players.Count; j++) {
-					if (players [j].GetComponent<PlayerInput> ().GetInputNumber () == i) {
-						SelectActualPlayer(players [j].GetComponent<PlayerPreview> ());
+					PlayerInput currentPlayerInput = players [j].GetComponent<PlayerInput> ();
+					if (currentPlayerInput.GetInputNumber() == i) {
+						bool result = menuManager.SelectPreview(players [j].GetComponent<PlayerPreview> (),currentPlayerInput);
+						if (result) {
+							playersReady++;
+							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
+							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos-1];
+							audioManager.SelectedSound();
+						}
 						if (players.Count>=2&&
-							onUsePlayersPreviews.Count==players.Count) {
+							playersReady==players.Count) {
 							FinishPlayersSelection ();
 							menuManager.CharacterSelectionFinished ();
 						}
@@ -192,8 +199,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				}
 				if (!inputUsed) {
 					GameObject newPlayer = CreatePlayer (i);
-					menuManager.SetImagePreview(newPlayer.GetComponent<PlayerPreview> (),
-						newPlayer.GetComponent<PlayerInput>());
+					menuManager.GoNextPreview(newPlayer.GetComponent<PlayerPreview> ());
 					StartCoroutine (newPlayer.GetComponent<PlayerMovement> ().CharSelection ());
 					players.Add (newPlayer);
 				}
@@ -227,10 +233,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			players [i].GetComponent<PlayerPreview> ().selected = false;
 			scores [i] = 0;
 		}
-		for (int i = 0; i < onUsePlayersPreviews.Count; i++) {
-			availablePlayersPreviews.Add (onUsePlayersPreviews [i]);
-		}
-		onUsePlayersPreviews.Clear ();
+		playersReady=0;
 		charSelection = false;
 	}
 
@@ -241,28 +244,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		newPlayer.name = ("Player" + (playerNumber));
 		PlayerInput pi = newPlayer.AddComponent<PlayerInput>();
 		pi.SetInputNumber (inputNumber);
-		pp.SetPreview(playerNumber,GetNextUnusedPlayer());
+		pp.SetPreview(playerNumber,0);
 		scores.Add (0);
 		return newPlayer;
-	}
-
-	private void SelectActualPlayer(PlayerPreview playerPreview){
-		Sprite preview = playerPreview.charPreview;
-		for (int i = 0; i < availablePlayersPreviews.Count; i++) {
-			if (preview.name.Equals (availablePlayersPreviews [i].name)) {
-				//Search the animator for that specific preview
-				string animatorName = menuManager.GetCharacterFromPreview(playerPreview.playerNumber-1);
-				for (int j = 0; j < animators.Count; j++) {
-					if (animators [j].name.Equals (animatorName)) {
-						players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [j];
-					}
-				}
-				onUsePlayersPreviews.Add (availablePlayersPreviews [i]);
-				availablePlayersPreviews.RemoveAt (i);
-				playerPreview.selected = true;
-				audioManager.SelectedSound();
-			}
-		}
 	}
 
 	private void FinishPlayersSelection(){
@@ -272,27 +256,12 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 	}
 	//Previews Managment
-	private Sprite GetNextUnusedPlayer(){
-		return availablePlayersPreviews [0];
-	}
 	public void GetNextUnusedPlayer(PlayerPreview actualPreview){
-		int previewPosition = availablePlayersPreviews.IndexOf (actualPreview.charPreview);
-		previewPosition++;
-		if (previewPosition == availablePlayersPreviews.Count) {
-			previewPosition = 0;
-		}
-		actualPreview.SetCharPreview (availablePlayersPreviews [previewPosition]);
-		menuManager.SetImagePreview (actualPreview);
+		menuManager.GoNextPreview (actualPreview);
 		audioManager.ChoosingSound ();
 	}
 	public void GetPreviousUnusedPlayer(PlayerPreview actualPreview){
-		int previewPosition = availablePlayersPreviews.IndexOf (actualPreview.charPreview);
-		previewPosition--;
-		if (previewPosition < 0) {
-			previewPosition = availablePlayersPreviews.Count-1;
-		}
-		actualPreview.SetCharPreview (availablePlayersPreviews [previewPosition]);
-		menuManager.SetImagePreview (actualPreview);
+		menuManager.GoPreviousPreview (actualPreview);
 		audioManager.ChoosingSound ();
 	}
 	//Previews Managment

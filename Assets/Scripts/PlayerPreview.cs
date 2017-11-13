@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
 public class PlayerPreview : MonoBehaviour {
-	public Sprite charPreview;
+	public int charPreviewPos=0;
 	public int playerNumber;
 	public bool selected = false;
 
-	public void SetPreview(int playerNumber,Sprite charPreview){
+	public void SetPreview(int playerNumber,int charPreviewPos){
 		this.playerNumber = playerNumber;
-		this.charPreview = charPreview;
+		this.charPreviewPos = charPreviewPos;
 	}
-	public void SetCharPreview(Sprite charPreview){
-		this.charPreview = charPreview;
+	public void SetCharPreview(int charPreviewPos){
+		this.charPreviewPos = charPreviewPos;
 	}
 
 }

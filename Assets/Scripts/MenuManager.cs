@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class MenuManager : GenericSingletonClass<MenuManager> {
-	public List<GameObject> menuPlayerPreview = new List<GameObject>();
+
+	public List<GameObject> menuPlayerSelector = new List<GameObject>();
 
 	List<Sprite> availableStartKeys = new List<Sprite> ();
 	UIManager uiManager;
@@ -29,9 +30,6 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
 		roundsSelect = transform.Find ("RoundsSelect").gameObject;
-		for (int i = 0; i < menuPlayerPreview.Count; i++) {
-			menuPlayerPreview[i] = characterSelect.transform.Find ("Character" + (i + 1)).gameObject;
-		}
 		gameManager.PressStartButton ();
 		Cursor.visible = false;
 	}
@@ -45,6 +43,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	public void CharacterSelectionFinished(){
 		characterSelect.SetActive (false);
+		for (int i = 0; i < menuPlayerSelector.Count; i++) {
+			menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
+		}
 		roundsSelect.SetActive (true);
 		GameObject roundSelected = roundsSelect.transform.Find ("PossibleRounds").Find ("5").gameObject;
 		if (EventSystem.current.currentSelectedGameObject == roundSelected) {
@@ -65,13 +66,6 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mainMenu.SetActive (false);
 		characterSelect.SetActive (true);
 		StartCoroutine(gameManager.CharSelection ());
-		for (int i = possiblePlayers-availableStartKeys.Count; i < menuPlayerPreview.Count; i++) {
-			KeyAlternation keyAlternation;
-			keyAlternation = menuPlayerPreview [i].transform.Find ("Start").GetComponent<KeyAlternation>();
-			keyAlternation.SetKeys (availableStartKeys);
-			keyAlternation.gameObject.SetActive (true);
-			keyAlternation.enabled = true;
-		}
 	}
 
 	public void GoBack(){
@@ -79,8 +73,12 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			mainMenu.SetActive (true);
 			characterSelect.SetActive (false);
 			gameManager.StopCharSelection ();
+			for (int i = 0; i < menuPlayerSelector.Count; i++) {
+				menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
+			}
+			EventSystem.current.SetSelectedGameObject (null);
+			EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
 		} else if (roundsSelect.activeSelf) {
-			Debug.Log ("Roundsselect Active");
 			characterSelect.SetActive (true);
 			roundsSelect.SetActive (false);
 			StartCoroutine (gameManager.CharSelection ());
@@ -93,57 +91,60 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		audioManager.MainMenuMusic ();
 		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
 	}
-	public void SetImagePreview(PlayerPreview playerPreview,PlayerInput playerInput){
-		//This is to show the available Start Buttons to enter the game
-		for (int i = 0; i < availableStartKeys.Count; i++) {
-			if (availableStartKeys [i].name == playerInput.Start) {
-				availableStartKeys.RemoveAt (i);
+
+	public void GoNextPreview(PlayerPreview playerPreview){
+		int currentPos = playerPreview.charPreviewPos;
+		if(currentPos!=0){
+			menuPlayerSelector [currentPos - 1].GetComponent<SelectorBehaviour> ().RemoveSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
+		}
+		currentPos++;
+		for (int i = 0; i < menuPlayerSelector.Count; i++) {
+			if (currentPos > menuPlayerSelector.Count) {
+				currentPos = 1;
+			}
+			SelectorBehaviour selector = menuPlayerSelector [currentPos - 1].GetComponent<SelectorBehaviour> ();
+			if (!selector.selected) {
+				selector.AddSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
+				playerPreview.charPreviewPos = currentPos;
 				break;
+			} else {
+				currentPos++;
 			}
 		}
-
-		Image character = menuPlayerPreview [playerPreview.playerNumber - 1].GetComponent<Image> ();
-		character.sprite = playerPreview.charPreview;
-		character.color = new Color (255, 255, 255);
-		Image temporalKeyImage;
-		
-		temporalKeyImage = character.transform.Find ("Left").GetComponent<Image> ();
-		temporalKeyImage.gameObject.SetActive (true);
-		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Horizontal+"Left");
-
-		temporalKeyImage = character.transform.Find ("Right").GetComponent<Image> ();
-		temporalKeyImage.gameObject.SetActive (true);
-		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Horizontal+"Right");
-
-		temporalKeyImage = character.transform.Find ("Up").GetComponent<Image> ();
-		temporalKeyImage.gameObject.SetActive (true);
-		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Vertical+"Up");
-
-		temporalKeyImage = character.transform.Find ("Down").GetComponent<Image> ();
-		temporalKeyImage.gameObject.SetActive (true);
-		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Vertical+"Down");
-
-		temporalKeyImage = character.transform.Find ("Start").GetComponent<Image> ();
-		temporalKeyImage.GetComponent<KeyAlternation> ().enabled = false;
-		temporalKeyImage.gameObject.SetActive (true);
-		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Start);
-
-		temporalKeyImage = character.transform.Find ("Fire").GetComponent<Image> ();
-		temporalKeyImage.gameObject.SetActive (true);
-		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Fire);
-
-		temporalKeyImage = character.transform.Find ("Jump").GetComponent<Image> ();
-		temporalKeyImage.gameObject.SetActive (true);
-		temporalKeyImage.sprite = (Sprite)Resources.Load<Sprite> ("Keys/"+playerInput.Jump);
 	}
 
-	public void SetImagePreview(PlayerPreview playerPreview){
-		Image character = menuPlayerPreview [playerPreview.playerNumber - 1].GetComponent<Image> ();
-		character.sprite = playerPreview.charPreview;
+	public void GoPreviousPreview(PlayerPreview playerPreview){
+		int currentPos = playerPreview.charPreviewPos;
+		if(currentPos!=0){
+			menuPlayerSelector [currentPos - 1].GetComponent<SelectorBehaviour> ().RemoveSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
+		}
+		currentPos--;
+		for (int i = 0; i < menuPlayerSelector.Count; i++) {
+			if (currentPos <= 0) {
+				currentPos = menuPlayerSelector.Count;
+			}
+			SelectorBehaviour selector = menuPlayerSelector [currentPos - 1].GetComponent<SelectorBehaviour> ();
+			if (!selector.selected) {
+				selector.AddSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
+				playerPreview.charPreviewPos = currentPos;
+				break;
+			} else {
+				currentPos--;
+			}
+		}
 	}
 
-	public string GetCharacterFromPreview(int playerNumber){
-		return menuPlayerPreview [playerNumber].GetComponent<Image> ().sprite.name;
+	public bool SelectPreview(PlayerPreview playerPreview, PlayerInput playerInput){
+		SelectorBehaviour selector = menuPlayerSelector [playerPreview.charPreviewPos-1].GetComponent<SelectorBehaviour> ();
+		if (!selector.selected) {
+			selector.SelectSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
+			selector.transform.Find ("Selected").gameObject.SetActive (true);
+			playerPreview.selected = true;
+			return true;
+		} else {
+			//Reproducir sonido
+			return false;
+		}
 	}
 
 	public void SetPossiblePlayers(int possiblePlayers){
