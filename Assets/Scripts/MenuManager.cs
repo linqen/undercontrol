@@ -45,6 +45,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		characterSelect.SetActive (false);
 		for (int i = 0; i < menuPlayerSelector.Count; i++) {
 			menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
+			menuPlayerSelector [i].transform.Find ("KeyMap").gameObject.SetActive (false);
 		}
 		roundsSelect.SetActive (true);
 		GameObject roundSelected = roundsSelect.transform.Find ("PossibleRounds").Find ("5").gameObject;
@@ -139,6 +140,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		if (!selector.selected) {
 			selector.SelectSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
 			selector.transform.Find ("Selected").gameObject.SetActive (true);
+			GameObject keySelector = selector.transform.Find ("KeyMap").gameObject;
+			keySelector.GetComponent<Image> ().sprite = ((Sprite)Resources.Load<Sprite> ("InputMap/" + playerInput.inputNumber));
+			keySelector.SetActive (true);
 			playerPreview.selected = true;
 			return true;
 		} else {
