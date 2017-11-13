@@ -46,6 +46,12 @@ public class GrenadeBehaviour : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.tag.Equals ("Laser")&&explode==false) {
+			timeLived = explodeTime;
+		}
+	}
+
 	void Explode(){
 		Collider2D[] cols = Physics2D.OverlapCircleAll (transform.position, radius);
 		for (int i = 0; i < cols.Length; i++) {
