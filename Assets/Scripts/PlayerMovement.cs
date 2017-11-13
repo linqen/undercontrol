@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rigid;
-	private Vector3 lastDirection;
+	private Vector3 lastDirection = Vector3.right;
 	private Vector3 lastVelocity;
 	private Vector2 explosion = Vector2.zero;
 	private List<GameObject> lastCollisionGameObject = new List<GameObject>();

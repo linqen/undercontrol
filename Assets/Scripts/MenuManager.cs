@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -16,6 +17,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	GameObject characterSelect;
 	GameObject mapSelect;
 	GameObject roundsSelect;
+	GameObject countdown;
 	int possiblePlayers;
 	new void Awake(){
 		base.Awake ();
@@ -30,6 +32,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
 		roundsSelect = transform.Find ("RoundsSelect").gameObject;
+		countdown = transform.Find ("Countdown").gameObject;
 		gameManager.PressStartButton ();
 		Cursor.visible = false;
 	}
@@ -92,7 +95,25 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		audioManager.MainMenuMusic ();
 		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
 	}
-
+	public void ShowCountdown(float time){
+		StartCoroutine (Countdown (time));
+	}
+	private IEnumerator Countdown(float time){
+		float currentTime = time;
+		countdown.SetActive (true);
+		Text countdownText = countdown.GetComponent<Text> ();
+		while (currentTime >= 0) {
+			currentTime -= Time.unscaledDeltaTime;
+			int rounded = Mathf.RoundToInt (currentTime);
+			if (rounded == 0) {
+				countdownText.text = "GO!";
+			} else {
+				countdownText.text = rounded.ToString ();
+			}
+			yield return null;
+		}
+		countdown.SetActive (false);
+	}
 	public void GoNextPreview(PlayerPreview playerPreview){
 		int currentPos = playerPreview.charPreviewPos;
 		if(currentPos!=0){

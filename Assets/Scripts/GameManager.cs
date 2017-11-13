@@ -11,6 +11,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	public float secondsToWaitAfterDeath;
 	public float suddenDeathTime;
 	public float onlyTwoPlayersGameSuddenDeathTime;
+	public float countdownBeforePlay;
 	public List<RuntimeAnimatorController> animators = new List<RuntimeAnimatorController> ();
 
 	int playersReady=0;
@@ -147,6 +148,11 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			players [i].SetActive (true);
 			spawnPoints.RemoveAt (randomSpawn);
 		}
+		
+		Time.timeScale = 0;
+		menuManager.ShowCountdown (countdownBeforePlay);
+		yield return new WaitForSecondsRealtime (countdownBeforePlay);
+		Time.timeScale = 1;
 		//Lasers
 		lasersManager = GameObject.Find("Lasers").GetComponent<LasersManager>();
 		if (players.Count == 2) {
