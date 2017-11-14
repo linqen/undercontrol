@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 4e5e3bd726c24174b8000e303a21ce79
-timeCreated: 1507605242
+guid: 078b5f44418544a4f914cdbbbb3c7a58
+timeCreated: 1510617667
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
+  externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -57,6 +58,7 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
