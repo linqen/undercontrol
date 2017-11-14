@@ -27,6 +27,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 		timeLived = 0.0f;
 		oldPos = transform.position;
 		spriteRender.sprite = grenades [throwedByPlayerNumber - 1];
+		audioManager.GrenadeExplode ();
 	}
 	
 	void Update () {
@@ -44,7 +45,6 @@ public class GrenadeBehaviour : MonoBehaviour {
 			if (explode == false) {
 				transform.GetComponentInChildren<ExplosionEffect> ().StartSwap ();
 				Explode ();
-				audioManager.GrenadeExplode ();
 			}
 			explode = true;
 		}

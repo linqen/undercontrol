@@ -18,6 +18,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	GameObject mapSelect;
 	GameObject roundsSelect;
 	GameObject countdown;
+	GameObject laserAdvice;
 	int possiblePlayers;
 	new void Awake(){
 		base.Awake ();
@@ -33,6 +34,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
 		roundsSelect = transform.Find ("RoundsSelect").gameObject;
 		countdown = transform.Find ("Countdown").gameObject;
+		laserAdvice = transform.Find ("LaserAdvice").gameObject;
 		gameManager.PressStartButton ();
 		Cursor.visible = false;
 	}
@@ -164,6 +166,23 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		}
 	}
 
+	public void ShowLasersAdvice(){
+		StartCoroutine (ShowLasersAdv ());
+	}
+	private IEnumerator ShowLasersAdv(){
+		laserAdvice.SetActive (true);
+		yield return new WaitForSeconds (0.25f);
+		laserAdvice.SetActive (false);
+		yield return new WaitForSeconds (0.25f);
+		laserAdvice.SetActive (true);
+		yield return new WaitForSeconds (0.25f);
+		laserAdvice.SetActive (false);
+	}
+
+	public void StopLasersAdvice(){
+		StopCoroutine (ShowLasersAdv ());
+		laserAdvice.SetActive (false);
+	}
 	public bool SelectPreview(PlayerPreview playerPreview, PlayerInput playerInput){
 		SelectorBehaviour selector = menuPlayerSelector [playerPreview.charPreviewPos-1].GetComponent<SelectorBehaviour> ();
 		if (!selector.selected) {

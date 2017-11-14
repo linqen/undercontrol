@@ -137,35 +137,38 @@ MonoBehaviour:
   maxPitchValue: 1.05
   mainMenuMusic: {fileID: 8300000, guid: 1cb0d19ba16c52b4aa6c2a4f8e00647b, type: 3}
   inGameMusic: {fileID: 8300000, guid: a072783da87da8348853839eb640f3e3, type: 3}
-  inGameLaserMusic:
-  - {fileID: 8300000, guid: b39c0e2a4b571214dbdbc36b9f99291b, type: 3}
-  - {fileID: 8300000, guid: d2cad614759b72a46a77c303ba21ddc7, type: 3}
-  - {fileID: 8300000, guid: 862c6141bef0a124d8832a43836d3e54, type: 3}
-  - {fileID: 8300000, guid: 3c6c8a8ecd305444b82f0153066746fb, type: 3}
-  selectedPlayerSounds:
-  - {fileID: 8300000, guid: c18dc3f29e71ecc48936689694d0b19a, type: 3}
-  choosingPlayerSounds:
-  - {fileID: 8300000, guid: af1c8edaeadb82b42b15d790eed681d3, type: 3}
+  inGameLaserSound: {fileID: 8300000, guid: 461cfe7561245394ab1359ebb61004ff, type: 3}
+  selectPlayerSound: {fileID: 8300000, guid: da71039b681f23341b85d9581e5832ae, type: 3}
+  choosingPlayerSoundsLeft: {fileID: 8300000, guid: 7b41ef20c13129947a00309eb9dd8eec,
+    type: 3}
+  choosingPlayerSoundsRight: {fileID: 8300000, guid: 14f3a942dd57658459d301dbb0d1c92c,
+    type: 3}
+  selectMenuSound: {fileID: 8300000, guid: 85512410127366f489a8bdb8c20ceb10, type: 3}
+  choosingMenuUp: {fileID: 8300000, guid: 42cca846d5af7e347aba30cb8bcf90fe, type: 3}
+  choosingMenuDown: {fileID: 8300000, guid: e6e5b7a6d023552448f35d3e89794079, type: 3}
   jumpingSounds:
-  - {fileID: 8300000, guid: c5919fab978cf674eb4694ff3ef58c26, type: 3}
+  - {fileID: 8300000, guid: 1c0becb2af69f4b47b147db8fafd9800, type: 3}
+  - {fileID: 8300000, guid: 784457a9cf7591b449888722a7098ea0, type: 3}
   walkSounds:
-  - {fileID: 8300000, guid: f7d438f9d0f1dfb4b8eee52eb87b94cc, type: 3}
-  - {fileID: 8300000, guid: 8025c3028083116469ac2d8718c4385e, type: 3}
-  - {fileID: 8300000, guid: d462b1ced24b41149801da3779fbfb89, type: 3}
-  - {fileID: 8300000, guid: b54f392185aea0c4790506b1cb03b7bf, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   explosionSounds:
-  - {fileID: 8300000, guid: 592282d41f749fd4f88bfbf9e8c7c27a, type: 3}
-  - {fileID: 8300000, guid: 0fd348f2be9b84347a0ec5df87abc430, type: 3}
-  - {fileID: 8300000, guid: 9f18fa80e60baae4ab6c41a088511815, type: 3}
-  - {fileID: 8300000, guid: f460cb80e6f94d24f84ae5fdbb72d5c4, type: 3}
+  - {fileID: 8300000, guid: 20ed511ddbf0ab142b95634fcff498be, type: 3}
+  - {fileID: 8300000, guid: 4393ec8bc6c272c49bf3ce03019d914a, type: 3}
+  - {fileID: 8300000, guid: 8ccbc30d10f6e0f48814c17ee9f01785, type: 3}
   hitRoofSounds:
   - {fileID: 8300000, guid: 622259f7bda129f47ae591ba56f9f5c8, type: 3}
   - {fileID: 8300000, guid: ccdb7dc9d76184948a997676fb651f03, type: 3}
   - {fileID: 8300000, guid: 3798aad4c568d744c94e40110a50d871, type: 3}
   - {fileID: 8300000, guid: be783e2848ade044a9b6b6b1c0213742, type: 3}
   touchFloorSounds:
-  - {fileID: 8300000, guid: a9887915a4c689d46a7d5a3eed8321af, type: 3}
-  - {fileID: 8300000, guid: 198f95f7a96af604892fb343be201ab8, type: 3}
-  - {fileID: 8300000, guid: 20cb8801494b2fd42825fe874fd1b86e, type: 3}
-  - {fileID: 8300000, guid: 8112836fada5daa4b8bab047fb1b2513, type: 3}
+  - {fileID: 8300000, guid: 25a2d6e9838be8f44a8ab6f11cddfef9, type: 3}
+  - {fileID: 8300000, guid: 09b74229bcdbcb349ac10a06c3e8174b, type: 3}
+  - {fileID: 8300000, guid: b7bf7fa5d87189946ad6e98f1f997a0f, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: beda88bb48101d94b9db3315b29b5ee5, type: 3}
+  - {fileID: 8300000, guid: 93ca3138de5ac0b43af504f74944b66e, type: 3}
+  - {fileID: 8300000, guid: ba826152192c7b64db80ab7614178c37, type: 3}
   musicSource: {fileID: 82323773146286996}

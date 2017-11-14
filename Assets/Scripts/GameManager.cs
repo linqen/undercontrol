@@ -54,6 +54,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		playerObject.SetActive (false);
 		deathReportPlayers.Add (playerObject);
 		deathReportKilledBy.Add (killedByPlayerNumber);
+		audioManager.DeathSound ();
 		if (startedDeathsReport != null) {
 			StopCoroutine (startedDeathsReport);
 		}
@@ -82,6 +83,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			if (players.Count -1 <= deadPlayers && 
 				deathReportPlayers.Count-1 == k) {
 				lasersManager.DisableLasers ();
+				menuManager.StopLasersAdvice ();
 				//Prepare the envoirement to re-play
 				for (int i = 0; i < players.Count; i++) {
 					players [i].SetActive (false);
@@ -191,6 +193,10 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 	}
 
+	public void LasersComming(){
+		menuManager.ShowLasersAdvice ();
+	}
+
 	private void OnCharSelection(){
 		for (int i = 1; i <= possiblePlayers; i++) {
 			//Detect new players entering the game
@@ -204,7 +210,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 							playersReady++;
 							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
 							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos-1];
-							audioManager.SelectedSound();
+							audioManager.SelectedPlayerSound();
 						}
 						if (players.Count>=2&&
 							playersReady==players.Count) {
@@ -275,11 +281,11 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	//Previews Managment
 	public void GetNextUnusedPlayer(PlayerPreview actualPreview){
 		menuManager.GoNextPreview (actualPreview);
-		audioManager.ChoosingSound ();
+		audioManager.ChoosingPlayerSoundRight ();
 	}
 	public void GetPreviousUnusedPlayer(PlayerPreview actualPreview){
 		menuManager.GoPreviousPreview (actualPreview);
-		audioManager.ChoosingSound ();
+		audioManager.ChoosingPlayerSoundLeft ();
 	}
 	//Previews Managment
 }
