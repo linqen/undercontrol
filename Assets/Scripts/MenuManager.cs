@@ -45,10 +45,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	}
 
 	public void CharacterSelectionFinished(){
-		characterSelect.SetActive (false);
 		for (int i = 0; i < menuPlayerSelector.Count; i++) {
-			menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
-			menuPlayerSelector [i].transform.Find ("KeyMap").gameObject.SetActive (false);
+			menuPlayerSelector [i].GetComponent<Image> ().color = Color.black;
+			menuPlayerSelector [i].transform.Find ("Character"+(i+1)).gameObject.SetActive (false);
 		}
 		roundsSelect.SetActive (true);
 		GameObject roundSelected = roundsSelect.transform.Find ("PossibleRounds").Find ("5").gameObject;
@@ -59,7 +58,16 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		StartCoroutine (gameManager.RoundSelection ());
 	}
 	public void RoundsSelect(){
+		//Clear data
+		for (int i = 0; i < menuPlayerSelector.Count; i++) {
+			menuPlayerSelector [i].GetComponent<Image> ().color = Color.white;
+			menuPlayerSelector [i].transform.Find ("Character"+(i+1)).gameObject.SetActive (true);
+			menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
+			menuPlayerSelector [i].transform.Find ("KeyMap").gameObject.SetActive (false);
+		}
+		//
 		int rounds = int.Parse(EventSystem.current.currentSelectedGameObject.name);
+		characterSelect.SetActive (false);
 		menuBackground.SetActive (false);
 		roundsSelect.SetActive (false);
 		StopCoroutine (gameManager.RoundSelection ());

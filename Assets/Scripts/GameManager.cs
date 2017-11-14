@@ -82,7 +82,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			if (players.Count -1 <= deadPlayers && 
 				deathReportPlayers.Count-1 == k) {
 				lasersManager.DisableLasers ();
-				numberOfRounds--;
 				//Prepare the envoirement to re-play
 				for (int i = 0; i < players.Count; i++) {
 					players [i].SetActive (false);
@@ -90,7 +89,14 @@ public class GameManager : GenericSingletonClass<GameManager> {
 					StartCoroutine(uiManager.ShowActualScores(scores,3));
 				}
 				deadPlayers = 0;
-				if (numberOfRounds==0) {
+				bool someoneWin = false;
+				for (int i = 0; i < scores.Count; i++) {
+					if (scores [i] >= numberOfRounds) {
+						someoneWin = true;
+					}
+				}
+
+				if (someoneWin) {
 					StartCoroutine (FinishGame ());
 				} else {
 					//GetNextMap
@@ -155,6 +161,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		
 		Time.timeScale = 0;
 		menuManager.ShowCountdown (countdownBeforePlay);
+		uiManager.StartGame (players);
 		yield return new WaitForSecondsRealtime (countdownBeforePlay);
 		Time.timeScale = 1;
 		//Lasers
