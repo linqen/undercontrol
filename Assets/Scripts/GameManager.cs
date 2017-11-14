@@ -88,7 +88,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				for (int i = 0; i < players.Count; i++) {
 					players [i].SetActive (false);
 					players [i].GetComponent<PlayerLife> ().ResetPlayer();
-					StartCoroutine(uiManager.ShowActualScores(scores,3));
+					//StartCoroutine(uiManager.ShowActualScores(scores,3));
 				}
 				deadPlayers = 0;
 				bool someoneWin = false;
@@ -110,17 +110,17 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		deathReportKilledBy.Clear ();
 	}
 	private IEnumerator FinishGame(){
-		yield return new WaitForSeconds (3.0f);
+		yield return StartCoroutine(uiManager.ShowActualScores(scores,3));
+		//yield return new WaitForSeconds (3.0f);
 		//End of rounds, back to selection
 		SceneManager.UnloadSceneAsync (actualMapName);
 		menuManager.BackToMain ();
 	}
 
 	private IEnumerator NextRound(){
-		yield return new WaitForSecondsRealtime (3.0f);
+		yield return StartCoroutine(uiManager.ShowActualScores(scores,3));
 		SceneManager.UnloadSceneAsync (actualMapName);
 		GameStart ("Map1", numberOfRounds);
-
 	}
 
 	public IEnumerator CharSelection(){
