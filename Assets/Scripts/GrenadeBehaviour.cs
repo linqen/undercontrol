@@ -7,6 +7,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 	public float dieTime;
 	public float timeExploding;
 	public float radius;
+	public Sprite[] grenades;
 
 	AudioManager audioManager;
 	float timeLived;
@@ -14,12 +15,18 @@ public class GrenadeBehaviour : MonoBehaviour {
 	bool explode=false;
 	Vector2 oldPos;
 	Rigidbody2D myRigid;
+	SpriteRenderer spriteRender;
+
+	void Awake(){
+		spriteRender = GetComponent<SpriteRenderer> ();
+		myRigid = GetComponent<Rigidbody2D> ();
+	}
 
 	void Start () {
 		audioManager = AudioManager.Instance;
 		timeLived = 0.0f;
 		oldPos = transform.position;
-		myRigid = GetComponent<Rigidbody2D> ();
+		spriteRender.sprite = grenades [throwedByPlayerNumber - 1];
 	}
 	
 	void Update () {
