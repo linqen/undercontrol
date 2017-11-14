@@ -61,12 +61,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	}
 	public void RoundsSelect(){
 		//Clear data
-		for (int i = 0; i < menuPlayerSelector.Count; i++) {
-			menuPlayerSelector [i].GetComponent<Image> ().color = Color.white;
-			menuPlayerSelector [i].transform.Find ("Character"+(i+1)).gameObject.SetActive (true);
-			menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
-			menuPlayerSelector [i].transform.Find ("KeyMap").gameObject.SetActive (false);
-		}
+		ClearSelectorsData();
 		//
 		int rounds = int.Parse(EventSystem.current.currentSelectedGameObject.name);
 		characterSelect.SetActive (false);
@@ -82,8 +77,29 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		StartCoroutine(gameManager.CharSelection ());
 	}
 
+	private void ClearSelectorsData(){
+		for (int i = 0; i < menuPlayerSelector.Count; i++) {
+			menuPlayerSelector [i].GetComponent<Image> ().color = Color.white;
+			menuPlayerSelector [i].transform.Find ("Character"+(i+1)).gameObject.SetActive (true);
+			menuPlayerSelector [i].transform.Find ("Selected").gameObject.SetActive (false);
+			menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
+			menuPlayerSelector [i].transform.Find ("KeyMap").gameObject.SetActive (false);
+		}
+	}
+
 	public void GoBack(){
-		if (characterSelect.activeSelf) {
+		if (roundsSelect.activeSelf) {
+			characterSelect.SetActive (true);
+			roundsSelect.SetActive (false);
+			ClearSelectorsData ();
+			StartCoroutine (gameManager.CharSelection ());
+		}
+		else if (characterSelect.activeSelf) {
+			for (int i = 0; i < menuPlayerSelector.Count; i++) {
+				menuPlayerSelector [i].transform.Find ("Selected").gameObject.SetActive (false);
+				menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
+				menuPlayerSelector [i].transform.Find ("KeyMap").gameObject.SetActive (false);
+			}
 			mainMenu.SetActive (true);
 			characterSelect.SetActive (false);
 			gameManager.StopCharSelection ();
@@ -92,10 +108,6 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			}
 			EventSystem.current.SetSelectedGameObject (null);
 			EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
-		} else if (roundsSelect.activeSelf) {
-			characterSelect.SetActive (true);
-			roundsSelect.SetActive (false);
-			StartCoroutine (gameManager.CharSelection ());
 		}
 	}
 
