@@ -29,7 +29,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	PowerUpManager powerUpManager;
 	int deadPlayers=0;
 	int numberOfRounds;
-	string actualMapName;
+	int actualSceneIndex;
 	Coroutine startedDeathsReport = null;
 	new void Awake(){
 		base.Awake ();
@@ -115,15 +115,18 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		yield return StartCoroutine(uiManager.ShowActualScores(scores,3));
 		//yield return new WaitForSeconds (3.0f);
 		//End of rounds, back to selection
-		SceneManager.UnloadSceneAsync (actualMapName);
+		SceneManager.UnloadSceneAsync (actualSceneIndex);
 		menuManager.BackToMain ();
 	}
 
 	private IEnumerator NextRound(){
 		powerUpManager.NotifyLevelFinished ();
 		yield return StartCoroutine(uiManager.ShowActualScores(scores,3));
-		SceneManager.UnloadSceneAsync (actualMapName);
-		GameStart ("Map1", numberOfRounds);
+		SceneManager.UnloadSceneAsync (actualSceneIndex);
+		if (actualSceneIndex + 1 >= SceneManager.sceneCountInBuildSettings) {
+			actualSceneIndex = 0;
+		}
+		GameStart (actualSceneIndex+1, numberOfRounds);
 	}
 
 	public IEnumerator CharSelection(){
@@ -138,16 +141,16 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 	}
 
-	public void GameStart(string rmapName, int numberOfRounds){
+	public void GameStart(int sceneIndex, int numberOfRounds){
 		this.numberOfRounds = numberOfRounds;
 		audioManager.InGameMusic ();
-		StartCoroutine (OnGameStart (rmapName));
+		StartCoroutine (OnGameStart (sceneIndex));
 	}
-	private IEnumerator OnGameStart(string rmapName){
-		actualMapName = rmapName;
+	private IEnumerator OnGameStart(int sceneIndex){
+		actualSceneIndex = sceneIndex;
 		bool loadStarted=false;
 		if (!loadStarted) {
-			SceneManager.LoadScene (rmapName,LoadSceneMode.Additive);
+			SceneManager.LoadScene (sceneIndex,LoadSceneMode.Additive);
 			loadStarted = true;
 			yield return null;
 		}

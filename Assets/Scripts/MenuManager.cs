@@ -68,7 +68,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		menuBackground.SetActive (false);
 		roundsSelect.SetActive (false);
 		StopCoroutine (gameManager.RoundSelection ());
-		gameManager.GameStart("Map1",rounds);
+		gameManager.GameStart(1,rounds);
 	}
 
 	public void PlayButton(){
