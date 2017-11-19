@@ -26,6 +26,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	MenuManager menuManager;
 	UIManager uiManager;
 	AudioManager audioManager;
+	PowerUpManager powerUpManager;
 	int deadPlayers=0;
 	int numberOfRounds;
 	string actualMapName;
@@ -35,6 +36,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	void Start(){
+		powerUpManager = PowerUpManager.Instance;
 		uiManager = UIManager.Instance;
 		audioManager = AudioManager.Instance;
 		menuManager = MenuManager.Instance;
@@ -118,6 +120,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	private IEnumerator NextRound(){
+		powerUpManager.NotifyLevelFinished ();
 		yield return StartCoroutine(uiManager.ShowActualScores(scores,3));
 		SceneManager.UnloadSceneAsync (actualMapName);
 		GameStart ("Map1", numberOfRounds);
@@ -164,6 +167,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		Time.timeScale = 0;
 		menuManager.ShowCountdown (countdownBeforePlay);
 		uiManager.StartGame (players);
+		powerUpManager.NotifyLevelStart ();
 		yield return new WaitForSecondsRealtime (countdownBeforePlay);
 		Time.timeScale = 1;
 		//Lasers

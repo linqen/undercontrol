@@ -29,6 +29,11 @@ public class PlayerLife : MonoBehaviour {
 		}
 	}
 
+	public void RecoverShield(){
+		hasShield = true;
+		shieldAnimator.SetBool ("hasShield", hasShield);
+		shieldAnimator.GetComponent<Renderer> ().enabled = hasShield;
+	}
 
 	public void ResetPlayer(){
 		hasShield = true;

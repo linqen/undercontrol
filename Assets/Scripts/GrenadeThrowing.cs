@@ -9,11 +9,13 @@ public class GrenadeThrowing : MonoBehaviour {
 	public float horizontalForce;
 	public float verticalForce;
 
+	private float localGrenadeCooldown;
 	private PlayerMovement pMovement;
 	private PlayerInput input;
 	private float currentCooldownGrenade;
 	private int playerNumber;
 	private Animator animator;
+	private Coroutine reduceCDCoroutine=null;
 
 	void Awake () {
 		pMovement = GetComponent<PlayerMovement> ();
@@ -21,11 +23,33 @@ public class GrenadeThrowing : MonoBehaviour {
 		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
 		animator = GetComponent<Animator> ();
 	}
-	
+
+	void Start(){
+		localGrenadeCooldown = grenadeCooldown;
+	}
+
+	void OnDisable(){
+		localGrenadeCooldown = grenadeCooldown;
+	}
+
+	public void ReduceCooldown(int divisor,float time){
+		localGrenadeCooldown /= divisor;
+		if (reduceCDCoroutine != null) {
+			StopCoroutine (reduceCDCoroutine);
+		}
+		reduceCDCoroutine = StartCoroutine (RecoverOriginalCooldown (time));
+	}
+
+	IEnumerator RecoverOriginalCooldown(float time){
+		yield return new WaitForSeconds (time);
+		localGrenadeCooldown = grenadeCooldown;
+		reduceCDCoroutine = null;
+	}
+
 	void Update () {
 		currentCooldownGrenade += Time.deltaTime;
 		if (Input.GetButton (input.Fire)||Input.GetButtonUp (input.Fire)) {
-			if (Input.GetButtonUp(input.Fire)&&currentCooldownGrenade>=grenadeCooldown) {
+			if (Input.GetButtonUp(input.Fire)&&currentCooldownGrenade>=localGrenadeCooldown) {
 				Vector3 pos = new Vector3 ( transform.position.x+pMovement.LastDirection.x/3,
 					transform.position.y,
 					transform.position.z);

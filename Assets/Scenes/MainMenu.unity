@@ -154,6 +154,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e5ce396917e0864d81e4fa6ff63a156, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &580173631 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1502885651553232, guid: 6e5ce396917e0864d81e4fa6ff63a156,
+    type: 2}
+  m_PrefabInternal: {fileID: 580173630}
+--- !u!114 &580173632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 580173631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720ae4fb419faf64580253c93e09460a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpPrefabs:
+  - {fileID: 1731887449390808, guid: 96389e10903142348b41c11ae82e379b, type: 2}
+  - {fileID: 1810743126300194, guid: dcb8696c97f628c4ba0a8d59828337d2, type: 2}
+  spawnTime: 5
 --- !u!1001 &582717201
 Prefab:
   m_ObjectHideFlags: 0
@@ -164,12 +184,12 @@ Prefab:
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 434
+      value: 461
       objectReference: {fileID: 0}
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 244
+      value: 259.5
       objectReference: {fileID: 0}
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
