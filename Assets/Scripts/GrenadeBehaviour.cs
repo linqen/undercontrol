@@ -12,6 +12,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 	AudioManager audioManager;
 	float timeLived;
 	int throwedByPlayerNumber;
+	int grenadeOfCharacterNumber;
 	bool explode=false;
 	Vector2 oldPos;
 	Rigidbody2D myRigid;
@@ -26,7 +27,6 @@ public class GrenadeBehaviour : MonoBehaviour {
 		audioManager = AudioManager.Instance;
 		timeLived = 0.0f;
 		oldPos = transform.position;
-		spriteRender.sprite = grenades [throwedByPlayerNumber - 1];
 		audioManager.GrenadeExplode ();
 	}
 	
@@ -74,6 +74,16 @@ public class GrenadeBehaviour : MonoBehaviour {
 					rigid.AddForce (explodeDirection.normalized * hitPowerForce * explosionForceGrenades, ForceMode2D.Impulse);
 				}
 			}
+		}
+	}
+
+	public int GrenadeOfCharacterNumber {
+		get {
+			return this.grenadeOfCharacterNumber;
+		}
+		set {
+			grenadeOfCharacterNumber = value;
+			spriteRender.sprite = grenades [grenadeOfCharacterNumber-1];
 		}
 	}
 		

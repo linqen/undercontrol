@@ -14,13 +14,16 @@ public class GrenadeThrowing : MonoBehaviour {
 	private PlayerInput input;
 	private float currentCooldownGrenade;
 	private int playerNumber;
+	private int characterNumber;
 	private Animator animator;
 	private Coroutine reduceCDCoroutine=null;
 
 	void Awake () {
 		pMovement = GetComponent<PlayerMovement> ();
 		input = GetComponent<PlayerInput> ();
-		playerNumber = GetComponent<PlayerPreview> ().playerNumber;
+		PlayerPreview pp = GetComponent<PlayerPreview> (); 
+		playerNumber = pp.playerNumber;
+		characterNumber = pp.charPreviewPos;
 		animator = GetComponent<Animator> ();
 	}
 
@@ -54,7 +57,10 @@ public class GrenadeThrowing : MonoBehaviour {
 					transform.position.y,
 					transform.position.z);
 				GameObject grenade = Instantiate (grenadePrefab, pos, transform.rotation);
-				grenade.GetComponent<GrenadeBehaviour> ().ThrowedByPlayerNumber = playerNumber;
+				GrenadeBehaviour gb = grenade.GetComponent<GrenadeBehaviour> ();
+				gb.ThrowedByPlayerNumber = playerNumber;
+				gb.GrenadeOfCharacterNumber = characterNumber;
+
 				grenade.GetComponent<Rigidbody2D>().AddForce (new Vector2(pMovement.LastDirection.x*horizontalForce,pMovement.VerticalAxis*verticalForce), ForceMode2D.Impulse);	
 				currentCooldownGrenade = 0;
 				animator.SetTrigger ("Throw");
