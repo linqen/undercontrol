@@ -48,7 +48,7 @@ public class GrenadeThrowing : MonoBehaviour {
 
 	void Update () {
 		currentCooldownGrenade += Time.deltaTime;
-		if (Input.GetButton (input.Fire)||Input.GetButtonUp (input.Fire)) {
+		if ((Input.GetButton (input.Fire)||Input.GetButtonUp (input.Fire)) && Time.timeScale!=0) {
 			if (Input.GetButtonUp(input.Fire)&&currentCooldownGrenade>=localGrenadeCooldown) {
 				Vector3 pos = new Vector3 ( transform.position.x+pMovement.LastDirection.x/3,
 					transform.position.y,
