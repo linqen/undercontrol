@@ -38,6 +38,7 @@ public class AudioManager : GenericSingletonClass<AudioManager> {
 			efxSources [i].playOnAwake = false;
 		}
 		laserAudioEfx = gameObject.AddComponent<AudioSource> ();
+		laserAudioEfx.loop = true;
 	}
 
 	private void RandomEfx(AudioClip[] sounds){
