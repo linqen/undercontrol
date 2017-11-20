@@ -6,27 +6,28 @@ public class ExplosionEffect : MonoBehaviour {
 	public float swapColorTime;
 	float swappingTime;
 	bool swapTime;
-	// Use this for initialization
-	void Start () {
+
+	void Awake(){
 		rend = GetComponent<Renderer> ();
+	}
+	void Start () {
 		color = rend.material.color;
 		color.a = 0.0f;
 		swappingTime = 0;
 		swapTime = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		swappingTime += Time.deltaTime*0.5f;
 		if (swapTime) {
-			//color.a = Mathf.PingPong (Time.time , 1.0f);
-			//rend.material.color = color;
-
-
-
-			float pongTime = Mathf.PingPong (Time.time, 1.0f);
+			swappingTime += Time.deltaTime;
+			float pongTime = Mathf.PingPong (swappingTime, 1.0f);
 			color.a = pongTime;
 			rend.material.color = color;
+			if (swappingTime >= swapColorTime) {
+				swapTime = false;
+				color.a = 0;
+				rend.material.color = color;
+			}
 		}
 	}
 

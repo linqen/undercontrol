@@ -45,6 +45,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 			if (explode == false) {
 				transform.GetComponentInChildren<ExplosionEffect> ().StartSwap ();
 				Explode ();
+				GetComponent<SpriteRenderer> ().color = new Color (0, 0, 0, 0);
 			}
 			explode = true;
 		}

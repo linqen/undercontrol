@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8970dfcdc84552c4da8d2f275837a2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swapColorTime: 0.1
+  swapColorTime: 0.3
 --- !u!212 &212267026870332352
 SpriteRenderer:
   m_ObjectHideFlags: 1
