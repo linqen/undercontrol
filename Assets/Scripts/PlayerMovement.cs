@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool jump=false;
 	private bool grounded=true;
 	private bool canJump = true;
-	private bool canMove = true;
+	private bool isHoldingThrowButton = false;
 	private bool isHanging=false;
 	private bool touchingWallAtLeft=false;
 	private bool touchingWallAtRight=false;
@@ -49,8 +49,8 @@ public class PlayerMovement : MonoBehaviour {
 	void Update(){
 		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
 		verticalAxis = Input.GetAxisRaw(input.Vertical);
-		if(Input.GetButton(input.Fire)){canMove = false;}
-		else{canMove = true;}
+		if(Input.GetButton(input.Fire)){isHoldingThrowButton = true;}
+		else{isHoldingThrowButton = false;}
 		if (Input.GetButton (input.Jump)) {jump = true;}else {jump = false;}
 		if (Input.GetButtonUp (input.Jump) && jumpingSince != 0.0f) {jumpingSince = jumpingTime;} 
 		else if (Input.GetButtonUp (input.Jump)) {canJump = true;}
@@ -58,21 +58,21 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	void FixedUpdate(){
-		if (horizontalAxis > 0.0f && !isHanging && !touchingWallAtRight && canMove) {
+		if (horizontalAxis > 0.0f && !isHanging && !touchingWallAtRight && (!isHoldingThrowButton || !grounded)) {
 			animator.SetBool ("IsRunning", true);
 			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = false;
 			lastDirection = Vector3.right;
 			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
-		} else if (horizontalAxis < 0.0f && !isHanging && !touchingWallAtLeft && canMove) {
+		} else if (horizontalAxis < 0.0f && !isHanging && !touchingWallAtLeft && (!isHoldingThrowButton || !grounded)) {
 			animator.SetBool ("IsRunning", true);
 			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = true;
 			lastDirection = Vector3.left;
 			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
-		} else if (!isHanging && !touchingWallAtLeft && !touchingWallAtRight && canMove) {
+		} else if (!isHanging && !touchingWallAtLeft && !touchingWallAtRight && (!isHoldingThrowButton || !grounded)) {
 			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
-		} else if (!isHanging && !touchingWallAtLeft && !touchingWallAtRight && !canMove) {
+		} else if (!isHanging && !touchingWallAtLeft && !touchingWallAtRight && isHoldingThrowButton) {
 			rigid.velocity = new Vector2 (0 * moveVelocity, rigid.velocity.y);
 			if (horizontalAxis > 0.0f) {
 				spriteRenderer.flipX = false;
