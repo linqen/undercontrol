@@ -8,6 +8,7 @@ public class PlayerPreview : MonoBehaviour {
 	public void SetPreview(int playerNumber,int charPreviewPos){
 		this.playerNumber = playerNumber;
 		this.charPreviewPos = charPreviewPos;
+		transform.Find ("PIndicator").GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite>("PlayersIndicators/" + "P" + playerNumber + "Indicator");
 	}
 	public void SetCharPreview(int charPreviewPos){
 		this.charPreviewPos = charPreviewPos;
