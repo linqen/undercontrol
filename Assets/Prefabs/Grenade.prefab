@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeTime: 1.5
-  explosionForcePlayers: 35
+  explosionForcePlayers: 65
   explosionForceGrenades: 15
   dieTime: 1
   timeExploding: 0.6
