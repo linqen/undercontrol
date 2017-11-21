@@ -178,23 +178,23 @@ public class PlayerMovement : MonoBehaviour {
 			float axisRawValue = Input.GetAxisRaw (input.Horizontal);
 			if (axisRawValue == hangingFromEdgeStartValue) {
 				if (contact.normal == Vector2.left
-					&& axisRawValue==1.0f) {
+				    && axisRawValue == 1.0f) {
 					isHanging = true;
 					touchingWallAtRight = true;
 					animator.SetBool ("IsHanging", isHanging);
 					rigid.position = new Vector3 (col.collider.bounds.min.x - (transform.lossyScale.x / 2),
-						col.collider.bounds.min.y+(col.transform.lossyScale.y/2), col.collider.bounds.min.z);
+						col.collider.bounds.min.y + (col.transform.lossyScale.y / 2), col.collider.bounds.min.z);
 					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
 				} else if (contact.normal == Vector2.right
-					&& axisRawValue==-1.0f) {
+				           && axisRawValue == -1.0f) {
 					isHanging = true;
 					touchingWallAtLeft = true;
 					animator.SetBool ("IsHanging", isHanging);
 					rigid.position = new Vector3 (col.collider.bounds.max.x + (transform.lossyScale.x / 2),
-						col.collider.bounds.max.y-(col.transform.lossyScale.y/2), col.collider.bounds.max.z);
+						col.collider.bounds.max.y - (col.transform.lossyScale.y / 2), col.collider.bounds.max.z);
 					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
 				}
-				if (jump&&jumpingSince==jumpingTime&&!canJump) {
+				if (jump && jumpingSince == jumpingTime && !canJump) {
 					if (gameObject.activeSelf) {
 						StopCoroutine ("ExitGroundJumpChance");
 					}
@@ -215,8 +215,15 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		} else if (col.gameObject.tag.Equals ("Ground")) {
 			float axisRawValue = Input.GetAxisRaw (input.Horizontal);
-			if (axisRawValue != 0 && axisRawValue==hangingFromEdgePreviousValue) {
+			if (axisRawValue != 0 && axisRawValue == hangingFromEdgePreviousValue) {
 				hangingFromEdgeStartValue = axisRawValue;
+			}
+		} else if (col.gameObject.tag.Equals ("Wall")) {
+			ContactPoint2D contact = col.contacts [0];
+			if (contact.normal == Vector2.left) {
+				touchingWallAtRight = true;
+			} else if (contact.normal == Vector2.right) {
+				touchingWallAtLeft = true;
 			}
 		}
 	}
@@ -241,6 +248,9 @@ public class PlayerMovement : MonoBehaviour {
 			else if (gameObject.activeSelf && jumpingSince==0.0f) {
 				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
 			}
+		}else if (col.gameObject.tag.Equals ("Wall")) {
+			touchingWallAtRight = false;
+			touchingWallAtLeft = false;
 		}
 	}
 
