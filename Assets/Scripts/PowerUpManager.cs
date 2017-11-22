@@ -66,6 +66,8 @@ public class PowerUpManager : GenericSingletonClass<PowerUpManager> {
 	}
 
 	public void NotifyLevelFinished(){
-		StopCoroutine (actualSpawnProcess);
+		if (actualSpawnProcess != null) {
+			StopCoroutine (actualSpawnProcess);
+		}
 	}
 }
