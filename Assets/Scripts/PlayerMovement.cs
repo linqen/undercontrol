@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour {
 	private GameManager gameManager;
 	private AudioManager audioManager;
 	private PlayerInput input;
+	Vector2 oldPos;
 	void OnEnable(){
 		explosion = Vector2.zero;
 	}
@@ -47,6 +48,18 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Update(){
+
+		//To avoid teleport between colliders
+		RaycastHit2D hit = Physics2D.Linecast(oldPos, transform.position);
+		if(hit!=null&&hit.collider != null&&((hit.collider.gameObject.CompareTag("Ground")||hit.collider.gameObject.CompareTag("Wall")))){
+			Vector2 scaleVector = new Vector2 (transform.position.normalized.x * (transform.lossyScale.x / 2),
+				                      transform.position.normalized.y * (transform.lossyScale.y / 2));
+			transform.position = hit.point+scaleVector;
+			rigid.velocity=Vector2.Reflect(rigid.velocity,hit.normal);
+		}
+		oldPos = transform.position;
+		//
+
 		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
 		verticalAxis = Input.GetAxisRaw(input.Vertical);
 		if(Input.GetButton(input.Fire)){isHoldingThrowButton = true;}
@@ -301,6 +314,11 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			yield return null;
 		}
+	}
+
+	public void ToSpawnPoint(Vector3 spawnPointPosition){
+		transform.position = spawnPointPosition;
+		oldPos = transform.position;
 	}
 
 	public void ResetMovement(){

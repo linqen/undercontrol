@@ -162,7 +162,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 		for (int i = 0; i < players.Count; i++) {
 			int randomSpawn = Random.Range (0, (spawnPoints.Count - 1));
-			players [i].transform.position = spawnPoints [randomSpawn].position;
+			players [i].GetComponent<PlayerMovement>().ToSpawnPoint(spawnPoints [randomSpawn].position);
 			players [i].SetActive (true);
 			spawnPoints.RemoveAt (randomSpawn);
 		}

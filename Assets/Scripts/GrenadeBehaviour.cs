@@ -33,7 +33,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 	void Update () {
 		//To avoid teleport between colliders
 		RaycastHit2D hit = Physics2D.Linecast(oldPos, transform.position);
-		if(hit!=null&&(hit.collider.tag.Equals("Ground"))){
+		if(hit!=null&&((hit.collider.CompareTag("Ground")||hit.collider.CompareTag("Wall")))){
 			transform.position = hit.point;
 			myRigid.velocity=Vector2.Reflect(myRigid.velocity,hit.normal);
 		}
