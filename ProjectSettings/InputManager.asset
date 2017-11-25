@@ -30,8 +30,8 @@ InputManager:
     altNegativeButton: joystick 1 button 7
     altPositiveButton: d
     gravity: 3
-    dead: 0.3
-    sensitivity: 3
+    dead: 0.9
+    sensitivity: 2
     snap: 1
     invert: 0
     type: 2
@@ -46,8 +46,8 @@ InputManager:
     altNegativeButton: a
     altPositiveButton: d
     gravity: 3
-    dead: 0.3
-    sensitivity: 3
+    dead: 0.9
+    sensitivity: 2
     snap: 1
     invert: 0
     type: 2
