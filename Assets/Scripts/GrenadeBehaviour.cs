@@ -9,6 +9,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 	public float radius;
 	public Sprite[] grenades;
 
+	Animator animator;
 	AudioManager audioManager;
 	float timeLived;
 	int throwedByPlayerNumber;
@@ -21,6 +22,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 	void Awake(){
 		spriteRender = GetComponent<SpriteRenderer> ();
 		myRigid = GetComponent<Rigidbody2D> ();
+		animator = GetComponent<Animator> ();
 	}
 
 	void Start () {
@@ -28,6 +30,8 @@ public class GrenadeBehaviour : MonoBehaviour {
 		timeLived = 0.0f;
 		oldPos = transform.position;
 		audioManager.GrenadeExplode ();
+		//spriteRender.sprite = grenades [grenadeOfCharacterNumber-1];
+		animator.SetInteger("CharacterNumber", grenadeOfCharacterNumber);
 	}
 	
 	void Update () {
@@ -43,7 +47,6 @@ public class GrenadeBehaviour : MonoBehaviour {
 		timeLived += Time.deltaTime;
 		if (timeLived >= explodeTime) {
 			if (explode == false) {
-				transform.GetComponentInChildren<ExplosionEffect> ().StartSwap ();
 				Explode ();
 				GetComponent<SpriteRenderer> ().color = new Color (0, 0, 0, 0);
 			}
@@ -61,6 +64,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 	}
 
 	void Explode(){
+		animator.SetBool("Twinkle", false);
 		Collider2D[] cols = Physics2D.OverlapCircleAll (transform.position, radius);
 		for (int i = 0; i < cols.Length; i++) {
 			Rigidbody2D rigid = cols[i].GetComponent<Rigidbody2D> ();
@@ -83,7 +87,6 @@ public class GrenadeBehaviour : MonoBehaviour {
 		}
 		set {
 			grenadeOfCharacterNumber = value;
-			spriteRender.sprite = grenades [grenadeOfCharacterNumber-1];
 		}
 	}
 		
