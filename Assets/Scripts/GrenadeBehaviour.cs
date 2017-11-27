@@ -65,6 +65,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 
 	void Explode(){
 		animator.SetBool("Twinkle", false);
+		myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
 		Collider2D[] cols = Physics2D.OverlapCircleAll (transform.position, radius);
 		for (int i = 0; i < cols.Length; i++) {
 			Rigidbody2D rigid = cols[i].GetComponent<Rigidbody2D> ();
