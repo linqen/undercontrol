@@ -94,6 +94,17 @@ public class PlayerMovement : MonoBehaviour {
 				spriteRenderer.flipX = true;
 				lastDirection = Vector3.left;
 			}
+			animator.SetBool ("IsHoldingThrow", true);
+			if (verticalAxis > 0.0f) {
+				animator.SetInteger ("HoldingThrowTo", 2);
+			} else if (verticalAxis < 0.0f) {
+				animator.SetInteger ("HoldingThrowTo", 1);
+			} else {
+				animator.SetInteger ("HoldingThrowTo", 0);
+			}
+		}
+		if (!isHoldingThrowButton) {
+			animator.SetBool ("IsHoldingThrow", false);
 		}
 
 		if(horizontalAxis == 0.0f || isHanging || touchingWallAtLeft || touchingWallAtRight) {
