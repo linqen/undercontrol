@@ -168,11 +168,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeTime: 1.5
-  explosionForcePlayers: 65
-  explosionForceGrenades: 15
+  explosionForcePlayers: 70
+  explosionForceGrenades: 10
   dieTime: 1
   timeExploding: 0.6
   radius: 2.5
+  reduceForceByDistanceEffect: 1.5
   grenades:
   - {fileID: 21300000, guid: a4eaf3e2984aa504898e89eb5bcc42fc, type: 3}
   - {fileID: 21300000, guid: 144e9678e4cdf3a48859db0ff71d7016, type: 3}

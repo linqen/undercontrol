@@ -7,6 +7,9 @@ public class GrenadeBehaviour : MonoBehaviour {
 	public float dieTime;
 	public float timeExploding;
 	public float radius;
+	//A bigger value means distance affects less to the final force
+	[Range(1.0f,10.0f)]
+	public float reduceForceByDistanceEffect;
 	public Sprite[] grenades;
 
 	Animator animator;
@@ -71,7 +74,7 @@ public class GrenadeBehaviour : MonoBehaviour {
 			Rigidbody2D rigid = cols[i].GetComponent<Rigidbody2D> ();
 			if (rigid != null) {
 				Vector3 explodeDirection = rigid.transform.position - transform.position;
-				float hitPowerForce = radius-explodeDirection.magnitude;
+				float hitPowerForce = radius-(explodeDirection.magnitude/reduceForceByDistanceEffect)+cols[i].bounds.extents.magnitude;
 				if (cols[i].tag.Equals ("Player")) {
 					cols[i].GetComponent<PlayerLife> ().NotifyHit (throwedByPlayerNumber);
 					cols[i].GetComponent<PlayerMovement> ().AddExplosionForce (explodeDirection.normalized * hitPowerForce, timeExploding, explosionForcePlayers);
