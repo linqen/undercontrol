@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  deathAnimationTime: 0.7
 --- !u!212 &212200213493322506
 SpriteRenderer:
   m_ObjectHideFlags: 1
