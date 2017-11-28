@@ -36,6 +36,7 @@ public class PlayerLife : MonoBehaviour {
 	}
 	private IEnumerator Death(){
 		GetComponent<Rigidbody2D> ().isKinematic = true;
+		GetComponent<Rigidbody2D> ().velocity = new Vector2(0,0);
 		GetComponent<PlayerMovement> ().enabled = false;
 		GetComponent<GrenadeThrowing> ().enabled = false;
 		animator.SetBool ("Death",true);
