@@ -155,9 +155,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   explosionSounds:
-  - {fileID: 8300000, guid: 20ed511ddbf0ab142b95634fcff498be, type: 3}
-  - {fileID: 8300000, guid: 4393ec8bc6c272c49bf3ce03019d914a, type: 3}
-  - {fileID: 8300000, guid: 8ccbc30d10f6e0f48814c17ee9f01785, type: 3}
+  - {fileID: 8300000, guid: 2a64191c27d6b5847b321002428bcd42, type: 3}
+  - {fileID: 8300000, guid: 9a5afe7580cf6404191fbaceee8f4601, type: 3}
+  - {fileID: 8300000, guid: 00f84fe8457c8e24bac0e9fc2a64e033, type: 3}
   hitRoofSounds:
   - {fileID: 8300000, guid: 622259f7bda129f47ae591ba56f9f5c8, type: 3}
   - {fileID: 8300000, guid: ccdb7dc9d76184948a997676fb651f03, type: 3}
