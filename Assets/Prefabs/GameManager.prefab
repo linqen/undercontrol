@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4326150606233108}
   - component: {fileID: 114323484238470696}
+  - component: {fileID: 114619390355743026}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -63,3 +64,18 @@ MonoBehaviour:
   - {fileID: 9100000, guid: bb693876dea346442b17b7410c25b8fa, type: 2}
   - {fileID: 9100000, guid: 6eae16fc1a1fd384baefa931b7cb2f2d, type: 2}
   - {fileID: 9100000, guid: 3548bc933d3a68e42bc33ff8750d0f10, type: 2}
+--- !u!114 &114619390355743026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502885651553232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720ae4fb419faf64580253c93e09460a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpPrefabs:
+  - {fileID: 1731887449390808, guid: 96389e10903142348b41c11ae82e379b, type: 2}
+  - {fileID: 1810743126300194, guid: dcb8696c97f628c4ba0a8d59828337d2, type: 2}
+  spawnTime: 5
