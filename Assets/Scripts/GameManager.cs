@@ -243,11 +243,13 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	public IEnumerator RoundSelection(){
 		bool waiting = true;
-		int mainPlayerInput = players [0].GetComponent<PlayerInput> ().GetInputNumber ();
 		while (waiting) {
-			if(Input.GetButtonDown(Inputs.Fire+mainPlayerInput)){
-				menuManager.GoBack();
-				waiting = false;
+			for (int i = 1; i <= possiblePlayers; i++) {
+				//Cancel button is pressed
+				if (Input.GetButtonDown (Inputs.Fire + i)) {
+					menuManager.GoBack ();
+					waiting = false;
+				}
 			}
 			yield return null;
 		}
