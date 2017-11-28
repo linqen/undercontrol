@@ -4,6 +4,14 @@ This project is maded by me, [sebaenam](https://github.com/sebaenam) on programm
 
 Link to Trello: https://trello.com/b/hRkLZFY2/under-control
 
+Some Screenshots!
+
 ![alt text](UnderControlSelection.jpg)
 
+![alt text](UnderControlSelection2.jpg)
+
 ![alt text](UnderControlInGame.jpg)
+
+![alt text](UnderControlInGame2.jpg)
+
+![alt text](UnderControlInGame3.jpg)
