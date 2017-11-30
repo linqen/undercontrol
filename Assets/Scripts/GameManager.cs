@@ -30,6 +30,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	int deadPlayers=0;
 	int numberOfRounds;
 	int actualSceneIndex;
+	bool isGamePaused=false;
 	Coroutine startedDeathsReport = null;
 	new void Awake(){
 		base.Awake ();
@@ -50,6 +51,44 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		if (charSelection) {
 			OnCharSelection ();
 		}
+	}
+
+	public bool PauseGame(){
+		if (!isGamePaused && Time.timeScale != 0) {
+			isGamePaused = true;
+			Time.timeScale = 0;
+			return true;
+		}
+		return false;
+	}
+	public void BackToMain(){
+		//Prepare the envoirement to re-play
+		lasersManager.DisableLasers ();
+		menuManager.StopLasersAdvice ();
+		for (int i = 0; i < players.Count; i++) {
+			players [i].SetActive (false);
+			players [i].GetComponent<PlayerLife> ().ResetPlayer();
+		}
+		if (startedDeathsReport != null) {
+			StopCoroutine (startedDeathsReport);
+		}
+		deadPlayers = 0;
+		Time.timeScale = 1;
+		isGamePaused = false;
+		StartCoroutine (FinishGame ());
+		deathReportPlayers.Clear ();
+		deathReportKilledBy.Clear ();
+	}
+
+	public void UnPauseGame(){
+		if (isGamePaused && Time.timeScale != 1) {
+			StartCoroutine (UnPause ());
+		}
+	}
+	private IEnumerator UnPause(){
+		yield return new WaitForEndOfFrame ();
+		Time.timeScale = 1;
+		isGamePaused = false;
 	}
 
 	public void ReportDeath(GameObject playerObject, int killedByPlayerNumber){
@@ -112,8 +151,8 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		deathReportKilledBy.Clear ();
 	}
 	private IEnumerator FinishGame(){
+		powerUpManager.NotifyLevelFinished ();
 		yield return StartCoroutine(uiManager.ShowActualScores(scores,3));
-		//yield return new WaitForSeconds (3.0f);
 		//End of rounds, back to selection
 		SceneManager.UnloadSceneAsync (actualSceneIndex);
 		menuManager.BackToMain ();
