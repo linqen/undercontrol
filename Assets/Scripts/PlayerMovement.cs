@@ -185,10 +185,12 @@ public class PlayerMovement : MonoBehaviour {
 				float axisRawValue = Input.GetAxisRaw (input.Horizontal);
 				if (contact.normal == Vector2.left ) {
 					hangingFromEdgeStartValue=axisRawValue;
+					hangingFromEdgePreviousValue = hangingFromEdgeStartValue;
 					touchingWallAtRight = true;
 				} 
 				else if (contact.normal == Vector2.right) {
 					hangingFromEdgeStartValue=axisRawValue;
+					hangingFromEdgePreviousValue = hangingFromEdgeStartValue;
 					touchingWallAtLeft = true;
 				}
 			}
@@ -229,7 +231,6 @@ public class PlayerMovement : MonoBehaviour {
 					touchingWallAtLeft = false;
 					touchingWallAtRight = false;
 					hangingFromEdgeStartValue = 0;
-					hangingFromEdgePreviousValue = 0;
 				}
 			} else {
 				isHanging = false;
@@ -239,7 +240,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		} else if (col.gameObject.tag.Equals ("Ground")) {
 			float axisRawValue = Input.GetAxisRaw (input.Horizontal);
-			if (axisRawValue != 0 && axisRawValue == hangingFromEdgePreviousValue) {
+			if (axisRawValue != 0 && axisRawValue == hangingFromEdgePreviousValue && !jump) {
 				hangingFromEdgeStartValue = axisRawValue;
 			}
 		} else if (col.gameObject.tag.Equals ("Wall")) {
