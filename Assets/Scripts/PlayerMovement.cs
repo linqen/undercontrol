@@ -72,17 +72,21 @@ public class PlayerMovement : MonoBehaviour {
 
 	void FixedUpdate(){
 		if (horizontalAxis > 0.0f && !isHanging && !touchingWallAtRight && (!isHoldingThrowButton || !grounded)) {
+			if (explosion == Vector2.zero) {
 			animator.SetBool ("IsRunning", true);
 			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = false;
 			lastDirection = Vector3.right;
 			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
+			}
 		} else if (horizontalAxis < 0.0f && !isHanging && !touchingWallAtLeft && (!isHoldingThrowButton || !grounded)) {
+			if (explosion == Vector2.zero) {
 			animator.SetBool ("IsRunning", true);
 			//audioManager.PlayerWalking ();
 			spriteRenderer.flipX = true;
 			lastDirection = Vector3.left;
 			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
+			}
 		} else if (!isHanging && !touchingWallAtLeft && !touchingWallAtRight && (!isHoldingThrowButton || !grounded)) {
 			rigid.velocity = new Vector2 (horizontalAxis * moveVelocity, rigid.velocity.y);
 		} else if (!isHanging && !touchingWallAtLeft && !touchingWallAtRight && isHoldingThrowButton) {
@@ -128,6 +132,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		if (explosion != Vector2.zero) {
+			animator.SetBool ("IsRunning", false);
 			rigid.velocity = rigid.velocity / movementSlowAffectedByExplocion + explosion;
 		}
 	}
@@ -152,8 +157,8 @@ public class PlayerMovement : MonoBehaviour {
 	private void CancelHangingByExplosion(){
 		hangingFromEdgeStartValue = 0;
 		hangingFromEdgePreviousValue = 0;
-		animator.SetBool ("IsHanging", isHanging);
 		isHanging = false;
+		animator.SetBool ("IsHanging", isHanging);
 		touchingWallAtLeft = false;
 		touchingWallAtRight = false;
 		//Animation explosion force
