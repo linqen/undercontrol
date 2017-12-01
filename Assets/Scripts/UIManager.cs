@@ -7,18 +7,18 @@ public class UIManager : GenericSingletonClass<UIManager> {
 
 	public Sprite[] charactersPreviews;
 	public Sprite[] grenades;
+	public float timeBetweenCountingScore;
 
 
-	GameManager gameManager;
-	MenuManager menuManager;
-	Transform scoresPanel;
-	Transform pausePanel;
-	List<Button> pauseMenuButtons = new List<Button>();
-	int pauseButtonSelectionPosition = 0;
-	bool gamePaused = false;
-
-	List<GameObject> charactersKills=new List<GameObject>();
-	List<PlayerPreview> playersPreviews = new List<PlayerPreview>();
+	private GameManager gameManager;
+	private MenuManager menuManager;
+	private Transform scoresPanel;
+	private Transform pausePanel;
+	private List<Button> pauseMenuButtons = new List<Button>();
+	private int pauseButtonSelectionPosition = 0;
+	private bool gamePaused = false;
+	private List<GameObject> charactersKills=new List<GameObject>();
+	private List<PlayerPreview> playersPreviews = new List<PlayerPreview>();
 	new void Awake(){
 		base.Awake ();
 	}
@@ -49,29 +49,45 @@ public class UIManager : GenericSingletonClass<UIManager> {
 			}
 		}
 	}
-
-	public IEnumerator ShowActualScores(List<int> scores,float time){
-		for (int i = 0; i < scores.Count; i++) {
-			charactersKills [i].SetActive (true);
-			List<GameObject> childrensImages=new List<GameObject>();
-			foreach (Transform kill in charactersKills[i].transform) {
-				childrensImages.Add (kill.gameObject);
-			}
-			for (int j = 0; j < scores[i]; j++) {
-				childrensImages [j].SetActive (true);
-			}
-		}
-		yield return new WaitForSeconds (3f);
-		for (int i = 0; i < scores.Count; i++) {			
+	public void FinishGame(){
+		for (int i = 0; i < charactersKills.Count; i++) {			
 			charactersKills [i].SetActive (false);
 			List<GameObject> childrensImages=new List<GameObject>();
 			foreach (Transform kill in charactersKills[i].transform) {
 				childrensImages.Add (kill.gameObject);
 			}
-			for (int j = 0; j < scores[i]; j++) {
+			for (int j = 0; j < childrensImages.Count; j++) {
 				childrensImages [j].SetActive (false);
 			}
 		}
+	}
+
+	public IEnumerator ShowActualScores(List<int> scores, List<int> negativeScores,float time){
+		scoresPanel.GetComponent<Image> ().enabled = true;
+		for (int i = 0; i < scores.Count; i++) {
+			charactersKills [i].SetActive (true);
+		}
+		for (int i = 0; i < scores.Count; i++) {
+			List<GameObject> childrensImages=new List<GameObject>();
+			foreach (Transform kill in charactersKills[i].transform) {
+				childrensImages.Add (kill.gameObject);
+			}
+			for (int j = 0; j < scores[i]; j++) {
+				if (!childrensImages [j].activeSelf) {
+					yield return new WaitForSeconds (timeBetweenCountingScore);
+					childrensImages [j].SetActive (true);
+				}
+			}
+			for (int j = scores[i]; j > (scores[i]-negativeScores[i]); j--) {
+				yield return new WaitForSeconds (timeBetweenCountingScore);
+				childrensImages [j-1].SetActive (false);
+			}
+		}
+		yield return new WaitForSeconds (time);
+		for (int i = 0; i < scores.Count; i++) {			
+			charactersKills [i].SetActive (false);
+		}
+		scoresPanel.GetComponent<Image> ().enabled = false;
 	}
 
 	void Update(){

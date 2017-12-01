@@ -23,6 +23,8 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	bool charSelection = false;
 	bool pressStart = false;
 	List<int> scores = new List<int> ();
+	//To store auto-kills
+	List<int> negativeScores = new List<int> ();
 	MenuManager menuManager;
 	UIManager uiManager;
 	AudioManager audioManager;
@@ -116,9 +118,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			}
 			deathReportPlayers[k].transform.rotation = Quaternion.identity;
 			if (deathReportKilledBy[k] != 0 ) {
-				if (deathReportKilledBy[k] == deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber &&
-					scores [deathReportKilledBy[k] - 1] != 0) {
-					scores [deathReportKilledBy[k] - 1]--;
+				if (deathReportKilledBy[k] == deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber) {
+					//scores [deathReportKilledBy[k] - 1]--;
+					negativeScores [deathReportKilledBy [k] - 1]++;
 				}else if (deathReportKilledBy[k] != deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber) {scores [deathReportKilledBy[k] - 1]++;}
 			}
 			if (players.Count -1 <= deadPlayers && 
@@ -129,13 +131,15 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				for (int i = 0; i < players.Count; i++) {
 					players [i].SetActive (false);
 					players [i].GetComponent<PlayerLife> ().ResetPlayer();
-					//StartCoroutine(uiManager.ShowActualScores(scores,3));
 				}
 				deadPlayers = 0;
 				bool someoneWin = false;
 				for (int i = 0; i < scores.Count; i++) {
-					if (scores [i] >= numberOfRounds) {
+					if ((scores [i]-negativeScores[i]) >= numberOfRounds) {
 						someoneWin = true;
+					}
+					if ((scores [i] - negativeScores [i]) < 0) {
+						negativeScores [i] = scores [i];
 					}
 				}
 
@@ -152,7 +156,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 	private IEnumerator FinishGame(){
 		powerUpManager.NotifyLevelFinished ();
-		yield return StartCoroutine(uiManager.ShowActualScores(scores,3));
+		yield return StartCoroutine(uiManager.ShowActualScores(scores,negativeScores,3));
+		uiManager.FinishGame ();
+		AssignNegativeScores ();
 		//End of rounds, back to selection
 		SceneManager.UnloadSceneAsync (actualSceneIndex);
 		menuManager.BackToMain ();
@@ -160,12 +166,19 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	private IEnumerator NextRound(){
 		powerUpManager.NotifyLevelFinished ();
-		yield return StartCoroutine(uiManager.ShowActualScores(scores,3));
+		yield return StartCoroutine(uiManager.ShowActualScores(scores,negativeScores,3));
+		AssignNegativeScores ();
 		SceneManager.UnloadSceneAsync (actualSceneIndex);
 		if (actualSceneIndex + 1 >= SceneManager.sceneCountInBuildSettings) {
 			actualSceneIndex = 0;
 		}
 		GameStart (actualSceneIndex+1, numberOfRounds);
+	}
+	private void AssignNegativeScores(){
+		for (int i = 0; i < scores.Count; i++) {
+			scores [i] -= negativeScores [i];
+			negativeScores [i] = 0;
+		}
 	}
 
 	public IEnumerator CharSelection(){
@@ -303,6 +316,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		for (int i = 0; i < players.Count; i++) {
 			players [i].GetComponent<PlayerPreview> ().selected = false;
 			scores [i] = 0;
+			negativeScores [i] = 0;
 		}
 		playersReady=0;
 		charSelection = false;
@@ -317,6 +331,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		pi.SetInputNumber (inputNumber);
 		pp.SetPreview(playerNumber,0);
 		scores.Add (0);
+		negativeScores.Add (0);
 		return newPlayer;
 	}
 
