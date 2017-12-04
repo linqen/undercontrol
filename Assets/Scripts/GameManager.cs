@@ -29,6 +29,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	UIManager uiManager;
 	AudioManager audioManager;
 	PowerUpManager powerUpManager;
+	bool isTwoPlayersGame = false;
 	int deadPlayers=0;
 	int numberOfRounds;
 	int actualSceneIndex;
@@ -117,12 +118,27 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				lasersManager.StartLasers (suddenDeathTime);
 			}
 			deathReportPlayers[k].transform.rotation = Quaternion.identity;
-			if (deathReportKilledBy[k] != 0 ) {
-				if (deathReportKilledBy[k] == deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber) {
-					//scores [deathReportKilledBy[k] - 1]--;
-					negativeScores [deathReportKilledBy [k] - 1]++;
-				}else if (deathReportKilledBy[k] != deathReportPlayers[k].GetComponent<PlayerPreview> ().playerNumber) {scores [deathReportKilledBy[k] - 1]++;}
+			//Score assingment logic
+			if (deathReportKilledBy [k] == deathReportPlayers [k].GetComponent<PlayerPreview> ().playerNumber
+			    || deathReportKilledBy [k] == 0) {
+				if (isTwoPlayersGame) {
+					for (int i = 0; i < players.Count; i++) {
+						if (!players [i].Equals (deathReportPlayers [k])) {
+							scores [i]++;
+						}
+					}
+				} else {
+					if (deathReportKilledBy [k] == 0) {
+						negativeScores [deathReportPlayers [k].GetComponent<PlayerPreview> ().playerNumber - 1]++;
+					} else {
+						negativeScores [deathReportKilledBy [k] - 1]++;
+					}
+				}
+			} else if (deathReportKilledBy [k] != deathReportPlayers [k].GetComponent<PlayerPreview> ().playerNumber) {
+				scores [deathReportKilledBy [k] - 1]++;
 			}
+			//
+
 			if (players.Count -1 <= deadPlayers && 
 				deathReportPlayers.Count-1 == k) {
 				lasersManager.DisableLasers ();
@@ -195,6 +211,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	public void GameStart(int sceneIndex, int numberOfRounds){
 		this.numberOfRounds = numberOfRounds;
+		if (players.Count > 2) {isTwoPlayersGame = false;} else {isTwoPlayersGame = true;}
 		audioManager.InGameMusic ();
 		StartCoroutine (OnGameStart (sceneIndex));
 	}
