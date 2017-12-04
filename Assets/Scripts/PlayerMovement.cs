@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour {
 	private GameManager gameManager;
 	private AudioManager audioManager;
 	private PlayerInput input;
+	private Coroutine exitGroundJump=null;
 	Vector2 oldPos;
 	void OnEnable(){
 		explosion = Vector2.zero;
@@ -176,10 +177,10 @@ public class PlayerMovement : MonoBehaviour {
 					canJump = true;
 				}
 				animator.SetBool ("IsJumping", false);
-				if (gameObject.activeSelf) {
-					StopCoroutine ("ExitGroundJumpChance");
-					jumpingSince=0;
+				if (gameObject.activeSelf && exitGroundJump != null) {
+					StopCoroutine (exitGroundJump);
 				}
+				jumpingSince=0;
 			} 
 			else if (contact.normal == Vector2.down) {
 				ResetHangingValues ();
@@ -226,8 +227,8 @@ public class PlayerMovement : MonoBehaviour {
 					rigid.velocity = new Vector2 (rigid.velocity.x, 0);
 				}
 				if (jump && jumpingSince == jumpingTime && !canJump) {
-					if (gameObject.activeSelf) {
-						StopCoroutine ("ExitGroundJumpChance");
+					if (gameObject.activeSelf && exitGroundJump != null) {
+						StopCoroutine (exitGroundJump);
 					}
 					canJump = true;
 					jumpingSince = 0;
@@ -276,7 +277,7 @@ public class PlayerMovement : MonoBehaviour {
 				animator.SetBool ("IsHanging", isHanging);
 			}
 			else if (gameObject.activeSelf && jumpingSince==0.0f) {
-				StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
+				exitGroundJump = StartCoroutine (ExitGroundJumpChance (timeBeforeStopJumping));
 			}
 		}else if (col.gameObject.tag.Equals ("Wall")) {
 			touchingWallAtRight = false;
