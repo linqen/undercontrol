@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InControl;
 
 public class GrenadeThrowing : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class GrenadeThrowing : MonoBehaviour {
 
 	private float localGrenadeCooldown;
 	private PlayerMovement pMovement;
-	private PlayerInput input;
+	private int inputNumber;
 	private float currentCooldownGrenade;
 	private int playerNumber;
 	private int characterNumber;
@@ -20,7 +21,7 @@ public class GrenadeThrowing : MonoBehaviour {
 
 	void Awake () {
 		pMovement = GetComponent<PlayerMovement> ();
-		input = GetComponent<PlayerInput> ();
+		inputNumber = GetComponent<PlayerInput> ().inputNumber;
 		PlayerPreview pp = GetComponent<PlayerPreview> (); 
 		playerNumber = pp.playerNumber;
 		characterNumber = pp.charPreviewPos;
@@ -51,8 +52,8 @@ public class GrenadeThrowing : MonoBehaviour {
 
 	void Update () {
 		currentCooldownGrenade += Time.deltaTime;
-		if ((Input.GetButton (input.Fire)||Input.GetButtonUp (input.Fire)) && Time.timeScale!=0) {
-			if (Input.GetButtonUp(input.Fire)&&currentCooldownGrenade>=localGrenadeCooldown) {
+		if (InputManager.Devices[inputNumber].Action2.IsPressed||InputManager.Devices[inputNumber].Action2.WasReleased && Time.timeScale!=0) {
+			if (InputManager.Devices[inputNumber].Action2.WasReleased && currentCooldownGrenade>=localGrenadeCooldown) {
 				Vector3 pos = new Vector3 ( transform.position.x+pMovement.LastDirection.x/3,
 					transform.position.y,
 					transform.position.z);

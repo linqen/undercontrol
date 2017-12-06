@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using InControl;
 
 public class GameManager : GenericSingletonClass<GameManager> {
 	public GameObject playerPrefab;
@@ -53,6 +54,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 		if (charSelection) {
 			OnCharSelection ();
+			Debug.Log ("Charselection: "+charSelection);
 		}
 	}
 
@@ -253,15 +255,15 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	private void OnPressStart(){
-		for (int i = 1; i <= possiblePlayers; i++) {
-			if (Input.GetButtonDown (Inputs.Start+i)) {
+		for (int i = 0; i < InputManager.Devices.Count; i++) {
+			if (InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
 				GameObject newPlayer = CreatePlayer (i);
-				PlayerInput pi = newPlayer.GetComponent<PlayerInput> ();
-				StandaloneInputModule im = EventSystem.current.currentInputModule.GetComponent<StandaloneInputModule> ();
-				im.verticalAxis = pi.Vertical;
-				im.horizontalAxis = pi.Horizontal;
-				im.submitButton = pi.Start;
-				im.cancelButton = pi.Fire;
+				//PlayerInput pi = newPlayer.GetComponent<PlayerInput> ();
+				//StandaloneInputModule im = EventSystem.current.currentInputModule.GetComponent<StandaloneInputModule> ();
+				//im.verticalAxis = InputManager.Devices[i].LeftStickY.ToString();
+				//im.horizontalAxis = InputManager.Devices[i].LeftStickX.ToString();
+				//im.submitButton = pi.Start;
+				//im.cancelButton = pi.Fire;
 				players.Add (newPlayer);
 				menuManager.StartPressed ();
 				pressStart = false;
@@ -274,37 +276,41 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	}
 
 	private void OnCharSelection(){
-		for (int i = 1; i <= possiblePlayers; i++) {
-			//Detect new players entering the game
-			if (Input.GetButtonDown (Inputs.Start+i)) {
+		for (int i = 0; i < InputManager.Devices.Count; i++) {
+			if (players.Count < possiblePlayers) {
+				//Detect new players entering the game
 				bool inputUsed = false;
 				for (int j = 0; j < players.Count; j++) {
 					PlayerInput currentPlayerInput = players [j].GetComponent<PlayerInput> ();
-					if (currentPlayerInput.GetInputNumber() == i) {
-						bool result = menuManager.SelectPreview(players [j].GetComponent<PlayerPreview> (),currentPlayerInput);
-						if (result) {
-							playersReady++;
-							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
-							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos-1];
-							audioManager.SelectedPlayerSound();
-						}
-						if (players.Count>=2&&
-							playersReady==players.Count) {
-							FinishPlayersSelection ();
-							menuManager.CharacterSelectionFinished ();
-						}
+					if (currentPlayerInput.GetInputNumber () == i) {
 						inputUsed = true;
+						if (InputManager.Devices[i].Action1.WasPressed) {
+							bool result = menuManager.SelectPreview (players [j].GetComponent<PlayerPreview> (), currentPlayerInput);
+							if (result) {
+								Debug.Log ("result");
+								playersReady++;
+								PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
+								players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos - 1];
+								audioManager.SelectedPlayerSound ();
+							}
+							if (players.Count >= 2 &&
+								playersReady == players.Count) {
+								Debug.Log ("PlayersReady equals Players.count");
+								FinishPlayersSelection ();
+								menuManager.CharacterSelectionFinished ();
+							}
+						}
 					}
 				}
-				if (!inputUsed) {
+				if (!inputUsed && InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
 					GameObject newPlayer = CreatePlayer (i);
-					menuManager.GoNextPreview(newPlayer.GetComponent<PlayerPreview> ());
+					menuManager.GoNextPreview (newPlayer.GetComponent<PlayerPreview> ());
 					StartCoroutine (newPlayer.GetComponent<PlayerMovement> ().CharSelection ());
 					players.Add (newPlayer);
 				}
 			}
 			//Cancel button is pressed
-			if (Input.GetButtonDown (Inputs.Fire + i)) {
+			if (InputManager.Devices[i].Action2.WasPressed) {
 				menuManager.GoBack ();
 			}
 		}
@@ -313,9 +319,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	public IEnumerator RoundSelection(){
 		bool waiting = true;
 		while (waiting) {
-			for (int i = 1; i <= possiblePlayers; i++) {
+			for (int i = 0; i < InputManager.Devices.Count; i++) {
 				//Cancel button is pressed
-				if (Input.GetButtonDown (Inputs.Fire + i)) {
+				if (InputManager.Devices[i].Action2) {
 					menuManager.GoBack ();
 					waiting = false;
 				}

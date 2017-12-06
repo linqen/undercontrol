@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using InControl;
 public class PlayerMovement : MonoBehaviour {
 	public float moveVelocity;
 	public float jumpForce;
@@ -30,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool isCharSelection=false;
 	private GameManager gameManager;
 	private AudioManager audioManager;
-	private PlayerInput input;
+	private int inputNumber;
 	private Coroutine exitGroundJump=null;
 	Vector2 oldPos;
 	void OnEnable(){
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Awake () {
-		input = GetComponent<PlayerInput> ();
+		inputNumber = GetComponent<PlayerInput> ().inputNumber;
 		rigid = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		spriteRenderer = GetComponent<SpriteRenderer> ();
@@ -60,14 +61,16 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		oldPos = transform.position;
 		//
+		horizontalAxis = InputManager.Devices[inputNumber].LeftStickX.RawValue.GetValueOrDefault();
+		verticalAxis = InputManager.Devices[inputNumber].LeftStickY.RawValue.GetValueOrDefault();
 
-		horizontalAxis = Input.GetAxisRaw (input.Horizontal);
-		verticalAxis = Input.GetAxisRaw(input.Vertical);
-		if(Input.GetButton(input.Fire)){isHoldingThrowButton = true;}
+		//horizontalAxis = Input.GetAxisRaw (input.Horizontal);
+		//verticalAxis = Input.GetAxisRaw(input.Vertical);
+		if(InputManager.Devices[inputNumber].Action2.IsPressed){isHoldingThrowButton = true;}
 		else{isHoldingThrowButton = false;}
-		if (Input.GetButton (input.Jump)) {jump = true;}else {jump = false;}
-		if (Input.GetButtonUp (input.Jump) && jumpingSince != 0.0f) {jumpingSince = jumpingTime;} 
-		else if (Input.GetButtonUp (input.Jump)) {canJump = true;}
+		if (InputManager.Devices[inputNumber].Action1.IsPressed) {jump = true;}else {jump = false;}
+		if (InputManager.Devices[inputNumber].Action1.WasReleased && jumpingSince != 0.0f) {jumpingSince = jumpingTime;} 
+		else if (InputManager.Devices[inputNumber].Action1.WasReleased) {canJump = true;}
 	}
 
 
@@ -188,7 +191,7 @@ public class PlayerMovement : MonoBehaviour {
 				audioManager.PlayerHitRoof ();
 			} 
 			else{
-				float axisRawValue = Input.GetAxisRaw (input.Horizontal);
+				float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.RawValue.GetValueOrDefault();
 				if (contact.normal == Vector2.left ) {
 					hangingFromEdgeStartValue=axisRawValue;
 					hangingFromEdgePreviousValue = hangingFromEdgeStartValue;
@@ -207,7 +210,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (col.gameObject.tag.Equals ("Ground") && hangingFromEdgeStartValue != 0) {
 			ContactPoint2D contact = col.contacts [0];
 
-			float axisRawValue = Input.GetAxisRaw (input.Horizontal);
+			float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.RawValue.GetValueOrDefault();
 			if (axisRawValue == hangingFromEdgeStartValue) {
 				if (contact.normal == Vector2.left
 				    && axisRawValue == 1.0f) {
@@ -245,7 +248,7 @@ public class PlayerMovement : MonoBehaviour {
 				hangingFromEdgeStartValue = 0;
 			}
 		} else if (col.gameObject.tag.Equals ("Ground")) {
-			float axisRawValue = Input.GetAxisRaw (input.Horizontal);
+			float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.RawValue.GetValueOrDefault();
 			if (axisRawValue != 0 && axisRawValue == hangingFromEdgePreviousValue && !jump) {
 				hangingFromEdgeStartValue = axisRawValue;
 			}
@@ -302,34 +305,33 @@ public class PlayerMovement : MonoBehaviour {
 		int actualInput = GetComponent<PlayerInput>().GetInputNumber ();
 		isCharSelection = true;
 		gameManager = GameManager.Instance;
-		bool canMoveJoySelection = true;
+		//bool canMoveJoySelection = true;
 		while (isCharSelection) {
-			float axisRawValue = Input.GetAxisRaw (Inputs.Horizontal + actualInput);
-			if (Input.GetButtonDown (Inputs.Horizontal + actualInput) &&
-				!pp.selected && axisRawValue > 0.5f) {
+			//float axisRawValue = Input.GetAxisRaw (Inputs.Horizontal + actualInput);
+			if (InputManager.Devices[actualInput].DPadRight.WasPressed && !pp.selected) {
 				//Move Right
 				gameManager.GetNextUnusedPlayer (pp);
-			} else if (Input.GetButtonDown (Inputs.Horizontal + actualInput) &&
-				!pp.selected && axisRawValue < 0.5f) {
+			} else if (InputManager.Devices[actualInput].DPadLeft.WasPressed && !pp.selected) {
 				//Move Left
 				gameManager.GetPreviousUnusedPlayer (pp);
-			} else {
-				//Joystick case
-				if (axisRawValue > 0.5f && !Input.GetButton (Inputs.Horizontal + actualInput) &&
-				   !pp.selected && canMoveJoySelection == true) {
-					//Move Right
-					gameManager.GetNextUnusedPlayer (pp);
-					canMoveJoySelection = false;
-				} else if (axisRawValue < -0.5f &&
-				          !Input.GetButton (Inputs.Horizontal + actualInput) &&
-				          !pp.selected && canMoveJoySelection == true) {
-					//Move Left
-					gameManager.GetPreviousUnusedPlayer (pp);
-					canMoveJoySelection = false;
-				} else if (axisRawValue == 0.0f) {
-					canMoveJoySelection = true;
-				}
 			}
+			//else {
+			//	//Joystick case
+			//	if (axisRawValue > 0.5f && !Input.GetButton (Inputs.Horizontal + actualInput) &&
+			//	   !pp.selected && canMoveJoySelection == true) {
+			//		//Move Right
+			//		gameManager.GetNextUnusedPlayer (pp);
+			//		canMoveJoySelection = false;
+			//	} else if (axisRawValue < -0.5f &&
+			//	          !Input.GetButton (Inputs.Horizontal + actualInput) &&
+			//	          !pp.selected && canMoveJoySelection == true) {
+			//		//Move Left
+			//		gameManager.GetPreviousUnusedPlayer (pp);
+			//		canMoveJoySelection = false;
+			//	} else if (axisRawValue == 0.0f) {
+			//		canMoveJoySelection = true;
+			//	}
+			//}
 			yield return null;
 		}
 	}

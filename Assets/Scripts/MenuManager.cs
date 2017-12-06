@@ -3,11 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using InControl;
 public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	public List<GameObject> menuPlayerSelector = new List<GameObject>();
 
 	List<Sprite> availableStartKeys = new List<Sprite> ();
+	MenuMovementBehaviour menuMovementBehaviour;
 	UIManager uiManager;
 	GameManager gameManager;
 	AudioManager audioManager;
@@ -22,6 +24,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	int possiblePlayers;
 	new void Awake(){
 		base.Awake ();
+		menuMovementBehaviour = GetComponent<MenuMovementBehaviour> ();
 	}
 	void Start () {
 		uiManager = UIManager.Instance;
@@ -39,11 +42,25 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		Cursor.visible = false;
 	}
 
+	//void Update(){
+	//	if (mainMenu.activeSelf) {
+	//		for (int i = 0; i < InputManager.Devices.Count; i++) {
+	//			if (InputManager.Devices [i].DPadUp.WasPressed) {
+	//				Debug.Log ("Dpad Up WasPressed");
+	//
+	//				//EventSystem.current.GetComponent<StandaloneInputModule> ().Process ();
+	//			}
+	//		}
+	//	}
+	//
+	//}
+
 	public void StartPressed(){
 		pressStart.SetActive (false);
 		menuBackground.SetActive (true);
 		mainMenu.SetActive (true);
-		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
+		//EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
+		menuMovementBehaviour.MainMenuOptionsNavigation(0);
 	}
 
 	public void CharacterSelectionFinished(){
@@ -52,11 +69,12 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			menuPlayerSelector [i].transform.Find ("Character"+(i+1)).gameObject.SetActive (false);
 		}
 		roundsSelect.SetActive (true);
-		GameObject roundSelected = roundsSelect.transform.Find ("PossibleRounds").Find ("5").gameObject;
-		if (EventSystem.current.currentSelectedGameObject == roundSelected) {
-			EventSystem.current.SetSelectedGameObject (null);
-		}
-		EventSystem.current.SetSelectedGameObject (roundSelected);
+		//GameObject roundSelected = roundsSelect.transform.Find ("PossibleRounds").Find ("5").gameObject;
+		menuMovementBehaviour.RoundSelectionNavigation (1);
+		//if (EventSystem.current.currentSelectedGameObject == roundSelected) {
+		//	EventSystem.current.SetSelectedGameObject (null);
+		//}
+		//EventSystem.current.SetSelectedGameObject (roundSelected);
 		StartCoroutine (gameManager.RoundSelection ());
 	}
 	public void RoundsSelect(){
@@ -106,8 +124,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			for (int i = 0; i < menuPlayerSelector.Count; i++) {
 				menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
 			}
-			EventSystem.current.SetSelectedGameObject (null);
-			EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
+			//EventSystem.current.SetSelectedGameObject (null);
+			//EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
+			menuMovementBehaviour.MainMenuOptionsNavigation(0);
 		}
 	}
 
@@ -115,7 +134,8 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mainMenu.SetActive (true);
 		menuBackground.SetActive (true);
 		audioManager.MainMenuMusic ();
-		EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
+		//EventSystem.current.SetSelectedGameObject(mainMenu.transform.Find ("Options").Find("Play").gameObject);
+		menuMovementBehaviour.MainMenuOptionsNavigation(0);
 	}
 	public void ShowCountdown(float time){
 		StartCoroutine (Countdown (time));
@@ -201,7 +221,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			selector.SelectSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
 			selector.transform.Find ("Selected").gameObject.SetActive (true);
 			GameObject keySelector = selector.transform.Find ("KeyMap").gameObject;
-			keySelector.GetComponent<Image> ().sprite = ((Sprite)Resources.Load<Sprite> ("InputMap/" + playerInput.inputNumber));
+			keySelector.GetComponent<Image> ().sprite = ((Sprite)Resources.Load<Sprite> ("InputMap/" + InputManager.Devices[playerInput.inputNumber].Name));
 			keySelector.SetActive (true);
 			playerPreview.selected = true;
 			return true;

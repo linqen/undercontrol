@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InControl;
 
 public class PauseGame : MonoBehaviour {
 	UIManager uiManager;
@@ -11,7 +12,7 @@ public class PauseGame : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetButtonDown (Inputs.Start + inputNumber)) {
+		if (InputManager.Devices[inputNumber].GetControl(InputControlType.Start).WasPressed) {
 			uiManager.PauseGame ();
 		}
 	}
