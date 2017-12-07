@@ -54,7 +54,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 		if (charSelection) {
 			OnCharSelection ();
-			Debug.Log ("Charselection: "+charSelection);
 		}
 	}
 
@@ -258,12 +257,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		for (int i = 0; i < InputManager.Devices.Count; i++) {
 			if (InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
 				GameObject newPlayer = CreatePlayer (i);
-				//PlayerInput pi = newPlayer.GetComponent<PlayerInput> ();
-				//StandaloneInputModule im = EventSystem.current.currentInputModule.GetComponent<StandaloneInputModule> ();
-				//im.verticalAxis = InputManager.Devices[i].LeftStickY.ToString();
-				//im.horizontalAxis = InputManager.Devices[i].LeftStickX.ToString();
-				//im.submitButton = pi.Start;
-				//im.cancelButton = pi.Fire;
 				players.Add (newPlayer);
 				menuManager.StartPressed ();
 				pressStart = false;
@@ -277,34 +270,30 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	private void OnCharSelection(){
 		for (int i = 0; i < InputManager.Devices.Count; i++) {
-			if (players.Count < possiblePlayers) {
-				//Detect new players entering the game
+			//Detect new players entering the game
+			if (InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
 				bool inputUsed = false;
 				for (int j = 0; j < players.Count; j++) {
 					PlayerInput currentPlayerInput = players [j].GetComponent<PlayerInput> ();
-					if (currentPlayerInput.GetInputNumber () == i) {
-						inputUsed = true;
-						if (InputManager.Devices[i].Action1.WasPressed) {
-							bool result = menuManager.SelectPreview (players [j].GetComponent<PlayerPreview> (), currentPlayerInput);
-							if (result) {
-								Debug.Log ("result");
-								playersReady++;
-								PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
-								players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos - 1];
-								audioManager.SelectedPlayerSound ();
-							}
-							if (players.Count >= 2 &&
-								playersReady == players.Count) {
-								Debug.Log ("PlayersReady equals Players.count");
-								FinishPlayersSelection ();
-								menuManager.CharacterSelectionFinished ();
-							}
+					if (currentPlayerInput.GetInputNumber() == i) {
+						bool result = menuManager.SelectPreview(players [j].GetComponent<PlayerPreview> (),currentPlayerInput);
+						if (result) {
+							playersReady++;
+							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
+							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos-1];
+							audioManager.SelectedPlayerSound();
 						}
+						if (players.Count>=2&&
+							playersReady==players.Count) {
+							FinishPlayersSelection ();
+							menuManager.CharacterSelectionFinished ();
+						}
+						inputUsed = true;
 					}
 				}
-				if (!inputUsed && InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
+				if (!inputUsed) {
 					GameObject newPlayer = CreatePlayer (i);
-					menuManager.GoNextPreview (newPlayer.GetComponent<PlayerPreview> ());
+					menuManager.GoNextPreview(newPlayer.GetComponent<PlayerPreview> ());
 					StartCoroutine (newPlayer.GetComponent<PlayerMovement> ().CharSelection ());
 					players.Add (newPlayer);
 				}
@@ -314,6 +303,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				menuManager.GoBack ();
 			}
 		}
+
 	}
 
 	public IEnumerator RoundSelection(){

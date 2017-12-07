@@ -92,6 +92,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void PlayButton(){
 		mainMenu.SetActive (false);
 		characterSelect.SetActive (true);
+		menuMovementBehaviour.StopMainMenuSelection ();
 		StartCoroutine(gameManager.CharSelection ());
 	}
 

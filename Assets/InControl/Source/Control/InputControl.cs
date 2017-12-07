@@ -186,6 +186,15 @@ namespace InControl
 			return control.Value;
 		}
 
+		public float GetRawValue(){
+			if (Value > 0) {
+				return 1.0f;
+			} else if (Value < 0) {
+				return -1.0f;
+			} else {
+				return 0;
+			}
+		}
 
 		public InputControlType? Obverse
 		{

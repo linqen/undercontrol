@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using InControl;
 public class UIManager : GenericSingletonClass<UIManager> {
 
 	public Sprite[] charactersPreviews;
@@ -17,6 +18,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 	private List<Button> pauseMenuButtons = new List<Button>();
 	private int pauseButtonSelectionPosition = 0;
 	private bool gamePaused = false;
+	private int playerInputNumber;
 	private List<GameObject> charactersKills=new List<GameObject>();
 	private List<PlayerPreview> playersPreviews = new List<PlayerPreview>();
 	new void Awake(){
@@ -92,53 +94,32 @@ public class UIManager : GenericSingletonClass<UIManager> {
 
 	void Update(){
 		if (gamePaused) {
-			bool canMoveJoySelection = true;
-			for (int i = 1; i <= gameManager.possiblePlayers; i++) {
-				float axisRawValue = Input.GetAxisRaw (Inputs.Vertical + i);
-				if (Input.GetButtonDown (Inputs.Vertical + i) && axisRawValue > 0.5f) {
-					//Move Up
-					if (pauseButtonSelectionPosition > 0) {
-						pauseButtonSelectionPosition--;
-					}
-				} else if (Input.GetButtonDown (Inputs.Vertical + i) && axisRawValue < 0.5f) {
-					//Move Down
-					if (pauseButtonSelectionPosition < pauseMenuButtons.Count-1) {
-						pauseButtonSelectionPosition++;
-					}
-				} else {
-					//Joystick case
-					if (axisRawValue > 0.5f && !Input.GetButton (Inputs.Vertical + i) && canMoveJoySelection == true) {
-						//Move Up
-						canMoveJoySelection = false;
-						if (pauseButtonSelectionPosition > 0) {
-							pauseButtonSelectionPosition--;
-						}
-
-					} else if (axisRawValue < -0.5f &&
-						!Input.GetButton (Inputs.Vertical + i) && canMoveJoySelection == true) {
-						//Move Down
-						canMoveJoySelection = false;
-						if (pauseButtonSelectionPosition < pauseMenuButtons.Count-1) {
-							pauseButtonSelectionPosition++;
-						}
-
-					} else if (axisRawValue == 0.0f) {
-						canMoveJoySelection = true;
-					}
-					EventSystem.current.SetSelectedGameObject(pauseMenuButtons[pauseButtonSelectionPosition].gameObject);
+			if (InputManager.Devices [playerInputNumber].DPadUp.WasPressed) {
+				//Move up
+				if (pauseButtonSelectionPosition > 0) {
+					pauseButtonSelectionPosition--;
 				}
+			}
 
-				if (Input.GetButtonUp (Inputs.Jump + i)) {
-					pauseMenuButtons [pauseButtonSelectionPosition].onClick.Invoke ();
+			if (InputManager.Devices [playerInputNumber].DPadDown.WasPressed) {
+				//Move Down
+				if (pauseButtonSelectionPosition < pauseMenuButtons.Count-1) {
+					pauseButtonSelectionPosition++;
 				}
+			}
 
+			EventSystem.current.SetSelectedGameObject(pauseMenuButtons[pauseButtonSelectionPosition].gameObject);
+
+			if (InputManager.Devices [playerInputNumber].Action1.WasReleased) {
+				pauseMenuButtons [pauseButtonSelectionPosition].onClick.Invoke ();
 			}
 
 		}
 	}
 
-	public void PauseGame(){
+	public void PauseGame(int rplayerInputNumber){
 		if (gameManager.PauseGame ()) {
+			playerInputNumber = rplayerInputNumber;
 			EventSystem.current.sendNavigationEvents = false;
 			gamePaused = true;
 			pausePanel.gameObject.SetActive (true);

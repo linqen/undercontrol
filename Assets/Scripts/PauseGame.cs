@@ -13,7 +13,7 @@ public class PauseGame : MonoBehaviour {
 
 	void Update(){
 		if (InputManager.Devices[inputNumber].GetControl(InputControlType.Start).WasPressed) {
-			uiManager.PauseGame ();
+			uiManager.PauseGame (inputNumber);
 		}
 	}
 }

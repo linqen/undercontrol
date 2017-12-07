@@ -171,9 +171,16 @@ namespace InControl
 
 		float ApplyCircularDeadZone( float axisValue1, float axisValue2, float lowerDeadZone, float upperDeadZone )
 		{
+			//Original code
+			//var axisVector = new Vector2( axisValue1, axisValue2 );
+			//var magnitude = Mathf.InverseLerp( lowerDeadZone, upperDeadZone, axisVector.magnitude );
+			//return (axisVector.normalized * magnitude).x;
+
+			//Modified code
+			//This changed was maded to individualize deadZone application on every axis
 			var axisVector = new Vector2( axisValue1, axisValue2 );
-			var magnitude = Mathf.InverseLerp( lowerDeadZone, upperDeadZone, axisVector.magnitude );
-			return (axisVector.normalized * magnitude).x;
+			var magnitudeX = Mathf.InverseLerp (lowerDeadZone, upperDeadZone, Mathf.Abs(axisValue1));
+			return axisVector.normalized.x * magnitudeX;
 		}
 
 

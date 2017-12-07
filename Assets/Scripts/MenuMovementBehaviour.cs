@@ -60,15 +60,17 @@ public class MenuMovementBehaviour : MonoBehaviour {
 					}
 				}
 
-				if (InputManager.Devices [i].Action1.WasPressed) {
-					actualPos = 0;
-					mainMenuNavigation = false;
+				if (InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
 					mainMenuOptions [actualPos].GetComponent<Button> ().onClick.Invoke ();
 				}
 
 			}
 			yield return null;
 		}
+	}
+	public void StopMainMenuSelection(){
+		mainMenuNavigation = false;
+		actualPos = 0;
 	}
 
 	IEnumerator RoundSelection(){

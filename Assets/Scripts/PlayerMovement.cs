@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float timeBeforeStopJumping;
 	public float jumpingTime;
 	public float movementSlowAffectedByExplocion;
+	public float analogDeadZone;
 
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
@@ -47,6 +48,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Start(){
 		audioManager = AudioManager.Instance;
+		InputManager.Devices [inputNumber].LeftStickX.LowerDeadZone = analogDeadZone;
+		InputManager.Devices [inputNumber].LeftStickY.LowerDeadZone = analogDeadZone;
 	}
 
 	void Update(){
@@ -61,9 +64,8 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		oldPos = transform.position;
 		//
-		horizontalAxis = InputManager.Devices[inputNumber].LeftStickX.RawValue.GetValueOrDefault();
-		verticalAxis = InputManager.Devices[inputNumber].LeftStickY.RawValue.GetValueOrDefault();
-
+		horizontalAxis = InputManager.Devices[inputNumber].LeftStickX.GetRawValue();
+		verticalAxis = InputManager.Devices[inputNumber].LeftStickY.GetRawValue();
 		//horizontalAxis = Input.GetAxisRaw (input.Horizontal);
 		//verticalAxis = Input.GetAxisRaw(input.Vertical);
 		if(InputManager.Devices[inputNumber].Action2.IsPressed){isHoldingThrowButton = true;}
@@ -191,7 +193,7 @@ public class PlayerMovement : MonoBehaviour {
 				audioManager.PlayerHitRoof ();
 			} 
 			else{
-				float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.RawValue.GetValueOrDefault();
+				float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.GetRawValue();
 				if (contact.normal == Vector2.left ) {
 					hangingFromEdgeStartValue=axisRawValue;
 					hangingFromEdgePreviousValue = hangingFromEdgeStartValue;
@@ -210,7 +212,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (col.gameObject.tag.Equals ("Ground") && hangingFromEdgeStartValue != 0) {
 			ContactPoint2D contact = col.contacts [0];
 
-			float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.RawValue.GetValueOrDefault();
+			float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.GetRawValue();
 			if (axisRawValue == hangingFromEdgeStartValue) {
 				if (contact.normal == Vector2.left
 				    && axisRawValue == 1.0f) {
@@ -248,7 +250,7 @@ public class PlayerMovement : MonoBehaviour {
 				hangingFromEdgeStartValue = 0;
 			}
 		} else if (col.gameObject.tag.Equals ("Ground")) {
-			float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.RawValue.GetValueOrDefault();
+			float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.GetRawValue();
 			if (axisRawValue != 0 && axisRawValue == hangingFromEdgePreviousValue && !jump) {
 				hangingFromEdgeStartValue = axisRawValue;
 			}

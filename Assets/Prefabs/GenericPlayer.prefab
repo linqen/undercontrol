@@ -203,6 +203,7 @@ MonoBehaviour:
   timeBeforeStopJumping: 0.1
   jumpingTime: 0.5
   movementSlowAffectedByExplocion: 2
+  analogDeadZone: 0.7
 --- !u!114 &114237634910380500
 MonoBehaviour:
   m_ObjectHideFlags: 1
