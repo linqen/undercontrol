@@ -122,12 +122,12 @@ Prefab:
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 960
+      value: 606
       objectReference: {fileID: 0}
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 540
+      value: 454.5
       objectReference: {fileID: 0}
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
@@ -644,6 +644,18 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 0.000015258789
       objectReference: {fileID: 0}
+    - target: {fileID: 1502736566847706, guid: 99da9c8678865bc498f2c2e0b8eac918, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932966441988362, guid: 99da9c8678865bc498f2c2e0b8eac918, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030798158033892, guid: 99da9c8678865bc498f2c2e0b8eac918, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99da9c8678865bc498f2c2e0b8eac918, type: 2}
   m_IsPrefabParent: 0
@@ -749,6 +761,7 @@ GameObject:
   - component: {fileID: 1078191916}
   - component: {fileID: 1078191915}
   - component: {fileID: 1078191914}
+  - component: {fileID: 1078191919}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -825,6 +838,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1078191919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078191913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b678de023cf534abc1ae31bafd23b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maintainWidth: 1
+  normalAspectWidth: 16
+  normalAspectHeight: 9
+  adaptPosition: 0
 --- !u!1 &1929114302 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1440249553953966, guid: 99da9c8678865bc498f2c2e0b8eac918,
