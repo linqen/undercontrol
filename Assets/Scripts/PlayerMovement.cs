@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using InControl;
 public class PlayerMovement : MonoBehaviour {
-	public float moveVelocity;
+	public float originalMoveVelocity;
 	public float jumpForce;
 	public float timeBeforeStopJumping;
 	public float jumpingTime;
 	public float movementSlowAffectedByExplocion;
 	public float analogDeadZone;
 
+	private float moveVelocity;
 	private Animator animator;
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rigid;
@@ -34,9 +35,33 @@ public class PlayerMovement : MonoBehaviour {
 	private AudioManager audioManager;
 	private int inputNumber;
 	private Coroutine exitGroundJump=null;
+	private Coroutine fasterMovement=null;
 	Vector2 oldPos;
+
+
+
+	public void FasterMovement(float multiplier,float time){
+		if (fasterMovement != null) {
+			StopCoroutine (fasterMovement);
+		}
+		fasterMovement = StartCoroutine (MoveFaster (multiplier,time));
+	}
+
+	IEnumerator MoveFaster(float multiplier, float time){
+		moveVelocity *= multiplier;
+		yield return new WaitForSeconds (time);
+		moveVelocity = originalMoveVelocity;
+		fasterMovement = null;
+	}
+
+
+
 	void OnEnable(){
 		explosion = Vector2.zero;
+	}
+
+	void OnDisable(){
+		moveVelocity = originalMoveVelocity;
 	}
 
 	void Awake () {
@@ -47,6 +72,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Start(){
+		moveVelocity = originalMoveVelocity;
 		audioManager = AudioManager.Instance;
 		InputManager.Devices [inputNumber].LeftStickX.LowerDeadZone = analogDeadZone;
 		InputManager.Devices [inputNumber].LeftStickY.LowerDeadZone = analogDeadZone;

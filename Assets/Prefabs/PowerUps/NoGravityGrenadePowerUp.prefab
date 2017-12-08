@@ -108,6 +108,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUp: 2
+  halfCDTime: 5
+  noGravityGrenadeTime: 10
+  fasterMovementMultiplier: 1.7
+  fasterMovementTime: 5
 --- !u!212 &212565704165691472
 SpriteRenderer:
   m_ObjectHideFlags: 1
