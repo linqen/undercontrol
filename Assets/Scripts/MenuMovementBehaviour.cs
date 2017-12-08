@@ -101,4 +101,9 @@ public class MenuMovementBehaviour : MonoBehaviour {
 			yield return null;
 		}
 	}
+
+	public void StopRoundSelection(){
+		roundSelection = false;
+		actualPos = 0;
+	}
 }
