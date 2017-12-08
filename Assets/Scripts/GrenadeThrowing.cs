@@ -14,10 +14,12 @@ public class GrenadeThrowing : MonoBehaviour {
 	private PlayerMovement pMovement;
 	private int inputNumber;
 	private float currentCooldownGrenade;
+	private bool noGravityGrenade=false;
 	private int playerNumber;
 	private int characterNumber;
 	private Animator animator;
 	private Coroutine reduceCDCoroutine=null;
+	private Coroutine noGravityCoroutine=null;
 
 	void Awake () {
 		pMovement = GetComponent<PlayerMovement> ();
@@ -34,6 +36,24 @@ public class GrenadeThrowing : MonoBehaviour {
 
 	void OnDisable(){
 		localGrenadeCooldown = grenadeCooldown;
+	}
+
+
+
+
+
+	public void NoGravityGrenade(float time){
+		if (noGravityCoroutine != null) {
+			StopCoroutine (noGravityCoroutine);
+		}
+		noGravityGrenade = true;
+		noGravityCoroutine = StartCoroutine (GrenadeGravityBack (time));
+	}
+
+	IEnumerator GrenadeGravityBack(float time){
+		yield return new WaitForSeconds (time);
+		noGravityGrenade = false;
+		noGravityCoroutine = null;
 	}
 
 	public void ReduceCooldown(int divisor,float time){
@@ -61,8 +81,11 @@ public class GrenadeThrowing : MonoBehaviour {
 				GrenadeBehaviour gb = grenade.GetComponent<GrenadeBehaviour> ();
 				gb.ThrowedByPlayerNumber = playerNumber;
 				gb.GrenadeOfCharacterNumber = characterNumber;
-
-				grenade.GetComponent<Rigidbody2D>().AddForce (new Vector2(pMovement.LastDirection.x*horizontalForce,pMovement.VerticalAxis*verticalForce), ForceMode2D.Impulse);	
+				Rigidbody2D grenadeRb = grenade.GetComponent<Rigidbody2D> ();
+				if (noGravityGrenade) {
+					grenadeRb.gravityScale = 0;
+				}
+				grenadeRb.AddForce (new Vector2(pMovement.LastDirection.x*horizontalForce,pMovement.VerticalAxis*verticalForce), ForceMode2D.Impulse);	
 				currentCooldownGrenade = 0;
 				animator.SetTrigger ("Throw");
 			}

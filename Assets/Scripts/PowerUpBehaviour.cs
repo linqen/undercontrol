@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum PowerUp{Shield,HalfGrenadeCD}
+public enum PowerUp{Shield,HalfGrenadeCD,NoGravityGrenade}
 
 public class PowerUpBehaviour : MonoBehaviour {
-
 
 	public PowerUp powerUp;
 
@@ -18,6 +17,10 @@ public class PowerUpBehaviour : MonoBehaviour {
 			case PowerUp.HalfGrenadeCD:
 				col.GetComponent<GrenadeThrowing> ().ReduceCooldown (2, 5.0f);
 				Debug.Log ("Half CD");
+				break;
+			case PowerUp.NoGravityGrenade:
+				col.GetComponent<GrenadeThrowing> ().NoGravityGrenade (5.0f);
+				Debug.Log ("No gravity");
 				break;
 			}
 			gameObject.SetActive (false);
