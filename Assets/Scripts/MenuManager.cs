@@ -17,6 +17,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	GameObject menuBackground;
 	GameObject mainMenu;
 	GameObject characterSelect;
+	GameObject credits;
 	GameObject mapSelect;
 	GameObject roundsSelect;
 	GameObject countdown;
@@ -33,6 +34,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		pressStart = transform.Find ("PressStart").gameObject;
 		menuBackground = transform.Find ("GeneralBackground").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;
+		credits = transform.Find ("Credits").gameObject;
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
 		roundsSelect = transform.Find ("RoundsSelect").gameObject;
@@ -94,8 +96,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			menuMovementBehaviour.StopRoundSelection ();
 			ClearSelectorsData ();
 			StartCoroutine (gameManager.CharSelection ());
-		}
-		else if (characterSelect.activeSelf) {
+		} else if (characterSelect.activeSelf) {
 			for (int i = 0; i < menuPlayerSelector.Count; i++) {
 				menuPlayerSelector [i].transform.Find ("Selected").gameObject.SetActive (false);
 				menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
@@ -107,7 +108,11 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			for (int i = 0; i < menuPlayerSelector.Count; i++) {
 				menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
 			}
-			menuMovementBehaviour.MainMenuOptionsNavigation(0);
+			menuMovementBehaviour.MainMenuOptionsNavigation (0);
+		} else if (credits.activeSelf) {
+			mainMenu.SetActive (true);
+			credits.SetActive (false);
+			menuMovementBehaviour.MainMenuOptionsNavigation (1);
 		}
 	}
 
@@ -189,6 +194,27 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		laserAdvice.SetActive (true);
 		yield return new WaitForSeconds (0.25f);
 		laserAdvice.SetActive (false);
+	}
+
+
+	public void Credits(){
+		mainMenu.SetActive (false);
+		credits.SetActive (true);
+		menuMovementBehaviour.StopMainMenuSelection ();
+
+		StartCoroutine (WaitToExitCredits());
+	}
+	private IEnumerator WaitToExitCredits(){
+		bool loop = true;
+		while (loop) {
+			for (int i = 0; i < InputManager.Devices.Count; i++) {
+				if (InputManager.Devices [i].AnyButton.WasPressed) {
+					GoBack ();
+					loop = false;
+				}
+			}
+			yield return null;
+		}
 	}
 
 	public void StopLasersAdvice(){
