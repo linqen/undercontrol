@@ -31,16 +31,14 @@ public class GrenadeThrowing : MonoBehaviour {
 	}
 
 	void Start(){
+		noGravityGrenade = false;
 		localGrenadeCooldown = grenadeCooldown;
 	}
 
 	void OnDisable(){
+		noGravityGrenade = false;
 		localGrenadeCooldown = grenadeCooldown;
 	}
-
-
-
-
 
 	public void NoGravityGrenade(float time){
 		if (noGravityCoroutine != null) {
