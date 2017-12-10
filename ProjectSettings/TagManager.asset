@@ -11,6 +11,7 @@ TagManager:
   - Laser
   - PowerUpSpawns
   - Wall
+  - ArrowPointer
   layers:
   - Default
   - TransparentFX

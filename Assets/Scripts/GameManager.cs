@@ -224,6 +224,12 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			loadStarted = true;
 			yield return null;
 		}
+
+		GameObject arrowPointer = GameObject.FindWithTag ("ArrowPointer");
+		if (arrowPointer != null) {
+			arrowPointer.GetComponent<ArrowPointer> ().SetPlayers (players);
+		}
+
 		Transform spawnPointsParent;
 		spawnPointsParent = GameObject.Find ("SpawnPoints").transform;
 		spawnPoints.Clear ();
