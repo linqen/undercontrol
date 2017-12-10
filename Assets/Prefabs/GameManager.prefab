@@ -56,8 +56,8 @@ MonoBehaviour:
     type: 2}
   possiblePlayers: 4
   secondsToWaitAfterDeath: 2
-  suddenDeathTime: 5
-  onlyTwoPlayersGameSuddenDeathTime: 10
+  suddenDeathTime: 12
+  onlyTwoPlayersGameSuddenDeathTime: 25
   countdownBeforePlay: 3
   animators:
   - {fileID: 9100000, guid: 91a4e2fa44fc7bd4fa98bca332432eb7, type: 2}

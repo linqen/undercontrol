@@ -122,12 +122,12 @@ Prefab:
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 686.5
+      value: 524.5
       objectReference: {fileID: 0}
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 386
+      value: 295
       objectReference: {fileID: 0}
     - target: {fileID: 224603598454552590, guid: 99da9c8678865bc498f2c2e0b8eac918,
         type: 2}
