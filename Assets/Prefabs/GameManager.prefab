@@ -55,7 +55,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1649050943946022, guid: b44987e6eb8c8174c8798dc8a98e69b5,
     type: 2}
   possiblePlayers: 4
-  secondsToWaitAfterDeath: 2
+  secondsToWaitAfterDeath: 1.2
   suddenDeathTime: 12
   onlyTwoPlayersGameSuddenDeathTime: 25
   countdownBeforePlay: 3
