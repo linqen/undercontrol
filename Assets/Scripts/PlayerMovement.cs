@@ -79,17 +79,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Update(){
-
-		//To avoid teleport between colliders
-		RaycastHit2D hit = Physics2D.Linecast(oldPos, transform.position);
-		if(hit!=null&&hit.collider != null&&((hit.collider.gameObject.CompareTag("Ground")||hit.collider.gameObject.CompareTag("Wall")))){
-			Vector2 scaleVector = new Vector2 (transform.position.normalized.x * (transform.lossyScale.x / 2),
-				                      transform.position.normalized.y * (transform.lossyScale.y / 2));
-			transform.position = hit.point+scaleVector;
-			rigid.velocity=Vector2.Reflect(rigid.velocity,hit.normal);
-		}
-		oldPos = transform.position;
-		//
 		horizontalAxis = InputManager.Devices[inputNumber].LeftStickX.GetRawValue();
 		verticalAxis = InputManager.Devices[inputNumber].LeftStickY.GetRawValue();
 		//horizontalAxis = Input.GetAxisRaw (input.Horizontal);
@@ -103,6 +92,17 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	void FixedUpdate(){
+		//To avoid teleport between colliders
+		RaycastHit2D hit = Physics2D.Linecast(oldPos, transform.position);
+		if(hit!=null&&hit.collider != null&&((hit.collider.gameObject.CompareTag("Ground")||hit.collider.gameObject.CompareTag("Wall")))){
+			Vector2 scaleVector = new Vector2 (transform.position.normalized.x * (transform.lossyScale.x / 2),
+				transform.position.normalized.y * (transform.lossyScale.y / 2));
+			transform.position = hit.point+scaleVector;
+			rigid.velocity=Vector2.Reflect(rigid.velocity,hit.normal);
+		}
+		oldPos = transform.position;
+		//
+
 		if (horizontalAxis > 0.0f && !isHanging && !touchingWallAtRight && (!isHoldingThrowButton || !grounded)) {
 			if (explosion == Vector2.zero) {
 			animator.SetBool ("IsRunning", true);

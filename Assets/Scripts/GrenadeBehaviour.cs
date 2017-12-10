@@ -36,8 +36,8 @@ public class GrenadeBehaviour : MonoBehaviour {
 		//spriteRender.sprite = grenades [grenadeOfCharacterNumber-1];
 		animator.SetInteger("CharacterNumber", grenadeOfCharacterNumber);
 	}
-	
-	void Update () {
+
+	void FixedUpdate(){
 		//To avoid teleport between colliders
 		RaycastHit2D hit = Physics2D.Linecast(oldPos, transform.position);
 		if(hit!=null&&((hit.collider.CompareTag("Ground")||hit.collider.CompareTag("Wall")))){
@@ -46,7 +46,9 @@ public class GrenadeBehaviour : MonoBehaviour {
 		}
 		oldPos = transform.position;
 		//
+	}
 
+	void Update () {
 		timeLived += Time.deltaTime;
 		if (timeLived >= explodeTime) {
 			if (explode == false) {
