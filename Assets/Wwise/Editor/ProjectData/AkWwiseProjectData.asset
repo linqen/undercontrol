@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fab44b33fcd63e4dacdefb78c418f37, type: 3}
+  m_Name: AkWwiseProjectData
+  m_EditorClassIdentifier: 
+  CurrentPluginConfig: 
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{0148F0B5-C6DD-442E-B118-801E4D1E9C14}'
+    m_lastTimePsrt1: 509902849
+    m_lastTimePart2: -1999290570
+    List:
+    - Name: bomb
+      Path: Default Work Unit\bomb
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: bomb
+        ObjectType: 3
+      ID: 1727945837
+      Guid: 95b45c459fd90449b734af663880b25a
+      maxAttenuation: 0
+    - Name: jump
+      Path: Default Work Unit\jump
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: jump
+        ObjectType: 3
+      ID: -461315959
+      Guid: e3c1865cd7c8bd4c9955d8c9528e71fb
+      maxAttenuation: 0
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{973D4744-7A1E-4EF3-9A46-71EFF95E874F}'
+    m_lastTimePsrt1: 756892005
+    m_lastTimePart2: -1999290584
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{A9C3E215-78C7-4FF9-9280-8BFC9B859C54}'
+    m_lastTimePsrt1: 757118031
+    m_lastTimePart2: -1999290584
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{603BBEFE-5027-4E20-8FA7-D07FA206ADA8}'
+    m_lastTimePsrt1: 509773031
+    m_lastTimePart2: -1999290570
+    List:
+    - Name: Bomb
+      Path: Default Work Unit\Bomb
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Bomb
+        ObjectType: 11
+      ID: 1727945837
+      Guid: 81932a695f9d0c4195ad03c56c149c66
+      values:
+      - Bomb
+      - Pre_bomb
+      ValueIcons:
+      - ElementName: Bomb
+        ObjectType: 10
+      - ElementName: Pre_bomb
+        ObjectType: 10
+      valueIDs: 6d5cfe66bbd40531
+      ValueGuids:
+      - bytes: e22cebfa44a9594e92986d09f081d2b0
+      - bytes: b2c912defbb0c442bac5ce9ec2475b23
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{E96542B2-16C9-4FDD-866A-A54DBE0A75F1}'
+    m_lastTimePsrt1: -796852357
+    m_lastTimePart2: -1999290521
+    List:
+    - Name: Under_control
+      Path: Default Work Unit\Under_control
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Under_control
+        ObjectType: 7
+      ID: -1639715205
+      Guid: 600ee97053bb2c4c9771fb2aeb9ca7e1
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{07DF236F-B825-4B66-933B-DC22E7022100}'
+    m_lastTimePsrt1: 757233111
+    m_lastTimePart2: -1999290584
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{188B86CC-554C-4142-A1C7-890CC0DDE66C}'
+    m_lastTimePsrt1: 757563347
+    m_lastTimePart2: -1999290584
+    List: []
+  ExpandedItems: []
+  m_lastPopulateTimePsrt1: 0
+  m_lastPopulateTimePart2: 0
+  autoPopulateEnabled: 1
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  callbackManagerBufferSize: 4
