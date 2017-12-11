@@ -12,7 +12,6 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	MenuMovementBehaviour menuMovementBehaviour;
 	UIManager uiManager;
 	GameManager gameManager;
-	AudioManager audioManager;
 	GameObject pressStart;
 	GameObject menuBackground;
 	GameObject mainMenu;
@@ -30,7 +29,6 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	void Start () {
 		uiManager = UIManager.Instance;
 		gameManager = GameManager.Instance;
-		audioManager = AudioManager.Instance;
 		pressStart = transform.Find ("PressStart").gameObject;
 		menuBackground = transform.Find ("GeneralBackground").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;
@@ -41,6 +39,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		countdown = transform.Find ("Countdown").gameObject;
 		laserAdvice = transform.Find ("LaserAdvice").gameObject;
 		gameManager.PressStartButton ();
+		AkSoundEngine.SetSwitch ("Solo", "first_screen",gameObject);
+		AkSoundEngine.PostEvent ("Menu_music", gameObject);
+		Debug.Log ("Call to first_screen");
 		Cursor.visible = false;
 	}
 
@@ -49,6 +50,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		menuBackground.SetActive (true);
 		mainMenu.SetActive (true);
 		menuMovementBehaviour.MainMenuOptionsNavigation(0);
+		AkSoundEngine.SetSwitch ("Solo", "main_screen",gameObject);
+		//AkSoundEngine.PostEvent ("Menu_music", gameObject);
+		Debug.Log ("Call to MainScreen");
 	}
 
 	public void CharacterSelectionFinished(){
@@ -59,6 +63,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		roundsSelect.SetActive (true);
 		menuMovementBehaviour.RoundSelectionNavigation (1);
 		StartCoroutine (gameManager.RoundSelection ());
+		AkSoundEngine.SetSwitch ("Solo", "election_amount_deads",gameObject);
+		//AkSoundEngine.PostEvent ("Menu_music", gameObject);
+		Debug.Log ("Call to election_amount_deads");
 	}
 	public void RoundsSelect(){
 		//Clear data
@@ -77,6 +84,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		characterSelect.SetActive (true);
 		menuMovementBehaviour.StopMainMenuSelection ();
 		StartCoroutine(gameManager.CharSelection ());
+		AkSoundEngine.SetSwitch ("Solo", "election_character",gameObject);
+		//AkSoundEngine.PostEvent ("Menu_music", gameObject);
+		Debug.Log ("Call to election_character");
 	}
 
 	private void ClearSelectorsData(){
@@ -119,7 +129,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void BackToMain(){
 		mainMenu.SetActive (true);
 		menuBackground.SetActive (true);
-		audioManager.MainMenuMusic ();
+		//audioManager.MainMenuMusic ();
 		menuMovementBehaviour.MainMenuOptionsNavigation(0);
 	}
 	public void ShowCountdown(float time){

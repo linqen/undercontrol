@@ -28,7 +28,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	List<int> negativeScores = new List<int> ();
 	MenuManager menuManager;
 	UIManager uiManager;
-	AudioManager audioManager;
+	//AudioManager audioManager;
 	PowerUpManager powerUpManager;
 	bool isTwoPlayersGame = false;
 	int deadPlayers=0;
@@ -43,7 +43,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	void Start(){
 		powerUpManager = PowerUpManager.Instance;
 		uiManager = UIManager.Instance;
-		audioManager = AudioManager.Instance;
+		//audioManager = AudioManager.Instance;
 		menuManager = MenuManager.Instance;
 		menuManager.SetPossiblePlayers (possiblePlayers);
 	}
@@ -99,7 +99,8 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		playerObject.SetActive (false);
 		deathReportPlayers.Add (playerObject);
 		deathReportKilledBy.Add (killedByPlayerNumber);
-		audioManager.DeathSound ();
+		//audioManager.DeathSound ();
+
 		if (startedDeathsReport != null) {
 			StopCoroutine (startedDeathsReport);
 		}
@@ -213,7 +214,8 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	public void GameStart(int sceneIndex, int numberOfRounds){
 		this.numberOfRounds = numberOfRounds;
 		if (players.Count > 2) {isTwoPlayersGame = false;} else {isTwoPlayersGame = true;}
-		audioManager.InGameMusic ();
+		//audioManager.InGameMusic ();
+
 		StartCoroutine (OnGameStart (sceneIndex));
 	}
 	private IEnumerator OnGameStart(int sceneIndex){
@@ -287,7 +289,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 							playersReady++;
 							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
 							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos-1];
-							audioManager.SelectedPlayerSound();
+							//audioManager.SelectedPlayerSound();
 						}
 						if (players.Count>=2&&
 							playersReady==players.Count) {
@@ -363,11 +365,13 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	//Previews Managment
 	public void GetNextUnusedPlayer(PlayerPreview actualPreview){
 		menuManager.GoNextPreview (actualPreview);
-		audioManager.ChoosingPlayerSoundRight ();
+		//audioManager.ChoosingPlayerSoundRight ();
+
 	}
 	public void GetPreviousUnusedPlayer(PlayerPreview actualPreview){
 		menuManager.GoPreviousPreview (actualPreview);
-		audioManager.ChoosingPlayerSoundLeft ();
+		//audioManager.ChoosingPlayerSoundLeft ();
+
 	}
 	//Previews Managment
 }

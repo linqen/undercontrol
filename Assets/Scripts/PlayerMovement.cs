@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour {
 	private bool touchingWallAtRight=false;
 	private bool isCharSelection=false;
 	private GameManager gameManager;
-	private AudioManager audioManager;
 	private int inputNumber;
 	private Coroutine exitGroundJump=null;
 	private Coroutine fasterMovement=null;
@@ -73,7 +72,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Start(){
 		moveVelocity = originalMoveVelocity;
-		audioManager = AudioManager.Instance;
 		InputManager.Devices [inputNumber].LeftStickX.LowerDeadZone = analogDeadZone;
 		InputManager.Devices [inputNumber].LeftStickY.LowerDeadZone = analogDeadZone;
 	}
@@ -149,7 +147,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (jump) {
 			if (jumpingTime > jumpingSince&&canJump==true) {
 				if (jumpingSince == 0) {
-					audioManager.PlayerJumping ();
+					//audioManager.PlayerJumping ();
 				}
 				jumpingSince += Time.deltaTime;
 				rigid.velocity = new Vector2 (rigid.velocity.x, jumpForce * (jumpingTime - jumpingSince));
@@ -203,7 +201,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (contact.normal == Vector2.up) {
 				ResetHangingValues ();
 				grounded = true;
-				audioManager.PlayerTouchFloor ();
+				//audioManager.PlayerTouchFloor ();
 				if (!jump) {
 					canJump = true;
 				}
@@ -216,7 +214,7 @@ public class PlayerMovement : MonoBehaviour {
 			else if (contact.normal == Vector2.down) {
 				ResetHangingValues ();
 				jumpingSince = jumpingTime;
-				audioManager.PlayerHitRoof ();
+				//audioManager.PlayerHitRoof ();
 			} 
 			else{
 				float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.GetRawValue();

@@ -15,50 +15,9 @@ MonoBehaviour:
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
-    Guid: '{0148F0B5-C6DD-442E-B118-801E4D1E9C14}'
-    m_lastTimePsrt1: 509902849
-    m_lastTimePart2: -1999290570
-    List:
-    - Name: bomb
-      Path: Default Work Unit\bomb
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: bomb
-        ObjectType: 3
-      ID: 1727945837
-      Guid: 95b45c459fd90449b734af663880b25a
-      maxAttenuation: 0
-    - Name: jump
-      Path: Default Work Unit\jump
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: jump
-        ObjectType: 3
-      ID: -461315959
-      Guid: e3c1865cd7c8bd4c9955d8c9528e71fb
-      maxAttenuation: 0
-  AuxBusWwu:
-  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    Guid: '{973D4744-7A1E-4EF3-9A46-71EFF95E874F}'
-    m_lastTimePsrt1: 756892005
-    m_lastTimePart2: -1999290584
-    List: []
-  StateWwu:
-  - PhysicalPath: States\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    Guid: '{A9C3E215-78C7-4FF9-9280-8BFC9B859C54}'
-    m_lastTimePsrt1: 757118031
-    m_lastTimePart2: -1999290584
-    List: []
-  SwitchWwu:
-  - PhysicalPath: Switches\Default Work Unit.wwu
-    ParentPhysicalPath: 
-    Guid: '{603BBEFE-5027-4E20-8FA7-D07FA206ADA8}'
-    m_lastTimePsrt1: 509773031
-    m_lastTimePart2: -1999290570
+    Guid: '{4F23A46F-AA27-4D2B-94C1-551658A511E3}'
+    m_lastTimePsrt1: 2076763306
+    m_lastTimePart2: -1999290298
     List:
     - Name: Bomb
       Path: Default Work Unit\Bomb
@@ -66,52 +25,153 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: Bomb
+        ObjectType: 3
+      ID: 1727945837
+      Guid: 1201f79a03c5d34cac90d39410a91abc
+      maxAttenuation: 0
+    - Name: Menu_music
+      Path: Default Work Unit\Menu_music
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Menu_music
+        ObjectType: 3
+      ID: -239400236
+      Guid: 91cd5a80b608d040b93bdc1e5ebf21ff
+      maxAttenuation: 0
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{01A0812D-A38E-4EFE-856D-093B31E38164}'
+    m_lastTimePsrt1: 772651808
+    m_lastTimePart2: -1999290333
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{27DA635E-672C-42CE-A87B-DD48C6191EF8}'
+    m_lastTimePsrt1: 1433420624
+    m_lastTimePart2: -1999290142
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{0EA0F867-D04E-4B3A-9DC0-29220E0C151F}'
+    m_lastTimePsrt1: 1043555687
+    m_lastTimePart2: -1999290313
+    List: []
+  - PhysicalPath: Switches\In game.wwu
+    ParentPhysicalPath: 
+    Guid: '{2F492295-7C4B-43B6-8EC3-E7B651E0E0DF}'
+    m_lastTimePsrt1: 1043615603
+    m_lastTimePart2: -1999290313
+    List:
+    - Name: Bomb
+      Path: In game\Bomb
+      PathAndIcons:
+      - ElementName: In game
+        ObjectType: 12
+      - ElementName: Bomb
         ObjectType: 11
       ID: 1727945837
-      Guid: 81932a695f9d0c4195ad03c56c149c66
+      Guid: 515327a554580848a114a3a5d0f922dc
       values:
-      - Bomb
+      - bomb
       - Pre_bomb
       ValueIcons:
-      - ElementName: Bomb
+      - ElementName: bomb
         ObjectType: 10
       - ElementName: Pre_bomb
         ObjectType: 10
       valueIDs: 6d5cfe66bbd40531
       ValueGuids:
-      - bytes: e22cebfa44a9594e92986d09f081d2b0
-      - bytes: b2c912defbb0c442bac5ce9ec2475b23
+      - bytes: 386bb68aafc18542b2f4bc7305aca1d3
+      - bytes: e667ef52c13e7341a0c27b89d835e4d3
+  - PhysicalPath: Switches\Menu Music.wwu
+    ParentPhysicalPath: 
+    Guid: '{6E420C6A-0D5A-4C6D-B409-639C2C155020}'
+    m_lastTimePsrt1: -1590428934
+    m_lastTimePart2: -1999290315
+    List:
+    - Name: Solo
+      Path: Menu Music\Solo
+      PathAndIcons:
+      - ElementName: Menu Music
+        ObjectType: 12
+      - ElementName: Solo
+        ObjectType: 11
+      ID: 771268296
+      Guid: 25b78ff243da074d89397d5dffb517e7
+      values:
+      - election_amount_deads
+      - election_character
+      - first_screen
+      - Main_Screen
+      ValueIcons:
+      - ElementName: election_amount_deads
+        ObjectType: 10
+      - ElementName: election_character
+        ObjectType: 10
+      - ElementName: first_screen
+        ObjectType: 10
+      - ElementName: Main_Screen
+        ObjectType: 10
+      valueIDs: 23f317c0f848b93418ae463525308a1b
+      ValueGuids:
+      - bytes: c21ad64d5cd0c642a561ecac553a07c9
+      - bytes: 53a922a45debb14081baee1c692f5c4e
+      - bytes: 23b5828abe2764499e6b1b404bcb605a
+      - bytes: b2bfad3b02bce44dbbe8cf0d8042759a
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
-    Guid: '{E96542B2-16C9-4FDD-866A-A54DBE0A75F1}'
-    m_lastTimePsrt1: -796852357
-    m_lastTimePart2: -1999290521
+    Guid: '{8F09AC25-D05F-4379-AEA4-BF9061FF5089}'
+    m_lastTimePsrt1: 2076838358
+    m_lastTimePart2: -1999290298
     List:
-    - Name: Under_control
-      Path: Default Work Unit\Under_control
+    - Name: In_game
+      Path: Default Work Unit\In_game
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Under_control
+      - ElementName: In_game
         ObjectType: 7
-      ID: -1639715205
-      Guid: 600ee97053bb2c4c9771fb2aeb9ca7e1
+      ID: -1327420791
+      Guid: 243f0454dee6d049b4b19a5d8dfc3e7b
+    - Name: Menu
+      Path: Default Work Unit\Menu
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Menu
+        ObjectType: 7
+      ID: -1687411216
+      Guid: e3c9b1d41d125a41b7e249673dd354dc
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
-    Guid: '{07DF236F-B825-4B66-933B-DC22E7022100}'
-    m_lastTimePsrt1: 757233111
-    m_lastTimePart2: -1999290584
+    Guid: '{B8E4EAA1-9D31-463C-AA93-DB41D54DDFEA}'
+    m_lastTimePsrt1: 771554043
+    m_lastTimePart2: -1999290333
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
-    Guid: '{188B86CC-554C-4142-A1C7-890CC0DDE66C}'
-    m_lastTimePsrt1: 757563347
-    m_lastTimePart2: -1999290584
+    Guid: '{8D07D0D4-8CAF-4805-9C2A-32A1ED6857A4}'
+    m_lastTimePsrt1: 771609135
+    m_lastTimePart2: -1999290333
     List: []
-  ExpandedItems: []
+  ExpandedItems:
+  - /Under Control original
+  - /Under Control original/Events
+  - /Under Control original/Events/Default Work Unit
+  - /Under Control original/SoundBanks
+  - /Under Control original/SoundBanks/Default Work Unit
+  - /Under Control original/Switches
+  - /Under Control original/Switches/In game
+  - /Under Control original/Switches/In game/Bomb
+  - /Under Control original/Switches/Menu Music
+  - /Under Control original/Switches/Menu Music/Solo
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1

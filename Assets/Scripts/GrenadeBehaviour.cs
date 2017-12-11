@@ -13,7 +13,6 @@ public class GrenadeBehaviour : MonoBehaviour {
 	public Sprite[] grenades;
 
 	Animator animator;
-	AudioManager audioManager;
 	float timeLived;
 	int throwedByPlayerNumber;
 	int grenadeOfCharacterNumber;
@@ -29,10 +28,10 @@ public class GrenadeBehaviour : MonoBehaviour {
 	}
 
 	void Start () {
-		audioManager = AudioManager.Instance;
 		timeLived = 0.0f;
 		oldPos = transform.position;
-		audioManager.GrenadeExplode ();
+		AkSoundEngine.SetSwitch ("Bomb", "Pre_bomb", gameObject);
+		AkSoundEngine.PostEvent ("Bomb", gameObject);
 		//spriteRender.sprite = grenades [grenadeOfCharacterNumber-1];
 		animator.SetInteger("CharacterNumber", grenadeOfCharacterNumber);
 	}
@@ -69,6 +68,8 @@ public class GrenadeBehaviour : MonoBehaviour {
 	}
 
 	void Explode(){
+		AkSoundEngine.SetSwitch ("Bomb", "bomb", gameObject);
+		//AkSoundEngine.PostEvent ("Bomb", gameObject);
 		animator.SetBool("Twinkle", false);
 		myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
 		Collider2D[] cols = Physics2D.OverlapCircleAll (transform.position, radius);
