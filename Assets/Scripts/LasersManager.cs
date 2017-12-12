@@ -42,7 +42,7 @@ public class LasersManager : MonoBehaviour {
 	void EnableLasers(){
 		gameManager.LasersComming ();
 		suddenDeath=true;
-		//audioManager.StartInGameLaserSound ();
+		AkSoundEngine.PostEvent("StartInGameLaserSound",gameObject);
 	}
 
 	public void RestartLasersPositions(){
@@ -52,7 +52,16 @@ public class LasersManager : MonoBehaviour {
 
 	public void DisableLasers(){
 		CancelInvoke ();
+		AkSoundEngine.PostEvent("StopInGameLaserSound",gameObject);
 		suddenDeath=false;
-		//audioManager.StopInGameLaserSound ();
+	}
+
+	public bool SuddenDeath {
+		get {
+			return this.suddenDeath;
+		}
+		set {
+			suddenDeath = value;
+		}
 	}
 }

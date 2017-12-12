@@ -21,6 +21,8 @@ public class UIManager : GenericSingletonClass<UIManager> {
 	private int playerInputNumber;
 	private List<GameObject> charactersKills=new List<GameObject>();
 	private List<PlayerPreview> playersPreviews = new List<PlayerPreview>();
+	private uint lastMusicSwitchPauseState = 0;
+	private uint lastMusicSwitchScoreState = 0;
 	new void Awake(){
 		base.Awake ();
 	}
@@ -85,7 +87,12 @@ public class UIManager : GenericSingletonClass<UIManager> {
 				childrensImages [j-1].SetActive (false);
 			}
 		}
+		AkSoundEngine.GetSwitch ("InGameMusic", gameObject, out lastMusicSwitchScoreState);
+		AkSoundEngine.SetSwitch("InGameMusic","Score",gameObject);
 		yield return new WaitForSeconds (time);
+
+		AkSoundEngine.SetSwitch(AkSoundEngine.GetIDFromString("InGameMusic"),lastMusicSwitchScoreState,gameObject);
+
 		for (int i = 0; i < scores.Count; i++) {			
 			charactersKills [i].SetActive (false);
 		}
@@ -98,6 +105,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 				//Move up
 				if (pauseButtonSelectionPosition > 0) {
 					pauseButtonSelectionPosition--;
+					AkSoundEngine.PostEvent("Play_ChoosingMenuSoundUpOnPause",gameObject);
 				}
 			}
 
@@ -105,6 +113,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 				//Move Down
 				if (pauseButtonSelectionPosition < pauseMenuButtons.Count-1) {
 					pauseButtonSelectionPosition++;
+					AkSoundEngine.PostEvent("Play_ChoosingMenuSoundDownOnPause",gameObject);
 				}
 			}
 
@@ -119,12 +128,17 @@ public class UIManager : GenericSingletonClass<UIManager> {
 
 	public void PauseGame(int rplayerInputNumber){
 		if (gameManager.PauseGame ()) {
+			AkSoundEngine.GetSwitch ("InGameMusic", gameObject, out lastMusicSwitchPauseState);
+			AkSoundEngine.SetSwitch("InGameMusic","PauseMusic",gameObject);
 			playerInputNumber = rplayerInputNumber;
 			EventSystem.current.sendNavigationEvents = false;
 			gamePaused = true;
 			pausePanel.gameObject.SetActive (true);
 			EventSystem.current.SetSelectedGameObject (null);
 			EventSystem.current.SetSelectedGameObject (pauseMenuButtons [0].gameObject);
+			if (gameManager.GetLaserManager ().SuddenDeath == true) {
+				AkSoundEngine.PostEvent("PauseInGameLaserSound",gameObject);
+			}
 		} else if(gamePaused) {
 			UnPauseGame ();
 		}
@@ -137,6 +151,12 @@ public class UIManager : GenericSingletonClass<UIManager> {
 		EventSystem.current.SetSelectedGameObject (pauseMenuButtons [pauseButtonSelectionPosition].gameObject);
 		gamePaused = false;
 		pausePanel.gameObject.SetActive (false);
+		AkSoundEngine.SetSwitch(AkSoundEngine.GetIDFromString("InGameMusic"),lastMusicSwitchPauseState,gameObject);
+
+		if (gameManager.GetLaserManager ().SuddenDeath == true) {
+			AkSoundEngine.PostEvent("StartInGameLaserSound",gameObject);
+		}
+
 		gameManager.UnPauseGame ();
 	}
 

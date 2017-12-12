@@ -48,6 +48,7 @@ public class MenuMovementBehaviour : MonoBehaviour {
 					//Move up
 					if (actualPos > 0) {
 						actualPos--;
+						AkSoundEngine.PostEvent ("ChoosingMenuSoundUp", gameObject);
 						EventSystem.current.SetSelectedGameObject (mainMenuOptions [actualPos]);
 					}
 				}
@@ -56,11 +57,13 @@ public class MenuMovementBehaviour : MonoBehaviour {
 					//Move Down
 					if (actualPos < mainMenuOptions.Count-1) {
 						actualPos++;
+						AkSoundEngine.PostEvent ("ChoosingMenuSoundDown", gameObject);
 						EventSystem.current.SetSelectedGameObject (mainMenuOptions [actualPos]);
 					}
 				}
 
 				if (InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
+					AkSoundEngine.PostEvent ("SelectedMenuSound", gameObject);
 					mainMenuOptions [actualPos].GetComponent<Button> ().onClick.Invoke ();
 				}
 
@@ -80,6 +83,7 @@ public class MenuMovementBehaviour : MonoBehaviour {
 				if (InputManager.Devices [i].DPadLeft.WasPressed) {
 					if (actualPos > 0) {
 						actualPos--;
+						AkSoundEngine.PostEvent ("ChoosingAmountsOfDeadsSoundLeft", gameObject);
 						EventSystem.current.SetSelectedGameObject (possibleRoundsToSelect [actualPos]);
 					}
 				}
@@ -87,6 +91,7 @@ public class MenuMovementBehaviour : MonoBehaviour {
 				if (InputManager.Devices [i].DPadRight.WasPressed) {
 					if (actualPos < mainMenuOptions.Count-1) {
 						actualPos++;
+						AkSoundEngine.PostEvent ("ChoosingAmountsOfDeadsSoundRight", gameObject);
 						EventSystem.current.SetSelectedGameObject (possibleRoundsToSelect [actualPos]);
 					}
 				}

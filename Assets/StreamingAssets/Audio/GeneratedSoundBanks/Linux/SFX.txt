@@ -1,0 +1,18 @@
+Event	ID	Name			Wwise Object Path	Notes
+	409491284	ChoosingMenuSoundUp			\Default Work Unit\SFXMenu\ChoosingMenuSoundUp	
+	738322899	ChoosingMenuSoundDown			\Default Work Unit\SFXMenu\ChoosingMenuSoundDown	
+	1654317064	SelectedMenuSound			\Default Work Unit\SFXMenu\SelectedMenuSound	
+	1723066554	SelectedPlayerSound			\Default Work Unit\SFXMenu\SelectedPlayerSound	
+	1739783239	ChoosingAmountsOfDeadsSoundRight			\Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundRight	
+	2361953264	ChoosingAmountsOfDeadsSoundLeft			\Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundLeft	
+	3701262634	ChoosingPlayerSoundLeft			\Default Work Unit\SFXMenu\ChoosingPlayerSoundLeft	
+	4098349729	ChoosingPlayerSoundRight			\Default Work Unit\SFXMenu\ChoosingPlayerSoundRight	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	84271685	ChoosingMenuSoundDown	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\eleccion abajo_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundDown		122614
+	241922250	ChoosingPlayerSoundLeft	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\eleccion personaje izquierda_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingPlayerSoundLeft		52316
+	291197529	SelectedPlayerSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\eleccion personaje_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedPlayerSound		75956
+	496932970	ChoosingMenuSoundUp	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\eleccion arriba_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundUp		48972
+	720634926	ChoosingPlayerSoundRight	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\Eleccion personaje derecha_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingPlayerSoundRight		57276
+	1023411496	SelectedMenuSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\eleccion menu_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedMenuSound		70862
+

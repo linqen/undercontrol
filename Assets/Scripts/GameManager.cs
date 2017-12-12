@@ -28,7 +28,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	List<int> negativeScores = new List<int> ();
 	MenuManager menuManager;
 	UIManager uiManager;
-	//AudioManager audioManager;
 	PowerUpManager powerUpManager;
 	bool isTwoPlayersGame = false;
 	int deadPlayers=0;
@@ -43,7 +42,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	void Start(){
 		powerUpManager = PowerUpManager.Instance;
 		uiManager = UIManager.Instance;
-		//audioManager = AudioManager.Instance;
 		menuManager = MenuManager.Instance;
 		menuManager.SetPossiblePlayers (possiblePlayers);
 	}
@@ -99,8 +97,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		playerObject.SetActive (false);
 		deathReportPlayers.Add (playerObject);
 		deathReportKilledBy.Add (killedByPlayerNumber);
-		//audioManager.DeathSound ();
-
+		AkSoundEngine.PostEvent("DeathSound",gameObject);
 		if (startedDeathsReport != null) {
 			StopCoroutine (startedDeathsReport);
 		}
@@ -214,7 +211,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	public void GameStart(int sceneIndex, int numberOfRounds){
 		this.numberOfRounds = numberOfRounds;
 		if (players.Count > 2) {isTwoPlayersGame = false;} else {isTwoPlayersGame = true;}
-		//audioManager.InGameMusic ();
 
 		StartCoroutine (OnGameStart (sceneIndex));
 	}
@@ -225,6 +221,16 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			SceneManager.LoadScene (sceneIndex,LoadSceneMode.Additive);
 			loadStarted = true;
 			yield return null;
+		}
+
+		if (actualSceneIndex == 1) {
+			AkSoundEngine.SetSwitch("InGameMusic","LevelQuiet",menuManager.gameObject);
+		}
+		else if (actualSceneIndex == 2) {
+			AkSoundEngine.SetSwitch ("InGameMusic", "LevelNormal", menuManager.gameObject);
+		}
+		else if (actualSceneIndex == 3) {
+			AkSoundEngine.SetSwitch ("InGameMusic", "LevelNervous", menuManager.gameObject);
 		}
 
 		GameObject arrowPointer = GameObject.FindWithTag ("ArrowPointer");
@@ -289,7 +295,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 							playersReady++;
 							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
 							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos-1];
-							//audioManager.SelectedPlayerSound();
 						}
 						if (players.Count>=2&&
 							playersReady==players.Count) {
@@ -362,15 +367,17 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			players [i].GetComponent<PlayerMovement> ().StopCharSelection();
 		}
 	}
+
+	public LasersManager GetLaserManager(){
+		return lasersManager;
+	}
 	//Previews Managment
 	public void GetNextUnusedPlayer(PlayerPreview actualPreview){
 		menuManager.GoNextPreview (actualPreview);
-		//audioManager.ChoosingPlayerSoundRight ();
 
 	}
 	public void GetPreviousUnusedPlayer(PlayerPreview actualPreview){
 		menuManager.GoPreviousPreview (actualPreview);
-		//audioManager.ChoosingPlayerSoundLeft ();
 
 	}
 	//Previews Managment

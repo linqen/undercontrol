@@ -16,162 +16,515 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{4F23A46F-AA27-4D2B-94C1-551658A511E3}'
-    m_lastTimePsrt1: 2076763306
-    m_lastTimePart2: -1999290298
+    m_lastTimePsrt1: 1355551608
+    m_lastTimePart2: -1999290084
     List:
-    - Name: Bomb
-      Path: Default Work Unit\Bomb
+    - Name: BrokenShield
+      Path: Default Work Unit\SFXInGame\BrokenShield
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Bomb
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: BrokenShield
         ObjectType: 3
-      ID: 1727945837
+      ID: 319302521
+      Guid: b7ef7a42d2f5394ba64c6155cd14b7cc
+      maxAttenuation: 0
+    - Name: ChoosingAmountsOfDeadsSoundLeft
+      Path: Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundLeft
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: ChoosingAmountsOfDeadsSoundLeft
+        ObjectType: 3
+      ID: -1933014032
+      Guid: 887857bda0c4e1478ee0610a4f9be4b8
+      maxAttenuation: 0
+    - Name: ChoosingAmountsOfDeadsSoundRight
+      Path: Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundRight
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: ChoosingAmountsOfDeadsSoundRight
+        ObjectType: 3
+      ID: 1739783239
+      Guid: 157207f6018f5b4aa04f31a1e728c76a
+      maxAttenuation: 0
+    - Name: ChoosingMenuSoundDown
+      Path: Default Work Unit\SFXMenu\ChoosingMenuSoundDown
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: ChoosingMenuSoundDown
+        ObjectType: 3
+      ID: 738322899
+      Guid: 29c223d082b50646aa148b84b3a0067c
+      maxAttenuation: 0
+    - Name: ChoosingMenuSoundUp
+      Path: Default Work Unit\SFXMenu\ChoosingMenuSoundUp
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: ChoosingMenuSoundUp
+        ObjectType: 3
+      ID: 409491284
+      Guid: f0dd60fd040b244bb9f350866e38f438
+      maxAttenuation: 0
+    - Name: ChoosingPlayerSoundLeft
+      Path: Default Work Unit\SFXMenu\ChoosingPlayerSoundLeft
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: ChoosingPlayerSoundLeft
+        ObjectType: 3
+      ID: -593704662
+      Guid: 5f071071998e3040b2a52bf153376350
+      maxAttenuation: 0
+    - Name: ChoosingPlayerSoundRight
+      Path: Default Work Unit\SFXMenu\ChoosingPlayerSoundRight
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: ChoosingPlayerSoundRight
+        ObjectType: 3
+      ID: -196617567
+      Guid: 0f9c47abad58bc47ba02a88b403f021a
+      maxAttenuation: 0
+    - Name: DeathSound
+      Path: Default Work Unit\SFXInGame\DeathSound
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: DeathSound
+        ObjectType: 3
+      ID: -552591402
+      Guid: e8439ba7fd79674fa3fb43f5ca9a8b82
+      maxAttenuation: 0
+    - Name: Grenade
+      Path: Default Work Unit\SFXInGame\Grenade
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: Grenade
+        ObjectType: 3
+      ID: -1039281115
       Guid: 1201f79a03c5d34cac90d39410a91abc
       maxAttenuation: 0
-    - Name: Menu_music
-      Path: Default Work Unit\Menu_music
+    - Name: InGameMusic
+      Path: Default Work Unit\Music\InGameMusic
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
+      - ElementName: Music
+        ObjectType: 4
+      - ElementName: InGameMusic
+        ObjectType: 3
+      ID: 1545821079
+      Guid: 322fed498ca25c4db1281d93e97b2e64
+      maxAttenuation: 0
+    - Name: Menu_music
+      Path: Default Work Unit\Music\Menu_music
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Music
+        ObjectType: 4
       - ElementName: Menu_music
         ObjectType: 3
       ID: -239400236
       Guid: 91cd5a80b608d040b93bdc1e5ebf21ff
       maxAttenuation: 0
+    - Name: PauseInGameLaserSound
+      Path: Default Work Unit\SFXInGame\LaserSound\PauseInGameLaserSound
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: LaserSound
+        ObjectType: 4
+      - ElementName: PauseInGameLaserSound
+        ObjectType: 3
+      ID: 724697420
+      Guid: aad3b7e3e4a9e548acce343b24b70e3f
+      maxAttenuation: 0
+    - Name: PickUpPowerUpAntiGravity
+      Path: Default Work Unit\SFXInGame\PickUpPowerUpAntiGravity
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: PickUpPowerUpAntiGravity
+        ObjectType: 3
+      ID: -60931337
+      Guid: 23bd81a5ad5579478bfeab9133a63fd4
+      maxAttenuation: 0
+    - Name: PickUpPowerUpFastGranade
+      Path: Default Work Unit\SFXInGame\PickUpPowerUpFastGranade
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: PickUpPowerUpFastGranade
+        ObjectType: 3
+      ID: -914827399
+      Guid: 4c9a185053780047bb129da29fbbe846
+      maxAttenuation: 0
+    - Name: PickUpPowerUpFastRunning
+      Path: Default Work Unit\SFXInGame\PickUpPowerUpFastRunning
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: PickUpPowerUpFastRunning
+        ObjectType: 3
+      ID: -610573854
+      Guid: ea7993ce3acc7545a914e1f2d7ffd625
+      maxAttenuation: 0
+    - Name: PickUpPowerUpShieldRecovered
+      Path: Default Work Unit\SFXInGame\PickUpPowerUpShieldRecovered
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: PickUpPowerUpShieldRecovered
+        ObjectType: 3
+      ID: -1672727185
+      Guid: a095328d15b4964e9b63926337f44eea
+      maxAttenuation: 0
+    - Name: Play_ChoosingMenuSoundDownOnPause
+      Path: Default Work Unit\SFXInGame\Play_ChoosingMenuSoundDownOnPause
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: Play_ChoosingMenuSoundDownOnPause
+        ObjectType: 3
+      ID: 1194044973
+      Guid: 6860a73af8c85145a08874518025e5a9
+      maxAttenuation: 0
+    - Name: Play_ChoosingMenuSoundUpOnPause
+      Path: Default Work Unit\SFXInGame\Play_ChoosingMenuSoundUpOnPause
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: Play_ChoosingMenuSoundUpOnPause
+        ObjectType: 3
+      ID: 1992436608
+      Guid: 328c0d90455e214f86e8258fbc0989e9
+      maxAttenuation: 0
+    - Name: PlayerTouchFloor
+      Path: Default Work Unit\SFXInGame\PlayerTouchFloor
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: PlayerTouchFloor
+        ObjectType: 3
+      ID: 1185697611
+      Guid: c2265c6bb6df0c4e8b0881ee45753eb6
+      maxAttenuation: 0
+    - Name: SelectedMenuSound
+      Path: Default Work Unit\SFXMenu\SelectedMenuSound
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: SelectedMenuSound
+        ObjectType: 3
+      ID: 1654317064
+      Guid: 75904caf37e8564680b647f1abe7307f
+      maxAttenuation: 0
+    - Name: SelectedPlayerSound
+      Path: Default Work Unit\SFXMenu\SelectedPlayerSound
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: SelectedPlayerSound
+        ObjectType: 3
+      ID: 1723066554
+      Guid: 6ae085b949b98b4ab75e1cb360c1bdca
+      maxAttenuation: 0
+    - Name: StartInGameLaserSound
+      Path: Default Work Unit\SFXInGame\LaserSound\StartInGameLaserSound
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: LaserSound
+        ObjectType: 4
+      - ElementName: StartInGameLaserSound
+        ObjectType: 3
+      ID: -605699214
+      Guid: 67dcccb320009c47ad191a9c58b743a8
+      maxAttenuation: 0
+    - Name: state
+      Path: Default Work Unit\Music\state
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Music
+        ObjectType: 4
+      - ElementName: state
+        ObjectType: 3
+      ID: 1382476432
+      Guid: f581715d94abfa48ba507fd8649a771f
+      maxAttenuation: 0
+    - Name: StopInGameLaserSound
+      Path: Default Work Unit\SFXInGame\LaserSound\StopInGameLaserSound
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: LaserSound
+        ObjectType: 4
+      - ElementName: StopInGameLaserSound
+        ObjectType: 3
+      ID: -1024251452
+      Guid: 4210c9e6aa707f489c3b64b4001dc711
+      maxAttenuation: 0
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{01A0812D-A38E-4EFE-856D-093B31E38164}'
-    m_lastTimePsrt1: 772651808
-    m_lastTimePart2: -1999290333
+    m_lastTimePsrt1: -1566913054
+    m_lastTimePart2: -1999290105
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{27DA635E-672C-42CE-A87B-DD48C6191EF8}'
-    m_lastTimePsrt1: 1433420624
-    m_lastTimePart2: -1999290142
-    List: []
+    m_lastTimePsrt1: 2084192021
+    m_lastTimePart2: -1999290092
+    List:
+    - Name: StateOfMusic
+      Path: Default Work Unit\StateOfMusic
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: StateOfMusic
+        ObjectType: 9
+      ID: 1376496616
+      Guid: 6cc46885fcb8304dbac649af2fabff64
+      values:
+      - InGame
+      - Menu
+      - None
+      ValueIcons:
+      - ElementName: InGame
+        ObjectType: 8
+      - ElementName: Menu
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      valueIDs: ba33b13af0256c9bdb3ba32c
+      ValueGuids:
+      - bytes: 98cd8e4f973fbc4ca72cba6c656165c4
+      - bytes: 490660e1582cab4e9dae3ff2da905e9c
+      - bytes: 103875f98a443642ae446e5f8dce366a
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{0EA0F867-D04E-4B3A-9DC0-29220E0C151F}'
-    m_lastTimePsrt1: 1043555687
-    m_lastTimePart2: -1999290313
+    m_lastTimePsrt1: -1566857923
+    m_lastTimePart2: -1999290105
     List: []
-  - PhysicalPath: Switches\In game.wwu
+  - PhysicalPath: Switches\InGameFx.wwu
     ParentPhysicalPath: 
     Guid: '{2F492295-7C4B-43B6-8EC3-E7B651E0E0DF}'
-    m_lastTimePsrt1: 1043615603
-    m_lastTimePart2: -1999290313
+    m_lastTimePsrt1: -1797578389
+    m_lastTimePart2: -1999290086
     List:
-    - Name: Bomb
-      Path: In game\Bomb
+    - Name: GrenadeExplode
+      Path: InGameFx\GrenadeExplode
       PathAndIcons:
-      - ElementName: In game
+      - ElementName: InGameFx
         ObjectType: 12
-      - ElementName: Bomb
+      - ElementName: GrenadeExplode
         ObjectType: 11
-      ID: 1727945837
+      ID: -573947056
       Guid: 515327a554580848a114a3a5d0f922dc
       values:
-      - bomb
-      - Pre_bomb
+      - GrenadeExplode
+      - LaunchingGrenade
       ValueIcons:
-      - ElementName: bomb
+      - ElementName: GrenadeExplode
         ObjectType: 10
-      - ElementName: Pre_bomb
+      - ElementName: LaunchingGrenade
         ObjectType: 10
-      valueIDs: 6d5cfe66bbd40531
+      valueIDs: 5043caddd2f34ad4
       ValueGuids:
       - bytes: 386bb68aafc18542b2f4bc7305aca1d3
       - bytes: e667ef52c13e7341a0c27b89d835e4d3
-  - PhysicalPath: Switches\Menu Music.wwu
+  - PhysicalPath: Switches\Music.wwu
     ParentPhysicalPath: 
     Guid: '{6E420C6A-0D5A-4C6D-B409-639C2C155020}'
-    m_lastTimePsrt1: -1590428934
-    m_lastTimePart2: -1999290315
+    m_lastTimePsrt1: -1566717920
+    m_lastTimePart2: -1999290105
     List:
-    - Name: Solo
-      Path: Menu Music\Solo
+    - Name: InGameMusic
+      Path: Music\InGameMusic
       PathAndIcons:
-      - ElementName: Menu Music
+      - ElementName: Music
         ObjectType: 12
-      - ElementName: Solo
+      - ElementName: InGameMusic
         ObjectType: 11
-      ID: 771268296
+      ID: 1545821079
+      Guid: 49733fe14c589f498d5da3da1c2eeeee
+      values:
+      - LevelNervous
+      - LevelNormal
+      - LevelQuiet
+      - PauseMusic
+      - Score
+      ValueIcons:
+      - ElementName: LevelNervous
+        ObjectType: 10
+      - ElementName: LevelNormal
+        ObjectType: 10
+      - ElementName: LevelQuiet
+        ObjectType: 10
+      - ElementName: PauseMusic
+        ObjectType: 10
+      - ElementName: Score
+        ObjectType: 10
+      valueIDs: 357debfc5827495b9fbd75d776c62d43811bf28e
+      ValueGuids:
+      - bytes: 4ffae7ae5e7cd44f930217fb4db48dab
+      - bytes: ee05ae9da600b2408e8dc1b738a3ed5b
+      - bytes: 4062230bf55844478e9eafa8b79cbd6f
+      - bytes: bc58d5f1269ee14188803b9a5f4d8007
+      - bytes: a8d3c1dda8ddd3479f7965f089457247
+    - Name: MainMenuMusic
+      Path: Music\MainMenuMusic
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: MainMenuMusic
+        ObjectType: 11
+      ID: 1991862712
       Guid: 25b78ff243da074d89397d5dffb517e7
       values:
-      - election_amount_deads
-      - election_character
-      - first_screen
-      - Main_Screen
+      - CharacterSelectionMenu
+      - CreditsMenu
+      - KillSelectionMenu
+      - MainMenu
+      - PressStartMenu
       ValueIcons:
-      - ElementName: election_amount_deads
+      - ElementName: CharacterSelectionMenu
         ObjectType: 10
-      - ElementName: election_character
+      - ElementName: CreditsMenu
         ObjectType: 10
-      - ElementName: first_screen
+      - ElementName: KillSelectionMenu
         ObjectType: 10
-      - ElementName: Main_Screen
+      - ElementName: MainMenu
         ObjectType: 10
-      valueIDs: 23f317c0f848b93418ae463525308a1b
+      - ElementName: PressStartMenu
+        ObjectType: 10
+      valueIDs: 5d135a12784f8f0ac4db44d55b8ddad673653a17
       ValueGuids:
-      - bytes: c21ad64d5cd0c642a561ecac553a07c9
       - bytes: 53a922a45debb14081baee1c692f5c4e
-      - bytes: 23b5828abe2764499e6b1b404bcb605a
+      - bytes: 1a55da427be89e449812f3f52dffe66f
+      - bytes: c21ad64d5cd0c642a561ecac553a07c9
       - bytes: b2bfad3b02bce44dbbe8cf0d8042759a
+      - bytes: 23b5828abe2764499e6b1b404bcb605a
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{8F09AC25-D05F-4379-AEA4-BF9061FF5089}'
-    m_lastTimePsrt1: 2076838358
-    m_lastTimePart2: -1999290298
+    m_lastTimePsrt1: 1355875249
+    m_lastTimePart2: -1999290084
     List:
-    - Name: In_game
-      Path: Default Work Unit\In_game
+    - Name: Music
+      Path: Default Work Unit\Music
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: In_game
+      - ElementName: Music
         ObjectType: 7
-      ID: -1327420791
-      Guid: 243f0454dee6d049b4b19a5d8dfc3e7b
-    - Name: Menu
-      Path: Default Work Unit\Menu
+      ID: -303024426
+      Guid: 27f43eaa1fbd3a4087112ba9f4d8c8d8
+    - Name: SFX
+      Path: Default Work Unit\SFX
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Menu
+      - ElementName: SFX
         ObjectType: 7
-      ID: -1687411216
-      Guid: e3c9b1d41d125a41b7e249673dd354dc
+      ID: 393239870
+      Guid: e1115f736328bd4c99e508068171d1bf
+    - Name: SFXInGame
+      Path: Default Work Unit\SFXInGame
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 7
+      ID: -1669980963
+      Guid: ffea87538ad1e746ba6c7da2c5311bff
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{B8E4EAA1-9D31-463C-AA93-DB41D54DDFEA}'
-    m_lastTimePsrt1: 771554043
-    m_lastTimePart2: -1999290333
+    m_lastTimePsrt1: -1563631713
+    m_lastTimePart2: -1999290105
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{8D07D0D4-8CAF-4805-9C2A-32A1ED6857A4}'
-    m_lastTimePsrt1: 771609135
-    m_lastTimePart2: -1999290333
+    m_lastTimePsrt1: -1563988352
+    m_lastTimePart2: -1999290105
     List: []
   ExpandedItems:
   - /Under Control original
   - /Under Control original/Events
   - /Under Control original/Events/Default Work Unit
+  - /Under Control original/Events/Default Work Unit/Music
+  - /Under Control original/Events/Default Work Unit/SFXInGame
+  - /Under Control original/Events/Default Work Unit/SFXInGame/LaserSound
+  - /Under Control original/Events/Default Work Unit/SFXMenu
   - /Under Control original/SoundBanks
   - /Under Control original/SoundBanks/Default Work Unit
+  - /Under Control original/States
+  - /Under Control original/States/Default Work Unit
+  - /Under Control original/States/Default Work Unit/StateOfMusic
   - /Under Control original/Switches
-  - /Under Control original/Switches/In game
-  - /Under Control original/Switches/In game/Bomb
-  - /Under Control original/Switches/Menu Music
-  - /Under Control original/Switches/Menu Music/Solo
+  - /Under Control original/Switches/InGameFx
+  - /Under Control original/Switches/InGameFx/GrenadeExplode
+  - /Under Control original/Switches/Music
+  - /Under Control original/Switches/Music/InGameMusic
+  - /Under Control original/Switches/Music/MainMenuMusic
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1

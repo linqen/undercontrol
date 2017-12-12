@@ -28,6 +28,7 @@ public class PlayerLife : MonoBehaviour {
 			hasShield = false;
 			shieldAnimator.SetBool ("hasShield", hasShield);
 			shieldAnimator.GetComponent<Renderer> ().enabled = hasShield;
+			AkSoundEngine.PostEvent ("BrokenShield", gameObject);
 		}else if (!hasShield) {
 			if (deathCall == null) {
 				deathCall = StartCoroutine (Death ());

@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (contact.normal == Vector2.up) {
 				ResetHangingValues ();
 				grounded = true;
-				//audioManager.PlayerTouchFloor ();
+				AkSoundEngine.PostEvent("PlayerTouchFloor",gameObject);
 				if (!jump) {
 					canJump = true;
 				}
@@ -214,7 +214,6 @@ public class PlayerMovement : MonoBehaviour {
 			else if (contact.normal == Vector2.down) {
 				ResetHangingValues ();
 				jumpingSince = jumpingTime;
-				//audioManager.PlayerHitRoof ();
 			} 
 			else{
 				float axisRawValue = InputManager.Devices[inputNumber].LeftStickX.GetRawValue();

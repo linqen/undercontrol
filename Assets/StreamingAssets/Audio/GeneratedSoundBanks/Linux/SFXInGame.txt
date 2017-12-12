@@ -1,0 +1,37 @@
+Event	ID	Name			Wwise Object Path	Notes
+	319302521	BrokenShield			\Default Work Unit\SFXInGame\BrokenShield	
+	724697420	PauseInGameLaserSound			\Default Work Unit\SFXInGame\LaserSound\PauseInGameLaserSound	
+	1185697611	PlayerTouchFloor			\Default Work Unit\SFXInGame\PlayerTouchFloor	
+	1194044973	Play_ChoosingMenuSoundDownOnPause			\Default Work Unit\SFXInGame\Play_ChoosingMenuSoundDownOnPause	
+	1992436608	Play_ChoosingMenuSoundUpOnPause			\Default Work Unit\SFXInGame\Play_ChoosingMenuSoundUpOnPause	
+	2622240111	PickUpPowerUpShieldRecovered			\Default Work Unit\SFXInGame\PickUpPowerUpShieldRecovered	
+	3255686181	Grenade			\Default Work Unit\SFXInGame\Grenade	
+	3270715844	StopInGameLaserSound			\Default Work Unit\SFXInGame\LaserSound\StopInGameLaserSound	
+	3380139897	PickUpPowerUpFastGranade			\Default Work Unit\SFXInGame\PickUpPowerUpFastGranade	
+	3684393442	PickUpPowerUpFastRunning			\Default Work Unit\SFXInGame\PickUpPowerUpFastRunning	
+	3689268082	StartInGameLaserSound			\Default Work Unit\SFXInGame\LaserSound\StartInGameLaserSound	
+	3742375894	DeathSound			\Default Work Unit\SFXInGame\DeathSound	
+	4234035959	PickUpPowerUpAntiGravity			\Default Work Unit\SFXInGame\PickUpPowerUpAntiGravity	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	3721020240	GrenadeExplode			\InGameFx\GrenadeExplode	
+
+Switch	ID	Name	Switch Group			Notes
+	3561681874	LaunchingGrenade	GrenadeExplode			
+	3721020240	GrenadeExplode	GrenadeExplode			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	33439540	pre bomb	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\pre bomb_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Final bomb\Bomb\pre bomb		189692
+	84271685	ChoosingMenuSoundDown	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\eleccion abajo_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundDown		122614
+	89159745	BrokenShield	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\escudo roto_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\BrokenShield		264064
+	171518248	PickUpPowerUpRunningFast	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\power up caminar rapidop_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\PickUpPowerUpRunningFast		168064
+	190048279	DeathSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\death v3_BEF642F7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\DeathSound		1858244
+	255682566	PickUpPowerUpShieldRecovered	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\power up Escudo recuperado_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\PickUpPowerUpShieldRecovered		720064
+	260928866	LaserSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\rayo _1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\LaserSound		1089096
+	435915239	PickUpPowerUpAntiGravity	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\power upantigravedad_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\PickUpPowerUpAntiGravity		384064
+	453701904	PlayerTouchFloor	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\fall_FD5CEE74.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\PlayerTouchFloor		97764
+	496932970	ChoosingMenuSoundUp	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\eleccion arriba_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundUp		48972
+	696776654	Bomb_01	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\Bomb_7CB48B09.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Final bomb\Bomb\bomb\Bomb_01		324464
+	904728019	Bomb	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\Bomb_E4CE45F6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Final bomb\Bomb\bomb\Bomb		309568
+	927386084	PickUpPowerUpFastGranade	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\power up granada rapida_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\PickUpPowerUpFastGranade		264064
+

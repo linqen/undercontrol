@@ -39,9 +39,8 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		countdown = transform.Find ("Countdown").gameObject;
 		laserAdvice = transform.Find ("LaserAdvice").gameObject;
 		gameManager.PressStartButton ();
-		AkSoundEngine.SetSwitch ("Solo", "first_screen",gameObject);
+		AkSoundEngine.SetSwitch ("MainMenuMusic", "PressStartMenu",gameObject);
 		AkSoundEngine.PostEvent ("Menu_music", gameObject);
-		Debug.Log ("Call to first_screen");
 		Cursor.visible = false;
 	}
 
@@ -50,9 +49,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		menuBackground.SetActive (true);
 		mainMenu.SetActive (true);
 		menuMovementBehaviour.MainMenuOptionsNavigation(0);
-		AkSoundEngine.SetSwitch ("Solo", "main_screen",gameObject);
-		//AkSoundEngine.PostEvent ("Menu_music", gameObject);
-		Debug.Log ("Call to MainScreen");
+		AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu",gameObject);
 	}
 
 	public void CharacterSelectionFinished(){
@@ -63,9 +60,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		roundsSelect.SetActive (true);
 		menuMovementBehaviour.RoundSelectionNavigation (1);
 		StartCoroutine (gameManager.RoundSelection ());
-		AkSoundEngine.SetSwitch ("Solo", "election_amount_deads",gameObject);
-		//AkSoundEngine.PostEvent ("Menu_music", gameObject);
-		Debug.Log ("Call to election_amount_deads");
+		AkSoundEngine.SetSwitch ("MainMenuMusic", "KillSelectionMenu",gameObject);
 	}
 	public void RoundsSelect(){
 		//Clear data
@@ -76,6 +71,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		menuBackground.SetActive (false);
 		roundsSelect.SetActive (false);
 		StopCoroutine (gameManager.RoundSelection ());
+
+		AkSoundEngine.SetState ("StateOfMusic", "InGame");
+		AkSoundEngine.PostEvent ("InGameMusic", gameObject);
 		gameManager.GameStart(1,rounds);
 	}
 
@@ -84,9 +82,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		characterSelect.SetActive (true);
 		menuMovementBehaviour.StopMainMenuSelection ();
 		StartCoroutine(gameManager.CharSelection ());
-		AkSoundEngine.SetSwitch ("Solo", "election_character",gameObject);
-		//AkSoundEngine.PostEvent ("Menu_music", gameObject);
-		Debug.Log ("Call to election_character");
+		AkSoundEngine.SetSwitch ("MainMenuMusic", "CharacterSelectionMenu",gameObject);
 	}
 
 	private void ClearSelectorsData(){
@@ -105,6 +101,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			roundsSelect.SetActive (false);
 			menuMovementBehaviour.StopRoundSelection ();
 			ClearSelectorsData ();
+			AkSoundEngine.SetSwitch ("MainMenuMusic", "CharacterSelectionMenu",gameObject);
 			StartCoroutine (gameManager.CharSelection ());
 		} else if (characterSelect.activeSelf) {
 			for (int i = 0; i < menuPlayerSelector.Count; i++) {
@@ -119,9 +116,11 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 				menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
 			}
 			menuMovementBehaviour.MainMenuOptionsNavigation (0);
+			AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu",gameObject);
 		} else if (credits.activeSelf) {
 			mainMenu.SetActive (true);
 			credits.SetActive (false);
+			AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu",gameObject);
 			menuMovementBehaviour.MainMenuOptionsNavigation (1);
 		}
 	}
@@ -129,7 +128,8 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void BackToMain(){
 		mainMenu.SetActive (true);
 		menuBackground.SetActive (true);
-		//audioManager.MainMenuMusic ();
+		AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu",gameObject);
+		AkSoundEngine.SetState ("StateOfMusic", "Menu");
 		menuMovementBehaviour.MainMenuOptionsNavigation(0);
 	}
 	public void ShowCountdown(float time){
@@ -165,6 +165,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			if (!selector.selected) {
 				selector.AddSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
 				playerPreview.charPreviewPos = currentPos;
+				AkSoundEngine.PostEvent ("ChoosingPlayerSoundRight", gameObject);
 				break;
 			} else {
 				currentPos++;
@@ -186,6 +187,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			if (!selector.selected) {
 				selector.AddSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
 				playerPreview.charPreviewPos = currentPos;
+				AkSoundEngine.PostEvent ("ChoosingPlayerSoundLeft", gameObject);
 				break;
 			} else {
 				currentPos--;
@@ -211,6 +213,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mainMenu.SetActive (false);
 		credits.SetActive (true);
 		menuMovementBehaviour.StopMainMenuSelection ();
+		AkSoundEngine.SetSwitch ("MainMenuMusic", "CreditsMenu",gameObject);
 
 		StartCoroutine (WaitToExitCredits());
 	}
@@ -240,6 +243,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			keySelector.GetComponent<Image> ().sprite = ((Sprite)Resources.Load<Sprite> ("InputMap/" + InputManager.Devices[playerInput.inputNumber].Name));
 			keySelector.SetActive (true);
 			playerPreview.selected = true;
+			AkSoundEngine.PostEvent ("SelectedPlayerSound", gameObject);
 			return true;
 		} else {
 			//Reproducir sonido

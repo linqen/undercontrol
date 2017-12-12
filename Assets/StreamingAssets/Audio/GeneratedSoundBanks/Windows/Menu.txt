@@ -1,0 +1,10 @@
+Event	ID	Name			Wwise Object Path	Notes
+	4055567060	Menu_music			\Default Work Unit\Menu_music	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	137199328	solo 120 44 0	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\solo 120 44 0_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Menu\Musica fondo\solo 120 44 0		4608064
+	287019273	Musica fondo	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\Musica fondo_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Menu\Musica fondo\Musica fondo		4416064
+	462012792	solo 120 44 0	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\solo 2 120 44 0_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Menu\Musica fondo\solo 120 44 0		3072064
+	486405309	bata 120 44 0	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\bata 120 44 0_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Menu\Musica fondo\bata 120 44 0		3072064
+	559224590	sinte 120 44 0	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\sinte 120 44 0_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Menu\Musica fondo\sinte 120 44 0		3072064
+

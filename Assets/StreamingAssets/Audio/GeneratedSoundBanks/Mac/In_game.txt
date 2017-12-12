@@ -1,0 +1,15 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1727945837	Bomb			\Default Work Unit\Bomb	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	3721020240	GrenadeExplode			\In game\GrenadeExplode	
+
+Switch	ID	Name	Switch Group			Notes
+	3561681874	LaunchingGrenade	GrenadeExplode			
+	3721020240	GrenadeExplode	GrenadeExplode			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	33439540	pre bomb	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Mac\SFX\pre bomb_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Final bomb\Bomb\pre bomb		189692
+	696776654	Bomb_01	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Mac\SFX\Bomb_7CB48B09.wem		\Actor-Mixer Hierarchy\Default Work Unit\Final bomb\Bomb\bomb\Bomb_01		324464
+	904728019	Bomb	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Mac\SFX\Bomb_E4CE45F6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Final bomb\Bomb\bomb\Bomb		309568
+

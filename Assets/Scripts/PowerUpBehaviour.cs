@@ -17,19 +17,19 @@ public class PowerUpBehaviour : MonoBehaviour {
 			switch (powerUp) {
 			case PowerUp.Shield:
 				col.GetComponent<PlayerLife> ().RecoverShield ();
-				Debug.Log ("Shield");
+				AkSoundEngine.PostEvent ("PickUpPowerUpShieldRecovered", gameObject);
 				break;
 			case PowerUp.HalfGrenadeCD:
 				col.GetComponent<GrenadeThrowing> ().ReduceCooldown (2, halfCDTime);
-				Debug.Log ("Half CD");
+				AkSoundEngine.PostEvent ("PickUpPowerUpFastGranade", gameObject);
 				break;
 			case PowerUp.NoGravityGrenade:
 				col.GetComponent<GrenadeThrowing> ().NoGravityGrenade (noGravityGrenadeTime);
-				Debug.Log ("No gravity");
+				AkSoundEngine.PostEvent ("PickUpPowerUpAntiGravity", gameObject);
 				break;
 			case PowerUp.FasterMovement:
 				col.GetComponent<PlayerMovement> ().FasterMovement(fasterMovementMultiplier, fasterMovementTime);
-				Debug.Log ("Faster Movement");
+				AkSoundEngine.PostEvent ("PickUpPowerUpFastRunning", gameObject);
 				break;
 			}
 			gameObject.SetActive (false);
