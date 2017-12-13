@@ -36,7 +36,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
 		roundsSelect = transform.Find ("RoundsSelect").gameObject;
-		countdown = transform.Find ("Countdown").gameObject;
+		countdown = transform.Find ("CountdownBox").Find("Countdown").gameObject;
 		laserAdvice = transform.Find ("LaserAdvice").gameObject;
 		gameManager.PressStartButton ();
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "PressStartMenu",gameObject);
@@ -139,7 +139,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	}
 	private IEnumerator Countdown(float time){
 		float currentTime = time;
-		countdown.SetActive (true);
+		countdown.transform.parent.gameObject.SetActive (true);
 		Text countdownText = countdown.GetComponent<Text> ();
 		while (currentTime >= 0) {
 			currentTime -= Time.unscaledDeltaTime;
@@ -151,7 +151,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			}
 			yield return null;
 		}
-		countdown.SetActive (false);
+		countdown.transform.parent.gameObject.SetActive (false);
 	}
 	public void GoNextPreview(PlayerPreview playerPreview){
 		int currentPos = playerPreview.charPreviewPos;
