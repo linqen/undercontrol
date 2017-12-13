@@ -104,20 +104,26 @@ public class UIManager : GenericSingletonClass<UIManager> {
 			if (InputManager.Devices [playerInputNumber].DPadUp.WasPressed) {
 				//Move up
 				if (pauseButtonSelectionPosition > 0) {
+					pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (false);
 					pauseButtonSelectionPosition--;
 					AkSoundEngine.PostEvent("Play_ChoosingMenuSoundUpOnPause",gameObject);
+					EventSystem.current.SetSelectedGameObject(pauseMenuButtons[pauseButtonSelectionPosition].gameObject);
+					pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (true);
 				}
 			}
 
 			if (InputManager.Devices [playerInputNumber].DPadDown.WasPressed) {
 				//Move Down
 				if (pauseButtonSelectionPosition < pauseMenuButtons.Count-1) {
+					pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (false);
 					pauseButtonSelectionPosition++;
 					AkSoundEngine.PostEvent("Play_ChoosingMenuSoundDownOnPause",gameObject);
+					EventSystem.current.SetSelectedGameObject(pauseMenuButtons[pauseButtonSelectionPosition].gameObject);
+					pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (true);
+
 				}
 			}
 
-			EventSystem.current.SetSelectedGameObject(pauseMenuButtons[pauseButtonSelectionPosition].gameObject);
 
 			if (InputManager.Devices [playerInputNumber].Action1.WasReleased) {
 				pauseMenuButtons [pauseButtonSelectionPosition].onClick.Invoke ();
@@ -136,6 +142,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 			pausePanel.gameObject.SetActive (true);
 			EventSystem.current.SetSelectedGameObject (null);
 			EventSystem.current.SetSelectedGameObject (pauseMenuButtons [0].gameObject);
+			pauseMenuButtons [0].transform.GetChild(0).gameObject.SetActive (true);
 			if (gameManager.GetLaserManager ().SuddenDeath == true) {
 				AkSoundEngine.PostEvent("PauseInGameLaserSound",gameObject);
 			}
@@ -145,6 +152,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 	}
 
 	public void UnPauseGame(){
+		pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (false);
 		EventSystem.current.sendNavigationEvents = true;
 		pauseButtonSelectionPosition = 0;
 		EventSystem.current.SetSelectedGameObject (null);
@@ -161,6 +169,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 	}
 
 	public void BackToMain(){
+		pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (false);
 		EventSystem.current.sendNavigationEvents = true;
 		pauseButtonSelectionPosition = 0;
 		gamePaused = false;
