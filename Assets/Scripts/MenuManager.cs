@@ -21,6 +21,8 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	GameObject roundsSelect;
 	GameObject countdown;
 	GameObject laserAdvice;
+	GameObject acceptGuide;
+	GameObject backGuide;
 	int possiblePlayers;
 	new void Awake(){
 		base.Awake ();
@@ -38,6 +40,8 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		roundsSelect = transform.Find ("RoundsSelect").gameObject;
 		countdown = transform.Find ("CountdownBox").Find("Countdown").gameObject;
 		laserAdvice = transform.Find ("LaserAdvice").gameObject;
+		acceptGuide = transform.Find ("Accept").gameObject;
+		backGuide = transform.Find ("Back").gameObject;
 		gameManager.PressStartButton ();
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "PressStartMenu",gameObject);
 		AkSoundEngine.PostEvent ("Menu_music", gameObject);
@@ -48,6 +52,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		pressStart.SetActive (false);
 		menuBackground.SetActive (true);
 		mainMenu.SetActive (true);
+		acceptGuide.SetActive (true);
 		menuMovementBehaviour.MainMenuOptionsNavigation(0);
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu",gameObject);
 	}
@@ -70,6 +75,8 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		characterSelect.SetActive (false);
 		menuBackground.SetActive (false);
 		roundsSelect.SetActive (false);
+		acceptGuide.SetActive (false);
+		backGuide.SetActive (false);
 		StopCoroutine (gameManager.RoundSelection ());
 
 		AkSoundEngine.SetState ("StateOfMusic", "InGame");
@@ -80,6 +87,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void PlayButton(){
 		mainMenu.SetActive (false);
 		characterSelect.SetActive (true);
+		backGuide.SetActive (true);
 		menuMovementBehaviour.StopMainMenuSelection ();
 		StartCoroutine(gameManager.CharSelection ());
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "CharacterSelectionMenu",gameObject);
@@ -109,6 +117,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 				menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
 				menuPlayerSelector [i].transform.Find ("KeyMap").gameObject.SetActive (false);
 			}
+			backGuide.SetActive (false);
 			mainMenu.SetActive (true);
 			characterSelect.SetActive (false);
 			gameManager.StopCharSelection ();
@@ -126,6 +135,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	}
 
 	public void BackToMain(){
+		acceptGuide.SetActive (true);
 		mainMenu.SetActive (true);
 		menuBackground.SetActive (true);
 		AkSoundEngine.StopAll (gameObject);
