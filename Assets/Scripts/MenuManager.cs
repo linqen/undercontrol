@@ -263,6 +263,17 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		}
 	}
 
+	public void UnselectPreview(PlayerPreview playerPreview){
+		SelectorBehaviour selector = menuPlayerSelector [playerPreview.charPreviewPos-1].GetComponent<SelectorBehaviour> ();
+		if (selector.selected) {
+			selector.UnselectSelector();
+			selector.transform.Find ("Selected").gameObject.SetActive (false);
+			GameObject keySelector = selector.transform.Find ("KeyMap").gameObject;
+			keySelector.SetActive (false);
+			playerPreview.selected = false;
+		}
+	}
+
 	public void SetPossiblePlayers(int possiblePlayers){
 		this.possiblePlayers = possiblePlayers;
 		for (int i = 1; i < possiblePlayers+1; i++) {

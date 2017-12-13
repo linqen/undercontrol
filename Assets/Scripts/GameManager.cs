@@ -285,35 +285,55 @@ public class GameManager : GenericSingletonClass<GameManager> {
 	private void OnCharSelection(){
 		for (int i = 0; i < InputManager.Devices.Count; i++) {
 			//Detect new players entering the game
-			if (InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
+			if (InputManager.Devices [i].GetControl (InputControlType.Start).WasPressed) {
 				bool inputUsed = false;
 				for (int j = 0; j < players.Count; j++) {
 					PlayerInput currentPlayerInput = players [j].GetComponent<PlayerInput> ();
-					if (currentPlayerInput.GetInputNumber() == i) {
-						bool result = menuManager.SelectPreview(players [j].GetComponent<PlayerPreview> (),currentPlayerInput);
-						if (result) {
-							playersReady++;
-							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
-							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos-1];
-						}
-						if (players.Count>=2&&
-							playersReady==players.Count) {
-							FinishPlayersSelection ();
-							menuManager.CharacterSelectionFinished ();
-						}
+					if (currentPlayerInput.GetInputNumber () == i) {
 						inputUsed = true;
 					}
 				}
-				if (!inputUsed) {
+				if (!inputUsed && players.Count<4) {
 					GameObject newPlayer = CreatePlayer (i);
 					menuManager.GoNextPreview(newPlayer.GetComponent<PlayerPreview> ());
 					StartCoroutine (newPlayer.GetComponent<PlayerMovement> ().CharSelection ());
 					players.Add (newPlayer);
 				}
 			}
+
+			if (InputManager.Devices [i].Action1.WasPressed) {
+				for (int j = 0; j < players.Count; j++) {
+					PlayerInput currentPlayerInput = players [j].GetComponent<PlayerInput> ();
+					if (currentPlayerInput.GetInputNumber () == i) {
+						bool result = menuManager.SelectPreview (players [j].GetComponent<PlayerPreview> (), currentPlayerInput);
+						if (result) {
+							playersReady++;
+							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
+							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos - 1];
+						}
+						if (playersReady > 1) {
+							FinishPlayersSelection ();
+							menuManager.CharacterSelectionFinished ();
+						}
+					}
+				}
+			}
+
 			//Cancel button is pressed
 			if (InputManager.Devices[i].Action2.WasPressed) {
-				menuManager.GoBack ();
+				bool unselect = false;
+				for (int j = 0; j < players.Count; j++) {
+					PlayerInput currentPlayerInput = players [j].GetComponent<PlayerInput> ();
+					PlayerPreview currentPlayerPreview = players [j].GetComponent<PlayerPreview> ();
+					if (currentPlayerInput.GetInputNumber () == i && currentPlayerPreview.selected) {
+						menuManager.UnselectPreview (currentPlayerPreview);
+						playersReady--;
+						unselect = true;
+					}
+				}
+				if (!unselect) {
+					menuManager.GoBack ();
+				}
 			}
 		}
 

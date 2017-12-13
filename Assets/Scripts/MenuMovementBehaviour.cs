@@ -62,7 +62,8 @@ public class MenuMovementBehaviour : MonoBehaviour {
 					}
 				}
 
-				if (InputManager.Devices[i].GetControl(InputControlType.Start).WasPressed) {
+				if (InputManager.Devices[i].Action1.WasPressed) {
+					yield return null;
 					AkSoundEngine.PostEvent ("SelectedMenuSound", gameObject);
 					mainMenuOptions [actualPos].GetComponent<Button> ().onClick.Invoke ();
 				}

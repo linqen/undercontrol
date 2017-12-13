@@ -54,6 +54,9 @@ public class SelectorBehaviour : MonoBehaviour {
 		selected = true;
 		image.sprite = selectorToSelect;
 	}
+	public void UnselectSelector(){
+		selected = false;
+	}
 	public void ClearValues(){
 		actualSelectors.Clear ();
 		selected = false;
