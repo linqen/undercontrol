@@ -128,8 +128,10 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void BackToMain(){
 		mainMenu.SetActive (true);
 		menuBackground.SetActive (true);
+		AkSoundEngine.StopAll (gameObject);
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu",gameObject);
 		AkSoundEngine.SetState ("StateOfMusic", "Menu");
+		AkSoundEngine.PostEvent ("Menu_music", gameObject);
 		menuMovementBehaviour.MainMenuOptionsNavigation(0);
 	}
 	public void ShowCountdown(float time){
