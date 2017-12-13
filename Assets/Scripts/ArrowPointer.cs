@@ -61,8 +61,8 @@ public class ArrowPointer : MonoBehaviour {
 					} else {
 						xSignal = 1;
 					}
-					arrowsPool [i].transform.position = new Vector2 (bypassInternalPosition [i].x - (arrowsPool [i].GetComponent<SpriteRenderer> ().sprite.bounds.extents.x * xSignal),
-						bypassInternalPosition [i].y - (arrowsPool [i].GetComponent<SpriteRenderer> ().sprite.bounds.extents.y));
+					arrowsPool [i].transform.position = new Vector2 (bypassInternalPosition [i].x - (arrowsPool [i].transform.GetChild(0).GetComponent<SpriteRenderer> ().sprite.bounds.extents.x * xSignal),
+						bypassInternalPosition [i].y - (arrowsPool [i].transform.GetChild(0).GetComponent<SpriteRenderer> ().sprite.bounds.extents.y));
 					arrowsPool [i].SetActive (true);
 				}
 			}
