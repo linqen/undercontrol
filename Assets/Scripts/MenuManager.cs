@@ -305,7 +305,11 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			selector.SelectSelector ((Sprite)Resources.Load<Sprite> ("Selectors/" + playerPreview.playerNumber));
 			selector.transform.Find ("Selected").gameObject.SetActive (true);
 			GameObject keySelector = selector.transform.Find ("KeyMap").gameObject;
-			keySelector.GetComponent<Image> ().sprite = ((Sprite)Resources.Load<Sprite> ("InputMap/" + InputManager.Devices[playerInput.inputNumber].Name));
+			Sprite inputMap = ((Sprite)Resources.Load<Sprite> ("InputMap/" + InputManager.Devices [playerInput.inputNumber].Name));
+			if (inputMap == null) {
+				inputMap = ((Sprite)Resources.Load<Sprite> ("InputMap/XBox One Controller"));
+			}
+			keySelector.GetComponent<Image> ().sprite = inputMap;
 			keySelector.SetActive (true);
 			playerPreview.selected = true;
 			AkSoundEngine.PostEvent ("SelectedPlayerSound", gameObject);

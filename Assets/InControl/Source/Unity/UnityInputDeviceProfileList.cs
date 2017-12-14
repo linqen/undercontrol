@@ -65,6 +65,7 @@ namespace InControl
 			"InControl.SteelSeriesFreeLinuxProfile",
 			"InControl.SteelSeriesFreeMacProfile",
 			"InControl.SteelSeriesFreeWinProfile",
+			"InControl.UsbJoystickProfile",
 			"InControl.ValveStreamingWinProfile",
 			"InControl.Xbox360AndroidProfile",
 			"InControl.Xbox360LinuxProfile",
