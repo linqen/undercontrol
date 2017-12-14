@@ -48,7 +48,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "PressStartMenu",gameObject);
 		AkSoundEngine.PostEvent ("Menu_music", gameObject);
 		Cursor.visible = false;
-
+		mainMenu.transform.Find ("Version").GetComponent<Text> ().text = Application.version;
 		int boolean = PlayerPrefs.GetInt ("SoundOn",1);
 		if (boolean == 1) {
 			Camera.main.GetComponent<AkAudioListener> ().enabled = true;
