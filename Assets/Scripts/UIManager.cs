@@ -7,9 +7,7 @@ using InControl;
 public class UIManager : GenericSingletonClass<UIManager> {
 
 	public Sprite[] charactersPreviews;
-	public Sprite[] grenades;
 	public float timeBetweenCountingScore;
-
 
 	private GameManager gameManager;
 	private MenuManager menuManager;
@@ -36,7 +34,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 			pauseMenuButtons.Add (pausePanel.GetChild (i).GetComponent<Button> ());
 		}
 		for (int i = 0; i < gameManager.possiblePlayers; i++) {
-			charactersKills.Add(scoresPanel.Find ((i + 1).ToString ()).Find("Character").gameObject);
+			charactersKills.Add(scoresPanel.Find ("Characters").Find("Character"+(i+1)).gameObject);
 		}
 	}
 
@@ -47,17 +45,14 @@ public class UIManager : GenericSingletonClass<UIManager> {
 		}
 		for (int i = 0; i < playersPreviews.Count; i++) {
 			int characterIdentifier = playersPreviews [i].charPreviewPos-1;
-			charactersKills [i].GetComponent<Image> ().sprite = charactersPreviews [characterIdentifier];
-			foreach (Transform possibleKill in charactersKills[i].transform) {
-				possibleKill.GetComponent<Image>().sprite = grenades [characterIdentifier];
-			}
+			charactersKills [i].transform.Find("Character").GetComponent<Image> ().sprite = charactersPreviews [characterIdentifier];
 		}
 	}
 	public void FinishGame(){
 		for (int i = 0; i < charactersKills.Count; i++) {			
 			charactersKills [i].SetActive (false);
 			List<GameObject> childrensImages=new List<GameObject>();
-			foreach (Transform kill in charactersKills[i].transform) {
+			foreach (Transform kill in charactersKills[i].transform.Find("Kills")) {
 				childrensImages.Add (kill.gameObject);
 			}
 			for (int j = 0; j < childrensImages.Count; j++) {
@@ -67,24 +62,28 @@ public class UIManager : GenericSingletonClass<UIManager> {
 	}
 
 	public IEnumerator ShowActualScores(List<int> scores, List<int> negativeScores,float time){
-		scoresPanel.GetComponent<Image> ().enabled = true;
+		scoresPanel.gameObject.SetActive (true);
 		for (int i = 0; i < scores.Count; i++) {
 			charactersKills [i].SetActive (true);
 		}
 		for (int i = 0; i < scores.Count; i++) {
 			List<GameObject> childrensImages=new List<GameObject>();
-			foreach (Transform kill in charactersKills[i].transform) {
+			foreach (Transform kill in charactersKills[i].transform.Find("Kills")) {
 				childrensImages.Add (kill.gameObject);
 			}
 			for (int j = 0; j < scores[i]; j++) {
-				if (!childrensImages [j].activeSelf) {
+				if (j < childrensImages.Count) {
+					if (!childrensImages [j].activeSelf) {
 					yield return new WaitForSeconds (timeBetweenCountingScore);
-					childrensImages [j].SetActive (true);
+						childrensImages [j].SetActive (true);
+					}
 				}
 			}
 			for (int j = scores[i]; j > (scores[i]-negativeScores[i]); j--) {
 				yield return new WaitForSeconds (timeBetweenCountingScore);
-				childrensImages [j-1].SetActive (false);
+				if ((j-1) < childrensImages.Count) {
+					childrensImages [j - 1].SetActive (false);
+				}
 			}
 		}
 		AkSoundEngine.GetSwitch ("InGameMusic", gameObject, out lastMusicSwitchScoreState);
@@ -96,7 +95,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 		for (int i = 0; i < scores.Count; i++) {			
 			charactersKills [i].SetActive (false);
 		}
-		scoresPanel.GetComponent<Image> ().enabled = false;
+		scoresPanel.gameObject.SetActive (false);
 	}
 
 	void Update(){
