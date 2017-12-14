@@ -108,6 +108,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	public void Settings(){
 		mainMenu.SetActive (false);
 		settings.SetActive (true);
+		backGuide.SetActive (true);
 		menuMovementBehaviour.StopMainMenuSelection ();
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "CreditsMenu",gameObject);
 
@@ -180,6 +181,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		} else if (settings.activeSelf) {
 			mainMenu.SetActive (true);
 			settings.SetActive (false);
+			backGuide.SetActive (false);
 			AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu", gameObject);
 			menuMovementBehaviour.MainMenuOptionsNavigation (2);
 		}
