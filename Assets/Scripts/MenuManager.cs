@@ -284,11 +284,20 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	}
 	private IEnumerator WaitToExitCredits(){
 		bool loop = true;
+		int screenNumber = 1;
+		credits.transform.Find (screenNumber.ToString()).gameObject.SetActive (true);
 		while (loop) {
 			for (int i = 0; i < InputManager.Devices.Count; i++) {
 				if (InputManager.Devices [i].AnyButton.WasPressed) {
-					GoBack ();
-					loop = false;
+					screenNumber++;
+					if (screenNumber > 3) {
+						GoBack ();
+						credits.transform.Find ((screenNumber-1).ToString()).gameObject.SetActive (false);
+						loop = false;
+					} else {
+						credits.transform.Find ((screenNumber-1).ToString()).gameObject.SetActive (false);
+						credits.transform.Find (screenNumber.ToString()).gameObject.SetActive (true);
+					}
 				}
 			}
 			yield return null;
