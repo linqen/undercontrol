@@ -105,7 +105,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 				if (pauseButtonSelectionPosition > 0) {
 					pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (false);
 					pauseButtonSelectionPosition--;
-					AkSoundEngine.PostEvent("Play_ChoosingMenuSoundUpOnPause",gameObject);
+					AkSoundEngine.PostEvent("ChoosingMenuPauseUp",gameObject);
 					EventSystem.current.SetSelectedGameObject(pauseMenuButtons[pauseButtonSelectionPosition].gameObject);
 					pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (true);
 				}
@@ -116,7 +116,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 				if (pauseButtonSelectionPosition < pauseMenuButtons.Count-1) {
 					pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (false);
 					pauseButtonSelectionPosition++;
-					AkSoundEngine.PostEvent("Play_ChoosingMenuSoundDownOnPause",gameObject);
+					AkSoundEngine.PostEvent("ChoosingMenuPauseDown",gameObject);
 					EventSystem.current.SetSelectedGameObject(pauseMenuButtons[pauseButtonSelectionPosition].gameObject);
 					pauseMenuButtons [pauseButtonSelectionPosition].transform.GetChild(0).gameObject.SetActive (true);
 
@@ -163,7 +163,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 		if (gameManager.GetLaserManager ().SuddenDeath == true) {
 			AkSoundEngine.PostEvent("StartInGameLaserSound",gameObject);
 		}
-
+		AkSoundEngine.PostEvent ("PressBackToGame", gameObject);
 		gameManager.UnPauseGame ();
 	}
 

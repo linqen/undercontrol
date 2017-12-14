@@ -183,6 +183,9 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		if (actualSceneIndex + 1 >= SceneManager.sceneCountInBuildSettings) {
 			actualSceneIndex = 0;
 		}
+		if (actualSceneIndex+1  == 2) {
+			AkSoundEngine.SetSwitch ("InGameMusic", "LevelNormal", menuManager.gameObject);
+		}
 		GameStart (actualSceneIndex+1, numberOfRounds);
 	}
 	private void AssignNegativeScores(){
@@ -218,15 +221,11 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			loadStarted = true;
 			yield return null;
 		}
-
-		if (actualSceneIndex == 1) {
-			AkSoundEngine.SetSwitch("InGameMusic","LevelQuiet",menuManager.gameObject);
-		}
-		else if (actualSceneIndex == 2) {
-			AkSoundEngine.SetSwitch ("InGameMusic", "LevelNormal", menuManager.gameObject);
-		}
-		else if (actualSceneIndex == 3) {
-			AkSoundEngine.SetSwitch ("InGameMusic", "LevelNervous", menuManager.gameObject);
+		for (int i = 0; i < scores.Count; i++) {
+			if (scores[i]+1 == numberOfRounds) {
+				AkSoundEngine.SetSwitch ("InGameMusic", "LevelNervous", menuManager.gameObject);
+				i = scores.Count;
+			}
 		}
 
 		GameObject arrowPointer = GameObject.FindWithTag ("ArrowPointer");
@@ -291,6 +290,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				}
 				if (!inputUsed && players.Count<4) {
 					GameObject newPlayer = CreatePlayer (i);
+					AkSoundEngine.PostEvent ("NewPlayer",gameObject);
 					menuManager.GoNextPreview(newPlayer.GetComponent<PlayerPreview> ());
 					StartCoroutine (newPlayer.GetComponent<PlayerMovement> ().CharSelection ());
 					players.Add (newPlayer);

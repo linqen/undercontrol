@@ -1,18 +1,28 @@
 Event	ID	Name			Wwise Object Path	Notes
+	150205304	ChoosingMenuAmountOfDeadsSoundLeft			\Default Work Unit\SFXMenu\ChoosingMenuAmountOfDeadsSoundLeft	
 	409491284	ChoosingMenuSoundUp			\Default Work Unit\SFXMenu\ChoosingMenuSoundUp	
 	738322899	ChoosingMenuSoundDown			\Default Work Unit\SFXMenu\ChoosingMenuSoundDown	
 	1654317064	SelectedMenuSound			\Default Work Unit\SFXMenu\SelectedMenuSound	
 	1723066554	SelectedPlayerSound			\Default Work Unit\SFXMenu\SelectedPlayerSound	
 	1739783239	ChoosingAmountsOfDeadsSoundRight			\Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundRight	
+	1966548682	SelectedMenuAmountOfDeadsSound			\Default Work Unit\SFXMenu\SelectedMenuAmountOfDeadsSound	
 	2361953264	ChoosingAmountsOfDeadsSoundLeft			\Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundLeft	
+	2732502762	NewPlayer			\Default Work Unit\SFXMenu\NewPlayer	
+	3226918447	ChoosingMenuAmountOfDeadsSoundRight			\Default Work Unit\SFXMenu\ChoosingMenuAmountOfDeadsSoundRight	
+	3540125970	PressStart			\Default Work Unit\SFXMenu\PressStart	
 	3701262634	ChoosingPlayerSoundLeft			\Default Work Unit\SFXMenu\ChoosingPlayerSoundLeft	
 	4098349729	ChoosingPlayerSoundRight			\Default Work Unit\SFXMenu\ChoosingPlayerSoundRight	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	84271685	ChoosingMenuSoundDown	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\eleccion abajo_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundDown		122614
-	241922250	ChoosingPlayerSoundLeft	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\eleccion personaje izquierda_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingPlayerSoundLeft		52316
-	291197529	SelectedPlayerSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\eleccion personaje_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedPlayerSound		75956
-	496932970	ChoosingMenuSoundUp	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\eleccion arriba_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundUp		48972
-	720634926	ChoosingPlayerSoundRight	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\Eleccion personaje derecha_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingPlayerSoundRight		57276
-	1023411496	SelectedMenuSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\eleccion menu_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedMenuSound		70862
+	30682593	ChoosingMenuSoundDown	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_08E68AA3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundDown		221352
+	148686412	ChoosingPlayerSoundRight	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_8BE735E2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingPlayerSoundRight		271320
+	174565809	ChoosingMenuSoundUp	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_764358F2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundUp		242764
+	286441875	NewPlayer	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\Nuevo jugador y pres strat_C9C52524.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\NewPlayer		292000
+	332996808	ChoosingMenuAmountOfDeadsSoundLeft	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_1661A561.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuAmountOfDeadsSoundLeft		171380
+	417732883	ChoosingMenuAmountOfDeadsSoundRight	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_6F269E32.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuAmountOfDeadsSoundRight		235628
+	593646026	SelectedMenuSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_32F6E423.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedMenuSound		328428
+	803799401	ChoosingPlayerSoundLeft	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_A0C222E9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingPlayerSoundLeft		221352
+	896995038	SelectedPlayerSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_E3FD9185.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedPlayerSound		285596
+	954446017	PressStart	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\Nuevo jugador y pres strat_00FB7CC1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\PressStart		287276
+	977607525	SelectedMenuAmountOfDeadsSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Windows\SFX\nuevos menus_F4DE8118.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedMenuAmountOfDeadsSound		278456
 

@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (jump) {
 			if (jumpingTime > jumpingSince&&canJump==true) {
 				if (jumpingSince == 0) {
-					//audioManager.PlayerJumping ();
+					AkSoundEngine.PostEvent("PlayerJumping",gameObject);
 				}
 				jumpingSince += Time.deltaTime;
 				rigid.velocity = new Vector2 (rigid.velocity.x, jumpForce * (jumpingTime - jumpingSince));

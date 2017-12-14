@@ -98,6 +98,7 @@ public class MenuMovementBehaviour : MonoBehaviour {
 				}
 
 				if (InputManager.Devices [i].Action1.WasPressed) {
+					AkSoundEngine.PostEvent ("SelectedMenuAmountOfDeadsSound", gameObject);
 					actualPos = 0;
 					roundSelection = false;
 					possibleRoundsToSelect [actualPos].GetComponent<Button> ().onClick.Invoke ();

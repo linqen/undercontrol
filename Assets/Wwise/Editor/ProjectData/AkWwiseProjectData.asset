@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{4F23A46F-AA27-4D2B-94C1-551658A511E3}'
-    m_lastTimePsrt1: 1355551608
-    m_lastTimePart2: -1999290084
+    m_lastTimePsrt1: 1565460101
+    m_lastTimePart2: -1999289690
     List:
     - Name: BrokenShield
       Path: Default Work Unit\SFXInGame\BrokenShield
@@ -54,6 +54,54 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1739783239
       Guid: 157207f6018f5b4aa04f31a1e728c76a
+      maxAttenuation: 0
+    - Name: ChoosingMenuAmountOfDeadsSoundLeft
+      Path: Default Work Unit\SFXMenu\ChoosingMenuAmountOfDeadsSoundLeft
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: ChoosingMenuAmountOfDeadsSoundLeft
+        ObjectType: 3
+      ID: 150205304
+      Guid: 6f7ff97ce704db449298d702c5ee20a6
+      maxAttenuation: 0
+    - Name: ChoosingMenuAmountOfDeadsSoundRight
+      Path: Default Work Unit\SFXMenu\ChoosingMenuAmountOfDeadsSoundRight
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: ChoosingMenuAmountOfDeadsSoundRight
+        ObjectType: 3
+      ID: -1068048849
+      Guid: f466f294be9f7e45ba63433e6444625c
+      maxAttenuation: 0
+    - Name: ChoosingMenuPauseDown
+      Path: Default Work Unit\SFXInGame\ChoosingMenuPauseDown
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: ChoosingMenuPauseDown
+        ObjectType: 3
+      ID: 2031625088
+      Guid: 6860a73af8c85145a08874518025e5a9
+      maxAttenuation: 0
+    - Name: ChoosingMenuPauseUp
+      Path: Default Work Unit\SFXInGame\ChoosingMenuPauseUp
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: ChoosingMenuPauseUp
+        ObjectType: 3
+      ID: -497819517
+      Guid: 328c0d90455e214f86e8258fbc0989e9
       maxAttenuation: 0
     - Name: ChoosingMenuSoundDown
       Path: Default Work Unit\SFXMenu\ChoosingMenuSoundDown
@@ -151,6 +199,18 @@ MonoBehaviour:
       ID: -239400236
       Guid: 91cd5a80b608d040b93bdc1e5ebf21ff
       maxAttenuation: 0
+    - Name: NewPlayer
+      Path: Default Work Unit\SFXMenu\NewPlayer
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: NewPlayer
+        ObjectType: 3
+      ID: -1562464534
+      Guid: 6fa3152f7afba54eae7597dfc02381da
+      maxAttenuation: 0
     - Name: PauseInGameLaserSound
       Path: Default Work Unit\SFXInGame\LaserSound\PauseInGameLaserSound
       PathAndIcons:
@@ -213,29 +273,17 @@ MonoBehaviour:
       ID: -1672727185
       Guid: a095328d15b4964e9b63926337f44eea
       maxAttenuation: 0
-    - Name: Play_ChoosingMenuSoundDownOnPause
-      Path: Default Work Unit\SFXInGame\Play_ChoosingMenuSoundDownOnPause
+    - Name: PlayerJumping
+      Path: Default Work Unit\SFXInGame\PlayerJumping
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: SFXInGame
         ObjectType: 4
-      - ElementName: Play_ChoosingMenuSoundDownOnPause
+      - ElementName: PlayerJumping
         ObjectType: 3
-      ID: 1194044973
-      Guid: 6860a73af8c85145a08874518025e5a9
-      maxAttenuation: 0
-    - Name: Play_ChoosingMenuSoundUpOnPause
-      Path: Default Work Unit\SFXInGame\Play_ChoosingMenuSoundUpOnPause
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: SFXInGame
-        ObjectType: 4
-      - ElementName: Play_ChoosingMenuSoundUpOnPause
-        ObjectType: 3
-      ID: 1992436608
-      Guid: 328c0d90455e214f86e8258fbc0989e9
+      ID: -1348102962
+      Guid: 6e947df19eb0b44184f6eb5e7c870476
       maxAttenuation: 0
     - Name: PlayerTouchFloor
       Path: Default Work Unit\SFXInGame\PlayerTouchFloor
@@ -248,6 +296,42 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1185697611
       Guid: c2265c6bb6df0c4e8b0881ee45753eb6
+      maxAttenuation: 0
+    - Name: PressBackToGame
+      Path: Default Work Unit\SFXInGame\PressBackToGame
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: PressBackToGame
+        ObjectType: 3
+      ID: 784876474
+      Guid: 2ab325a020ca7a40a72ccb1d23e9242d
+      maxAttenuation: 0
+    - Name: PressStart
+      Path: Default Work Unit\SFXMenu\PressStart
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: PressStart
+        ObjectType: 3
+      ID: -754841326
+      Guid: f9c0a80cba3ecf4882a962020f585d60
+      maxAttenuation: 0
+    - Name: SelectedMenuAmountOfDeadsSound
+      Path: Default Work Unit\SFXMenu\SelectedMenuAmountOfDeadsSound
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXMenu
+        ObjectType: 4
+      - ElementName: SelectedMenuAmountOfDeadsSound
+        ObjectType: 3
+      ID: 1966548682
+      Guid: 6ae085b949b98b4ab75e1cb360c1bdca
       maxAttenuation: 0
     - Name: SelectedMenuSound
       Path: Default Work Unit\SFXMenu\SelectedMenuSound
@@ -271,7 +355,7 @@ MonoBehaviour:
       - ElementName: SelectedPlayerSound
         ObjectType: 3
       ID: 1723066554
-      Guid: 6ae085b949b98b4ab75e1cb360c1bdca
+      Guid: 5cbb6caff5dcc545bef3db5399351e63
       maxAttenuation: 0
     - Name: StartInGameLaserSound
       Path: Default Work Unit\SFXInGame\LaserSound\StartInGameLaserSound
@@ -462,8 +546,8 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{8F09AC25-D05F-4379-AEA4-BF9061FF5089}'
-    m_lastTimePsrt1: 1355875249
-    m_lastTimePart2: -1999290084
+    m_lastTimePsrt1: 1565840277
+    m_lastTimePart2: -1999289690
     List:
     - Name: Music
       Path: Default Work Unit\Music
@@ -512,7 +596,6 @@ MonoBehaviour:
   - /Under Control original/Events/Default Work Unit
   - /Under Control original/Events/Default Work Unit/Music
   - /Under Control original/Events/Default Work Unit/SFXInGame
-  - /Under Control original/Events/Default Work Unit/SFXInGame/LaserSound
   - /Under Control original/Events/Default Work Unit/SFXMenu
   - /Under Control original/SoundBanks
   - /Under Control original/SoundBanks/Default Work Unit

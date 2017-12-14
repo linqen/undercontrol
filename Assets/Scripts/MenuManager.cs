@@ -60,6 +60,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	}
 
 	public void StartPressed(){
+		AkSoundEngine.PostEvent ("PressStart",gameObject);
 		pressStart.SetActive (false);
 		menuBackground.SetActive (true);
 		mainMenu.SetActive (true);
