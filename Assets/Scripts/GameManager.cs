@@ -119,21 +119,17 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			deathReportPlayers[k].transform.rotation = Quaternion.identity;
 			//Score assingment logic
 			if (deathReportKilledBy [k] == deathReportPlayers [k].GetComponent<PlayerPreview> ().playerNumber
-			    || deathReportKilledBy [k] == 0) {
+				|| deathReportKilledBy [k] == 0) {
 				if (isTwoPlayersGame) {
 					for (int i = 0; i < players.Count; i++) {
 						if (!players [i].Equals (deathReportPlayers [k])) {
 							scores [i]++;
 						}
 					}
-				} else {
-					if (deathReportKilledBy [k] == 0) {
-						negativeScores [deathReportPlayers [k].GetComponent<PlayerPreview> ().playerNumber - 1]++;
-					} else {
-						negativeScores [deathReportKilledBy [k] - 1]++;
-					}
+				} else if(deathReportKilledBy [k] != 0) {
+					negativeScores [deathReportKilledBy [k] - 1]++;
 				}
-			} else if (deathReportKilledBy [k] != deathReportPlayers [k].GetComponent<PlayerPreview> ().playerNumber) {
+			} else if (deathReportKilledBy[k] != 0 && deathReportKilledBy [k] != deathReportPlayers [k].GetComponent<PlayerPreview> ().playerNumber) {
 				scores [deathReportKilledBy [k] - 1]++;
 			}
 			//

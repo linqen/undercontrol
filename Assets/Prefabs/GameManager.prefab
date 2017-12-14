@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4326150606233108}
   - component: {fileID: 114323484238470696}
   - component: {fileID: 114619390355743026}
+  - component: {fileID: 114725101972089914}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -81,3 +82,22 @@ MonoBehaviour:
   - {fileID: 1810743126300194, guid: 5c23391cfa5af12478898e4138f6ee5e, type: 2}
   - {fileID: 1810743126300194, guid: 0a2fa78301993e74d8236ad1d0c7fed9, type: 2}
   spawnTime: 5
+--- !u!114 &114725101972089914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502885651553232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1066b7e1c8c83e14698cf97c2ec31120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  valueGuid: ffea87538ad1e746ba6c7da2c5311bff
+  bankName: SFXInGame
+  loadAsynchronous: 0
+  decodeBank: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 
