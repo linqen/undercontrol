@@ -15,6 +15,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	GameObject pressStart;
 	GameObject menuBackground;
 	GameObject mainMenu;
+	GameObject settings;
 	GameObject characterSelect;
 	GameObject credits;
 	GameObject mapSelect;
@@ -35,6 +36,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		menuBackground = transform.Find ("GeneralBackground").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;
 		credits = transform.Find ("Credits").gameObject;
+		settings = transform.Find ("Settings").gameObject;
 		mapSelect = transform.Find ("MapSelect").gameObject;
 		characterSelect = transform.Find ("CharacterSelect").gameObject;
 		roundsSelect = transform.Find ("RoundsSelect").gameObject;
@@ -46,6 +48,15 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "PressStartMenu",gameObject);
 		AkSoundEngine.PostEvent ("Menu_music", gameObject);
 		Cursor.visible = false;
+
+		int boolean = PlayerPrefs.GetInt ("SoundOn",1);
+		if (boolean == 1) {
+			Camera.main.GetComponent<AkAudioListener> ().enabled = true;
+			settings.GetComponent<Text> ().text = "SOUND ON";
+		} else {
+			Camera.main.GetComponent<AkAudioListener> ().enabled = false;
+			settings.GetComponent<Text> ().text = "SOUND OFF";
+		}
 	}
 
 	public void StartPressed(){
@@ -93,6 +104,40 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "CharacterSelectionMenu",gameObject);
 	}
 
+	public void Settings(){
+		mainMenu.SetActive (false);
+		settings.SetActive (true);
+		menuMovementBehaviour.StopMainMenuSelection ();
+		AkSoundEngine.SetSwitch ("MainMenuMusic", "CreditsMenu",gameObject);
+
+		StartCoroutine (WaitToExitSettings());
+	}
+		
+	private IEnumerator WaitToExitSettings(){
+		bool loop = true;
+		while (loop) {
+			for (int i = 0; i < InputManager.Devices.Count; i++) {
+				if (InputManager.Devices [i].Action1.WasPressed) {
+					if (settings.GetComponent<Text> ().text.Equals ("SOUND ON")) {
+						settings.GetComponent<Text> ().text = "SOUND OFF";
+						PlayerPrefs.SetInt ("SoundOn", 0);
+						Camera.main.GetComponent<AkAudioListener> ().enabled = false;
+					} else if (settings.GetComponent<Text> ().text.Equals ("SOUND OFF")) {
+						settings.GetComponent<Text> ().text = "SOUND ON";
+						PlayerPrefs.SetInt ("SoundOn", 1);
+						Camera.main.GetComponent<AkAudioListener> ().enabled = true;
+					}
+				}
+				else if (InputManager.Devices [i].Action2.WasPressed) {
+					GoBack ();
+					loop = false;
+				}
+			}
+			yield return null;
+		}
+	}
+
+
 	private void ClearSelectorsData(){
 		for (int i = 0; i < menuPlayerSelector.Count; i++) {
 			menuPlayerSelector [i].GetComponent<Image> ().color = Color.white;
@@ -109,7 +154,7 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 			roundsSelect.SetActive (false);
 			menuMovementBehaviour.StopRoundSelection ();
 			ClearSelectorsData ();
-			AkSoundEngine.SetSwitch ("MainMenuMusic", "CharacterSelectionMenu",gameObject);
+			AkSoundEngine.SetSwitch ("MainMenuMusic", "CharacterSelectionMenu", gameObject);
 			StartCoroutine (gameManager.CharSelection ());
 		} else if (characterSelect.activeSelf) {
 			for (int i = 0; i < menuPlayerSelector.Count; i++) {
@@ -125,12 +170,17 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 				menuPlayerSelector [i].GetComponent<SelectorBehaviour> ().ClearValues ();
 			}
 			menuMovementBehaviour.MainMenuOptionsNavigation (0);
-			AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu",gameObject);
+			AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu", gameObject);
 		} else if (credits.activeSelf) {
 			mainMenu.SetActive (true);
 			credits.SetActive (false);
-			AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu",gameObject);
+			AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu", gameObject);
 			menuMovementBehaviour.MainMenuOptionsNavigation (1);
+		} else if (settings.activeSelf) {
+			mainMenu.SetActive (true);
+			settings.SetActive (false);
+			AkSoundEngine.SetSwitch ("MainMenuMusic", "MainMenu", gameObject);
+			menuMovementBehaviour.MainMenuOptionsNavigation (2);
 		}
 	}
 
