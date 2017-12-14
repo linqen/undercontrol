@@ -311,7 +311,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 							PlayerPreview playerPreview = players [j].GetComponent<PlayerPreview> ();
 							players [playerPreview.playerNumber - 1].GetComponent<Animator> ().runtimeAnimatorController = animators [playerPreview.charPreviewPos - 1];
 						}
-						if (playersReady > 1) {
+						if (playersReady > 1 && playersReady == players.Count) {
 							FinishPlayersSelection ();
 							menuManager.CharacterSelectionFinished ();
 						}
