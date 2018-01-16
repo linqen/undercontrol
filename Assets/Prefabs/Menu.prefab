@@ -4711,7 +4711,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: artist
+  m_Text: art
 --- !u!114 &114533271294580860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6184,7 +6184,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: desing
+  m_Text: design
 --- !u!114 &114849889691600756
 MonoBehaviour:
   m_ObjectHideFlags: 1
