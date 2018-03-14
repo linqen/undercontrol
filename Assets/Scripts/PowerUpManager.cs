@@ -36,7 +36,7 @@ public class PowerUpManager : GenericSingletonClass<PowerUpManager> {
 		float currentTime=0;
 		int randomPowerUp;
 		int lastRandomPowerUp = -1;
-		int randomSpawnPoint;
+		int randomSpawnPoint=0;
 		int lastRandomSpawnPoint = -1;
 		GameObject lastPowerUp = null;
 		while (true) {
@@ -45,16 +45,34 @@ public class PowerUpManager : GenericSingletonClass<PowerUpManager> {
 			if (currentTime >= spawnTime) {
 				while (lastRandomPowerUp == (randomPowerUp = Random.Range (0, powerUpPool.Count))) {
 				}
-				while (lastRandomSpawnPoint == (randomSpawnPoint = Random.Range (0, spawnPositions.Count))) {
+
+				bool needSearchPowerUpPosition = true;
+				List<int> occupiedPositions = null;
+				while (needSearchPowerUpPosition) {
+					needSearchPowerUpPosition = false;
+					randomSpawnPoint = GetRandomSpawnPoint (lastRandomSpawnPoint, occupiedPositions);
+
+					RaycastHit2D[] hits = Physics2D.BoxCastAll (spawnPositions [randomSpawnPoint], new Vector2 (1, 1), 0, Vector2.right);
+					for (int i = 0; i < hits.Length; i++) {
+						if (hits [i].collider.CompareTag ("Player")) {
+							needSearchPowerUpPosition = true;
+							if (occupiedPositions == null)
+								occupiedPositions = new List<int> ();
+							occupiedPositions.Add (randomSpawnPoint);
+							if (occupiedPositions.Count == (spawnPositions.Count - 1)) {
+								occupiedPositions.Clear ();
+								DisableLastPowerUp (lastPowerUp);
+								yield return new WaitForSeconds (2.0f);
+							}
+						}
+					}
 				}
+
 				GameObject powerUp = powerUpPool [randomPowerUp];
 				powerUp.transform.position = spawnPositions [randomSpawnPoint];
 				powerUp.SetActive (true);
 
-				if (lastPowerUp != null && lastPowerUp.activeSelf == true) {
-					lastPowerUp.SetActive (false);
-				}
-
+				DisableLastPowerUp (lastPowerUp);
 
 				currentTime = 0;
 				lastPowerUp = powerUp;
@@ -62,6 +80,33 @@ public class PowerUpManager : GenericSingletonClass<PowerUpManager> {
 				lastRandomSpawnPoint = randomSpawnPoint;
 			}
 			yield return null;
+		}
+	}
+
+	private int GetRandomSpawnPoint(int lastRandomSpawnPoint, List<int>occupiedPositions){
+		int randomSpawnPoint=0;
+		bool shouldContinue = true;
+		while (shouldContinue) {
+			shouldContinue = false;
+			randomSpawnPoint = Random.Range (0, spawnPositions.Count);
+
+			if (lastRandomSpawnPoint == randomSpawnPoint) {
+				shouldContinue = true;
+			}else if (occupiedPositions != null) {
+				for (int i = 0; i < occupiedPositions.Count; i++) {
+					if (randomSpawnPoint == occupiedPositions [i])
+						shouldContinue = true;
+				}
+			}
+
+
+		}
+		return randomSpawnPoint;
+	}
+	
+	private void DisableLastPowerUp(GameObject lastPowerUp){
+		if (lastPowerUp != null && lastPowerUp.activeSelf == true) {
+			lastPowerUp.SetActive (false);
 		}
 	}
 
