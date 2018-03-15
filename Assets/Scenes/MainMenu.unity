@@ -210,6 +210,7 @@ MonoBehaviour:
   customProfiles:
   - KeyboardProfile
   - Keyboard2Profile
+  - GlobalKeyboardProfile
 --- !u!4 &566340071
 Transform:
   m_ObjectHideFlags: 0

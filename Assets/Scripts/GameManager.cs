@@ -297,7 +297,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 				}
 			}
 
-			if (InputManager.Devices [i].Action1.WasPressed) {
+			if (InputManager.Devices [i].Action1.WasPressed && (InputManager.Devices [i].Name !="GlobalKeyboard")) {
 				for (int j = 0; j < players.Count; j++) {
 					PlayerInput currentPlayerInput = players [j].GetComponent<PlayerInput> ();
 					if (currentPlayerInput.GetInputNumber () == i) {
