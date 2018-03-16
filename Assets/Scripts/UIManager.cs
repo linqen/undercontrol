@@ -9,6 +9,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 	public Sprite[] charactersPreviews;
 	public float timeBetweenCountingScore;
 
+	private bool isGameStarted = false;
 	private GameManager gameManager;
 	private MenuManager menuManager;
 	private Transform scoresPanel;
@@ -47,6 +48,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 			int characterIdentifier = playersPreviews [i].charPreviewPos-1;
 			charactersKills [i].transform.Find("Character").GetComponent<Image> ().sprite = charactersPreviews [characterIdentifier];
 		}
+		isGameStarted = true;
 	}
 	public void FinishGame(){
 		for (int i = 0; i < charactersKills.Count; i++) {			
@@ -59,6 +61,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 				childrensImages [j].SetActive (false);
 			}
 		}
+		isGameStarted = false;
 	}
 
 	public IEnumerator ShowActualScores(List<int> scores, List<int> negativeScores,float time){
@@ -99,6 +102,12 @@ public class UIManager : GenericSingletonClass<UIManager> {
 	}
 
 	void Update(){
+		if (isGameStarted && !scoresPanel.gameObject.activeSelf) {
+			for (int i = 0; i < InputManager.Devices.Count; i++) {
+				if ((InputManager.Devices [i].Name == "GlobalKeyboard") && InputManager.Devices [i].Action2.WasPressed)
+					PauseGame(gameManager.GetPlayerOneInputNumber());
+			}
+		}
 		if (gamePaused) {
 			if (InputManager.Devices [playerInputNumber].DPadUp.WasPressed) {
 				//Move up
@@ -124,11 +133,21 @@ public class UIManager : GenericSingletonClass<UIManager> {
 			}
 
 
-			if (InputManager.Devices [playerInputNumber].Action1.WasReleased) {
+			if (InputManager.Devices [playerInputNumber].Action1.WasReleased || WasGlobalAction1Pressed()) {
 				pauseMenuButtons [pauseButtonSelectionPosition].onClick.Invoke ();
 			}
 
 		}
+	}
+
+	private bool WasGlobalAction1Pressed(){
+		for (int i = 0; i < InputManager.Devices.Count; i++) {
+			if ((InputManager.Devices [i].Name == "GlobalKeyboard") && InputManager.Devices [i].Action1.WasPressed)
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 
 	public void PauseGame(int rplayerInputNumber){
@@ -172,6 +191,7 @@ public class UIManager : GenericSingletonClass<UIManager> {
 		EventSystem.current.sendNavigationEvents = true;
 		pauseButtonSelectionPosition = 0;
 		gamePaused = false;
+		isGameStarted = false;
 		pausePanel.gameObject.SetActive (false);
 		gameManager.BackToMain ();
 	}

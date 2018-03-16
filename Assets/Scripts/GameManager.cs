@@ -384,6 +384,10 @@ public class GameManager : GenericSingletonClass<GameManager> {
 		}
 	}
 
+	public int GetPlayerOneInputNumber(){
+		return players [0].GetComponent<PlayerInput> ().GetInputNumber ();
+	}
+
 	public LasersManager GetLaserManager(){
 		return lasersManager;
 	}
