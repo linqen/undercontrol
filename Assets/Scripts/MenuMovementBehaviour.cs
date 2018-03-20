@@ -90,7 +90,7 @@ public class MenuMovementBehaviour : MonoBehaviour {
 				}
 
 				if (InputManager.Devices [i].DPadRight.WasPressed) {
-					if (actualPos < mainMenuOptions.Count-1) {
+					if (actualPos < possibleRoundsToSelect.Count-1) {
 						actualPos++;
 						AkSoundEngine.PostEvent ("ChoosingAmountsOfDeadsSoundRight", gameObject);
 						EventSystem.current.SetSelectedGameObject (possibleRoundsToSelect [actualPos]);
