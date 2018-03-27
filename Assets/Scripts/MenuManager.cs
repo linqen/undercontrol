@@ -10,7 +10,9 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 
 	List<Sprite> availableStartKeys = new List<Sprite> ();
 	MenuMovementBehaviour menuMovementBehaviour;
+	SettingsMenuBehaviour settingsMenuBehaviour;
 	UIManager uiManager;
+	SettingsDB settingsDB;
 	GameManager gameManager;
 	GameObject pressStart;
 	GameObject menuBackground;
@@ -28,10 +30,13 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 	new void Awake(){
 		base.Awake ();
 		menuMovementBehaviour = GetComponent<MenuMovementBehaviour> ();
+		settingsMenuBehaviour = GetComponent<SettingsMenuBehaviour> ();
 	}
 	void Start () {
 		uiManager = UIManager.Instance;
 		gameManager = GameManager.Instance;
+		settingsDB = SettingsDB.Instance;
+		settingsDB.Initialize ();
 		pressStart = transform.Find ("PressStart").gameObject;
 		menuBackground = transform.Find ("GeneralBackground").gameObject;
 		mainMenu = transform.Find ("MainMenu").gameObject;
@@ -49,14 +54,6 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		AkSoundEngine.PostEvent ("Menu_music", gameObject);
 		Cursor.visible = false;
 		mainMenu.transform.Find ("Version").GetComponent<Text> ().text = Application.version;
-		int boolean = PlayerPrefs.GetInt ("SoundOn",1);
-		if (boolean == 1) {
-			Camera.main.GetComponent<AkAudioListener> ().enabled = true;
-			settings.GetComponent<Text> ().text = "SOUND ON";
-		} else {
-			Camera.main.GetComponent<AkAudioListener> ().enabled = false;
-			settings.GetComponent<Text> ().text = "SOUND OFF";
-		}
 	}
 
 	public void StartPressed(){
@@ -109,10 +106,11 @@ public class MenuManager : GenericSingletonClass<MenuManager> {
 		mainMenu.SetActive (false);
 		settings.SetActive (true);
 		backGuide.SetActive (true);
+		acceptGuide.SetActive (true);
 		menuMovementBehaviour.StopMainMenuSelection ();
 		AkSoundEngine.SetSwitch ("MainMenuMusic", "CreditsMenu",gameObject);
-
-		StartCoroutine (WaitToExitSettings());
+		settingsMenuBehaviour.StartSettings (settings);
+		//StartCoroutine (WaitToExitSettings());
 	}
 		
 	private IEnumerator WaitToExitSettings(){
