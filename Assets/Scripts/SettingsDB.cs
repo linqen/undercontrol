@@ -54,16 +54,20 @@ public class SettingsDB : GenericSingletonClass<SettingsDB>{
 
 		int boolean = PlayerPrefs.GetInt ("Music");
 		if (boolean == 1) {
-			Camera.main.GetComponent<AkAudioListener> ().enabled = true;
+			//Camera.main.GetComponent<AkAudioListener> ().enabled = true;
+			AkSoundEngine.SetRTPCValue("VolumeMusic",100);
 		} else {
-			Camera.main.GetComponent<AkAudioListener> ().enabled = false;
+			//Camera.main.GetComponent<AkAudioListener> ().enabled = false;
+			AkSoundEngine.SetRTPCValue("VolumeMusic",0);
 		}
 
 		boolean = PlayerPrefs.GetInt ("FX");
 		if (boolean == 1) {
-			//Enable FX
+			AkSoundEngine.SetRTPCValue("VolumeFx",100);
+			AkSoundEngine.SetRTPCValue("VolumeElectionMenu",100);
 		} else {
-			//Disable FX
+			AkSoundEngine.SetRTPCValue("VolumeFx",0);
+			AkSoundEngine.SetRTPCValue("VolumeElectionMenu",0);
 		}
 
 	}
@@ -116,14 +120,7 @@ public class SettingsDB : GenericSingletonClass<SettingsDB>{
 					PlayerPrefs.SetInt (key, 1);
 					boolValue = true;
 				}
-				switch (key) {
-				case "Music":
-					Camera.main.GetComponent<AkAudioListener> ().enabled = boolValue;
-					break;
-				case "FX":
-					//DisableFX
-					break;
-				}
+				ChangeVolume(key,boolValue);
 			} else {
 				switch (key) {
 				case "Resolution":
@@ -150,6 +147,22 @@ public class SettingsDB : GenericSingletonClass<SettingsDB>{
 			}
 		}
 		return true;
+	}
+
+	private void ChangeVolume(string key, bool value){
+		int volume;
+		if(value){
+			volume=100;
+		}else{
+			volume=0;
+		}
+		if(key=="Music"){
+			AkSoundEngine.SetRTPCValue("VolumeMusic",volume);
+		}else if(key=="FX"){
+			AkSoundEngine.SetRTPCValue("VolumeFx",volume);
+			AkSoundEngine.SetRTPCValue("VolumeElectionMenu",volume);
+		}
+		
 	}
 
 }

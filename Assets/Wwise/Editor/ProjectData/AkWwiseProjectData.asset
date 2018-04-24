@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{4F23A46F-AA27-4D2B-94C1-551658A511E3}'
-    m_lastTimePsrt1: 1565460101
-    m_lastTimePart2: -1999289690
+    m_lastTimePsrt1: 1464223564
+    m_lastTimePart2: -1999264789
     List:
     - Name: BrokenShield
       Path: Default Work Unit\SFXInGame\BrokenShield
@@ -150,6 +150,18 @@ MonoBehaviour:
         ObjectType: 3
       ID: -196617567
       Guid: 0f9c47abad58bc47ba02a88b403f021a
+      maxAttenuation: 0
+    - Name: Countdown
+      Path: Default Work Unit\SFXInGame\Countdown
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFXInGame
+        ObjectType: 4
+      - ElementName: Countdown
+        ObjectType: 3
+      ID: 1505888634
+      Guid: a9c9544558ff794aa8719d0746ecef32
       maxAttenuation: 0
     - Name: DeathSound
       Path: Default Work Unit\SFXInGame\DeathSound
@@ -371,18 +383,6 @@ MonoBehaviour:
       ID: -605699214
       Guid: 67dcccb320009c47ad191a9c58b743a8
       maxAttenuation: 0
-    - Name: state
-      Path: Default Work Unit\Music\state
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Music
-        ObjectType: 4
-      - ElementName: state
-        ObjectType: 3
-      ID: 1382476432
-      Guid: f581715d94abfa48ba507fd8649a771f
-      maxAttenuation: 0
     - Name: StopInGameLaserSound
       Path: Default Work Unit\SFXInGame\LaserSound\StopInGameLaserSound
       PathAndIcons:
@@ -408,34 +408,9 @@ MonoBehaviour:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{27DA635E-672C-42CE-A87B-DD48C6191EF8}'
-    m_lastTimePsrt1: 2084192021
-    m_lastTimePart2: -1999290092
-    List:
-    - Name: StateOfMusic
-      Path: Default Work Unit\StateOfMusic
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: StateOfMusic
-        ObjectType: 9
-      ID: 1376496616
-      Guid: 6cc46885fcb8304dbac649af2fabff64
-      values:
-      - InGame
-      - Menu
-      - None
-      ValueIcons:
-      - ElementName: InGame
-        ObjectType: 8
-      - ElementName: Menu
-        ObjectType: 8
-      - ElementName: None
-        ObjectType: 8
-      valueIDs: ba33b13af0256c9bdb3ba32c
-      ValueGuids:
-      - bytes: 98cd8e4f973fbc4ca72cba6c656165c4
-      - bytes: 490660e1582cab4e9dae3ff2da905e9c
-      - bytes: 103875f98a443642ae446e5f8dce366a
+    m_lastTimePsrt1: -622967502
+    m_lastTimePart2: -1999264794
+    List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -446,36 +421,40 @@ MonoBehaviour:
   - PhysicalPath: Switches\InGameFx.wwu
     ParentPhysicalPath: 
     Guid: '{2F492295-7C4B-43B6-8EC3-E7B651E0E0DF}'
-    m_lastTimePsrt1: -1797578389
-    m_lastTimePart2: -1999290086
-    List:
-    - Name: GrenadeExplode
-      Path: InGameFx\GrenadeExplode
-      PathAndIcons:
-      - ElementName: InGameFx
-        ObjectType: 12
-      - ElementName: GrenadeExplode
-        ObjectType: 11
-      ID: -573947056
-      Guid: 515327a554580848a114a3a5d0f922dc
-      values:
-      - GrenadeExplode
-      - LaunchingGrenade
-      ValueIcons:
-      - ElementName: GrenadeExplode
-        ObjectType: 10
-      - ElementName: LaunchingGrenade
-        ObjectType: 10
-      valueIDs: 5043caddd2f34ad4
-      ValueGuids:
-      - bytes: 386bb68aafc18542b2f4bc7305aca1d3
-      - bytes: e667ef52c13e7341a0c27b89d835e4d3
+    m_lastTimePsrt1: 432340059
+    m_lastTimePart2: -1999264796
+    List: []
   - PhysicalPath: Switches\Music.wwu
     ParentPhysicalPath: 
     Guid: '{6E420C6A-0D5A-4C6D-B409-639C2C155020}'
-    m_lastTimePsrt1: -1566717920
-    m_lastTimePart2: -1999290105
+    m_lastTimePsrt1: 432089757
+    m_lastTimePart2: -1999264796
     List:
+    - Name: AmountOfPlayers
+      Path: Music\AmountOfPlayers
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: AmountOfPlayers
+        ObjectType: 11
+      ID: 1019965076
+      Guid: 069ab699d4c4b341ba98f3f29b6085e8
+      values:
+      - Four
+      - Three
+      - Two
+      ValueIcons:
+      - ElementName: Four
+        ObjectType: 10
+      - ElementName: Three
+        ObjectType: 10
+      - ElementName: Two
+        ObjectType: 10
+      valueIDs: 5908b1aacf9a6a361da66c28
+      ValueGuids:
+      - bytes: d15316d22e48d04c8907a5f9caabaaad
+      - bytes: 6eefb9ddc80a6c44928ff7757ebbf32b
+      - bytes: becab27e6e6eb845b843c3ee58169341
     - Name: InGameMusic
       Path: Music\InGameMusic
       PathAndIcons:
@@ -486,38 +465,38 @@ MonoBehaviour:
       ID: 1545821079
       Guid: 49733fe14c589f498d5da3da1c2eeeee
       values:
-      - LevelNervous
-      - LevelNormal
-      - LevelQuiet
+      - LevelBasic
+      - LevelOneDeath
+      - LevelTwoDeath
       - PauseMusic
       - Score
       ValueIcons:
-      - ElementName: LevelNervous
+      - ElementName: LevelBasic
         ObjectType: 10
-      - ElementName: LevelNormal
+      - ElementName: LevelOneDeath
         ObjectType: 10
-      - ElementName: LevelQuiet
+      - ElementName: LevelTwoDeath
         ObjectType: 10
       - ElementName: PauseMusic
         ObjectType: 10
       - ElementName: Score
         ObjectType: 10
-      valueIDs: 357debfc5827495b9fbd75d776c62d43811bf28e
+      valueIDs: cdf0692ab724516f69cc7d7576c62d43811bf28e
       ValueGuids:
-      - bytes: 4ffae7ae5e7cd44f930217fb4db48dab
       - bytes: ee05ae9da600b2408e8dc1b738a3ed5b
       - bytes: 4062230bf55844478e9eafa8b79cbd6f
-      - bytes: bc58d5f1269ee14188803b9a5f4d8007
-      - bytes: a8d3c1dda8ddd3479f7965f089457247
-    - Name: MainMenuMusic
-      Path: Music\MainMenuMusic
+      - bytes: 4ffae7ae5e7cd44f930217fb4db48dab
+      - bytes: d1308aa81408e045b37dc913d45c8d79
+      - bytes: 52e67a811e4b434b9341cbd9b18b0a21
+    - Name: MenuMusic
+      Path: Music\MenuMusic
       PathAndIcons:
       - ElementName: Music
         ObjectType: 12
-      - ElementName: MainMenuMusic
+      - ElementName: MenuMusic
         ObjectType: 11
-      ID: 1991862712
-      Guid: 25b78ff243da074d89397d5dffb517e7
+      ID: 679636833
+      Guid: 3fb5d21a70ce4d479a9b70774eaffa44
       values:
       - CharacterSelectionMenu
       - CreditsMenu
@@ -537,17 +516,38 @@ MonoBehaviour:
         ObjectType: 10
       valueIDs: 5d135a12784f8f0ac4db44d55b8ddad673653a17
       ValueGuids:
-      - bytes: 53a922a45debb14081baee1c692f5c4e
-      - bytes: 1a55da427be89e449812f3f52dffe66f
-      - bytes: c21ad64d5cd0c642a561ecac553a07c9
-      - bytes: b2bfad3b02bce44dbbe8cf0d8042759a
-      - bytes: 23b5828abe2764499e6b1b404bcb605a
+      - bytes: 861db9d7afa7e0439c2514ead21cdad3
+      - bytes: c4ec1eded46f3c4cbb95c05b21c70285
+      - bytes: a261cc9518ac4045987d794233b02e2f
+      - bytes: 0bf9c6d5e96c794eae3e83e7053b76cb
+      - bytes: ad848cdfccf84e4e932e5ee6103bb1a1
+    - Name: StateOfMusic
+      Path: Music\StateOfMusic
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: StateOfMusic
+        ObjectType: 11
+      ID: 1376496616
+      Guid: cffe22e8c9ca184d835cdef7822b1263
+      values:
+      - InGame
+      - Menu
+      ValueIcons:
+      - ElementName: InGame
+        ObjectType: 10
+      - ElementName: Menu
+        ObjectType: 10
+      valueIDs: ba33b13af0256c9b
+      ValueGuids:
+      - bytes: 10e4882232bc114f8a235e2d816bf42b
+      - bytes: db9deb35173f4a4d90495a0b81d24614
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{8F09AC25-D05F-4379-AEA4-BF9061FF5089}'
-    m_lastTimePsrt1: 1565840277
-    m_lastTimePart2: -1999289690
+    m_lastTimePsrt1: 1771947751
+    m_lastTimePart2: -1999264767
     List:
     - Name: Music
       Path: Default Work Unit\Music
@@ -580,9 +580,36 @@ MonoBehaviour:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{B8E4EAA1-9D31-463C-AA93-DB41D54DDFEA}'
-    m_lastTimePsrt1: -1563631713
-    m_lastTimePart2: -1999290105
-    List: []
+    m_lastTimePsrt1: -684537680
+    m_lastTimePart2: -1999268986
+    List:
+    - Name: VolumeElectionMenu
+      Path: Default Work Unit\VolumeElectionMenu
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: VolumeElectionMenu
+        ObjectType: 13
+      ID: 1877945995
+      Guid: c8a1a73a75c7f44ba02f1d496ca8c614
+    - Name: VolumeFx
+      Path: Default Work Unit\VolumeFx
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: VolumeFx
+        ObjectType: 13
+      ID: -1968346699
+      Guid: be167c9a60f35c478e3efc3533a75330
+    - Name: VolumeMusic
+      Path: Default Work Unit\VolumeMusic
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: VolumeMusic
+        ObjectType: 13
+      ID: -371382704
+      Guid: 3a0de4078039614d971b4b6cee1e0d1f
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -593,21 +620,8 @@ MonoBehaviour:
   ExpandedItems:
   - /Under Control original
   - /Under Control original/Events
-  - /Under Control original/Events/Default Work Unit
-  - /Under Control original/Events/Default Work Unit/Music
-  - /Under Control original/Events/Default Work Unit/SFXInGame
-  - /Under Control original/Events/Default Work Unit/SFXMenu
   - /Under Control original/SoundBanks
-  - /Under Control original/SoundBanks/Default Work Unit
-  - /Under Control original/States
-  - /Under Control original/States/Default Work Unit
-  - /Under Control original/States/Default Work Unit/StateOfMusic
   - /Under Control original/Switches
-  - /Under Control original/Switches/InGameFx
-  - /Under Control original/Switches/InGameFx/GrenadeExplode
-  - /Under Control original/Switches/Music
-  - /Under Control original/Switches/Music/InGameMusic
-  - /Under Control original/Switches/Music/MainMenuMusic
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1

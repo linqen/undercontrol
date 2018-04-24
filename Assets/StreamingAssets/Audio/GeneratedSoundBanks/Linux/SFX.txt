@@ -2,16 +2,25 @@ Event	ID	Name			Wwise Object Path	Notes
 	150205304	ChoosingMenuAmountOfDeadsSoundLeft			\Default Work Unit\SFXMenu\ChoosingMenuAmountOfDeadsSoundLeft	
 	409491284	ChoosingMenuSoundUp			\Default Work Unit\SFXMenu\ChoosingMenuSoundUp	
 	738322899	ChoosingMenuSoundDown			\Default Work Unit\SFXMenu\ChoosingMenuSoundDown	
+	784876474	PressBackToGame			\Default Work Unit\SFXInGame\PressBackToGame	
 	1654317064	SelectedMenuSound			\Default Work Unit\SFXMenu\SelectedMenuSound	
 	1723066554	SelectedPlayerSound			\Default Work Unit\SFXMenu\SelectedPlayerSound	
 	1739783239	ChoosingAmountsOfDeadsSoundRight			\Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundRight	
 	1966548682	SelectedMenuAmountOfDeadsSound			\Default Work Unit\SFXMenu\SelectedMenuAmountOfDeadsSound	
+	2031625088	ChoosingMenuPauseDown			\Default Work Unit\SFXInGame\ChoosingMenuPauseDown	
 	2361953264	ChoosingAmountsOfDeadsSoundLeft			\Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundLeft	
 	2732502762	NewPlayer			\Default Work Unit\SFXMenu\NewPlayer	
 	3226918447	ChoosingMenuAmountOfDeadsSoundRight			\Default Work Unit\SFXMenu\ChoosingMenuAmountOfDeadsSoundRight	
 	3540125970	PressStart			\Default Work Unit\SFXMenu\PressStart	
 	3701262634	ChoosingPlayerSoundLeft			\Default Work Unit\SFXMenu\ChoosingPlayerSoundLeft	
+	3797147779	ChoosingMenuPauseUp			\Default Work Unit\SFXInGame\ChoosingMenuPauseUp	
 	4098349729	ChoosingPlayerSoundRight			\Default Work Unit\SFXMenu\ChoosingPlayerSoundRight	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1877945995	VolumeElectionMenu			\Default Work Unit\VolumeElectionMenu	
+
+Effect plug-ins	ID	Name	Type				Notes
+	2513915904	Hall_Large	Wwise RoomVerb			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	30682593	ChoosingMenuSoundDown	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\nuevos menus_08E68AA3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuSoundDown		221352
@@ -22,6 +31,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	417732883	ChoosingMenuAmountOfDeadsSoundRight	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\nuevos menus_6F269E32.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingMenuAmountOfDeadsSoundRight		235628
 	593646026	SelectedMenuSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\nuevos menus_32F6E423.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedMenuSound		328428
 	803799401	ChoosingPlayerSoundLeft	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\nuevos menus_A0C222E9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\ChoosingPlayerSoundLeft		221352
+	854285663	PressBackToGame	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\Nuevo jugador y pres strat_0FCAE91E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\PressBackToGame		111548
 	896995038	SelectedPlayerSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\nuevos menus_E3FD9185.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedPlayerSound		285596
 	954446017	PressStart	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\Nuevo jugador y pres strat_00FB7CC1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\PressStart		287276
 	977607525	SelectedMenuAmountOfDeadsSound	C:\Users\Lautaro\Documents\WwiseProjects\Under Control original\.cache\Linux\SFX\nuevos menus_F4DE8118.wem		\Actor-Mixer Hierarchy\Default Work Unit\Listo\Election\SelectedMenuAmountOfDeadsSound		278456

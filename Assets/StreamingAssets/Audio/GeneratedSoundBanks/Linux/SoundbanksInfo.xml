@@ -20,11 +20,14 @@
 				<Event Id="1739783239" Name="ChoosingAmountsOfDeadsSoundRight" ObjectPath="\Events\Default Work Unit\SFXMenu\ChoosingAmountsOfDeadsSoundRight"/>
 				<Event Id="150205304" Name="ChoosingMenuAmountOfDeadsSoundLeft" ObjectPath="\Events\Default Work Unit\SFXMenu\ChoosingMenuAmountOfDeadsSoundLeft"/>
 				<Event Id="3226918447" Name="ChoosingMenuAmountOfDeadsSoundRight" ObjectPath="\Events\Default Work Unit\SFXMenu\ChoosingMenuAmountOfDeadsSoundRight"/>
+				<Event Id="2031625088" Name="ChoosingMenuPauseDown" ObjectPath="\Events\Default Work Unit\SFXInGame\ChoosingMenuPauseDown"/>
+				<Event Id="3797147779" Name="ChoosingMenuPauseUp" ObjectPath="\Events\Default Work Unit\SFXInGame\ChoosingMenuPauseUp"/>
 				<Event Id="738322899" Name="ChoosingMenuSoundDown" ObjectPath="\Events\Default Work Unit\SFXMenu\ChoosingMenuSoundDown"/>
 				<Event Id="409491284" Name="ChoosingMenuSoundUp" ObjectPath="\Events\Default Work Unit\SFXMenu\ChoosingMenuSoundUp"/>
 				<Event Id="3701262634" Name="ChoosingPlayerSoundLeft" ObjectPath="\Events\Default Work Unit\SFXMenu\ChoosingPlayerSoundLeft"/>
 				<Event Id="4098349729" Name="ChoosingPlayerSoundRight" ObjectPath="\Events\Default Work Unit\SFXMenu\ChoosingPlayerSoundRight"/>
 				<Event Id="2732502762" Name="NewPlayer" ObjectPath="\Events\Default Work Unit\SFXMenu\NewPlayer"/>
+				<Event Id="784876474" Name="PressBackToGame" ObjectPath="\Events\Default Work Unit\SFXInGame\PressBackToGame"/>
 				<Event Id="3540125970" Name="PressStart" ObjectPath="\Events\Default Work Unit\SFXMenu\PressStart"/>
 				<Event Id="1966548682" Name="SelectedMenuAmountOfDeadsSound" ObjectPath="\Events\Default Work Unit\SFXMenu\SelectedMenuAmountOfDeadsSound"/>
 				<Event Id="1654317064" Name="SelectedMenuSound" ObjectPath="\Events\Default Work Unit\SFXMenu\SelectedMenuSound"/>
@@ -63,6 +66,10 @@
 					<ShortName>nuevos menus.wav</ShortName>
 					<Path>SFX\nuevos menus_A0C222E9.wem</Path>
 				</File>
+				<File Id="854285663" Language="SFX">
+					<ShortName>Nuevo jugador y pres strat.wav</ShortName>
+					<Path>SFX\Nuevo jugador y pres strat_0FCAE91E.wem</Path>
+				</File>
 				<File Id="896995038" Language="SFX">
 					<ShortName>nuevos menus.wav</ShortName>
 					<Path>SFX\nuevos menus_E3FD9185.wem</Path>
@@ -90,6 +97,7 @@
 				<Event Id="319302521" Name="BrokenShield" ObjectPath="\Events\Default Work Unit\SFXInGame\BrokenShield"/>
 				<Event Id="2031625088" Name="ChoosingMenuPauseDown" ObjectPath="\Events\Default Work Unit\SFXInGame\ChoosingMenuPauseDown"/>
 				<Event Id="3797147779" Name="ChoosingMenuPauseUp" ObjectPath="\Events\Default Work Unit\SFXInGame\ChoosingMenuPauseUp"/>
+				<Event Id="1505888634" Name="Countdown" ObjectPath="\Events\Default Work Unit\SFXInGame\Countdown"/>
 				<Event Id="3742375894" Name="DeathSound" ObjectPath="\Events\Default Work Unit\SFXInGame\DeathSound"/>
 				<Event Id="3255686181" Name="Grenade" ObjectPath="\Events\Default Work Unit\SFXInGame\Grenade"/>
 				<Event Id="724697420" Name="PauseInGameLaserSound" ObjectPath="\Events\Default Work Unit\SFXInGame\LaserSound\PauseInGameLaserSound"/>
@@ -104,6 +112,14 @@
 				<Event Id="3270715844" Name="StopInGameLaserSound" ObjectPath="\Events\Default Work Unit\SFXInGame\LaserSound\StopInGameLaserSound"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="17449408" Language="SFX">
+					<ShortName>Sonido con utilidad 48.wav</ShortName>
+					<Path>SFX\Sonido con utilidad 48_1C9C67B2.wem</Path>
+				</File>
+				<File Id="55207038" Language="SFX">
+					<ShortName>death.wav</ShortName>
+					<Path>SFX\death_1C9C67B2.wem</Path>
+				</File>
 				<File Id="147497928" Language="SFX">
 					<ShortName>bomb nuevo.wav</ShortName>
 					<Path>SFX\bomb nuevo_47D59DBC.wem</Path>
@@ -112,41 +128,41 @@
 					<ShortName>nuevos menus.wav</ShortName>
 					<Path>SFX\nuevos menus_8BE735E2.wem</Path>
 				</File>
-				<File Id="171518248" Language="SFX">
-					<ShortName>power up caminar rapidop.wav</ShortName>
-					<Path>SFX\power up caminar rapidop_1C9C67B2.wem</Path>
-				</File>
-				<File Id="255682566" Language="SFX">
-					<ShortName>power up Escudo recuperado.wav</ShortName>
-					<Path>SFX\power up Escudo recuperado_1C9C67B2.wem</Path>
-				</File>
-				<File Id="260928866" Language="SFX">
-					<ShortName>rayo .wav</ShortName>
-					<Path>SFX\rayo _1C9C67B2.wem</Path>
-				</File>
-				<File Id="435915239" Language="SFX">
-					<ShortName>power upantigravedad.wav</ShortName>
-					<Path>SFX\power upantigravedad_1C9C67B2.wem</Path>
+				<File Id="251728431" Language="SFX">
+					<ShortName>Tic.wav</ShortName>
+					<Path>SFX\Tic_1C9C67B2.wem</Path>
 				</File>
 				<File Id="453701904" Language="SFX">
 					<ShortName>fall.wav</ShortName>
 					<Path>SFX\fall_FD5CEE74.wem</Path>
 				</File>
+				<File Id="474658775" Language="SFX">
+					<ShortName>Tic 3.wav</ShortName>
+					<Path>SFX\Tic 3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="494843857" Language="SFX">
+					<ShortName>Running fast.wav</ShortName>
+					<Path>SFX\Running fast_1C9C67B2.wem</Path>
+				</File>
 				<File Id="506125225" Language="SFX">
 					<ShortName>prebomb nuevo.wav</ShortName>
 					<Path>SFX\prebomb nuevo_54A2F794.wem</Path>
 				</File>
-				<File Id="559063863" Language="SFX">
-					<ShortName>nueva muerte.wav</ShortName>
-					<Path>SFX\nueva muerte_7DA49CB6.wem</Path>
+				<File Id="603394432" Language="SFX">
+					<ShortName>Tic. 2wav.wav</ShortName>
+					<Path>SFX\Tic. 2wav_1C9C67B2.wem</Path>
+				</File>
+				<File Id="604506235" Language="SFX">
+					<ShortName>escudo roto.wav</ShortName>
+					<Path>SFX\escudo roto_9375A1A3.wem</Path>
 				</File>
 				<File Id="642686276" Language="SFX">
 					<ShortName>salto.wav</ShortName>
 					<Path>SFX\salto_79A48F3D.wem</Path>
 				</File>
-				<File Id="746543972" Language="SFX">
-					<ShortName>Electric-jab-01.wav</ShortName>
-					<Path>SFX\Electric-jab-01_1C9C67B2.wem</Path>
+				<File Id="788340288" Language="SFX">
+					<ShortName>Power up shield 48.wav</ShortName>
+					<Path>SFX\Power up shield 48_E251A260.wem</Path>
 				</File>
 				<File Id="803799401" Language="SFX">
 					<ShortName>nuevos menus.wav</ShortName>
@@ -156,9 +172,17 @@
 					<ShortName>Nuevo jugador y pres strat.wav</ShortName>
 					<Path>SFX\Nuevo jugador y pres strat_0FCAE91E.wem</Path>
 				</File>
-				<File Id="927386084" Language="SFX">
-					<ShortName>power up granada rapida.wav</ShortName>
-					<Path>SFX\power up granada rapida_1C9C67B2.wem</Path>
+				<File Id="905420843" Language="SFX">
+					<ShortName>Bomb 3.wav</ShortName>
+					<Path>SFX\Bomb 3_1C9C67B2.wem</Path>
+				</File>
+				<File Id="909519926" Language="SFX">
+					<ShortName>Power up bombs 2.wav</ShortName>
+					<Path>SFX\Power up bombs 2_89BD96AA.wem</Path>
+				</File>
+				<File Id="969889052" Language="SFX">
+					<ShortName>New music 120 5-Mini V3.wav</ShortName>
+					<Path>SFX\New music 120 5-Mini V3_03B8E6B2.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
@@ -169,36 +193,27 @@
 			<IncludedEvents>
 				<Event Id="1545821079" Name="InGameMusic" ObjectPath="\Events\Default Work Unit\Music\InGameMusic"/>
 				<Event Id="4055567060" Name="Menu_music" ObjectPath="\Events\Default Work Unit\Music\Menu_music"/>
-				<Event Id="1382476432" Name="state" ObjectPath="\Events\Default Work Unit\Music\state"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="57181690" Language="SFX">
-					<ShortName>bata 3 120 44 0 .wav</ShortName>
-					<Path>SFX\bata 3 120 44 0 _F17FB28C.wem</Path>
-				</File>
-				<File Id="76494181" Language="SFX">
-					<ShortName>capa 120 44 0 3-TAL-U-No-62.wav</ShortName>
-					<Path>SFX\capa 120 44 0 3-TAL-U-No-62_F17FB28C.wem</Path>
-				</File>
 				<File Id="137199328" Language="SFX">
 					<ShortName>solo 120 44 0.wav</ShortName>
 					<Path>SFX\solo 120 44 0_F17FB28C.wem</Path>
-				</File>
-				<File Id="211950045" Language="SFX">
-					<ShortName>capa 120 44 0 2-SEM V2.wav</ShortName>
-					<Path>SFX\capa 120 44 0 2-SEM V2_F17FB28C.wem</Path>
-				</File>
-				<File Id="241416559" Language="SFX">
-					<ShortName>capa 120 44  bata 2.wav</ShortName>
-					<Path>SFX\capa 120 44  bata 2_F17FB28C.wem</Path>
 				</File>
 				<File Id="287019273" Language="SFX">
 					<ShortName>Musica fondo.wav</ShortName>
 					<Path>SFX\Musica fondo_F17FB28C.wem</Path>
 				</File>
+				<File Id="388815190" Language="SFX">
+					<ShortName>New music 120 4-Mini V3.wav</ShortName>
+					<Path>SFX\New music 120 4-Mini V3_F17FB28C.wem</Path>
+				</File>
 				<File Id="462012792" Language="SFX">
 					<ShortName>solo 2 120 44 0.wav</ShortName>
 					<Path>SFX\solo 2 120 44 0_F17FB28C.wem</Path>
+				</File>
+				<File Id="485560805" Language="SFX">
+					<ShortName>Musica fondo.wav</ShortName>
+					<Path>SFX\Musica fondo_96FA5F3B.wem</Path>
 				</File>
 				<File Id="486405309" Language="SFX">
 					<ShortName>bata 120 44 0.wav</ShortName>
@@ -208,9 +223,21 @@
 					<ShortName>sinte 120 44 0.wav</ShortName>
 					<Path>SFX\sinte 120 44 0_F17FB28C.wem</Path>
 				</File>
-				<File Id="1038101661" Language="SFX">
-					<ShortName>capa 120 44 0 1-SEM V2.wav</ShortName>
-					<Path>SFX\capa 120 44 0 1-SEM V2_F17FB28C.wem</Path>
+				<File Id="820617469" Language="SFX">
+					<ShortName>New music 120 5-Mini V3.wav</ShortName>
+					<Path>SFX\New music 120 5-Mini V3_F17FB28C.wem</Path>
+				</File>
+				<File Id="887120772" Language="SFX">
+					<ShortName>New music 120 2-Audio.wav</ShortName>
+					<Path>SFX\New music 120 2-Audio_F17FB28C.wem</Path>
+				</File>
+				<File Id="908920872" Language="SFX">
+					<ShortName>New music 120 1-Massive.wav</ShortName>
+					<Path>SFX\New music 120 1-Massive_F17FB28C.wem</Path>
+				</File>
+				<File Id="1033247409" Language="SFX">
+					<ShortName>New music 120 3-Audio.wav</ShortName>
+					<Path>SFX\New music 120 3-Audio_F17FB28C.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

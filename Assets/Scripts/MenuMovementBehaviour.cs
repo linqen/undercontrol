@@ -84,7 +84,7 @@ public class MenuMovementBehaviour : MonoBehaviour {
 				if (InputManager.Devices [i].DPadLeft.WasPressed) {
 					if (actualPos > 0) {
 						actualPos--;
-						AkSoundEngine.PostEvent ("ChoosingAmountsOfDeadsSoundLeft", gameObject);
+						AkSoundEngine.PostEvent ("ChoosingMenuAmountOfDeadsSoundLeft", gameObject);
 						EventSystem.current.SetSelectedGameObject (possibleRoundsToSelect [actualPos]);
 					}
 				}
@@ -92,7 +92,7 @@ public class MenuMovementBehaviour : MonoBehaviour {
 				if (InputManager.Devices [i].DPadRight.WasPressed) {
 					if (actualPos < possibleRoundsToSelect.Count-1) {
 						actualPos++;
-						AkSoundEngine.PostEvent ("ChoosingAmountsOfDeadsSoundRight", gameObject);
+						AkSoundEngine.PostEvent ("ChoosingMenuAmountOfDeadsSoundRight", gameObject);
 						EventSystem.current.SetSelectedGameObject (possibleRoundsToSelect [actualPos]);
 					}
 				}

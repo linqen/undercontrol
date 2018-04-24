@@ -134,6 +134,22 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			}
 			//
 
+			//Music parameters
+			switch (players.Count)
+			{
+				case 3:
+				if(deadPlayers==1)
+					AkSoundEngine.SetSwitch("InGameMusic","LevelOneDeath",menuManager.gameObject);
+				break;
+				case 4:
+				if(deadPlayers==1)
+					AkSoundEngine.SetSwitch("InGameMusic","LevelOneDeath",menuManager.gameObject);
+				else if(deadPlayers==2)
+					AkSoundEngine.SetSwitch("InGameMusic","LevelTwoDeath",menuManager.gameObject);
+				break;
+			}
+			//Music parameters
+
 			if (players.Count -1 <= deadPlayers && 
 				deathReportPlayers.Count-1 == k) {
 				lasersManager.DisableLasers ();
@@ -184,7 +200,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			actualSceneIndex = 0;
 		}
 		if (actualSceneIndex+1  == 2) {
-			AkSoundEngine.SetSwitch ("InGameMusic", "LevelNormal", menuManager.gameObject);
+			AkSoundEngine.SetSwitch ("InGameMusic", "LevelBasic", menuManager.gameObject);
 		}
 		GameStart (actualSceneIndex+1, numberOfRounds);
 	}
@@ -209,7 +225,24 @@ public class GameManager : GenericSingletonClass<GameManager> {
 
 	public void GameStart(int sceneIndex, int numberOfRounds){
 		this.numberOfRounds = numberOfRounds;
-		if (players.Count > 2) {isTwoPlayersGame = false;} else {isTwoPlayersGame = true;}
+		switch (players.Count)
+		{
+			case 2:
+				isTwoPlayersGame = true;
+				AkSoundEngine.SetSwitch("AmountOfPlayers","Two",menuManager.gameObject);
+			break;
+			case 3:
+				isTwoPlayersGame = false;
+				AkSoundEngine.SetSwitch("AmountOfPlayers","Three",menuManager.gameObject);
+			break;
+			case 4:
+				isTwoPlayersGame = false;
+				AkSoundEngine.SetSwitch("AmountOfPlayers","Four",menuManager.gameObject);
+			break;
+		}
+		AkSoundEngine.SetSwitch ("StateOfMusic","InGame", menuManager.gameObject);
+		AkSoundEngine.SetSwitch("InGameMusic","LevelBasic",menuManager.gameObject);
+		AkSoundEngine.PostEvent("Countdown",gameObject);
 
 		StartCoroutine (OnGameStart (sceneIndex));
 	}
@@ -220,12 +253,6 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			SceneManager.LoadScene (sceneIndex,LoadSceneMode.Additive);
 			loadStarted = true;
 			yield return null;
-		}
-		for (int i = 0; i < scores.Count; i++) {
-			if (scores[i]+1 == numberOfRounds) {
-				AkSoundEngine.SetSwitch ("InGameMusic", "LevelNervous", menuManager.gameObject);
-				i = scores.Count;
-			}
 		}
 
 		GameObject arrowPointer = GameObject.FindWithTag ("ArrowPointer");
