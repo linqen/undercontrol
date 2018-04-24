@@ -54,7 +54,7 @@ public class PowerUpManager : GenericSingletonClass<PowerUpManager> {
 
 					RaycastHit2D[] hits = Physics2D.BoxCastAll (spawnPositions [randomSpawnPoint], new Vector2 (1, 1), 0, Vector2.right);
 					for (int i = 0; i < hits.Length; i++) {
-						if (hits [i].collider.CompareTag ("Player")) {
+						if (hits[i].collider != null && hits [i].collider.CompareTag ("Player")) {
 							needSearchPowerUpPosition = true;
 							if (occupiedPositions == null)
 								occupiedPositions = new List<int> ();
