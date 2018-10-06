@@ -1,4 +1,6 @@
-<p align="center">![alt text](Logo.png)</p>
+<p align="center">
+<img src="https://github.com/sebaenam/undercontrol/blob/dev/Logo.png?raw=true" alt="Under Control Logo"/>
+</p>
 
 Under Control is a local multiplayer platform game where up to 4 players fight with grenades to beat each other.
 
