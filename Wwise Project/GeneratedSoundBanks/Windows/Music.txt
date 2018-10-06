@@ -1,0 +1,29 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1545821079	InGameMusic			\Default Work Unit\Music\InGameMusic	
+	4055567060	Menu_music			\Default Work Unit\Music\Menu_music	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	3923584592	VolumeMusic			\Default Work Unit\VolumeMusic	General Volume of the music 
+
+Trigger	ID	Name			Wwise Object Path	Notes
+	779278001	Death			\Music\Death	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	69563777	Main Percusion	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc 16 08 140 bpm Cm Level Music Percu_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\AmountOfPlayers\FourPlayers\InGameMusicFourPlayers\Main Percusion		3291496
+	112698883	Percusion	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm 4-Kontakt 5_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\Percusion		3291496
+	127918428	Lead	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc 16 08 140 bpm Cm Level Music DX7  lead_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\AmountOfPlayers\FourPlayers\InGameMusicFourPlayers\Lead		3291496
+	133332652	Bajo raro	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc 16 08 140 bpm Cm Level Music bajo raro_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\AmountOfPlayers\FourPlayers\InGameMusicFourPlayers\Bajo raro		3291496
+	224049799	Viento	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc 16 08 140 bpm Cm Level Music Viento_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\AmountOfPlayers\FourPlayers\InGameMusicFourPlayers\Viento		3291496
+	281597489	Percusion	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm Percusion K_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\Percusion		3291496
+	286486099	LEAD	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm DX7  lead_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\LEAD		3291496
+	560482287	BAJO	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm bajo raro_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\BAJO		3291496
+	597965626	Percusion Mezclada	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc 16 08 140 bpm Cm Level Music Percusion K_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\AmountOfPlayers\FourPlayers\InGameMusicFourPlayers\Percusion Mezclada		3291496
+	622171832	Percusion	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm Percusion K v1_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\Percusion		4937208
+	737773971	Percusion	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm Percusion battery_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\Percusion		3291496
+	801941032	death	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\death_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\StingersTest\death\death		8202664
+	802909089	Sintetizador base	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm Sinte base_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\Sintetizador base		3248420
+	920095050	Bass	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc 16 08 140 bpm Cm Level Music Sinte base_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\AmountOfPlayers\FourPlayers\InGameMusicFourPlayers\Bass		3291496
+	935886657	BAJO	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm bajo raro-1_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\BAJO		3291496
+	1023085180	Bajo	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc 16 08 Bajo loop nuevo_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\AmountOfPlayers\FourPlayers\InGameMusicFourPlayers\Bajo		3620636
+	1037079838	Uc press start button 140bpm Cm Foley_demas	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Uc press start button 140bpm Cm Foley_demas_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\Music\Menu Music\Menu Music\Menu Music\Uc press start button 140bpm Cm Foley_demas		3291496
+

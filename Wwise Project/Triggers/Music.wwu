@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{29F6BEA6-EB22-4BE8-B120-E57AE0B70DE8}" SchemaVersion="89">
+	<Triggers>
+		<WorkUnit Name="Music" ID="{29F6BEA6-EB22-4BE8-B120-E57AE0B70DE8}" PersistMode="Standalone">
+			<ChildrenList>
+				<Trigger Name="Death" ID="{854BA1B0-4183-4F01-9399-C50361913A13}"/>
+			</ChildrenList>
+		</WorkUnit>
+	</Triggers>
+</WwiseDocument>

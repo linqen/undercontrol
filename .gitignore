@@ -33,3 +33,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 /.vscode
+
+#Wwise ignore
+/Wwise Project/.cache
+*.akd
+*.validationcache
+*.wem

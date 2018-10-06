@@ -1,0 +1,33 @@
+Event	ID	Name			Wwise Object Path	Notes
+	150205304	ChoosingMenuAmountOfDeadsSoundLeft			\Default Work Unit\SFXMenu\Choosing\ChoosingMenuAmountOfDeadsSoundLeft	
+	409491284	ChoosingMenuSoundUp			\Default Work Unit\SFXMenu\Choosing\ChoosingMenuSoundUp	
+	738322899	ChoosingMenuSoundDown			\Default Work Unit\SFXMenu\Choosing\ChoosingMenuSoundDown	
+	1654317064	SelectedMenuSound			\Default Work Unit\SFXMenu\Selection\SelectedMenuSound	
+	1723066554	SelectedPlayerSound			\Default Work Unit\SFXMenu\Selection\SelectedPlayerSound	
+	1966548682	SelectedMenuAmountOfDeadsSound			\Default Work Unit\SFXMenu\Selection\SelectedMenuAmountOfDeadsSound	
+	2732502762	NewPlayer			\Default Work Unit\SFXMenu\Selection\NewPlayer	
+	3226918447	ChoosingMenuAmountOfDeadsSoundRight			\Default Work Unit\SFXMenu\Choosing\ChoosingMenuAmountOfDeadsSoundRight	
+	3540125970	PressStart			\Default Work Unit\SFXMenu\Selection\PressStart	
+	3701262634	ChoosingPlayerSoundLeft			\Default Work Unit\SFXMenu\Choosing\ChoosingPlayerSoundLeft	
+	4098349729	ChoosingPlayerSoundRight			\Default Work Unit\SFXMenu\Choosing\ChoosingPlayerSoundRight	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2326620597	VolumeFx			\Default Work Unit\VolumeFx	Volume of the Fx sound 
+
+Effect plug-ins	ID	Name	Type				Notes
+	602546716	Room_Large	Wwise RoomVerb			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	30682593	ChoosingMenuSoundDown	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_F9A0941F.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\1_Choosing\ChoosingMenuSoundDown		197396
+	88674853	NewPlayer	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Nuevo jugador y pres strat_56B56592.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\3_OtherMenuSounds\NewPlayer		288268
+	148686412	ChoosingPlayerSoundRight	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_4D406BE5.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\1_Choosing\ChoosingPlayerSoundRight		174812
+	174565809	ChoosingMenuSoundUp	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_E3A79537.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\1_Choosing\ChoosingMenuSoundUp		164536
+	322439086	PressBackToGame	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Nuevo jugador y pres strat_B8C315F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\3_OtherMenuSounds\PressBackToGame		136112
+	332996808	ChoosingMenuAmountOfDeadsSoundLeft	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_D678A7EC.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\1_Choosing\ChoosingMenuAmountOfDeadsSoundLeft		149448
+	417732883	ChoosingMenuAmountOfDeadsSoundRight	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_8766147F.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\1_Choosing\ChoosingMenuAmountOfDeadsSoundRight		229364
+	593646026	SelectedMenuSound	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_BABD055F.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\2_Selected\SelectedMenuSound		313804
+	803799401	ChoosingPlayerSoundLeft	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_1B3797AA.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\1_Choosing\ChoosingPlayerSoundLeft		162440
+	896995038	SelectedPlayerSound	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_8C1C59E2.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\2_Selected\SelectedPlayerSound		250504
+	954446017	PressStart	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Nuevo jugador y pres strat_5A73DB6D.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\3_OtherMenuSounds\PressStart		287276
+	977607525	SelectedMenuAmountOfDeadsSound	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_CDCE0DA7.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXMenu\2_Selected\SelectedMenuAmountOfDeadsSound		264044
+

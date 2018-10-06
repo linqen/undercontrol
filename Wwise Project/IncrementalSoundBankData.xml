@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IncrementalBankBuild Version="6" Flags="601859981">
+	<Platform GUID="{22EFFCFF-9538-401A-8EAC-85CBCFED7897}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="In_game" Hash="3129866896" Timestamp="131574297904527857"/>
+				<File Name="Init" Hash="1416265209" Timestamp="1538836388"/>
+				<File Name="Menu" Hash="2976118511" Timestamp="131574297904803054"/>
+				<File Name="Music" Hash="1119759346" Timestamp="1538836388"/>
+				<File Name="SFX" Hash="3339340604" Timestamp="1538836388"/>
+				<File Name="SFXInGame" Hash="3682850719" Timestamp="1538836388"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="780759291" Timestamp="1538857274"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+	<Platform GUID="{74AB895D-3E78-423D-9BFC-425EC02B9032}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="In_game" Hash="3129866896" Timestamp="131574297893930890"/>
+				<File Name="Init" Hash="4164070144" Timestamp="1538836381"/>
+				<File Name="Menu" Hash="2976118511" Timestamp="131574297894211092"/>
+				<File Name="Music" Hash="1119759346" Timestamp="1538836381"/>
+				<File Name="SFX" Hash="3339340604" Timestamp="1538836381"/>
+				<File Name="SFXInGame" Hash="3682850719" Timestamp="1538836381"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="2795167613" Timestamp="1538857274"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+	<Platform GUID="{2CAC796F-6935-4287-B047-8776299BF5C4}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="In_game" Hash="3129866896" Timestamp="131574297898813558"/>
+				<File Name="Init" Hash="3745839346" Timestamp="1538836385"/>
+				<File Name="Menu" Hash="2976118511" Timestamp="131574297899093760"/>
+				<File Name="Music" Hash="1119759346" Timestamp="1538836385"/>
+				<File Name="SFX" Hash="3339340604" Timestamp="1538836385"/>
+				<File Name="SFXInGame" Hash="3682850719" Timestamp="1538836385"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="2404873223" Timestamp="1538857274"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+	<Platform GUID="{AEC34EDD-38A0-42D9-881D-971EBFB20832}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="In_game" Hash="1404130312" Timestamp="131575035324336555"/>
+				<File Name="Init" Hash="2339303930" Timestamp="1538836387"/>
+				<File Name="Menu" Hash="2163980475" Timestamp="131574366597548477"/>
+				<File Name="Music" Hash="1119759346" Timestamp="1538836387"/>
+				<File Name="SFX" Hash="3339340604" Timestamp="1538836387"/>
+				<File Name="SFXInGame" Hash="3682850719" Timestamp="1538836386"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="3526981093" Timestamp="1538857274"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+	<Platform GUID="{2CCA4B09-ECAC-445B-95F4-6F7E3BCCDC15}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="Init" Hash="490741667" Timestamp="1538836382"/>
+				<File Name="Music" Hash="1119759346" Timestamp="1538836382"/>
+				<File Name="SFX" Hash="3339340604" Timestamp="1538836382"/>
+				<File Name="SFXInGame" Hash="3682850719" Timestamp="1538836382"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="2837650480" Timestamp="1538857274"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+	<Platform GUID="{72B2D252-C9BA-49C3-8BE4-FD022BC90439}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="In_game" Hash="1404130312" Timestamp="131575035307385871"/>
+				<File Name="Init" Hash="3765697492" Timestamp="1538836384"/>
+				<File Name="Menu" Hash="2163980475" Timestamp="131574366595784882"/>
+				<File Name="Music" Hash="1119759346" Timestamp="1538836384"/>
+				<File Name="SFX" Hash="3339340604" Timestamp="1538836384"/>
+				<File Name="SFXInGame" Hash="3682850719" Timestamp="1538836384"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="81042339" Timestamp="1538857274"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+	<Platform GUID="{2A705DE1-8A70-4E8E-B605-E85879F621D0}">
+		<Banks>
+			<Language ID="393239870">
+				<File Name="In_game" Hash="3129866896" Timestamp="131574297889042487"/>
+				<File Name="Init" Hash="3145561514" Timestamp="1538836380"/>
+				<File Name="Menu" Hash="2976118511" Timestamp="131574297889669472"/>
+				<File Name="Music" Hash="1119759346" Timestamp="1538836380"/>
+				<File Name="SFX" Hash="3339340604" Timestamp="1538836380"/>
+				<File Name="SFXInGame" Hash="3682850719" Timestamp="1538836380"/>
+			</Language>
+		</Banks>
+		<XMLInfo>
+			<Language ID="-1">
+				<File Name="" Hash="3980351959" Timestamp="1538857274"/>
+			</Language>
+		</XMLInfo>
+	</Platform>
+</IncrementalBankBuild>

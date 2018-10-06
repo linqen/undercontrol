@@ -1,0 +1,65 @@
+Event	ID	Name			Wwise Object Path	Notes
+	319302521	BrokenShield			\Default Work Unit\SFXInGame\Other\BrokenShield	
+	420892081	Granade			\Default Work Unit\SFXInGame\Other\Granade	
+	565434503	StartScore			\Default Work Unit\SFXInGame\PauseAndScore\StartScore	
+	1185697611	PlayerTouchFloor			\Default Work Unit\SFXInGame\Players\PlayerTouchFloor	
+	1505888634	Countdown			\Default Work Unit\SFXInGame\Other\Countdown	
+	2031625088	ChoosingMenuPauseDown			\Default Work Unit\SFXInGame\PauseAndScore\ChoosingMenuPauseDown	
+	2618690349	StopPause			\Default Work Unit\SFXInGame\PauseAndScore\StopPause	
+	2622240111	PickUpPowerUpShieldRecovered			\Default Work Unit\SFXInGame\PowerUps\PickUpPowerUpShieldRecovered	
+	2756239097	StopScore			\Default Work Unit\SFXInGame\PauseAndScore\StopScore	
+	2946864334	PlayerJumping			\Default Work Unit\SFXInGame\Players\PlayerJumping	
+	2965756111	StartPause			\Default Work Unit\SFXInGame\PauseAndScore\StartPause	Cuando comienza la pausa 
+	3270715844	StopInGameLaserSound			\Default Work Unit\SFXInGame\LaserSound\StopInGameLaserSound	
+	3380139897	PickUpPowerUpFastGranade			\Default Work Unit\SFXInGame\PowerUps\PickUpPowerUpFastGranade	
+	3684393442	PickUpPowerUpFastRunning			\Default Work Unit\SFXInGame\PowerUps\PickUpPowerUpFastRunning	
+	3689268082	StartInGameLaserSound			\Default Work Unit\SFXInGame\LaserSound\StartInGameLaserSound	
+	3742375894	DeathSound			\Default Work Unit\SFXInGame\Other\DeathSound	
+	3797147779	ChoosingMenuPauseUp			\Default Work Unit\SFXInGame\PauseAndScore\ChoosingMenuPauseUp	
+	4234035959	PickUpPowerUpAntiGravity			\Default Work Unit\SFXInGame\PowerUps\PickUpPowerUpAntiGravity	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	420892081	Granade			\InGameFx\Granade	
+
+Switch	ID	Name	Switch Group			Notes
+	1727945837	Bomb	Granade			
+	2566617096	PreBomb	Granade			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2326620597	VolumeFx			\Default Work Unit\VolumeFx	Volume of the Fx sound 
+
+Effect plug-ins	ID	Name	Type				Notes
+	780838069	New_Wwise_Meter	Wwise Meter			
+	1008402193	Low_Pass_20KHz	Wwise Parametric EQ			
+	1990128658	Room_Medium	Wwise RoomVerb			
+	2513915904	Hall_Large	Wwise RoomVerb			
+	3451596814	Hall_Medium	Wwise RoomVerb			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	17449408	PickUpPowerUpAntiGravity	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Sonido con utilidad 48_7544BA96.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\2_PowerUps\PickUpPowerUpAntiGravity		387448
+	35013728	salto	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\NewJump_7544BA96_50304133.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\1_PlayersSounds\salto		380992
+	55207038	Death	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\death_683E768A_FE022AE0.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Death\Death		1183808
+	80654697	Laser_01	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Laser_4EEF2E14.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\LaserSound\Laser\Laser_01		1044208
+	123364202	Laser	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Laser_8A8190B8.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\LaserSound\Laser\Laser		1119800
+	147497928	bomb part 1	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\bomb nuevo_04211548.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Granade\Granade\bomb part 1		216204
+	196004634	Laser_03	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Laser_68C7E8E9.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\LaserSound\Laser\Laser_03		1167044
+	251728431	Tic 1	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Tic_7544BA96.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Countdown\Tic 1	1 	96064
+	286441875	StartPause	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Nuevo jugador y pres strat_2E9C22D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\3_PauseOptions\StartPause		292000
+	350200640	ChoosingMenuPauseDown	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_CAD1641C.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\3_PauseOptions\ChoosingMenuPauseDown		196892
+	453701904	PlayerTouchFloor	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\fall_AFB8F2C0.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\1_PlayersSounds\PlayerTouchFloor		97764
+	474658775	Tic 3	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Tic 3_7544BA96.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Countdown\Tic 3	2	94426
+	494843857	PickUpPowerUpRunningFast	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Running fast_7544BA96_2F9A2E84.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\2_PowerUps\PickUpPowerUpRunningFast		340032
+	506125225	prebomb	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\prebomb nuevo_87726970.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Granade\prebomb		283500
+	595964533	ChoosingMenuPauseUp	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\nuevos menus_04AC9E6D.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\3_PauseOptions\ChoosingMenuPauseUp		257504
+	599755370	Death_02	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\death_0DE7D095_FE022AE0.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Death\Death_02		1364032
+	603394432	Tic_ 2wav	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Tic. 2wav_7544BA96.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Countdown\Tic_ 2wav	3	95190
+	604506235	BrokenShield	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\escudo roto_2730DEB8.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\BrokenShield		192064
+	722503511	Laser_02	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Laser_9842E6BA.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\LaserSound\Laser\Laser_02		1039480
+	788340288	PickUpPowerUpShieldRecovered	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Power up shield 48_95143A4C_52F35628.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\2_PowerUps\PickUpPowerUpShieldRecovered		806976
+	801941032	death	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\death_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\Musics\StingersTest\death\death		8202664
+	854285663	StopPause	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Nuevo jugador y pres strat_7C185B0A.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\3_PauseOptions\StopPause		111548
+	878324971	Death_01	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\death_F07BECA5_FE022AE0.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Death\Death_01		1232960
+	905420843	Bomb part 2	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Bomb 3_7544BA96.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\Granade\Granade\Bomb part 2		321448
+	909519926	PickUpPowerUpFastGranade	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Power up bombs 2_0D4F156E.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\2_PowerUps\PickUpPowerUpFastGranade		137436
+	976599983	Laserv2	C:\Users\Sebastian\Documents\Under Control\wwise\Under Control original\.cache\Windows\SFX\Laserv2_DEEC346B.wem		\Actor-Mixer Hierarchy\Default Work Unit\AllFX\Listo\FXInGame\4_OtherFX\LaserSound\Laserv2		1157300
+

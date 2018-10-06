@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B8E4EAA1-9D31-463C-AA93-DB41D54DDFEA}" SchemaVersion="85">
+	<GameParameters>
+		<WorkUnit Name="Default Work Unit" ID="{B8E4EAA1-9D31-463C-AA93-DB41D54DDFEA}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="VolumeFx" ID="{9A7C16BE-F360-475C-8E3E-FC3533A75330}">
+					<Comment>Volume of the Fx sound
+</Comment>
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="100"/>
+						<Property Name="SlewRateUp" Type="Real64" Value="6"/>
+					</PropertyList>
+				</GameParameter>
+				<GameParameter Name="VolumeMusic" ID="{07E40D3A-3980-4D61-971B-4B6CEE1E0D1F}">
+					<Comment>General Volume of the music </Comment>
+				</GameParameter>
+				<GameParameter Name="SideChainBomb" ID="{44043FBC-BBC3-45EB-A2F7-2672FDF84534}">
+					<Comment>Este parametro es exclusivo de la programacion en wwise---------no tocar-</Comment>
+					<PropertyList>
+						<Property Name="InitialValue" Type="Real64" Value="-47"/>
+						<Property Name="Max" Type="Real64" Value="0"/>
+						<Property Name="Min" Type="Real64" Value="-48"/>
+					</PropertyList>
+				</GameParameter>
+			</ChildrenList>
+		</WorkUnit>
+	</GameParameters>
+</WwiseDocument>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8F09AC25-D05F-4379-AEA4-BF9061FF5089}" SchemaVersion="80">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{8F09AC25-D05F-4379-AEA4-BF9061FF5089}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Music" ID="{AA3EF427-BD1F-403A-8711-2BA9F4D8C8D8}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Menu_music" ID="{805ACD91-08B6-40D0-B93B-DC1E5EBF21FF}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Music" ID="{BF602A83-FF08-4332-BA6F-2DDE729B2FE3}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Music" ID="{871077FC-DC19-46C2-BD8D-C4B6824E5206}" WorkUnitID="{7312E9E6-CE29-4C14-AFBA-966B660EE6F5}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="InGameMusic" ID="{49ED2F32-A28C-4D5C-B128-1D93E97B2E64}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SFX" ID="{735F11E1-2863-4CBD-99E5-08068171D1BF}">
+					<ObjectInclusionList>
+						<ObjectRef Name="SFXMenu" ID="{04B55A16-42B9-4E40-9BB3-5EEC8739E9BC}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Election" ID="{82F86AAE-6CFA-4FFB-8ABA-0C60AA2AFC18}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SFXInGame" ID="{5387EAFF-D18A-46E7-BA6C-7DA2C5311BFF}">
+					<ObjectInclusionList>
+						<ObjectRef Name="SFXInGame" ID="{E7DB1279-E7F3-4448-8DBF-E519D1AE3A61}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="FXInGame" ID="{CBF38208-0126-4840-BA3B-A6B210268204}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

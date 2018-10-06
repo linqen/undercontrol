@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{6E420C6A-0D5A-4C6D-B409-639C2C155020}" SchemaVersion="80">
+	<Switches>
+		<WorkUnit Name="Music" ID="{6E420C6A-0D5A-4C6D-B409-639C2C155020}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="InGameMusic" ID="{E13F7349-584C-499F-8D5D-A3DA1C2EEEEE}">
+					<ChildrenList>
+						<Switch Name="LevelOneDeath" ID="{0B236240-58F5-4744-8E9E-AFA8B79CBD6F}"/>
+						<Switch Name="LevelBasic" ID="{9DAE05EE-00A6-40B2-8E8D-C1B738A3ED5B}"/>
+						<Switch Name="LevelTwoDeath" ID="{AEE7FA4F-7C5E-4FD4-9302-17FB4DB48DAB}"/>
+						<Switch Name="Score" ID="{817AE652-4B1E-4B43-9341-CBD9B18B0A21}"/>
+						<Switch Name="PauseMusic" ID="{A88A30D1-0814-45E0-B37D-C913D45C8D79}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="MenuMusic" ID="{1AD2B53F-CE70-474D-9A9B-70774EAFFA44}">
+					<ChildrenList>
+						<Switch Name="CreditsMenu" ID="{DE1EECC4-6FD4-4C3C-BB95-C05B21C70285}"/>
+						<Switch Name="KillSelectionMenu" ID="{95CC61A2-AC18-4540-987D-794233B02E2F}"/>
+						<Switch Name="MainMenu" ID="{D5C6F90B-6CE9-4E79-AE3E-83E7053B76CB}"/>
+						<Switch Name="CharacterSelectionMenu" ID="{D7B91D86-A7AF-43E0-9C25-14EAD21CDAD3}"/>
+						<Switch Name="PressStartMenu" ID="{DF8C84AD-F8CC-4E4E-932E-5EE6103BB1A1}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="StateOfMusic" ID="{E822FECF-CAC9-4D18-835C-DEF7822B1263}">
+					<ChildrenList>
+						<Switch Name="InGame" ID="{2288E410-BC32-4F11-8A23-5E2D816BF42B}"/>
+						<Switch Name="Menu" ID="{35EB9DDB-3F17-4D4A-9049-5A0B81D24614}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="AmountOfPlayers" ID="{99B69A06-C4D4-41B3-BA98-F3F29B6085E8}">
+					<ChildrenList>
+						<Switch Name="Two" ID="{7EB2CABE-6E6E-45B8-B843-C3EE58169341}"/>
+						<Switch Name="Three" ID="{DDB9EF6E-0AC8-446C-928F-F7757EBBF32B}"/>
+						<Switch Name="Four" ID="{D21653D1-482E-4CD0-8907-A5F9CAABAAAD}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</Switches>
+</WwiseDocument>

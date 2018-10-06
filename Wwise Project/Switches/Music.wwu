@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{6E420C6A-0D5A-4C6D-B409-639C2C155020}" SchemaVersion="89">
+	<Switches>
+		<WorkUnit Name="Music" ID="{6E420C6A-0D5A-4C6D-B409-639C2C155020}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="MenuMusic" ID="{1AD2B53F-CE70-474D-9A9B-70774EAFFA44}">
+					<ChildrenList>
+						<Switch Name="CreditsMenu" ID="{DE1EECC4-6FD4-4C3C-BB95-C05B21C70285}"/>
+						<Switch Name="KillSelectionMenu" ID="{95CC61A2-AC18-4540-987D-794233B02E2F}"/>
+						<Switch Name="MainMenu" ID="{D5C6F90B-6CE9-4E79-AE3E-83E7053B76CB}"/>
+						<Switch Name="CharacterSelectionMenu" ID="{D7B91D86-A7AF-43E0-9C25-14EAD21CDAD3}"/>
+						<Switch Name="PressStartMenu" ID="{DF8C84AD-F8CC-4E4E-932E-5EE6103BB1A1}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="StateOfMusic" ID="{E822FECF-CAC9-4D18-835C-DEF7822B1263}">
+					<ChildrenList>
+						<Switch Name="InGame" ID="{2288E410-BC32-4F11-8A23-5E2D816BF42B}"/>
+						<Switch Name="Menu" ID="{35EB9DDB-3F17-4D4A-9049-5A0B81D24614}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="AmountOfPlayers" ID="{99B69A06-C4D4-41B3-BA98-F3F29B6085E8}">
+					<ChildrenList>
+						<Switch Name="Two" ID="{7EB2CABE-6E6E-45B8-B843-C3EE58169341}"/>
+						<Switch Name="Three" ID="{DDB9EF6E-0AC8-446C-928F-F7757EBBF32B}"/>
+						<Switch Name="Four" ID="{D21653D1-482E-4CD0-8907-A5F9CAABAAAD}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="InGameEvents" ID="{4B8D9DCF-A0BD-4172-A130-E12B85B713FE}">
+					<Comment>Se necesita un mensaje por cada muerte que ocurra en el juego. Contiene tres variables. Cuando arranca el juego y todavia nadie murio. Y los otros dos depende de la cantidad de jugadores. Cuando haya tres o cuatro jugadores se enviara un mensaje cuando muere el primer personaje. Pero cuando haya Cuatro jugadores y se muera el tercero se necesitara un mensaje mas para la segunda muerte.
+</Comment>
+					<ChildrenList>
+						<Switch Name="LevelBasic" ID="{C990C2C0-EAC8-4020-BC2B-B03DDB0165BB}"/>
+						<Switch Name="FirstDeath" ID="{8D819FD3-CF49-4436-B89A-A037DCCAF288}"/>
+						<Switch Name="SecondDeath" ID="{BE40E1ED-18EF-4240-AE75-6EA5DC1A6963}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</Switches>
+</WwiseDocument>

@@ -139,13 +139,13 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			{
 				case 3:
 				if(deadPlayers==1)
-					AkSoundEngine.SetSwitch("InGameMusic","LevelOneDeath",menuManager.gameObject);
+					AkSoundEngine.SetSwitch("InGameEvents","FirstDeath",menuManager.gameObject);
 				break;
 				case 4:
 				if(deadPlayers==1)
-					AkSoundEngine.SetSwitch("InGameMusic","LevelOneDeath",menuManager.gameObject);
+					AkSoundEngine.SetSwitch("InGameEvents","FirstDeath",menuManager.gameObject);
 				else if(deadPlayers==2)
-					AkSoundEngine.SetSwitch("InGameMusic","LevelTwoDeath",menuManager.gameObject);
+					AkSoundEngine.SetSwitch("InGameEvents","SecondDeath",menuManager.gameObject);
 				break;
 			}
 			//Music parameters
@@ -200,7 +200,7 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			actualSceneIndex = 0;
 		}
 		if (actualSceneIndex+1  == 2) {
-			AkSoundEngine.SetSwitch ("InGameMusic", "LevelBasic", menuManager.gameObject);
+			AkSoundEngine.SetSwitch ("InGameEvents", "LevelBasic", menuManager.gameObject);
 		}
 		GameStart (actualSceneIndex+1, numberOfRounds);
 	}
@@ -241,7 +241,8 @@ public class GameManager : GenericSingletonClass<GameManager> {
 			break;
 		}
 		AkSoundEngine.SetSwitch ("StateOfMusic","InGame", menuManager.gameObject);
-		AkSoundEngine.SetSwitch("InGameMusic","LevelBasic",menuManager.gameObject);
+		AkSoundEngine.SetSwitch("InGameEvents","LevelBasic",menuManager.gameObject);
+		AkSoundEngine.PostEvent("InGameMusic",gameObject);
 		AkSoundEngine.PostEvent("Countdown",gameObject);
 
 		StartCoroutine (OnGameStart (sceneIndex));

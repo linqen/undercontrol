@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{E8C15F20-3A00-4B0D-9F58-3B8B0947EC2D}" SchemaVersion="89">
+	<SoundcasterSessions>
+		<WorkUnit Name="Default Work Unit" ID="{E8C15F20-3A00-4B0D-9F58-3B8B0947EC2D}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="Prueba 21 8" ID="{2A085A1A-1C48-40A2-A089-88084EE7281E}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="Music" ID="{871077FC-DC19-46C2-BD8D-C4B6824E5206}" WorkUnitID="{7312E9E6-CE29-4C14-AFBA-966B660EE6F5}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Granade" ID="{9AF70112-C503-4CD3-AC90-D39410A91ABC}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PressBackToGame" ID="{C54E4B42-6E39-4C0C-A958-73EC0E55BB82}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Countdown" ID="{4554C9A9-FF58-4A79-A871-9D0746ECEF32}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="0" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SelectedMenuSound" ID="{57F5A0E7-8412-4C86-A12D-25CAAC6700E4}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="0" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ChoosingPlayerSoundLeft" ID="{211973FC-FD2E-4E5D-8356-69069FAD88AC}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PressStart" ID="{3BC14595-E5B9-4858-AECD-F74E1A068182}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="1" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ChoosingMenuAmountOfDeadsSoundLeft" ID="{0BA2126C-44E7-4941-AF15-CFA12B969057}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="1" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="NewPlayer" ID="{30BA040D-CE31-451A-9C23-61CC1360A9D2}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="1" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SelectedMenuAmountOfDeadsSound" ID="{558BAFD7-5184-4631-8CA2-922A57E9FBCF}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="1" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ChoosingPlayerSoundRight" ID="{2B245B97-DB1D-444A-9E3B-4488A6ACE7E1}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ChoosingMenuSoundUp" ID="{2F7AA14B-5A18-4205-9F16-988F080372DD}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ChoosingMenuSoundDown" ID="{F8F331E2-5DD3-43E7-AF92-6F7BD6A6D766}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="2" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ChoosingMenuAmountOfDeadsSoundRight" ID="{09D9A95B-956B-44D4-8666-1BC3B3F38CC6}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="2" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="StartPause" ID="{E0B48240-297D-4207-8F91-C9ABE6B1E50B}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="3" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="StopPause" ID="{DD605314-3A1E-4CC2-86F1-7492BE1FF73F}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ChoosingMenuPauseDown" ID="{3AA76068-C8F8-4551-A088-74518025E5A9}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="3" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ChoosingMenuPauseUp" ID="{900D8C32-5E45-4F21-86E8-258FBC0989E9}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="3" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="StartScore" ID="{B15ED39A-F954-4C66-AF6C-977EF78F959F}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="3" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="StopScore" ID="{1E94D1F7-623C-4E7F-9154-AA705FC0D775}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="3" Y="5"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="StartInGameLaserSound" ID="{B3CCDC67-0020-479C-AD19-1A9C58B743A8}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="3" Y="6"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PickUpPowerUpFastRunning" ID="{CE9379EA-CC3A-4575-A914-E1F2D7FFD625}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="4" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PickUpPowerUpAntiGravity" ID="{A581BD23-55AD-4779-8BFE-AB9133A63FD4}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="4" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PickUpPowerUpShieldRecovered" ID="{8D3295A0-B415-4E96-9B63-926337F44EEA}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="4" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PickUpPowerUpFastGranade" ID="{50189A4C-7853-4700-BB12-9DA29FBBE846}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="4" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="SelectedPlayerSound" ID="{E413B356-84C4-48FA-9205-81219156189B}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="4" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="GranadeTest" ID="{BF859ABF-8347-49F7-95A8-EBC57ED1C9D0}" WorkUnitID="{9F583A0D-A109-4A81-8CD0-3BE731BEECAE}"/>
+							<Position X="5" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayerTouchFloor" ID="{6B5C26C2-DFB6-4E0C-8B08-81EE45753EB6}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="5" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayerJumping" ID="{F17D946E-B09E-41B4-84F6-EB5E7C870476}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="5" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="BrokenShield" ID="{427AEFB7-F5D2-4B39-A64C-6155CD14B7CC}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="5" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="DeathSound" ID="{A79B43E8-79FD-4F67-A3FB-43F5CA9A8B82}" WorkUnitID="{4F23A46F-AA27-4D2B-94C1-551658A511E3}"/>
+							<Position X="5" Y="4"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true">
+						<RTPCValue>
+							<GameParameterRef Name="SideChainBomb" ID="{44043FBC-BBC3-45EB-A2F7-2672FDF84534}"/>
+							<Value>-47</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="VolumeFx" ID="{9A7C16BE-F360-475C-8E3E-FC3533A75330}"/>
+							<Value>100</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="VolumeMusic" ID="{07E40D3A-3980-4D61-971B-4B6CEE1E0D1F}"/>
+							<Value>100</Value>
+						</RTPCValue>
+					</RTPCValueList>
+					<CurrentStateList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="LevelBasic" ID="{C990C2C0-EAC8-4020-BC2B-B03DDB0165BB}"/>
+						<CurrentSwitchRef Name="Four" ID="{D21653D1-482E-4CD0-8907-A5F9CAABAAAD}"/>
+						<CurrentSwitchRef Name="CreditsMenu" ID="{DE1EECC4-6FD4-4C3C-BB95-C05B21C70285}"/>
+						<CurrentSwitchRef Name="PreBomb" ID="{3F949704-69F7-4B2A-A771-8192EB091CC3}"/>
+						<CurrentSwitchRef Name="InGame" ID="{2288E410-BC32-4F11-8A23-5E2D816BF42B}"/>
+					</CurrentSwitchList>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundcasterSessions>
+</WwiseDocument>

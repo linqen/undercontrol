@@ -63,11 +63,11 @@ public class SettingsDB : GenericSingletonClass<SettingsDB>{
 
 		boolean = PlayerPrefs.GetInt ("FX");
 		if (boolean == 1) {
-			AkSoundEngine.SetRTPCValue("VolumeFx",100);
-			AkSoundEngine.SetRTPCValue("VolumeElectionMenu",100);
+			AkSoundEngine.SetRTPCValue("VolumeFX",100);
+			//AkSoundEngine.SetRTPCValue("VolumeElectionMenu",100);
 		} else {
-			AkSoundEngine.SetRTPCValue("VolumeFx",0);
-			AkSoundEngine.SetRTPCValue("VolumeElectionMenu",0);
+			AkSoundEngine.SetRTPCValue("VolumeFX",0);
+			//AkSoundEngine.SetRTPCValue("VolumeElectionMenu",0);
 		}
 
 	}

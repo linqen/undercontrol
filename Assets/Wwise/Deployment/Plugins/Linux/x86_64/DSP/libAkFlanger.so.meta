@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65defd1de86e5014b922c86d811de3c3
-timeCreated: 1524529596
+timeCreated: 1538835807
 licenseType: Free
 PluginImporter:
   externalObjects: {}
@@ -42,13 +42,13 @@ PluginImporter:
   - first:
       Standalone: Linux64
     second:
-      enabled: 1
+      enabled: 0
       settings:
         CPU: x86_64
   - first:
       Standalone: LinuxUniversal
     second:
-      enabled: 1
+      enabled: 0
       settings:
         CPU: x86_64
   - first:

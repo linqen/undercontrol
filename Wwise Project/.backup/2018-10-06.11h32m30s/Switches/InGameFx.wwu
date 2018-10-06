@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{2F492295-7C4B-43B6-8EC3-E7B651E0E0DF}" SchemaVersion="85">
+	<Switches>
+		<WorkUnit Name="InGameFx" ID="{2F492295-7C4B-43B6-8EC3-E7B651E0E0DF}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="Granade" ID="{5A7D0076-DDD5-4A5C-8D9D-676ED0DA4968}">
+					<ChildrenList>
+						<Switch Name="PreBomb" ID="{3F949704-69F7-4B2A-A771-8192EB091CC3}"/>
+						<Switch Name="Bomb" ID="{783191D2-69F7-451B-B3CD-4EFE8631095C}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
+	</Switches>
+</WwiseDocument>

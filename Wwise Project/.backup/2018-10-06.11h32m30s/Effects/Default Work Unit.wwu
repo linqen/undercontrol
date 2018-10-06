@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{4FFD75CA-23FF-48AD-BAF7-AB8EE09FEA79}" SchemaVersion="85">
+	<Effects>
+		<WorkUnit Name="Default Work Unit" ID="{4FFD75CA-23FF-48AD-BAF7-AB8EE09FEA79}" PersistMode="Standalone">
+			<ChildrenList>
+				<Effect Name="New_Wwise_Compressor" ID="{5649A32C-7015-447B-8590-8C2F8F853265}" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+					<PropertyList>
+						<Property Name="ChannelLink" Type="bool" Value="False"/>
+						<Property Name="ProcessLFE" Type="bool" Value="False"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="New_Wwise_Gain" ID="{DD518CF9-BAF4-470B-94C4-F43261AE785D}" PluginName="Wwise Gain" CompanyID="0" PluginID="139" PluginType="3">
+					<PropertyList>
+						<Property Name="LFEGain" Type="Real32" Value="-1.5"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="New_SoundSeed_Impact" ID="{03714576-B9A6-4767-99A3-739BF5BCBC33}" PluginName="SoundSeed Impact" CompanyID="0" PluginID="116" PluginType="3">					<PluginData>
+	<ModeList GlobalGain="0.000000"/>
+</PluginData>
+				</Effect>
+				<Effect Name="New_Wwise_Meter" ID="{E1891EC9-D5DD-4482-8E69-2E744ADB39D7}" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+					<PropertyList>
+						<Property Name="AttackTime" Type="Real32" Value="0.1"/>
+						<Property Name="MeterMode" Type="int32" Value="1"/>
+						<Property Name="ReleaseTime" Type="Real32" Value="0.2"/>
+					</PropertyList>
+					<PluginData>
+	<GameParameter Name="SideChainBomb" ID="{44043FBC-BBC3-45EB-A2F7-2672FDF84534}"/>
+</PluginData>
+				</Effect>
+				<Effect Name="New_Wwise_Meter_01" ID="{C48C4FAF-C9E2-42BC-A12D-52D57E08AD66}" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+					<PropertyList>
+						<Property Name="AttackTime" Type="Real32" Value="0.1"/>
+						<Property Name="MeterMode" Type="int32" Value="1"/>
+						<Property Name="ReleaseTime" Type="Real32" Value="1"/>
+					</PropertyList>
+					<PluginData>
+	<GameParameter Name="SideChainBomb" ID="{44043FBC-BBC3-45EB-A2F7-2672FDF84534}"/>
+</PluginData>
+				</Effect>
+				<Effect Name="New_Wwise_Guitar_Distortion" ID="{43C7E658-89D7-4300-ABB1-3F1B6BFFEACE}" PluginName="Wwise Guitar Distortion" CompanyID="0" PluginID="126" PluginType="3">
+					<PropertyList>
+						<Property Name="PostEQBand3Enable" Type="bool" Value="True"/>
+						<Property Name="PreEQBand1Enable" Type="bool" Value="True"/>
+						<Property Name="PreEQBand1FilterType" Type="int32" Value="2"/>
+						<Property Name="PreEQBand2Enable" Type="bool" Value="True"/>
+						<Property Name="PreEQBand3Enable" Type="bool" Value="True"/>
+					</PropertyList>
+				</Effect>
+			</ChildrenList>
+		</WorkUnit>
+	</Effects>
+</WwiseDocument>

@@ -1,0 +1,7 @@
+Project migration to XML Schema (XSD) version 86 is completed.
+Project migration to XML Schema (XSD) version 87 is completed.
+Project migration to XML Schema (XSD) version 88 is completed.
+Project migration to XML Schema (XSD) version 89 is completed.
+The .xml file for plugin 'SoundSeed Impact' is missing or is invalid.
+\Effects\Default Work Unit\New_SoundSeed_Impact uses the audio effect plugin 'SoundSeed Impact', which is not installed.
+Some new object properties have been added or obsolete properties deleted. The project file was updated. These changes will not have an impact on your project.

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{01A0812D-A38E-4EFE-856D-093B31E38164}" SchemaVersion="85">
+	<Busses>
+		<WorkUnit Name="Default Work Unit" ID="{01A0812D-A38E-4EFE-856D-093B31E38164}" PersistMode="Standalone">
+			<ChildrenList>
+				<Bus Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
+					<ReferenceList>
+						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
+							<ObjectRef Name="System" ID="{77EBBBA4-22D2-47E0-9B06-88D61B1F3186}" WorkUnitID="{DDBA1FCA-4134-44D2-8757-59A805FF68A5}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Bus Name="Master" ID="{D697449A-0527-4550-BE2C-E48E37820C83}">
+							<ChildrenList>
+								<Bus Name="Music" ID="{8C39C94B-20F4-448A-80AE-23D5A78C8E41}">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{A3ED0023-50E9-4758-A78F-7482B91C2B65}" ShortID="43212764">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="SideChainBomb" ID="{44043FBC-BBC3-45EB-A2F7-2672FDF84534}" WorkUnitID="{B8E4EAA1-9D31-463C-AA93-DB41D54DDFEA}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{E121EFCD-0B55-4FE9-8313-FD16A1228C10}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>-48</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>-47.84922</XPos>
+																<YPos>-0.03464</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Log1</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>-24.57801</XPos>
+																<YPos>-8.1551</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Exp1</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+								</Bus>
+								<Bus Name="SFX" ID="{58FA458D-1DF9-463F-84E5-E593B55CAD0A}">
+									<ReferenceList>
+										<Reference Name="Effect0" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+											<ObjectRef Name="New_Wwise_Meter" ID="{E1891EC9-D5DD-4482-8E69-2E744ADB39D7}" WorkUnitID="{4FFD75CA-23FF-48AD-BAF7-AB8EE09FEA79}"/>
+										</Reference>
+									</ReferenceList>
+								</Bus>
+							</ChildrenList>
+						</Bus>
+						<Bus Name="Critical" ID="{101B9CCB-E61A-40DF-A853-32AFD86F3AB0}"/>
+					</ChildrenList>
+				</Bus>
+				<Bus Name="Master Secondary Bus" ID="{D2E0BC7E-7B3F-4FFE-A670-FAE02761B631}">
+					<ReferenceList>
+						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
+							<ObjectRef Name="System" ID="{77EBBBA4-22D2-47E0-9B06-88D61B1F3186}" WorkUnitID="{DDBA1FCA-4134-44D2-8757-59A805FF68A5}"/>
+						</Reference>
+					</ReferenceList>
+				</Bus>
+			</ChildrenList>
+		</WorkUnit>
+	</Busses>
+</WwiseDocument>

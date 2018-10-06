@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Linux" BasePlatform="Linux" SchemaVersion="11" SoundbankVersion="132">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Sebastian\Documents\Under Control\undercontrol\Wwise Project\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Sebastian\Documents\Under Control\undercontrol\Wwise Project\.cache\Linux\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Sebastian\Documents\Under Control\undercontrol\Wwise Project\GeneratedSoundBanks\Linux\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Sebastian\Documents\Under Control\undercontrol\Wwise Project\GeneratedSoundBanks\Linux</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="393239870" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
+			<ShortName>SFX</ShortName>
+			<Path>SFX.bnk</Path>
+			<IncludedEvents>
+				<Event Id="150205304" Name="ChoosingMenuAmountOfDeadsSoundLeft" ObjectPath="\Events\Default Work Unit\SFXMenu\Choosing\ChoosingMenuAmountOfDeadsSoundLeft"/>
+				<Event Id="3226918447" Name="ChoosingMenuAmountOfDeadsSoundRight" ObjectPath="\Events\Default Work Unit\SFXMenu\Choosing\ChoosingMenuAmountOfDeadsSoundRight"/>
+				<Event Id="738322899" Name="ChoosingMenuSoundDown" ObjectPath="\Events\Default Work Unit\SFXMenu\Choosing\ChoosingMenuSoundDown"/>
+				<Event Id="409491284" Name="ChoosingMenuSoundUp" ObjectPath="\Events\Default Work Unit\SFXMenu\Choosing\ChoosingMenuSoundUp"/>
+				<Event Id="3701262634" Name="ChoosingPlayerSoundLeft" ObjectPath="\Events\Default Work Unit\SFXMenu\Choosing\ChoosingPlayerSoundLeft"/>
+				<Event Id="4098349729" Name="ChoosingPlayerSoundRight" ObjectPath="\Events\Default Work Unit\SFXMenu\Choosing\ChoosingPlayerSoundRight"/>
+				<Event Id="2732502762" Name="NewPlayer" ObjectPath="\Events\Default Work Unit\SFXMenu\Selection\NewPlayer"/>
+				<Event Id="3540125970" Name="PressStart" ObjectPath="\Events\Default Work Unit\SFXMenu\Selection\PressStart"/>
+				<Event Id="1966548682" Name="SelectedMenuAmountOfDeadsSound" ObjectPath="\Events\Default Work Unit\SFXMenu\Selection\SelectedMenuAmountOfDeadsSound"/>
+				<Event Id="1654317064" Name="SelectedMenuSound" ObjectPath="\Events\Default Work Unit\SFXMenu\Selection\SelectedMenuSound"/>
+				<Event Id="1723066554" Name="SelectedPlayerSound" ObjectPath="\Events\Default Work Unit\SFXMenu\Selection\SelectedPlayerSound"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="30682593" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_F9A0941F.wem</Path>
+				</File>
+				<File Id="88674853" Language="SFX">
+					<ShortName>Nuevo jugador y pres strat.wav</ShortName>
+					<Path>SFX\Nuevo jugador y pres strat_56B56592.wem</Path>
+				</File>
+				<File Id="148686412" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_4D406BE5.wem</Path>
+				</File>
+				<File Id="174565809" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_E3A79537.wem</Path>
+				</File>
+				<File Id="322439086" Language="SFX">
+					<ShortName>Nuevo jugador y pres strat.wav</ShortName>
+					<Path>SFX\Nuevo jugador y pres strat_B8C315F9.wem</Path>
+				</File>
+				<File Id="332996808" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_D678A7EC.wem</Path>
+				</File>
+				<File Id="417732883" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_8766147F.wem</Path>
+				</File>
+				<File Id="593646026" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_BABD055F.wem</Path>
+				</File>
+				<File Id="803799401" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_1B3797AA.wem</Path>
+				</File>
+				<File Id="896995038" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_8C1C59E2.wem</Path>
+				</File>
+				<File Id="954446017" Language="SFX">
+					<ShortName>Nuevo jugador y pres strat.wav</ShortName>
+					<Path>SFX\Nuevo jugador y pres strat_5A73DB6D.wem</Path>
+				</File>
+				<File Id="977607525" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_CDCE0DA7.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="2624986333" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\SFXInGame</ObjectPath>
+			<ShortName>SFXInGame</ShortName>
+			<Path>SFXInGame.bnk</Path>
+			<IncludedEvents>
+				<Event Id="319302521" Name="BrokenShield" ObjectPath="\Events\Default Work Unit\SFXInGame\Other\BrokenShield"/>
+				<Event Id="2031625088" Name="ChoosingMenuPauseDown" ObjectPath="\Events\Default Work Unit\SFXInGame\PauseAndScore\ChoosingMenuPauseDown"/>
+				<Event Id="3797147779" Name="ChoosingMenuPauseUp" ObjectPath="\Events\Default Work Unit\SFXInGame\PauseAndScore\ChoosingMenuPauseUp"/>
+				<Event Id="1505888634" Name="Countdown" ObjectPath="\Events\Default Work Unit\SFXInGame\Other\Countdown"/>
+				<Event Id="3742375894" Name="DeathSound" ObjectPath="\Events\Default Work Unit\SFXInGame\Other\DeathSound"/>
+				<Event Id="420892081" Name="Granade" ObjectPath="\Events\Default Work Unit\SFXInGame\Other\Granade"/>
+				<Event Id="4234035959" Name="PickUpPowerUpAntiGravity" ObjectPath="\Events\Default Work Unit\SFXInGame\PowerUps\PickUpPowerUpAntiGravity"/>
+				<Event Id="3380139897" Name="PickUpPowerUpFastGranade" ObjectPath="\Events\Default Work Unit\SFXInGame\PowerUps\PickUpPowerUpFastGranade"/>
+				<Event Id="3684393442" Name="PickUpPowerUpFastRunning" ObjectPath="\Events\Default Work Unit\SFXInGame\PowerUps\PickUpPowerUpFastRunning"/>
+				<Event Id="2622240111" Name="PickUpPowerUpShieldRecovered" ObjectPath="\Events\Default Work Unit\SFXInGame\PowerUps\PickUpPowerUpShieldRecovered"/>
+				<Event Id="2946864334" Name="PlayerJumping" ObjectPath="\Events\Default Work Unit\SFXInGame\Players\PlayerJumping"/>
+				<Event Id="1185697611" Name="PlayerTouchFloor" ObjectPath="\Events\Default Work Unit\SFXInGame\Players\PlayerTouchFloor"/>
+				<Event Id="3689268082" Name="StartInGameLaserSound" ObjectPath="\Events\Default Work Unit\SFXInGame\LaserSound\StartInGameLaserSound"/>
+				<Event Id="2965756111" Name="StartPause" ObjectPath="\Events\Default Work Unit\SFXInGame\PauseAndScore\StartPause"/>
+				<Event Id="565434503" Name="StartScore" ObjectPath="\Events\Default Work Unit\SFXInGame\PauseAndScore\StartScore"/>
+				<Event Id="3270715844" Name="StopInGameLaserSound" ObjectPath="\Events\Default Work Unit\SFXInGame\LaserSound\StopInGameLaserSound"/>
+				<Event Id="2618690349" Name="StopPause" ObjectPath="\Events\Default Work Unit\SFXInGame\PauseAndScore\StopPause"/>
+				<Event Id="2756239097" Name="StopScore" ObjectPath="\Events\Default Work Unit\SFXInGame\PauseAndScore\StopScore"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="17449408" Language="SFX">
+					<ShortName>Sonido con utilidad 48.wav</ShortName>
+					<Path>SFX\Sonido con utilidad 48_7544BA96.wem</Path>
+				</File>
+				<File Id="35013728" Language="SFX">
+					<ShortName>NewJump.wav</ShortName>
+					<Path>SFX\NewJump_7544BA96_50304133.wem</Path>
+				</File>
+				<File Id="55207038" Language="SFX">
+					<ShortName>death.wav</ShortName>
+					<Path>SFX\death_683E768A_FE022AE0.wem</Path>
+				</File>
+				<File Id="80654697" Language="SFX">
+					<ShortName>Laser.wav</ShortName>
+					<Path>SFX\Laser_4EEF2E14.wem</Path>
+				</File>
+				<File Id="123364202" Language="SFX">
+					<ShortName>Laser.wav</ShortName>
+					<Path>SFX\Laser_8A8190B8.wem</Path>
+				</File>
+				<File Id="147497928" Language="SFX">
+					<ShortName>bomb nuevo.wav</ShortName>
+					<Path>SFX\bomb nuevo_04211548.wem</Path>
+				</File>
+				<File Id="196004634" Language="SFX">
+					<ShortName>Laser.wav</ShortName>
+					<Path>SFX\Laser_68C7E8E9.wem</Path>
+				</File>
+				<File Id="251728431" Language="SFX">
+					<ShortName>Tic.wav</ShortName>
+					<Path>SFX\Tic_7544BA96.wem</Path>
+				</File>
+				<File Id="286441875" Language="SFX">
+					<ShortName>Nuevo jugador y pres strat.wav</ShortName>
+					<Path>SFX\Nuevo jugador y pres strat_2E9C22D0.wem</Path>
+				</File>
+				<File Id="350200640" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_CAD1641C.wem</Path>
+				</File>
+				<File Id="453701904" Language="SFX">
+					<ShortName>fall.wav</ShortName>
+					<Path>SFX\fall_AFB8F2C0.wem</Path>
+				</File>
+				<File Id="474658775" Language="SFX">
+					<ShortName>Tic 3.wav</ShortName>
+					<Path>SFX\Tic 3_7544BA96.wem</Path>
+				</File>
+				<File Id="494843857" Language="SFX">
+					<ShortName>Running fast.wav</ShortName>
+					<Path>SFX\Running fast_7544BA96_2F9A2E84.wem</Path>
+				</File>
+				<File Id="506125225" Language="SFX">
+					<ShortName>prebomb nuevo.wav</ShortName>
+					<Path>SFX\prebomb nuevo_87726970.wem</Path>
+				</File>
+				<File Id="595964533" Language="SFX">
+					<ShortName>nuevos menus.wav</ShortName>
+					<Path>SFX\nuevos menus_04AC9E6D.wem</Path>
+				</File>
+				<File Id="599755370" Language="SFX">
+					<ShortName>death.wav</ShortName>
+					<Path>SFX\death_0DE7D095_FE022AE0.wem</Path>
+				</File>
+				<File Id="603394432" Language="SFX">
+					<ShortName>Tic. 2wav.wav</ShortName>
+					<Path>SFX\Tic. 2wav_7544BA96.wem</Path>
+				</File>
+				<File Id="604506235" Language="SFX">
+					<ShortName>escudo roto.wav</ShortName>
+					<Path>SFX\escudo roto_2730DEB8.wem</Path>
+				</File>
+				<File Id="722503511" Language="SFX">
+					<ShortName>Laser.wav</ShortName>
+					<Path>SFX\Laser_9842E6BA.wem</Path>
+				</File>
+				<File Id="788340288" Language="SFX">
+					<ShortName>Power up shield 48.wav</ShortName>
+					<Path>SFX\Power up shield 48_95143A4C_52F35628.wem</Path>
+				</File>
+				<File Id="801941032" Language="SFX">
+					<ShortName>death.wav</ShortName>
+					<Path>SFX\death_F26CE7B0.wem</Path>
+				</File>
+				<File Id="854285663" Language="SFX">
+					<ShortName>Nuevo jugador y pres strat.wav</ShortName>
+					<Path>SFX\Nuevo jugador y pres strat_7C185B0A.wem</Path>
+				</File>
+				<File Id="878324971" Language="SFX">
+					<ShortName>death.wav</ShortName>
+					<Path>SFX\death_F07BECA5_FE022AE0.wem</Path>
+				</File>
+				<File Id="905420843" Language="SFX">
+					<ShortName>Bomb 3.wav</ShortName>
+					<Path>SFX\Bomb 3_7544BA96.wem</Path>
+				</File>
+				<File Id="909519926" Language="SFX">
+					<ShortName>Power up bombs 2.wav</ShortName>
+					<Path>SFX\Power up bombs 2_0D4F156E.wem</Path>
+				</File>
+				<File Id="976599983" Language="SFX">
+					<ShortName>Laserv2.wav</ShortName>
+					<Path>SFX\Laserv2_DEEC346B.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="3991942870" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
+			<ShortName>Music</ShortName>
+			<Path>Music.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1545821079" Name="InGameMusic" ObjectPath="\Events\Default Work Unit\Music\InGameMusic"/>
+				<Event Id="4055567060" Name="Menu_music" ObjectPath="\Events\Default Work Unit\Music\Menu_music"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="69563777" Language="SFX">
+					<ShortName>Uc 16 08 140 bpm Cm Level Music Percu.wav</ShortName>
+					<Path>SFX\Uc 16 08 140 bpm Cm Level Music Percu_F26CE7B0.wem</Path>
+				</File>
+				<File Id="112698883" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm 4-Kontakt 5.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm 4-Kontakt 5_F26CE7B0.wem</Path>
+				</File>
+				<File Id="127918428" Language="SFX">
+					<ShortName>Uc 16 08 140 bpm Cm Level Music DX7  lead.wav</ShortName>
+					<Path>SFX\Uc 16 08 140 bpm Cm Level Music DX7  lead_F26CE7B0.wem</Path>
+				</File>
+				<File Id="133332652" Language="SFX">
+					<ShortName>Uc 16 08 140 bpm Cm Level Music bajo raro.wav</ShortName>
+					<Path>SFX\Uc 16 08 140 bpm Cm Level Music bajo raro_F26CE7B0.wem</Path>
+				</File>
+				<File Id="224049799" Language="SFX">
+					<ShortName>Uc 16 08 140 bpm Cm Level Music Viento.wav</ShortName>
+					<Path>SFX\Uc 16 08 140 bpm Cm Level Music Viento_F26CE7B0.wem</Path>
+				</File>
+				<File Id="281597489" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm Percusion K.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm Percusion K_F26CE7B0.wem</Path>
+				</File>
+				<File Id="286486099" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm DX7  lead.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm DX7  lead_F26CE7B0.wem</Path>
+				</File>
+				<File Id="560482287" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm bajo raro.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm bajo raro_F26CE7B0.wem</Path>
+				</File>
+				<File Id="597965626" Language="SFX">
+					<ShortName>Uc 16 08 140 bpm Cm Level Music Percusion K.wav</ShortName>
+					<Path>SFX\Uc 16 08 140 bpm Cm Level Music Percusion K_F26CE7B0.wem</Path>
+				</File>
+				<File Id="622171832" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm Percusion K v1.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm Percusion K v1_F26CE7B0.wem</Path>
+				</File>
+				<File Id="737773971" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm Percusion battery.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm Percusion battery_F26CE7B0.wem</Path>
+				</File>
+				<File Id="801941032" Language="SFX">
+					<ShortName>death.wav</ShortName>
+					<Path>SFX\death_F26CE7B0.wem</Path>
+				</File>
+				<File Id="802909089" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm Sinte base.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm Sinte base_F26CE7B0.wem</Path>
+				</File>
+				<File Id="920095050" Language="SFX">
+					<ShortName>Uc 16 08 140 bpm Cm Level Music Sinte base.wav</ShortName>
+					<Path>SFX\Uc 16 08 140 bpm Cm Level Music Sinte base_F26CE7B0.wem</Path>
+				</File>
+				<File Id="935886657" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm bajo raro-1.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm bajo raro-1_F26CE7B0.wem</Path>
+				</File>
+				<File Id="1023085180" Language="SFX">
+					<ShortName>Uc 16 08 Bajo loop nuevo.wav</ShortName>
+					<Path>SFX\Uc 16 08 Bajo loop nuevo_F26CE7B0.wem</Path>
+				</File>
+				<File Id="1037079838" Language="SFX">
+					<ShortName>Uc press start button 140bpm Cm Foley_demas.wav</ShortName>
+					<Path>SFX\Uc press start button 140bpm Cm Foley_demas_F26CE7B0.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

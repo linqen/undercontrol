@@ -30,8 +30,8 @@ public class GrenadeBehaviour : MonoBehaviour {
 	void Start () {
 		timeLived = 0.0f;
 		oldPos = transform.position;
-		AkSoundEngine.SetSwitch ("GrenadeExplode", "GrenadeLaunching", gameObject);
-		AkSoundEngine.PostEvent ("Grenade", gameObject);
+		AkSoundEngine.SetSwitch ("Granade", "PreBomb", gameObject);
+		AkSoundEngine.PostEvent ("Granade", gameObject);
 		//spriteRender.sprite = grenades [grenadeOfCharacterNumber-1];
 		animator.SetInteger("CharacterNumber", grenadeOfCharacterNumber);
 	}
@@ -68,8 +68,8 @@ public class GrenadeBehaviour : MonoBehaviour {
 	}
 
 	void Explode(){
-		AkSoundEngine.SetSwitch ("GrenadeExplode", "GrenadeExplode", gameObject);
-		AkSoundEngine.PostEvent ("Grenade", gameObject);
+		AkSoundEngine.SetSwitch ("Granade", "Bomb", gameObject);
+		AkSoundEngine.PostEvent ("Granade", gameObject);
 		animator.SetBool("Twinkle", false);
 		myRigid.constraints = RigidbodyConstraints2D.FreezeAll;
 		Collider2D[] cols = Physics2D.OverlapCircleAll (transform.position, radius);
