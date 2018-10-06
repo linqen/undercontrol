@@ -1,4 +1,4 @@
-![alt text](Logo.png)
+<span style="display:block;text-align:center">![alt text](Logo.png)</span>
 
 Under Control is a local multiplayer platform game where up to 4 players fight with grenades to beat each other.
 
