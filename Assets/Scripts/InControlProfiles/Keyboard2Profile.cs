@@ -29,13 +29,13 @@ public class Keyboard2Profile : UnityInputDeviceProfile
 			{
 				Handle = "Jump",
 				Target = InputControlType.Action1,
-				Source = KeyCodeButton( KeyCode.Minus)
+				Source = KeyCodeButton( KeyCode.Keypad3)
 			},
 			new InputControlMapping
 			{
 				Handle = "Fire",
 				Target = InputControlType.Action2,
-				Source = KeyCodeButton( KeyCode.Period)
+				Source = KeyCodeButton( KeyCode.Keypad2)
 			},
 			new InputControlMapping
 			{

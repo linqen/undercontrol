@@ -5066,7 +5066,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6427972f99a6fc94aa838a9551f48c78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6845226536f20894e92e40327e23a810, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5114,12 +5114,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerList: f7e1664c
   useOtherObject: 0
-  valueGuid: e1115f736328bd4c99e508068171d1bf
   bankName: SFX
-  loadAsynchronous: 0
   decodeBank: 0
+  loadAsynchronous: 0
   saveDecodedBank: 0
   unloadTriggerList: 
+  valueGuid: e1115f736328bd4c99e508068171d1bf
 --- !u!114 &114500622877587286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7230,7 +7230,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: aec1f7df14458e245958557286970fe9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd0e0ad6767da1c4a9621b6375da27c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7579,12 +7579,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerList: f7e1664c
   useOtherObject: 0
-  valueGuid: 27f43eaa1fbd3a4087112ba9f4d8c8d8
   bankName: Music
-  loadAsynchronous: 0
   decodeBank: 0
+  loadAsynchronous: 0
   saveDecodedBank: 0
   unloadTriggerList: 
+  valueGuid: 27f43eaa1fbd3a4087112ba9f4d8c8d8
 --- !u!114 &114966556985626112
 MonoBehaviour:
   m_ObjectHideFlags: 1
